@@ -20,7 +20,8 @@ const useFetchData = () => {
       // Set generic default photo when it's missing
       data.forEach((plug) => {
         if (plug.src === "")
-          plug.src = "/public/genericImage/generic_image_256x256.png";
+          plug.src =
+            "/public/genericImage/generic_image_256x256.png";
       });
 
       setData(data);
