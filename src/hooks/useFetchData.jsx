@@ -21,7 +21,7 @@ const useFetchData = () => {
       data.forEach((plug) => {
         if (plug.src === "")
           plug.src =
-            "../../public/icons/rerack-icon/android-chrome-256x256.png";
+            "../../dist/icons/rerack-icon/android-chrome-256x256.png";
       });
 
       setData(data);
