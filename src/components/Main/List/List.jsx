@@ -2,6 +2,7 @@ import { Fragment, useContext, useEffect } from "react";
 import ListItem from "../ListItem/ListItem.jsx";
 import ListHeader from "../ListHeader/ListHeader.jsx";
 import Spinner from "../../Common/Spinner/Spinner.jsx";
+import Scroller from "../Scroller/Scroller.jsx";
 import Context from "../../../context/Context.jsx";
 import useFetchData from "../../../hooks/useFetchData.jsx";
 import "./List.css";
@@ -59,35 +60,34 @@ const List = () => {
             id="items-container"
             className={view === "list" ? "list-group" : "gallery-ul"}
           >
-            <>
-              {orderedData.map((plug, index) => {
-                const itsHeaderCompliance =
-                  contextData["searchBoxValue"] === "" &&
-                  contextData["companyFilterValue"] === "" &&
-                  contextData["typeFilterValue"] === "" &&
-                  view === "list" &&
-                  ((contextData["orderBy"] === "name" &&
-                    plug["name"][0] === currentInitial) ||
-                    plug[contextData["orderBy"]] === currentInitial);
+            {orderedData.map((plug, index) => {
+              const itsHeaderCompliance =
+                contextData["searchBoxValue"] === "" &&
+                contextData["companyFilterValue"] === "" &&
+                contextData["typeFilterValue"] === "" &&
+                view === "list" &&
+                ((contextData["orderBy"] === "name" &&
+                  plug["name"][0] === currentInitial) ||
+                  plug[contextData["orderBy"]] === currentInitial);
 
-                if (itsHeaderCompliance) {
-                  // pick headers from initials array
-                  initials.shift();
-                  previousInitial = currentInitial;
-                  currentInitial = initials[0];
+              if (itsHeaderCompliance) {
+                // pick headers from initials array
+                initials.shift();
+                previousInitial = currentInitial;
+                currentInitial = initials[0];
 
-                  return (
-                    <Fragment key={index}>
-                      <ListHeader previousInitial={previousInitial} />
-                      <ListItem plug={plug} index={index} />
-                    </Fragment>
-                  );
-                } else {
-                  return <ListItem plug={plug} index={index} key={index} />;
-                }
-              })}
-            </>
+                return (
+                  <Fragment key={index}>
+                    <ListHeader previousInitial={previousInitial} />
+                    <ListItem plug={plug} index={index} />
+                  </Fragment>
+                );
+              } else {
+                return <ListItem plug={plug} index={index} key={index} />;
+              }
+            })}
           </ul>
+          <Scroller />
           <span id="none-found-message">
             Nothing to see here, try another search query.
           </span>

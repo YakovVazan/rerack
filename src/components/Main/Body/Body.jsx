@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import List from "../List/List.jsx";
-import Scroller from "../Scroller/Scroller.jsx";
 import PlugPage from "../../../pages/PlugPage/PlugPage.jsx";
 import NotFound from "../../../pages/NotFound/NotFound.jsx";
 import PrivacyPolicy from "../../Footer/PrivacyPolicy/PrivacyPolicy.jsx";
@@ -16,7 +15,6 @@ const Body = () => {
           <Route path="/privacy_policy" element={<PrivacyPolicy />}></Route>
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
-        <Scroller />
       </main>
     </>
   );
