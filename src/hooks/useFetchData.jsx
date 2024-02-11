@@ -21,7 +21,7 @@ const useFetchData = () => {
       data.forEach((plug) => {
         if (plug.src === "")
           plug.src =
-            "/public/genericImage/generic_image_256x256.png";
+            "../../public/genericImage/generic_image_256x256.png";
       });
 
       setData(data);
