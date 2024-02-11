@@ -1,0 +1,9 @@
+.initials-header {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: sticky;
+    top: 0;
+    background-color: #e9e9e9;
+    z-index: 1;
+}

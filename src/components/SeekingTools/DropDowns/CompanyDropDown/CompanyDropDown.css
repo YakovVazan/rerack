@@ -1,0 +1,14 @@
+#company-filter {
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.inner-button-text-company {
+    display: block;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

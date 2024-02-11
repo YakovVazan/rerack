@@ -1,0 +1,27 @@
+#type-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.inner-button-text-type {
+    display: block;
+    width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#type-drop-down {
+    max-width: 80%;
+    max-height: 50%;
+    overflow-y: scroll;
+}
+
+#type-drop-down>* {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}

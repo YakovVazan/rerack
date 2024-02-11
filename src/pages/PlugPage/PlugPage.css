@@ -1,0 +1,19 @@
+.list-item-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    padding-bottom: 1em;
+    overflow: auto;
+}
+
+.list-item {
+    max-width: 80%;
+    height: fit-content;
+}
+
+@media screen and (max-width:576px) {
+    .list-item {
+        max-width: 98%;
+    }
+}
