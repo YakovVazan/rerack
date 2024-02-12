@@ -8,14 +8,14 @@ import "./Body.css";
 const Body = () => {
   return (
     <>
-      <main id="main-container">
+      <section id="main-container">
         <Routes>
           <Route path="/" element={<List />}></Route>
           <Route path="/plugs/:name" element={<PlugPage />}></Route>
           <Route path="/privacy_policy" element={<PrivacyPolicy />}></Route>
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
-      </main>
+      </section>
     </>
   );
 };

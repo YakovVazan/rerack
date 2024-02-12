@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <>
       <footer id="footer-container">
-        <Link to={"privacy_policy"}>Privacy Policy</Link>
+        <Link to={"privacy_policy"} id="privacy-policy-link">Privacy Policy</Link>
       </footer>
     </>
   );

@@ -1,5 +1,4 @@
 #privacy-policy-container {
-    height: calc(100dvh - 3.5em);
-    padding-left: 5em;
-    padding-right: 5em;
+    height: fit-content;
+    padding: 5em;
 }

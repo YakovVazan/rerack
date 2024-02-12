@@ -1,26 +1,21 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import useFetchData from "../../../hooks/useFetchData";
 import "./Scroller.css";
 
 const Scroller = () => {
-  const location = useLocation();
   const { isLoading } = useFetchData();
-  const parentContainer = document.querySelector("#items-container");
+  const parentContainer = document.querySelector("#main-container");
 
   useEffect(() => {
-    if (location.pathname !== "/" || isLoading || !parentContainer) {
-      document.querySelector("#scroller").style.bottom = "-8%";
-      return;
-    }
+    if (!parentContainer || isLoading) return;
 
     function handleScroll() {
       const scroller = document.querySelector("#scroller");
 
       if (parentContainer.scrollTop > 400) {
-        scroller.style.bottom = "3%";
+        scroller.style.bottom = "30px";
       } else {
-        scroller.style.bottom = "-8%";
+        scroller.style.bottom = "-54px";
       }
     }
 
@@ -29,12 +24,10 @@ const Scroller = () => {
     return () => {
       parentContainer.removeEventListener("scroll", handleScroll);
     };
-  }, [location.pathname, isLoading, parentContainer]);
+  }, [isLoading, parentContainer]);
 
   function handleClick() {
-    document
-      .querySelector("#items-container")
-      .scrollTo({ top: 0, behavior: "smooth" });
+    parentContainer.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   return (

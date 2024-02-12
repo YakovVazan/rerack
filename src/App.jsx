@@ -2,6 +2,7 @@ import { useState } from "react";
 import Context from "./context/Context.jsx";
 import Nav from "./components/Header/Nav/Nav.jsx";
 import Body from "./components/Main/Body/Body.jsx";
+import Footer from './components/Footer/Footer.jsx'
 import * as vars from "./config/localStorage.js";
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
       >
         <Nav />
         <Body />
+        <Footer />
       </Context.Provider>
     </>
   );

@@ -1,8 +1,7 @@
 #items-container {
-    overflow: auto;
-    scroll-behavior: smooth;
     width: 100%;
     height: 100%;
+    margin: 0;
 
     /* for safari on iOS */
     z-index: -1;

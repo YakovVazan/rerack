@@ -4,8 +4,8 @@
 
 #scroller {
     position: fixed;
-    left: calc(50% - 16px);
-    bottom: -8%;
+    left: calc(50% - 20px);
+    bottom: -54px;
     color: #6c757d;
     background: rgba(219, 219, 219, 0.7);
     border-radius: 100%;
