@@ -10,6 +10,7 @@ import "./List.css";
 const List = () => {
   const contextData = useContext(Context);
   const orderedData = contextData["orderedData"];
+  const searchBoxValue = contextData["searchBoxValue"];
   const view = contextData["view"];
   const { isLoading } = useFetchData();
 
@@ -48,7 +49,7 @@ const List = () => {
       document.querySelector("#none-found-message").style.display = "none";
       document.querySelector("#items-container").style.display = "flex";
     }
-  }, [isLoading]);
+  }, [isLoading, searchBoxValue]);
 
   return (
     <>

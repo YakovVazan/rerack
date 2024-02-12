@@ -1,10 +1,12 @@
+@import '../../styles/layout.css';
+
 .not-found-container {
     display: flex;
     align-items: center;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 3.5em);
+    height: calc(100dvh - var(--header-height));
 }
 
 .not-found-content {

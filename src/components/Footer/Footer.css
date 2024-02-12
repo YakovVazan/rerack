@@ -1,9 +1,11 @@
+@import '../../styles/themes.css';
+
 #footer-container {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #dbdbdb;
+    background-color: var(--light-bg-color-1);
     position: relative;
     z-index: 1;
 }

@@ -1,7 +1,9 @@
+@import '../../../styles/layout.css';
+
 #main-container {
     display: flex;
     justify-content: center;
-    height: calc(100dvh - 3.5em - 24px);
+    height: calc(100dvh - var(--header-height) - var(--footer-height));
     width: 100%;
     position: relative;
     z-index: 1;

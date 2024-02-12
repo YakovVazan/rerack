@@ -1,13 +1,16 @@
+@import '../../../styles/layout.css';
+@import '../../../styles/themes.css';
+
 nav {
     position: sticky;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #dbdbdb;
+    background-color: var(--light-bg-color-1);
     padding: 10px;
     color: rgb(100, 100, 100);
     z-index: 2;
-    height: 3.5em;
+    height: var(--header-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
