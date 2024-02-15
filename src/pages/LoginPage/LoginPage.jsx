@@ -2,11 +2,12 @@ import Context from "../../context/Context";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { localStorageLogin } from "../../config/localStorage";
-
+import Spinner from "../../components/Common/Spinner/Spinner";
 
 const LoginPage = () => {
   const contextData = useContext(Context);
   const navigate = useNavigate();
+  const [loadingUser, setLoadingUser] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -22,6 +23,7 @@ const LoginPage = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
+    setLoadingUser(true);
     loginUser(formData);
   }
 
@@ -42,7 +44,9 @@ const LoginPage = () => {
     }
   }
 
-  return (
+  return loadingUser ? (
+    <Spinner />
+  ) : (
     <form method="post" onSubmit={(event) => handleSubmit(event)}>
       <div className="form-floating">
         <input

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../../components/Common/Spinner/Spinner";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const [loadingUser, setLoadingUser] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,6 +20,7 @@ const RegisterPage = () => {
   }
 
   function handleSubmit(event) {
+    setLoadingUser(true);
     event.preventDefault();
     submitUser(formData);
   }
@@ -38,7 +41,9 @@ const RegisterPage = () => {
     }
   }
 
-  return (
+  return loadingUser ? (
+    <Spinner />
+  ) : (
     <form method="post" onSubmit={(event) => handleSubmit(event)}>
       <div className="form-floating">
         <input

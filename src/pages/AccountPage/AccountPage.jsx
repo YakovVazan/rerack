@@ -1,13 +1,18 @@
 import Context from "../../context/Context";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { localStorageLogout, localStorageToken } from "../../config/localStorage";
+import {
+  localStorageLogout,
+  localStorageToken,
+} from "../../config/localStorage";
+import Spinner from "../../components/Common/Spinner/Spinner";
 
 const AccountPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const contextData = useContext(Context);
   const [userDetails, setUserDetails] = useState({});
+  const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
     async function fetchUserDetails() {
@@ -20,10 +25,10 @@ const AccountPage = () => {
 
         if (!res.ok) {
           const errorResponse = await res.json();
-          
+
           console.log(errorResponse.msg || errorResponse.error);
           localStorageLogout();
-          contextData["setToken"]("");
+          contextData.setToken("");
           navigate("/users/login");
         }
 
@@ -31,13 +36,23 @@ const AccountPage = () => {
         setUserDetails(data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoadingUser(false);
       }
     }
 
     fetchUserDetails();
   }, [id]);
 
-  return <div>{userDetails.name}</div>;
+  return (
+    <>
+      {loadingUser ? (
+        <Spinner />
+      ) : (
+        <div style={{ alignSelf: "center" }}>{userDetails.name}</div>
+      )}
+    </>
+  );
 };
 
 export default AccountPage;
