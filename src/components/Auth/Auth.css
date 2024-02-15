@@ -1,4 +1,5 @@
-#sign-up-and-in-buttons {
+#sign-up-and-in-buttons,
+#logout-and-account-buttons {
     display: flex;
     justify-content: end;
     gap: 10%;

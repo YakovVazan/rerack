@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import Scroller from "../../Main/Scroller/Scroller.jsx";
 import "./PrivacyPolicy.css";
 
 const PrivacyPolicy = () => {
+  useEffect(() => {
+    document.querySelector("#main-container").scrollTo(0, 0);
+    document.querySelector("#main-container").style.scrollBehavior = "auto";
+  });
+
   return (
     <>
       <div id="privacy-policy-container">

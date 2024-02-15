@@ -11,6 +11,7 @@ const App = () => {
   const [view, setView] = useState(vars.localStorageView);
   const [orderBy, setOrderBy] = useState(vars.localStorageOrder);
   const [orderedData, setOrderedData] = useState([]);
+  const [token, setToken] = useState(vars.localStorageToken);
 
   return (
     <>
@@ -22,12 +23,14 @@ const App = () => {
           setTypeFilterValue,
           setCompanyFilterValue,
           setView,
+          setToken,
           orderBy,
           orderedData,
           searchBoxValue,
           typeFilterValue,
           companyFilterValue,
           view,
+          token,
         }}
       >
         <Nav />
