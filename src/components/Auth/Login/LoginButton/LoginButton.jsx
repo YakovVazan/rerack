@@ -1,12 +1,10 @@
-import "./LoginButton.css";
-
-const loginButton = () => {
+const LoginButton = () => {
   function handleClick() {
     console.log("login!");
   }
 
   return (
-    <div id="login-button">
+    <div>
       <div
         className="btn btn-outline-secondary"
         title="login"
@@ -34,4 +32,4 @@ const loginButton = () => {
   );
 };
 
-export default loginButton;
+export default LoginButton;

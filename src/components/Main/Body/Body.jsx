@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import List from "../List/List.jsx";
 import PlugPage from "../../../pages/PlugPage/PlugPage.jsx";
 import NotFound from "../../../pages/NotFound/NotFound.jsx";
-import PrivacyPolicy from "../../Footer/PrivacyPolicy/PrivacyPolicy.jsx";
+import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
 import "./Body.css";
 
 const Body = () => {

@@ -3,7 +3,7 @@
 #main-container {
     display: flex;
     justify-content: center;
-    height: calc(100dvh - var(--header-height) - var(--footer-height));
+    height: calc(100dvh - var(--header-height));
     width: 100%;
     position: relative;
     z-index: 1;

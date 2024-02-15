@@ -1,9 +1,9 @@
+import AuthAndInfo from "../../AuthAndInfo/AuthAndInfo.jsx";
 import SearchBox from "../../SeekingTools/SearchBox/SearchBox.jsx";
 import Layout from "../../SeekingTools/FilterAndLayout/Layout/Layout.jsx";
 import Filter from "../../SeekingTools/FilterAndLayout/Filter/Filter.jsx";
 import TypeDropDown from "../../SeekingTools/DropDowns/TypeDropDown/TypeDropDown.jsx";
 import CompanyDropDown from "../../SeekingTools/DropDowns/CompanyDropDown/CompanyDropDown.jsx";
-import LoginButton from "../../Auth/Login/LoginButton/LoginButton.jsx";
 import "./HamburgerAndSideBar.css";
 
 const HamburgerAndSideBar = () => {
@@ -66,7 +66,7 @@ const HamburgerAndSideBar = () => {
 
           <div id="lower-offcanvas-body">
             <hr className="dropdown-divider"></hr>
-            <LoginButton />
+            <AuthAndInfo />
           </div>
         </div>
       </div>

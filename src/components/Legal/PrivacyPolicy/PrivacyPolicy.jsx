@@ -1,4 +1,4 @@
-import Scroller from "../../Main/Scroller/Scroller";
+import Scroller from "../../Main/Scroller/Scroller.jsx";
 import "./PrivacyPolicy.css";
 
 const PrivacyPolicy = () => {
