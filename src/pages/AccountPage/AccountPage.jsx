@@ -1,7 +1,7 @@
+import Context from "../../context/Context";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { localStorageLogout, localStorageToken } from "../../../../config/localStorage";
-import Context from "../../../../context/Context";
+import { localStorageLogout, localStorageToken } from "../../config/localStorage";
 
 const AccountPage = () => {
   const { id } = useParams();

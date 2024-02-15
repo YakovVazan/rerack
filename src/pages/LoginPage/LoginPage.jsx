@@ -1,7 +1,8 @@
+import Context from "../../context/Context";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Context from "../../../../context/Context";
-import { localStorageLogin } from "../../../../config/localStorage";
+import { localStorageLogin } from "../../config/localStorage";
+
 
 const LoginPage = () => {
   const contextData = useContext(Context);
