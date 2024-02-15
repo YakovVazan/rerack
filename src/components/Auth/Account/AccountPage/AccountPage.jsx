@@ -1,9 +1,12 @@
-import { useParams } from "react-router-dom";
-import { localStorageToken } from "../../../../config/localStorage";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { localStorageLogout, localStorageToken } from "../../../../config/localStorage";
+import Context from "../../../../context/Context";
 
 const AccountPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const contextData = useContext(Context);
   const [userDetails, setUserDetails] = useState({});
 
   useEffect(() => {
@@ -17,8 +20,11 @@ const AccountPage = () => {
 
         if (!res.ok) {
           const errorResponse = await res.json();
+          
           console.log(errorResponse.msg || errorResponse.error);
-          return;
+          localStorageLogout();
+          contextData["setToken"]("");
+          navigate("/users/login");
         }
 
         const data = await res.json();
