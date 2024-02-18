@@ -1,10 +1,12 @@
 #scroller-container {
-    position: relative;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 #scroller {
     position: fixed;
-    left: calc(50% - 20px);
     bottom: -54px;
     color: #6c757d;
     background: rgba(219, 219, 219, 0.7);

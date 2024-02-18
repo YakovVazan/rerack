@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Scroller from "../../Main/Scroller/Scroller.jsx";
+import Scroller from "../../Common/Scroller/Scroller";
 import "./PrivacyPolicy.css";
 
 const PrivacyPolicy = () => {
