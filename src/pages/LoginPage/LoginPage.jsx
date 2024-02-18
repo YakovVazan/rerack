@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { localStorageLogin } from "../../config/localStorage";
 import Spinner from "../../components/Common/Spinner/Spinner";
+import "../../styles/auth-card.css";
 
 const LoginPage = () => {
   const contextData = useContext(Context);
@@ -37,6 +38,7 @@ const LoginPage = () => {
     const response = JSON.parse(await res.text());
     if (!res.ok) {
       console.log(response?.msg || response.error);
+      setLoadingUser(false);
     } else {
       localStorageLogin(response.token, response.id);
       contextData["setToken"](response.token);
@@ -48,34 +50,49 @@ const LoginPage = () => {
     <Spinner />
   ) : (
     <form method="post" onSubmit={(event) => handleSubmit(event)}>
-      <div className="form-floating">
-        <input
-          type="email"
-          name="email"
-          id="floatingEmail"
-          className="form-control"
-          placeholder="Email"
-          onChange={handleChange}
-        />
-        <label htmlFor="floatingEmail">Email</label>
+      <div className="card auth-card">
+        <div className="card-header">
+          <h3>
+            <strong>Login</strong>
+          </h3>
+        </div>
+        <div className="card-body">
+          <div className="form-floating">
+            <input
+              type="email"
+              name="email"
+              id="floatingEmail"
+              className="form-control"
+              placeholder="Email"
+              onChange={handleChange}
+            />
+            <label htmlFor="floatingEmail">Email</label>
+          </div>
+          <div className="form-floating">
+            <input
+              type="password"
+              name="password"
+              id="floatingPassword"
+              className="form-control"
+              placeholder="Password"
+              onChange={handleChange}
+            />
+            <label htmlFor="floatingPassword">Password</label>
+          </div>
+          <div id="auth-buttons">
+            <input
+              type="reset"
+              value="Reset"
+              className="btn btn-outline-secondary"
+            />
+            <input
+              type="submit"
+              value="Submit"
+              className="btn btn-outline-secondary"
+            />
+          </div>
+        </div>
       </div>
-      <div className="form-floating">
-        <input
-          type="password"
-          name="password"
-          id="floatingPassword"
-          className="form-control"
-          placeholder="Password"
-          onChange={handleChange}
-        />
-        <label htmlFor="floatingPassword">Password</label>
-      </div>
-      <input type="reset" value="Reset" className="btn btn-outline-secondary" />
-      <input
-        type="submit"
-        value="Submit"
-        className="btn btn-outline-secondary"
-      />
     </form>
   );
 };

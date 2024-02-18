@@ -1,0 +1,22 @@
+#personal-card {
+    width: 75%;
+    align-self: center;
+    height: fit-content;
+}
+
+#personal-card>* {
+    text-align: center;
+}
+
+td {
+    width: 50%;
+}
+
+#personal-buttons {
+    width: 100%;
+}
+
+.btn-outline-info {
+    border-right: 0;
+    border-left: 0;
+}
