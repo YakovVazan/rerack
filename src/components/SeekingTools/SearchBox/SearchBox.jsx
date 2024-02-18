@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import Context from "../../../context/Context.jsx";
+import { consts } from "../../../config/constants.js";
 import { ResetAllFactors } from "../../../utils/ResetFactors/ResetFactors.jsx";
 import "./SearchBox.css";
 
@@ -13,8 +14,8 @@ const SearchBox = () => {
 
   function resetAllFactors() {
     contextData["setSearchBoxValue"]("");
-    contextData["setTypeFilterValue"]("");
-    contextData["setCompanyFilterValue"]("");
+    contextData["setTypeFilterValue"](consts.typeDropDownInitialValue);
+    contextData["setCompanyFilterValue"](consts.companyDropDownInitialValue);
 
     ResetAllFactors();
   }

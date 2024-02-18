@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Context from "../../../context/Context.jsx";
+import { consts } from "../../../config/constants.js";
 import "./ListItem.css";
 
 const ListItem = ({ plug, index }) => {
@@ -36,8 +37,10 @@ const ListItem = ({ plug, index }) => {
         } ${
           (searchBoxValue === "" ||
             plug["name"].toLowerCase().includes(searchBoxValue)) &&
-          (typeFilterValue === "" || plug["type"] === typeFilterValue) &&
-          (companyFilterValue === "" || plug["company"] === companyFilterValue)
+          (typeFilterValue === consts.typeDropDownInitialValue ||
+            plug["type"] === typeFilterValue) &&
+          (companyFilterValue === consts.companyDropDownInitialValue ||
+            plug["company"] === companyFilterValue)
             ? view === "list" && selectedItem === index
               ? "active"
               : ""

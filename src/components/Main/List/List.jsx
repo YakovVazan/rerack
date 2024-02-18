@@ -5,6 +5,7 @@ import Spinner from "../../Common/Spinner/Spinner.jsx";
 import Scroller from "../../Common/Scroller/Scroller.jsx";
 import Context from "../../../context/Context.jsx";
 import useFetchData from "../../../hooks/useFetchData.jsx";
+import { consts } from "../../../config/constants.js";
 import "./List.css";
 
 const List = () => {
@@ -40,8 +41,8 @@ const List = () => {
     ).length;
 
     if (
-      (!isLoading && view === "list" && hiddenElements == orderedData.length) ||
-      (view === "gallery" && hiddenElements == orderedData.length * 2)
+      (view === "list" && hiddenElements === orderedData.length) ||
+      (view === "gallery" && hiddenElements === orderedData.length * 2)
     ) {
       document.querySelector("#items-container").style.display = "none";
       document.querySelector("#none-found-message").style.display = "block";
@@ -64,8 +65,10 @@ const List = () => {
             {orderedData.map((plug, index) => {
               const itsHeaderCompliance =
                 contextData["searchBoxValue"] === "" &&
-                contextData["companyFilterValue"] === "" &&
-                contextData["typeFilterValue"] === "" &&
+                contextData["companyFilterValue"] ===
+                  consts.companyDropDownInitialValue &&
+                contextData["typeFilterValue"] ===
+                  consts.typeDropDownInitialValue &&
                 view === "list" &&
                 ((contextData["orderBy"] === "name" &&
                   plug["name"][0] === currentInitial) ||

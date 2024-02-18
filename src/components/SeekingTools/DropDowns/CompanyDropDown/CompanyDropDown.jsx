@@ -1,12 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import Context from "../../../../context/Context.jsx";
-import useFetchData from "../../../../hooks/useFetchData.jsx";
 import Spinner from "../../../Common/Spinner/Spinner.jsx";
+import useFetchData from "../../../../hooks/useFetchData.jsx";
+import { consts } from "../../../../config/constants.js";
 import { ResetCompanyValue } from "../../../../utils/ResetFactors/ResetFactors.jsx";
 import "./CompanyDropDown.css";
 
 const CompanyDropDown = () => {
-  const setCompanyFilterValue = useContext(Context)["setCompanyFilterValue"];
+  const contextData = useContext(Context);
+  const setCompanyFilterValue = contextData["setCompanyFilterValue"];
+  const companyFilterValue = contextData["companyFilterValue"];
   const [companiesList, setCompaniesList] = useState([]);
   const { data, isLoading } = useFetchData();
 
@@ -32,11 +35,16 @@ const CompanyDropDown = () => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <span className="inner-button-text-company">company</span>
+          <span className="inner-button-text-company">
+            {companyFilterValue}
+          </span>
         </button>
         {/* filter drop down */}
         <ul className="dropdown-menu">
-          <div className="dropdown-item" onClick={() => handleClick("")}>
+          <div
+            className="dropdown-item"
+            onClick={() => handleClick(consts.companyDropDownInitialValue)}
+          >
             all
           </div>
           <hr className="dropdown-divider"></hr>

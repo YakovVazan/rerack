@@ -3,10 +3,12 @@ import Context from "../../../../context/Context.jsx";
 import useFetchData from "../../../../hooks/useFetchData.jsx";
 import Spinner from "../../../Common/Spinner/Spinner.jsx";
 import { ResetTypeValue } from "../../../../utils/ResetFactors/ResetFactors.jsx";
+import { consts } from "../../../../config/constants.js";
 import "./TypeDropDown.css";
 
 const TypeDropDown = () => {
   const contextData = useContext(Context);
+  const typeFilterValue = contextData["typeFilterValue"];
   const setTypeFilterValue = contextData["setTypeFilterValue"];
   const [typesList, setTypesList] = useState([]);
   const { data, isLoading } = useFetchData();
@@ -31,11 +33,14 @@ const TypeDropDown = () => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <span className="inner-button-text-type">type</span>
+          <span className="inner-button-text-type">{typeFilterValue}</span>
         </button>
         {/* filter drop down */}
         <ul className="dropdown-menu" id="type-drop-down">
-          <div className="dropdown-item" onClick={() => handleClick("")}>
+          <div
+            className="dropdown-item"
+            onClick={() => handleClick(consts.typeDropDownInitialValue)}
+          >
             all
           </div>
           <hr className="dropdown-divider"></hr>

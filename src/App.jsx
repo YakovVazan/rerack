@@ -2,16 +2,17 @@ import { useState } from "react";
 import Context from "./context/Context.jsx";
 import Nav from "./components/Header/Nav/Nav.jsx";
 import Body from "./components/Main/Body/Body.jsx";
-import * as vars from "./config/localStorage.js";
+import * as localStorageVars from "./config/localStorage.js";
+import { consts } from "./config/constants.js";
 
 const App = () => {
   const [searchBoxValue, setSearchBoxValue] = useState("");
-  const [typeFilterValue, setTypeFilterValue] = useState("");
-  const [companyFilterValue, setCompanyFilterValue] = useState("");
-  const [view, setView] = useState(vars.localStorageView);
-  const [orderBy, setOrderBy] = useState(vars.localStorageOrder);
+  const [typeFilterValue, setTypeFilterValue] = useState(consts.typeDropDownInitialValue);
+  const [companyFilterValue, setCompanyFilterValue] = useState(consts.companyDropDownInitialValue);
+  const [view, setView] = useState(localStorageVars.localStorageView);
+  const [orderBy, setOrderBy] = useState(localStorageVars.localStorageOrder);
   const [orderedData, setOrderedData] = useState([]);
-  const [token, setToken] = useState(vars.localStorageToken);
+  const [token, setToken] = useState(localStorageVars.localStorageToken);
 
   return (
     <>
