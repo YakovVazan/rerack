@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData";
 import Spinner from "../../components/Common/Spinner/Spinner.jsx";
 import "./PlugPage.css";
 
 const PlugPage = () => {
   const { name } = useParams();
-  const location = useLocation();
-  const { state } = location;
   const { data, isLoading } = useFetchData();
+  const [currentPlug, setCurrentPlug] = useState({});
   const [plugsNames, setPlugsNames] = useState([]);
 
   useEffect(() => {
-    if (!isLoading)
-      setPlugsNames(
-        data.map((plug) => plug.name.replace(/ /g, "_").toLowerCase())
-      );
+    if (!isLoading) {
+      Object.keys(data).forEach((key) => {
+        setPlugsNames((prevPlugsNames) => [
+          ...prevPlugsNames,
+          data[key].name.replace(/ /g, "_").toLowerCase(),
+        ]);
+
+        if (data[key].name.replace(/ /g, "_").toLowerCase() === name)
+          setCurrentPlug(data[key]);
+      });
+    }
   }, [isLoading]);
 
   return (
@@ -26,14 +32,12 @@ const PlugPage = () => {
         <div className="list-item-container">
           <div className="card list-item">
             <img
-              src={state && state["src"]}
+              src={currentPlug["src"]}
               className="card-img-top"
-              alt={state ? state["name"] : location.pathname.split("/")[2]}
+              alt={currentPlug["name"]}
             />
             <div className="card-body">
-              <h1 className="card-title">
-                {state ? state["name"] : "Wrong navigation method."}
-              </h1>
+              <h1 className="card-title">{currentPlug["name"]}</h1>
             </div>
           </div>
         </div>
