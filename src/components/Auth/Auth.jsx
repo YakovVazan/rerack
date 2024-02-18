@@ -8,7 +8,6 @@ import "./Auth.css";
 
 const Auth = () => {
   const contextData = useContext(Context);
-  console.log(contextData["token"]);
 
   return (
     <>

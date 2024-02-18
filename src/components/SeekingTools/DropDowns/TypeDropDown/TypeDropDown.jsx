@@ -5,7 +5,6 @@ import Spinner from "../../../Common/Spinner/Spinner.jsx";
 import { ResetTypeValue } from "../../../../utils/ResetFactors/ResetFactors.jsx";
 import "./TypeDropDown.css";
 
-
 const TypeDropDown = () => {
   const contextData = useContext(Context);
   const setTypeFilterValue = contextData["setTypeFilterValue"];

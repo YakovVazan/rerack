@@ -11,6 +11,8 @@ const List = () => {
   const contextData = useContext(Context);
   const orderedData = contextData["orderedData"];
   const searchBoxValue = contextData["searchBoxValue"];
+  const typeFilterValue = contextData["typeFilterValue"];
+  const companyFilterValue = contextData["companyFilterValue"];
   const view = contextData["view"];
   const { isLoading } = useFetchData();
 
@@ -38,9 +40,7 @@ const List = () => {
     ).length;
 
     if (
-      (!document.querySelector("#spinner-container") &&
-        view === "list" &&
-        hiddenElements == orderedData.length) ||
+      (!isLoading && view === "list" && hiddenElements == orderedData.length) ||
       (view === "gallery" && hiddenElements == orderedData.length * 2)
     ) {
       document.querySelector("#items-container").style.display = "none";
@@ -49,7 +49,7 @@ const List = () => {
       document.querySelector("#none-found-message").style.display = "none";
       document.querySelector("#items-container").style.display = "flex";
     }
-  }, [isLoading, searchBoxValue]);
+  }, [isLoading, searchBoxValue, typeFilterValue, companyFilterValue]);
 
   return (
     <>
