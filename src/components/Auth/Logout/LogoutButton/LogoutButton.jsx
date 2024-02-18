@@ -16,6 +16,7 @@ const LogoutButton = () => {
       className="btn btn-outline-secondary"
       title="logout"
       onClick={handleLogout}
+      data-bs-dismiss="offcanvas"
       to={"/"}
     >
       <svg
