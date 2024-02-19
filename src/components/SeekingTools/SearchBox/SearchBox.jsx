@@ -6,6 +6,7 @@ import "./SearchBox.css";
 
 const SearchBox = () => {
   const contextData = useContext(Context);
+  const searchBoxValue = contextData["searchBoxValue"];
   const setSearchBoxValue = contextData["setSearchBoxValue"];
 
   function handleSearchBox(value) {
@@ -45,6 +46,7 @@ const SearchBox = () => {
           className="form-control plugins-filter-input"
           placeholder="Search by name"
           onInput={(event) => handleSearchBox(event.target.value)}
+          value={searchBoxValue}
         />
         <div
           className="btn btn-outline-secondary"

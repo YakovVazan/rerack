@@ -37,7 +37,14 @@ const PlugPage = () => {
               alt={currentPlug["name"]}
             />
             <div className="card-body">
-              <h1 className="card-title">{currentPlug["name"]}</h1>
+              <span className="card-title">
+                <u>Name:</u>
+                {" " + currentPlug["name"]}
+                <br />
+                <u>Type:</u> {currentPlug["type"]}
+                <br />
+                <u>Company:</u> {currentPlug["company"]}
+              </span>
             </div>
           </div>
         </div>
