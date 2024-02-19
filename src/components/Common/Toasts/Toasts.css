@@ -1,0 +1,26 @@
+.toast-container {
+    position: static;
+}
+
+.hidden-toast {
+    display: none;
+}
+
+strong {
+    margin-right: auto;
+}
+
+.toast {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 2%;
+    margin-right: 2%;
+}
+
+@media screen and (max-width: 576px) {
+    .toast {
+        width: 90%;
+        right: calc(50% - 178px);
+    }
+}

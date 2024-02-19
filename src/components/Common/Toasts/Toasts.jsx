@@ -1,11 +1,14 @@
 import { useEffect } from "react";
+import "./Toasts.css";
 
 const Toast = ({ toastMessage, toastVisibility, setToastVisibility }) => {
   useEffect(() => {
     let timeoutId;
 
     if (toastVisibility) {
-      document.querySelector(".toast-container").classList.remove("d-none");
+      document
+        .querySelector(".toast-container")
+        .classList.remove("hidden-toast");
       timeoutId = setTimeout(() => {
         setToastVisibility(false);
       }, 3000);
@@ -17,18 +20,15 @@ const Toast = ({ toastMessage, toastVisibility, setToastVisibility }) => {
   }, [toastVisibility]);
 
   return (
-    <div className="toast-container position-static d-none">
+    <div className="toast-container hidden-toast">
       <div
-        className={`toast ${
-          toastVisibility && "show"
-        } position-fixed bottom-0 end-0 mb-3 me-3`}
+        className={`toast ${toastVisibility && "show"}`}
         role="alert"
         aria-live="assertive"
         aria-atomic="true"
-        style={{ position: "absolute" }}
       >
         <div className="toast-header">
-          <strong className="me-auto">Rerack</strong>
+          <strong>Rerack</strong>
           <button
             type="button"
             className="btn-close"
