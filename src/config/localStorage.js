@@ -16,9 +16,6 @@ if (!localStorageOrder) {
 if (!localStorageId) {
   localStorageId = localStorage.getItem("rerackId");
 }
-// if (!localStorageIsOwner) {
-//   localStorageIsOwner = Boolean(localStorage.getItem("rerackIsOwner"));
-// }
 
 function localStorageLogin(token, id, isOwner) {
   localStorage.setItem("rerackToken", token);
