@@ -3,9 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import List from "../List/List.jsx";
 import Toast from "../../Common/Toasts/Toasts.jsx";
 import Context from "../../../context/Context.jsx";
+import AddModal from "../../Adding/AddModal/AddModal.jsx";
 import PlugPage from "../../../pages/PlugPage/PlugPage.jsx";
 import NotFound from "../../../pages/NotFound/NotFound.jsx";
-import EditModal from "../../Editing/EditModal/EditModal.jsx";
 import LoginPage from "../../../pages/LoginPage/LoginPage.jsx";
 import AdminsPage from "../../../pages/AdminsPage/AdminsPage.jsx";
 import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
@@ -39,7 +39,7 @@ const Body = () => {
       </section>
 
       {/* modal area */}
-      <EditModal />
+      <AddModal />
     </>
   );
 };

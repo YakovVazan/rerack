@@ -1,6 +1,6 @@
-import "./EditButton.css";
+import "./AddButton.css";
 
-const EditButton = () => {
+const AddButton = () => {
   return (
     <div className="input-group">
       <div className="input-group-text">
@@ -23,6 +23,7 @@ const EditButton = () => {
         className="btn btn-outline-secondary form-control"
         data-bs-toggle="modal"
         data-bs-target="#addingModal"
+        // data-bs-dismiss="offcanvas"
       >
         Add a new plug to Rerack
       </div>
@@ -30,4 +31,4 @@ const EditButton = () => {
   );
 };
 
-export default EditButton;
+export default AddButton;

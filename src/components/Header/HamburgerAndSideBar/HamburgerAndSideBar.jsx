@@ -1,5 +1,5 @@
 import AuthAndInfo from "../../AuthAndInfo/AuthAndInfo.jsx";
-import EditButton from "../../Editing/EditButton/EditButton.jsx";
+import AddButton from '../../Adding/AddButton/AddButton.jsx'
 import SearchBox from "../../SeekingTools/SearchBox/SearchBox.jsx";
 import Layout from "../../SeekingTools/FilterAndLayout/Layout/Layout.jsx";
 import Filter from "../../SeekingTools/FilterAndLayout/Filter/Filter.jsx";
@@ -63,7 +63,7 @@ const HamburgerAndSideBar = () => {
             <hr className="dropdown-divider"></hr>
           </div>
           <div id="lower-offcanvas-body">
-            <EditButton/>
+            <AddButton/>
             <hr className="dropdown-divider"></hr>
             <AuthAndInfo />
           </div>

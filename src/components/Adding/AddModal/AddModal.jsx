@@ -1,6 +1,11 @@
 const EditModal = () => {
   return (
-    <div className="modal fade" id="addingModal" aria-hidden="true">
+    <div
+      className="modal fade"
+      id="addingModal"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+    >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
