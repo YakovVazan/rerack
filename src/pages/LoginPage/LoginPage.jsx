@@ -1,8 +1,8 @@
-import Context from "../../context/Context";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { localStorageLogin } from "../../config/localStorage";
+import { Link, useNavigate } from "react-router-dom";
+import Context from "../../context/Context";
 import Spinner from "../../components/Common/Spinner/Spinner";
+import { localStorageLogin } from "../../config/localStorage";
 import "../../styles/auth-card.css";
 
 const LoginPage = () => {
@@ -97,6 +97,11 @@ const LoginPage = () => {
               className="btn btn-outline-secondary"
             />
           </div>
+          <hr />
+          <small>
+            Don&#39;t have an account yet?{" "}
+            <Link to={"/users/register"}>Register</Link>
+          </small>
         </div>
       </div>
     </form>

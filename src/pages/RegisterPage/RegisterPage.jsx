@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Context from "../../context/Context";
 import Spinner from "../../components/Common/Spinner/Spinner";
 import "../../styles/auth-card.css";
@@ -108,6 +108,10 @@ const RegisterPage = () => {
               className="btn btn-outline-secondary"
             />
           </div>
+          <hr />
+          <small>
+            Already registered? <Link to={"/users/login"}>Login</Link>
+          </small>
         </div>
       </div>
     </form>

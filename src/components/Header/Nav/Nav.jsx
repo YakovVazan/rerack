@@ -4,17 +4,13 @@ import TypeDropDown from "../../SeekingTools/DropDowns/TypeDropDown/TypeDropDown
 import CompanyDropDown from "../../SeekingTools/DropDowns/CompanyDropDown/CompanyDropDown.jsx";
 import FilterAndLayout from "../../SeekingTools/FilterAndLayout/FilterAndLayout.jsx";
 import HamburgerAndSideBar from "../HamburgerAndSideBar/HamburgerAndSideBar.jsx";
-import usePlugsNames from "../../../hooks/usePlugsNames.jsx";
 import "./Nav.css";
 
 const Header = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const secondQuery = location.pathname.split("/")[2];
-  const plugsNames = usePlugsNames();
-  const plugName = plugsNames.includes(secondQuery)
-    ? secondQuery.replace("_", " ")
-    : "";
+  const rightHeader = /^\d+$/.test(secondQuery) || secondQuery;
 
   return (
     <nav>
@@ -60,7 +56,7 @@ const Header = () => {
           </div>
         </>
       ) : (
-        <h1>{plugName}</h1>
+        rightHeader && <h1>{rightHeader.replace("_", " ").toUpperCase()}</h1>
       )}
     </nav>
   );
