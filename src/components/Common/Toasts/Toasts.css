@@ -21,6 +21,7 @@ strong {
 @media screen and (max-width: 576px) {
     .toast {
         width: 90%;
+        bottom: 1em;
         right: calc(50% - 178px);
     }
 }

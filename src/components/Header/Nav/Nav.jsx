@@ -10,7 +10,9 @@ const Header = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const secondQuery = location.pathname.split("/")[2];
-  const rightHeader = /^\d+$/.test(secondQuery) || secondQuery;
+  const rightHeader =
+    /^\d+$/.test(secondQuery) ||
+    (secondQuery !== undefined && secondQuery.replace("_", " ").toUpperCase());
 
   return (
     <nav>
@@ -56,7 +58,7 @@ const Header = () => {
           </div>
         </>
       ) : (
-        rightHeader && <h1>{rightHeader.replace("_", " ").toUpperCase()}</h1>
+        rightHeader && <h1>{rightHeader}</h1>
       )}
     </nav>
   );
