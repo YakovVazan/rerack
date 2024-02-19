@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { consts } from "../config/constants";
 
 const useFetchData = () => {
   const [data, setData] = useState([]);
@@ -9,7 +10,7 @@ const useFetchData = () => {
     setIsLoading(true);
 
     try {
-      const res = await fetch("https://api-rerack.onrender.com/plugs");
+      const res = await fetch(`${consts.baseURL}/plugs`);
 
       if (!res.ok) {
         throw new Error("Network error.");
@@ -20,8 +21,7 @@ const useFetchData = () => {
       // Set generic default photo when it's missing
       data.forEach((plug) => {
         if (plug.src === "")
-          plug.src =
-            "/genericImage/generic_image_256x256.png";
+          plug.src = "/genericImage/generic_image_256x256.png";
       });
 
       setData(data);

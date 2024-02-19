@@ -5,6 +5,7 @@ import {
   localStorageLogout,
   localStorageToken,
 } from "../../config/localStorage";
+import { consts } from "../../config/constants";
 import Spinner from "../../components/Common/Spinner/Spinner";
 import "./AccountPage.css";
 
@@ -18,7 +19,7 @@ const AccountPage = () => {
   useEffect(() => {
     async function fetchUserDetails() {
       try {
-        const res = await fetch(`https://api-rerack.onrender.com/users/${id}`, {
+        const res = await fetch(`${consts.baseURL}/users/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorageToken}`,
           },
@@ -48,6 +49,10 @@ const AccountPage = () => {
   function handleToast(msg) {
     contextData["setToastVisibility"](true);
     contextData["setToastMessage"](msg);
+  }
+
+  function handleDeletion(id) {
+    console.log(id);
   }
 
   return (
@@ -104,11 +109,7 @@ const AccountPage = () => {
                 History
               </button>
               <button
-                onClick={() =>
-                  handleToast(
-                    "And here you gonna be able to delete you account"
-                  )
-                }
+                onClick={() => handleDeletion(userDetails.id)}
                 type="button"
                 className="btn btn-outline-danger"
               >

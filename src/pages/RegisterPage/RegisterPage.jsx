@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Context from "../../context/Context";
 import Spinner from "../../components/Common/Spinner/Spinner";
+import { consts } from "../../config/constants";
 import "../../styles/auth-card.css";
 
 const RegisterPage = () => {
@@ -29,7 +30,7 @@ const RegisterPage = () => {
   }
 
   async function submitUser(data) {
-    const res = await fetch("https://api-rerack.onrender.com/users/register", {
+    const res = await fetch(`${consts.baseURL}/users/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

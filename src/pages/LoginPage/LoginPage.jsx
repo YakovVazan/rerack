@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Context from "../../context/Context";
 import Spinner from "../../components/Common/Spinner/Spinner";
 import { localStorageLogin } from "../../config/localStorage";
+import { consts } from "../../config/constants";
 import "../../styles/auth-card.css";
 
 const LoginPage = () => {
@@ -29,7 +30,7 @@ const LoginPage = () => {
   }
 
   async function loginUser(data) {
-    const res = await fetch("https://api-rerack.onrender.com/users/login", {
+    const res = await fetch(`${consts.baseURL}/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
