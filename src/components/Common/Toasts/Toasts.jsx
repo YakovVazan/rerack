@@ -10,6 +10,9 @@ const Toast = ({ toastMessage, toastVisibility, setToastVisibility }) => {
         .querySelector(".toast-container")
         .classList.remove("hidden-toast");
       timeoutId = setTimeout(() => {
+        document
+          .querySelector(".toast-container")
+          .classList.add("hidden-toast");
         setToastVisibility(false);
       }, 3000);
     }

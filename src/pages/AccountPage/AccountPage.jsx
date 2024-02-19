@@ -51,8 +51,34 @@ const AccountPage = () => {
     contextData["setToastMessage"](msg);
   }
 
-  function handleDeletion(id) {
-    console.log(id);
+  async function handleDeletion(id) {
+    try {
+      const res = await fetch(`${consts.baseURL}/users/${id}/delete`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorageToken}`,
+        },
+        body: JSON.stringify(id),
+      });
+
+      console.log(res);
+
+      if (!res.ok) {
+        const errorResponse = await res.json();
+
+        console.log(errorResponse.msg || errorResponse.error);
+      }
+
+      contextData["setToken"]("");
+      contextData["setToastMessage"]("Account deleted successfully");
+      contextData["setToastVisibility"](true);
+      localStorageLogout();
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoadingUser(false);
+    }
   }
 
   return (
