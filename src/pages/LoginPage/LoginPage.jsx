@@ -37,12 +37,17 @@ const LoginPage = () => {
 
     const response = JSON.parse(await res.text());
     if (!res.ok) {
-      console.log(response?.msg || response.error);
+      contextData["setToastVisibility"](true);
+      contextData["setToastMessage"](response?.msg || response.error);
       setLoadingUser(false);
     } else {
       localStorageLogin(response.token, response.id);
       contextData["setToken"](response.token);
       navigate("/");
+      contextData["setToastVisibility"](true);
+      contextData["setToastMessage"](
+        `${response.name} logged in using ${response.email}`
+      );
     }
   }
 
@@ -65,6 +70,7 @@ const LoginPage = () => {
               className="form-control"
               placeholder="Email"
               onChange={handleChange}
+              autoFocus
             />
             <label htmlFor="floatingEmail">Email</label>
           </div>

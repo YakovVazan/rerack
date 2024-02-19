@@ -45,7 +45,10 @@ const AccountPage = () => {
     fetchUserDetails();
   }, [id]);
 
-  console.log(userDetails);
+  function handleToast(msg) {
+    contextData["setToastVisibility"](true);
+    contextData["setToastMessage"](msg);
+  }
 
   return (
     <>
@@ -74,14 +77,41 @@ const AccountPage = () => {
               </tbody>
             </table>
 
-            <div id="personal-buttons" className="btn-group" role="group" aria-label="Basic example">
-              <button type="button" className="btn btn-outline-warning">
+            <div
+              id="personal-buttons"
+              className="btn-group"
+              role="group"
+              aria-label="Basic example"
+            >
+              <button
+                onClick={() =>
+                  handleToast(
+                    "Here you gonna be able to edit your personal details"
+                  )
+                }
+                type="button"
+                className="btn btn-outline-warning"
+              >
                 Edit
               </button>
-              <button type="button" className="btn btn-outline-info">
+              <button
+                onClick={() =>
+                  handleToast("Your editing history will show here")
+                }
+                type="button"
+                className="btn btn-outline-info"
+              >
                 History
               </button>
-              <button type="button" className="btn btn-outline-danger">
+              <button
+                onClick={() =>
+                  handleToast(
+                    "And here you gonna be able to delete you account"
+                  )
+                }
+                type="button"
+                className="btn btn-outline-danger"
+              >
                 Delete
               </button>
             </div>

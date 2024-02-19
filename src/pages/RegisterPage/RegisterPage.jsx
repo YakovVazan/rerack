@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Context from "../../context/Context";
 import Spinner from "../../components/Common/Spinner/Spinner";
 import "../../styles/auth-card.css";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const contextData = useContext(Context);
   const [loadingUser, setLoadingUser] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -36,11 +38,16 @@ const RegisterPage = () => {
     if (!res.ok) {
       const response = JSON.parse(await res.text());
 
-      console.log(response?.msg || response.error);
+      contextData["setToastVisibility"](true);
+      contextData["setToastMessage"](response?.msg || response.error);
 
       setLoadingUser(false);
     } else {
       navigate("/users/login");
+      contextData["setToastVisibility"](true);
+      contextData["setToastMessage"](
+        `${data.name} registered successfully using ${data.email}`
+      );
     }
   }
 
@@ -63,6 +70,7 @@ const RegisterPage = () => {
               className="form-control"
               placeholder="Username"
               onChange={handleChange}
+              autoFocus
             />
             <label htmlFor="floatingName">Name</label>
           </div>

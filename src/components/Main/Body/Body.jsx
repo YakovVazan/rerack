@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import List from "../List/List.jsx";
+import Toast from "../../Common/Toasts/Toasts.jsx";
+import Context from "../../../context/Context.jsx";
 import PlugPage from "../../../pages/PlugPage/PlugPage.jsx";
 import NotFound from "../../../pages/NotFound/NotFound.jsx";
 import LoginPage from "../../../pages/LoginPage/LoginPage.jsx";
@@ -9,6 +12,8 @@ import RegisterPage from "../../../pages/RegisterPage/RegisterPage.jsx";
 import "./Body.css";
 
 const Body = () => {
+  const contextData = useContext(Context);
+
   return (
     <>
       <section id="main-container">
@@ -21,6 +26,13 @@ const Body = () => {
           <Route path="/privacy_policy" element={<PrivacyPolicy />}></Route>
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>
+
+        {/* toasts area */}
+        <Toast
+          toastMessage={contextData["toastMessage"]}
+          toastVisibility={contextData["toastVisibility"]}
+          setToastVisibility={contextData["setToastVisibility"]}
+        />
       </section>
     </>
   );

@@ -7,12 +7,18 @@ import { consts } from "./config/constants.js";
 
 const App = () => {
   const [searchBoxValue, setSearchBoxValue] = useState("");
-  const [typeFilterValue, setTypeFilterValue] = useState(consts.typeDropDownInitialValue);
-  const [companyFilterValue, setCompanyFilterValue] = useState(consts.companyDropDownInitialValue);
+  const [typeFilterValue, setTypeFilterValue] = useState(
+    consts.typeDropDownInitialValue
+  );
+  const [companyFilterValue, setCompanyFilterValue] = useState(
+    consts.companyDropDownInitialValue
+  );
   const [view, setView] = useState(localStorageVars.localStorageView);
   const [orderBy, setOrderBy] = useState(localStorageVars.localStorageOrder);
   const [orderedData, setOrderedData] = useState([]);
   const [token, setToken] = useState(localStorageVars.localStorageToken);
+  const [toastVisibility, setToastVisibility] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   return (
     <>
@@ -25,6 +31,8 @@ const App = () => {
           setCompanyFilterValue,
           setView,
           setToken,
+          setToastVisibility,
+          setToastMessage,
           orderBy,
           orderedData,
           searchBoxValue,
@@ -32,6 +40,8 @@ const App = () => {
           companyFilterValue,
           view,
           token,
+          toastVisibility,
+          toastMessage,
         }}
       >
         <Nav />
