@@ -6,6 +6,7 @@ import Context from "../../../context/Context.jsx";
 import PlugPage from "../../../pages/PlugPage/PlugPage.jsx";
 import NotFound from "../../../pages/NotFound/NotFound.jsx";
 import LoginPage from "../../../pages/LoginPage/LoginPage.jsx";
+import AdminsPage from "../../../pages/AdminsPage/AdminsPage.jsx";
 import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
 import AccountPage from "../../../pages/AccountPage/AccountPage.jsx";
 import RegisterPage from "../../../pages/RegisterPage/RegisterPage.jsx";
@@ -20,6 +21,7 @@ const Body = () => {
         <Routes>
           <Route path="/" element={<List />}></Route>
           <Route path="/plugs/:name" element={<PlugPage />}></Route>
+          <Route path="/users" element={<AdminsPage />}></Route>
           <Route path="/users/register" element={<RegisterPage />}></Route>
           <Route path="/users/login" element={<LoginPage />}></Route>
           <Route path="/users/:id" element={<AccountPage />}></Route>

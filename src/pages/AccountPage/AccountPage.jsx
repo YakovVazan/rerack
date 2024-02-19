@@ -61,8 +61,6 @@ const AccountPage = () => {
         body: JSON.stringify(id),
       });
 
-      console.log(res);
-
       if (!res.ok) {
         const errorResponse = await res.json();
 

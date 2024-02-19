@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Context from "../../context/Context";
+import { consts } from "../../config/constants";
 import Spinner from "../../components/Common/Spinner/Spinner";
 import { localStorageLogin } from "../../config/localStorage";
-import { consts } from "../../config/constants";
 import "../../styles/auth-card.css";
 
 const LoginPage = () => {
@@ -42,7 +42,7 @@ const LoginPage = () => {
       contextData["setToastMessage"](response?.msg || response.error);
       setLoadingUser(false);
     } else {
-      localStorageLogin(response.token, response.id);
+      localStorageLogin(response.token, response.id, response.isOwner);
       contextData["setToken"](response.token);
       navigate("/");
       contextData["setToastVisibility"](true);
