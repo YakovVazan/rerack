@@ -1,4 +1,5 @@
 import AuthAndInfo from "../../AuthAndInfo/AuthAndInfo.jsx";
+import EditButton from "../../Editing/EditButton/EditButton.jsx";
 import SearchBox from "../../SeekingTools/SearchBox/SearchBox.jsx";
 import Layout from "../../SeekingTools/FilterAndLayout/Layout/Layout.jsx";
 import Filter from "../../SeekingTools/FilterAndLayout/Filter/Filter.jsx";
@@ -38,9 +39,9 @@ const HamburgerAndSideBar = () => {
         aria-labelledby="offcanvasRightLabel"
       >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasRightLabel">
-            Controls
-          </h5>
+          <h3 className="offcanvas-title" id="offcanvasRightLabel">
+            <strong>Controls</strong>
+          </h3>
           <button
             type="button"
             className="btn-close"
@@ -51,20 +52,18 @@ const HamburgerAndSideBar = () => {
         <div className="offcanvas-body">
           <div id="uppder-offcanvas-body">
             <SearchBox />
-            <hr className="dropdown-divider"></hr>
             <div id="dropDownsContainer">
               <TypeDropDown />
               <CompanyDropDown />
             </div>
-            <hr className="dropdown-divider"></hr>
             <div id="filter-and-layout-container-for-small-screens">
               <Layout />
               <Filter />
             </div>
             <hr className="dropdown-divider"></hr>
           </div>
-
           <div id="lower-offcanvas-body">
+            <EditButton/>
             <hr className="dropdown-divider"></hr>
             <AuthAndInfo />
           </div>

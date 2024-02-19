@@ -8,6 +8,10 @@
     height: 145px;
 }
 
+.list-item-plugin:hover {
+    background-color: #efefef;
+}
+
 .list-image-container {
     width: 30%;
     max-width: 200px;

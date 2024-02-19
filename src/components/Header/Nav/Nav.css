@@ -36,11 +36,6 @@ h1 {
     width: 50%;
 }
 
-#type-drop-down {
-    max-height: 20em;
-    overflow-y: scroll;
-}
-
 @media screen and (max-width: 768px) {
     #elements-in-nav-container {
         display: none;

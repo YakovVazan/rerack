@@ -5,6 +5,7 @@ import Toast from "../../Common/Toasts/Toasts.jsx";
 import Context from "../../../context/Context.jsx";
 import PlugPage from "../../../pages/PlugPage/PlugPage.jsx";
 import NotFound from "../../../pages/NotFound/NotFound.jsx";
+import EditModal from "../../Editing/EditModal/EditModal.jsx";
 import LoginPage from "../../../pages/LoginPage/LoginPage.jsx";
 import AdminsPage from "../../../pages/AdminsPage/AdminsPage.jsx";
 import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
@@ -36,6 +37,9 @@ const Body = () => {
           setToastVisibility={contextData["setToastVisibility"]}
         />
       </section>
+
+      {/* modal area */}
+      <EditModal />
     </>
   );
 };

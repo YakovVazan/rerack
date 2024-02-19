@@ -1,8 +1,9 @@
 #admins-table {
     margin: 3em;
     text-align: center;
+    height: fit-content;
 }
 
-tr {
+.users-tr {
     vertical-align: middle;
 }
