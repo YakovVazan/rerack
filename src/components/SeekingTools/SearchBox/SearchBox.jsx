@@ -22,7 +22,7 @@ const SearchBox = () => {
   }
 
   return (
-    <div id="search-box-container" className="input-group">
+    <div className="input-group">
       <div
         className={`btn btn-outline-secondary input-group-text ${
           searchBoxValue === "" && "disabled"

@@ -6,6 +6,7 @@ import Filter from "../../SeekingTools/FilterAndLayout/Filter/Filter.jsx";
 import TypeDropDown from "../../SeekingTools/DropDowns/TypeDropDown/TypeDropDown.jsx";
 import CompanyDropDown from "../../SeekingTools/DropDowns/CompanyDropDown/CompanyDropDown.jsx";
 import "./HamburgerAndSideBar.css";
+import TransparentDivider from "../../Common/TransparentDivider/TransparentDivider.jsx";
 
 const HamburgerAndSideBar = () => {
   return (
@@ -52,10 +53,12 @@ const HamburgerAndSideBar = () => {
         <div className="offcanvas-body">
           <div id="uppder-offcanvas-body">
             <SearchBox />
+            <TransparentDivider/>
             <div id="dropDownsContainer">
               <TypeDropDown />
               <CompanyDropDown />
             </div>
+            <TransparentDivider/>
             <div id="filter-and-layout-container-for-small-screens">
               <Layout />
               <Filter />
