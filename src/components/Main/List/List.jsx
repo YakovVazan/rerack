@@ -16,6 +16,7 @@ const List = () => {
   const companyFilterValue = contextData["companyFilterValue"];
   const view = contextData["view"];
   const { isLoading } = useFetchData();
+  const shouldWait = isLoading || orderedData.length === 0;
 
   const initials = Array.from(
     new Set(
@@ -34,7 +35,7 @@ const List = () => {
 
   // control 'no plugs found' message
   useEffect(() => {
-    if (isLoading) return;
+    if (shouldWait) return;
 
     const hiddenElements = Array.from(
       document.querySelectorAll(".d-none")
@@ -54,7 +55,7 @@ const List = () => {
 
   return (
     <>
-      {isLoading ? (
+      {shouldWait ? (
         <Spinner />
       ) : (
         <>
