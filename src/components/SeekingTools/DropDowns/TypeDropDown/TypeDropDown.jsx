@@ -1,27 +1,23 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import useTypes from "../../../../hooks/useTypes.jsx";
 import Context from "../../../../context/Context.jsx";
-import useFetchData from "../../../../hooks/useFetchData.jsx";
+import { consts } from "../../../../config/constants.js";
 import Spinner from "../../../Common/Spinner/Spinner.jsx";
 import { ResetTypeValue } from "../../../../utils/ResetFactors/ResetFactors.jsx";
-import { consts } from "../../../../config/constants.js";
 import "./TypeDropDown.css";
 
 const TypeDropDown = () => {
   const contextData = useContext(Context);
   const typeFilterValue = contextData["typeFilterValue"];
   const setTypeFilterValue = contextData["setTypeFilterValue"];
-  const [typesList, setTypesList] = useState([]);
-  const { data, isLoading } = useFetchData();
+
+  const { typesList } = useTypes();
 
   function handleClick(typeName) {
     ResetTypeValue(typeName);
 
     setTypeFilterValue(typeName);
   }
-
-  useEffect(() => {
-    if (!isLoading) setTypesList([...new Set(data.map((plug) => plug.type))]);
-  }, [isLoading]);
 
   return (
     <>

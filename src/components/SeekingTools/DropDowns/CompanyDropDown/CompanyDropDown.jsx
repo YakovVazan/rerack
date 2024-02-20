@@ -1,29 +1,22 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Context from "../../../../context/Context.jsx";
-import Spinner from "../../../Common/Spinner/Spinner.jsx";
-import useFetchData from "../../../../hooks/useFetchData.jsx";
 import { consts } from "../../../../config/constants.js";
+import Spinner from "../../../Common/Spinner/Spinner.jsx";
+import useCompanies from "../../../../hooks/useCompanies.jsx";
 import { ResetCompanyValue } from "../../../../utils/ResetFactors/ResetFactors.jsx";
 import "./CompanyDropDown.css";
 
 const CompanyDropDown = () => {
   const contextData = useContext(Context);
+  const { companiesList } = useCompanies();
   const setCompanyFilterValue = contextData["setCompanyFilterValue"];
   const companyFilterValue = contextData["companyFilterValue"];
-  const [companiesList, setCompaniesList] = useState([]);
-  const { data, isLoading } = useFetchData();
 
   function handleClick(companyName) {
     ResetCompanyValue(companyName);
 
     setCompanyFilterValue(companyName);
   }
-
-  useEffect(() => {
-    if (!isLoading) {
-      setCompaniesList([...new Set(data.map((plug) => plug.company))]);
-    }
-  }, [isLoading]);
 
   return (
     <>

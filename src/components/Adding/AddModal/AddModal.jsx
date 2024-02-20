@@ -1,15 +1,67 @@
+import { useState } from "react";
+import useTypes from "../../../hooks/useTypes";
+import "./AddModal.css";
+import useCompanies from "../../../hooks/useCompanies";
+import Spinner from "../../Common/Spinner/Spinner";
+
 const EditModal = () => {
+  const { typesList } = useTypes();
+  const { companiesList } = useCompanies();
+  const [hovering, setHovering] = useState(false);
+  const [newPlug, setNewPlug] = useState({
+    name: "",
+    company: "",
+    type: "",
+    src: "",
+  });
+
+  function handleDragOver(e) {
+    e.preventDefault();
+    setHovering(true);
+  }
+
+  function handleDragLeave(e) {
+    // Check if the drag event is leaving the drop area itself, not its children
+    if (
+      !e.relatedTarget ||
+      e.relatedTarget === document ||
+      !e.currentTarget.contains(e.relatedTarget)
+    ) {
+      setHovering(false);
+    }
+  }
+
+  function handleDrop(e) {
+    e.preventDefault();
+
+    const urlRegex = /^https?:\/\/.+/i;
+    const droppedData = e.dataTransfer.getData("text/plain");
+
+    if (urlRegex.test(droppedData)) {
+      setNewPlug({ ...newPlug, src: droppedData });
+    } else {
+      console.log("Invalid dropped data:", droppedData);
+    }
+
+    setHovering(false);
+  }
+
+  function handleReset() {
+    setNewPlug({
+      name: "",
+      company: "",
+      type: "",
+      src: "",
+    });
+  }
+
   return (
-    <div
-      className="modal fade"
-      id="addingModal"
-      aria-hidden="true"
-      data-bs-backdrop="static"
-    >
-      <div className="modal-dialog">
+    <div className="modal fade" id="addingModal" aria-hidden="true">
+      <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
+          {/* header */}
           <div className="modal-header">
-            <h1 className="modal-title fs-5">Modal title</h1>
+            <h1 className="modal-title fs-5">New plug&#39;s details</h1>
             <button
               type="button"
               className="btn-close"
@@ -17,16 +69,104 @@ const EditModal = () => {
               aria-label="Close"
             ></button>
           </div>
-          <div className="modal-body">...</div>
+
+          {/* body */}
+          <div className="modal-body">
+            <div className="input-group mb-3">
+              <span className="input-group-text adding-title">Name</span>
+              <input
+                type="text"
+                className="form-control adding-input"
+                placeholder="plug's name"
+                value={newPlug.name}
+                onChange={(e) =>
+                  setNewPlug({ ...newPlug, name: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="input-group mb-3">
+              <span className="input-group-text adding-title">Company</span>
+              <button
+                type="button"
+                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split adding-input"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div id="adding-company-title">
+                  {newPlug.company || "choose the plug's company"}
+                </div>
+              </button>
+              <ul className="dropdown-menu type-or-comp-list">
+                {companiesList.map((company, index) => (
+                  <li
+                    key={index}
+                    className="dropdown-item"
+                    onClick={() => setNewPlug({ ...newPlug, company: company })}
+                  >
+                    {company}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="input-group mb-3">
+              <span className="input-group-text adding-title">Type</span>
+              <button
+                type="button"
+                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split adding-input"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div id="adding-type-title">
+                  {newPlug.type || "choose the plug's type"}
+                </div>
+              </button>
+              <ul className="dropdown-menu type-or-comp-list">
+                {typesList.map((type, index) => (
+                  <li
+                    key={index}
+                    className="dropdown-item"
+                    onClick={() => setNewPlug({ ...newPlug, type: type })}
+                  >
+                    {type}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div
+              id="image-area"
+              className="card"
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+            >
+              <div id="image-area-body" className="card-body">
+                {hovering ? (
+                  <div id="spinner-for-image">
+                    <Spinner />
+                  </div>
+                ) : newPlug.src ? (
+                  <img src={newPlug.src} alt="" />
+                ) : (
+                  <p className="card-text">Drag and drop an image URL</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* footer */}
           <div className="modal-footer">
             <button
               type="button"
-              className="btn btn-secondary"
+              className="btn btn-outline-warning"
               data-bs-dismiss="modal"
+              onClick={handleReset}
             >
-              Close
+              Dismiss
             </button>
-            <button type="button" className="btn btn-primary">
+            <button type="button" className="btn btn-outline-primary">
               Save changes
             </button>
           </div>
