@@ -1,8 +1,8 @@
 import { useState } from "react";
 import useTypes from "../../../hooks/useTypes";
-import "./AddModal.css";
-import useCompanies from "../../../hooks/useCompanies";
 import Spinner from "../../Common/Spinner/Spinner";
+import useCompanies from "../../../hooks/useCompanies";
+import "./AddModal.css";
 
 const EditModal = () => {
   const { typesList } = useTypes();
@@ -35,7 +35,7 @@ const EditModal = () => {
     e.preventDefault();
 
     const urlRegex = /^https?:\/\/.+/i;
-    const droppedData = e.dataTransfer.getData("text/plain");
+    const droppedData = e.dataTransfer.getData("URL");
 
     if (urlRegex.test(droppedData)) {
       setNewPlug({ ...newPlug, src: droppedData });
