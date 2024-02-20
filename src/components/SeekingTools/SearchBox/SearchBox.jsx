@@ -6,8 +6,14 @@ import "./SearchBox.css";
 
 const SearchBox = () => {
   const contextData = useContext(Context);
+  const typeFilterValue = contextData["typeFilterValue"];
+  const companyFilterValue = contextData["companyFilterValue"];
   const searchBoxValue = contextData["searchBoxValue"];
   const setSearchBoxValue = contextData["setSearchBoxValue"];
+  const shouldBeDisabled =
+    searchBoxValue === "" &&
+    typeFilterValue === consts.typeDropDownInitialValue &&
+    companyFilterValue === consts.companyDropDownInitialValue;
 
   function handleSearchBox(value) {
     setSearchBoxValue(value.toLowerCase().trim());
@@ -25,7 +31,7 @@ const SearchBox = () => {
     <div className="input-group">
       <div
         className={`btn btn-outline-secondary input-group-text ${
-          searchBoxValue === "" && "disabled"
+          shouldBeDisabled && "disabled"
         }`}
         type="button"
         title="search"
