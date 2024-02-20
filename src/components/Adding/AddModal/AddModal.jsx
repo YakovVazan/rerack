@@ -46,6 +46,10 @@ const EditModal = () => {
     setHovering(false);
   }
 
+  function removeImage() {
+    setNewPlug({ ...newPlug, src: "" });
+  }
+
   function handleReset() {
     setNewPlug({
       name: "",
@@ -148,7 +152,12 @@ const EditModal = () => {
                     <Spinner />
                   </div>
                 ) : newPlug.src ? (
-                  <img src={newPlug.src} alt="" />
+                  <img
+                    id="new-plug-img"
+                    src={newPlug.src}
+                    alt=""
+                    onDoubleClick={removeImage}
+                  />
                 ) : (
                   <p className="card-text">Drag and drop an image URL</p>
                 )}

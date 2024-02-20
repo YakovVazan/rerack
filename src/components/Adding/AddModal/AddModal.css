@@ -52,5 +52,9 @@
 }
 
 #spinner-for-image {
-    transform: scale(10);
+    transform: scale(12);
+}
+
+#new-plug-img {
+    width: 100%;
 }
