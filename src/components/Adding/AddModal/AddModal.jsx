@@ -4,7 +4,7 @@ import Spinner from "../../Common/Spinner/Spinner";
 import useCompanies from "../../../hooks/useCompanies";
 import "./AddModal.css";
 
-const EditModal = () => {
+const AddModal = () => {
   const { typesList } = useTypes();
   const { companiesList } = useCompanies();
   const [hovering, setHovering] = useState(false);
@@ -195,4 +195,4 @@ const EditModal = () => {
   );
 };
 
-export default EditModal;
+export default AddModal;
