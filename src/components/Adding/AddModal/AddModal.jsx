@@ -102,15 +102,21 @@ const EditModal = () => {
                 </div>
               </button>
               <ul className="dropdown-menu type-or-comp-list">
-                {companiesList.map((company, index) => (
-                  <li
-                    key={index}
-                    className="dropdown-item"
-                    onClick={() => setNewPlug({ ...newPlug, company: company })}
-                  >
-                    {company}
-                  </li>
-                ))}
+                {companiesList.length > 0 ? (
+                  companiesList.map((company, index) => (
+                    <li
+                      key={index}
+                      className="dropdown-item"
+                      onClick={() =>
+                        setNewPlug({ ...newPlug, company: company })
+                      }
+                    >
+                      {company}
+                    </li>
+                  ))
+                ) : (
+                  <Spinner />
+                )}
               </ul>
             </div>
 
@@ -127,15 +133,19 @@ const EditModal = () => {
                 </div>
               </button>
               <ul className="dropdown-menu type-or-comp-list">
-                {typesList.map((type, index) => (
-                  <li
-                    key={index}
-                    className="dropdown-item"
-                    onClick={() => setNewPlug({ ...newPlug, type: type })}
-                  >
-                    {type}
-                  </li>
-                ))}
+                {typesList.length > 0 ? (
+                  typesList.map((type, index) => (
+                    <li
+                      key={index}
+                      className="dropdown-item"
+                      onClick={() => setNewPlug({ ...newPlug, type: type })}
+                    >
+                      {type}
+                    </li>
+                  ))
+                ) : (
+                  <Spinner />
+                )}
               </ul>
             </div>
 
