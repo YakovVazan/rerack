@@ -14,6 +14,11 @@ const AddModal = () => {
     type: "",
     src: "",
   });
+  const isMobile = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  };
 
   function handleDragOver(e) {
     e.preventDefault();
@@ -36,9 +41,13 @@ const AddModal = () => {
 
     const urlRegex = /^https?:\/\/.+/i;
     const droppedData = e.dataTransfer.getData("URL");
+    const imageUrl = droppedData.includes("imgurl=")
+      ? decodeURIComponent(droppedData.split("imgurl=")[1].split("&")[0])
+      : droppedData;
+    console.log(imageUrl);
 
     if (urlRegex.test(droppedData)) {
-      setNewPlug({ ...newPlug, src: droppedData });
+      setNewPlug({ ...newPlug, src: imageUrl });
     } else {
       console.log("Invalid dropped data:", droppedData);
     }
@@ -57,6 +66,8 @@ const AddModal = () => {
       type: "",
       src: "",
     });
+
+    setHovering(false);
   }
 
   return (
@@ -149,30 +160,45 @@ const AddModal = () => {
               </ul>
             </div>
 
-            <div
-              id="image-area"
-              className="card"
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-            >
-              <div id="image-area-body" className="card-body">
-                {hovering ? (
-                  <div id="spinner-for-image">
-                    <Spinner />
-                  </div>
-                ) : newPlug.src ? (
-                  <img
-                    id="new-plug-img"
-                    src={newPlug.src}
-                    alt=""
-                    onDoubleClick={removeImage}
-                  />
-                ) : (
-                  <p className="card-text">Drag and drop an image URL</p>
-                )}
+            {!isMobile() ? (
+              <div
+                id="image-area"
+                className="card"
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+              >
+                <div id="image-area-body" className="card-body">
+                  {hovering ? (
+                    <div id="spinner-for-image">
+                      <Spinner />
+                    </div>
+                  ) : newPlug.src ? (
+                    <img
+                      id="new-plug-img"
+                      src={newPlug.src}
+                      alt=""
+                      onDoubleClick={removeImage}
+                    />
+                  ) : (
+                    <p className="card-text">Drag and drop an image URL</p>
+                  )}
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="input-group mb-3">
+                <span className="input-group-text adding-title">Image</span>
+                <input
+                  type="text"
+                  className="form-control adding-input"
+                  placeholder="image's URL"
+                  value={newPlug.src}
+                  onChange={(e) =>
+                    setNewPlug({ ...newPlug, src: e.target.value })
+                  }
+                />
+              </div>
+            )}
           </div>
 
           {/* footer */}
