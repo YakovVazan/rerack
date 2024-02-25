@@ -1,28 +1,12 @@
-import { useEffect, useState } from "react";
 import { useParams, Navigate } from "react-router-dom";
-import useFetchData from "../../hooks/useFetchData";
+import usePlugsNames from "../../hooks/usePlugsNames.jsx";
 import Spinner from "../../components/Common/Spinner/Spinner.jsx";
+import EditButton from "../../components/PlugActions/Editing/EditButton/EditButton.jsx";
 import "./PlugPage.css";
 
 const PlugPage = () => {
   const { name } = useParams();
-  const { data, isLoading } = useFetchData();
-  const [currentPlug, setCurrentPlug] = useState({});
-  const [plugsNames, setPlugsNames] = useState([]);
-
-  useEffect(() => {
-    if (!isLoading) {
-      Object.keys(data).forEach((key) => {
-        setPlugsNames((prevPlugsNames) => [
-          ...prevPlugsNames,
-          data[key].name.replace(/ /g, "_").toLowerCase(),
-        ]);
-
-        if (data[key].name.replace(/ /g, "_").toLowerCase() === name)
-          setCurrentPlug(data[key]);
-      });
-    }
-  }, [isLoading]);
+  const { plugsNames, currentPlug } = usePlugsNames({ name });
 
   return (
     <>
@@ -36,7 +20,7 @@ const PlugPage = () => {
               className="card-img-top"
               alt={currentPlug["name"]}
             />
-            <div className="card-body">
+            <div id="plug-page-details" className="card-body">
               <span className="card-title">
                 <u>Name:</u>
                 {" " + currentPlug["name"]}
@@ -45,6 +29,7 @@ const PlugPage = () => {
                 <br />
                 <u>Company:</u> {currentPlug["company"]}
               </span>
+              <EditButton />
             </div>
           </div>
         </div>

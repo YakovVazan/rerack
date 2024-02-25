@@ -12,6 +12,11 @@
     height: fit-content;
 }
 
+#plug-page-details {
+    display: flex;
+    justify-content: space-between;
+}
+
 @media screen and (max-width:576px) {
     .list-item {
         max-width: 98%;

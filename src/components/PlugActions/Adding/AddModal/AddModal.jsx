@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import useTypes from "../../../hooks/useTypes";
-import Context from "../../../context/Context";
-import { consts } from "../../../config/constants";
-import Spinner from "../../Common/Spinner/Spinner";
-import useCompanies from "../../../hooks/useCompanies";
-import { localStorageToken } from "../../../config/localStorage";
+import useTypes from "../../../../hooks/useTypes";
+import Context from "../../../../context/Context";
+import { consts } from "../../../../config/constants";
+import Spinner from "../../../Common/Spinner/Spinner";
+import useCompanies from "../../../../hooks/useCompanies";
+import { localStorageToken } from "../../../../config/localStorage";
 import "./AddModal.css";
 
 const AddModal = () => {

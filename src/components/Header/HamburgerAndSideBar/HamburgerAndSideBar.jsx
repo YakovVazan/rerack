@@ -1,6 +1,6 @@
 import AuthAndInfo from "../../AuthAndInfo/AuthAndInfo.jsx";
-import AddButton from "../../Adding/AddButton/AddButton.jsx";
 import SearchBox from "../../SeekingTools/SearchBox/SearchBox.jsx";
+import AddButton from "../../PlugActions/Adding/AddButton/AddButton.jsx";
 import Layout from "../../SeekingTools/FilterAndLayout/Layout/Layout.jsx";
 import Filter from "../../SeekingTools/FilterAndLayout/Filter/Filter.jsx";
 import TypeDropDown from "../../SeekingTools/DropDowns/TypeDropDown/TypeDropDown.jsx";

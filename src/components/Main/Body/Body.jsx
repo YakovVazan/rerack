@@ -3,14 +3,15 @@ import { Routes, Route } from "react-router-dom";
 import List from "../List/List.jsx";
 import Toast from "../../Common/Toasts/Toasts.jsx";
 import Context from "../../../context/Context.jsx";
-import AddModal from "../../Adding/AddModal/AddModal.jsx";
 import PlugPage from "../../../pages/PlugPage/PlugPage.jsx";
 import NotFound from "../../../pages/NotFound/NotFound.jsx";
 import LoginPage from "../../../pages/LoginPage/LoginPage.jsx";
 import AdminsPage from "../../../pages/AdminsPage/AdminsPage.jsx";
-import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
 import AccountPage from "../../../pages/AccountPage/AccountPage.jsx";
+import AddModal from "../../PlugActions/Adding/AddModal/AddModal.jsx";
+import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
 import RegisterPage from "../../../pages/RegisterPage/RegisterPage.jsx";
+import EditModal from "../../PlugActions/Editing/EditModal/EditModal.jsx";
 import "./Body.css";
 
 const Body = () => {
@@ -40,6 +41,7 @@ const Body = () => {
 
       {/* modal area */}
       <AddModal />
+      <EditModal />
     </>
   );
 };

@@ -1,14 +1,17 @@
 import { useContext } from "react";
-import Context from "../../../context/Context";
+import Context from "../../../../context/Context";
 import "./AddButton.css";
 
 const AddButton = () => {
   const contextData = useContext(Context);
 
   function forceLogin() {
-    contextData["token"];
-    contextData["setToastVisibility"](true);
-    contextData["setToastMessage"]("Register & log in to contribute to Rerack");
+    if (!contextData["token"]) {
+      contextData["setToastVisibility"](true);
+      contextData["setToastMessage"](
+        "Register & log in to contribute to Rerack"
+      );
+    }
   }
 
   return (
