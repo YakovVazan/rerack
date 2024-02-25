@@ -1,6 +1,16 @@
+import { useContext } from "react";
+import Context from "../../../context/Context";
 import "./AddButton.css";
 
 const AddButton = () => {
+  const contextData = useContext(Context);
+
+  function forceLogin() {
+    contextData["token"];
+    contextData["setToastVisibility"](true);
+    contextData["setToastMessage"]("Register & log in to contribute to Rerack");
+  }
+
   return (
     <div className="input-group">
       <div className="input-group-text">
@@ -21,9 +31,10 @@ const AddButton = () => {
       <div
         id="add-plug-button"
         className="btn btn-outline-secondary form-control"
-        data-bs-toggle="modal"
-        data-bs-target="#addingModal"
+        data-bs-toggle={contextData["token"] && "modal"}
+        data-bs-target={contextData["token"] && "#addingModal"}
         data-bs-dismiss="offcanvas"
+        onClick={forceLogin}
       >
         Add a new plug to Rerack
       </div>

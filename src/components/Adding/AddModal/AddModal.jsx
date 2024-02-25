@@ -1,19 +1,32 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useTypes from "../../../hooks/useTypes";
+import Context from "../../../context/Context";
+import { consts } from "../../../config/constants";
 import Spinner from "../../Common/Spinner/Spinner";
 import useCompanies from "../../../hooks/useCompanies";
+import { localStorageToken } from "../../../config/localStorage";
 import "./AddModal.css";
 
 const AddModal = () => {
   const { typesList } = useTypes();
   const { companiesList } = useCompanies();
+  const contextData = useContext(Context);
   const [hovering, setHovering] = useState(false);
+  const [formIsFullyFilledUp, setFormIsFullyFilledUp] = useState(false);
   const [newPlug, setNewPlug] = useState({
     name: "",
     company: "",
     type: "",
     src: "",
   });
+
+  // control when submition button is enabled
+  useEffect(() => {
+    setFormIsFullyFilledUp(
+      Object.values(newPlug).every((field) => field.trim() !== "")
+    );
+  }, [newPlug]);
+
   const isMobile = () => {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
@@ -44,7 +57,6 @@ const AddModal = () => {
     const imageUrl = droppedData.includes("imgurl=")
       ? decodeURIComponent(droppedData.split("imgurl=")[1].split("&")[0])
       : droppedData;
-    console.log(imageUrl);
 
     if (urlRegex.test(droppedData)) {
       setNewPlug({ ...newPlug, src: imageUrl });
@@ -68,6 +80,28 @@ const AddModal = () => {
     });
 
     setHovering(false);
+  }
+
+  async function handleSubmit() {
+    const res = await fetch(`${consts.baseURL}/plugs/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorageToken}`,
+      },
+      body: JSON.stringify(newPlug),
+    });
+
+    const response = JSON.parse(await res.text());
+    if (!res.ok) {
+      contextData["setToastVisibility"](true);
+      contextData["setToastMessage"](response?.msg || response.error);
+    } else {
+      contextData["setToastVisibility"](true);
+      contextData["setToastMessage"](`${newPlug.name} added successfully`);
+    }
+
+    handleReset();
   }
 
   return (
@@ -211,7 +245,13 @@ const AddModal = () => {
             >
               Dismiss
             </button>
-            <button type="button" className="btn btn-outline-primary">
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              data-bs-dismiss="modal"
+              onClick={handleSubmit}
+              disabled={!formIsFullyFilledUp}
+            >
               Save changes
             </button>
           </div>
