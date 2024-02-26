@@ -6,15 +6,27 @@ const Toast = ({ toastMessage, toastVisibility, setToastVisibility }) => {
     let timeoutId;
 
     if (toastVisibility) {
-      document
-        .querySelector(".toast-container")
-        .classList.remove("hidden-toast");
+      const toastContainer = document.querySelector(".toast-container");
+      const toastElement = document.querySelector(".toast");
+
+      toastContainer.classList.remove("hidden-toast");
+      toastElement.classList.add("slide-hide");
+      
       timeoutId = setTimeout(() => {
-        document
-          .querySelector(".toast-container")
-          .classList.add("hidden-toast");
-        setToastVisibility(false);
+        toastElement.classList.remove("slide-hide");
+        toastElement.classList.add("slide-show");
+      }, 5);
+
+      timeoutId = setTimeout(() => {
+        toastElement.classList.remove("slide-show");
+        toastElement.classList.add("slide-hide");
+        console.log("no show, yes hide");
       }, 3000);
+
+      setTimeout(() => {
+        toastContainer.classList.add("hidden-toast");
+        setToastVisibility(false);
+      }, 3500);
     }
 
     return () => {

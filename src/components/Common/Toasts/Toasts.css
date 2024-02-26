@@ -13,13 +13,31 @@ strong {
 .toast {
     position: fixed;
     bottom: 0;
-    right: 0;
     margin-bottom: 2%;
     margin-right: 2%;
+    transition: right 0.4s ease-in-out;
+}
+
+.toast.slide-hide {
+    right: -100%;
+}
+
+.toast.slide-show {
+    right: 0;
 }
 
 @media screen and (max-width: 576px) {
     .toast {
+        bottom: -100%;
+        transition: bottom 0.4s ease-in-out;
+    }
+
+    .toast.slide-hide {
+        bottom: -100%;
+        right: calc(50% - 178px);
+    }
+    
+    .toast.slide-show {
         width: 90%;
         bottom: 1em;
         right: calc(50% - 178px);
