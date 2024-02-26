@@ -19,6 +19,7 @@ const App = () => {
   const [token, setToken] = useState(localStorageVars.localStorageToken);
   const [toastVisibility, setToastVisibility] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [currentPlug, setCurrentPlug] = useState({});
 
   return (
     <>
@@ -33,6 +34,7 @@ const App = () => {
           setToken,
           setToastVisibility,
           setToastMessage,
+          setCurrentPlug,
           orderBy,
           orderedData,
           searchBoxValue,
@@ -42,6 +44,7 @@ const App = () => {
           token,
           toastVisibility,
           toastMessage,
+          currentPlug,
         }}
       >
         <Nav />

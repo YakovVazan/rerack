@@ -5,7 +5,7 @@ import { consts } from "../../../../config/constants";
 import Spinner from "../../../Common/Spinner/Spinner";
 import useCompanies from "../../../../hooks/useCompanies";
 import { localStorageToken } from "../../../../config/localStorage";
-import "./AddModal.css";
+import "../../../../styles/modals.css";
 
 const AddModal = () => {
   const { typesList } = useTypes();

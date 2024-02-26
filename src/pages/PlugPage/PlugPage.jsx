@@ -3,10 +3,19 @@ import usePlugsNames from "../../hooks/usePlugsNames.jsx";
 import Spinner from "../../components/Common/Spinner/Spinner.jsx";
 import EditButton from "../../components/PlugActions/Editing/EditButton/EditButton.jsx";
 import "./PlugPage.css";
+import Context from "../../context/Context.jsx";
+import { useContext, useEffect } from "react";
 
 const PlugPage = () => {
+  const contextData = useContext(Context);
   const { name } = useParams();
   const { plugsNames, currentPlug } = usePlugsNames({ name });
+
+  useEffect(() => {
+    if (plugsNames.length !== 0) {
+      contextData["setCurrentPlug"](currentPlug);
+    }
+  });
 
   return (
     <>

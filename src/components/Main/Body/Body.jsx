@@ -39,7 +39,7 @@ const Body = () => {
         />
       </section>
 
-      {/* modal area */}
+      {/* modals area */}
       <AddModal />
       <EditModal />
     </>
