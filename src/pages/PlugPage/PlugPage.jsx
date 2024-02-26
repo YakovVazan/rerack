@@ -1,10 +1,12 @@
+import { useContext, useEffect } from "react";
+import Context from "../../context/Context.jsx";
 import { useParams, Navigate } from "react-router-dom";
 import usePlugsNames from "../../hooks/usePlugsNames.jsx";
 import Spinner from "../../components/Common/Spinner/Spinner.jsx";
+import { localStorageIsOwner } from "../../config/localStorage.js";
 import EditButton from "../../components/PlugActions/Editing/EditButton/EditButton.jsx";
+import DeleteButton from "../../components/PlugActions/Deleting/DeleteButton/DeleteButton.jsx";
 import "./PlugPage.css";
-import Context from "../../context/Context.jsx";
-import { useContext, useEffect } from "react";
 
 const PlugPage = () => {
   const contextData = useContext(Context);
@@ -38,7 +40,10 @@ const PlugPage = () => {
                 <br />
                 <u>Company:</u> {currentPlug["company"]}
               </span>
-              <EditButton />
+              <div className="action-buttons">
+                <EditButton />
+                {localStorageIsOwner === "true" && <DeleteButton />}
+              </div>
             </div>
           </div>
         </div>

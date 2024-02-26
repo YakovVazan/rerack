@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import useTypes from "../../../../hooks/useTypes";
 import Context from "../../../../context/Context";
@@ -8,6 +9,7 @@ import { localStorageToken } from "../../../../config/localStorage";
 import "../../../../styles/modals.css";
 
 const EditModal = () => {
+  const navigate = useNavigate();
   const contextData = useContext(Context);
   const currentPlug = contextData["currentPlug"];
   const { typesList } = useTypes();
@@ -92,7 +94,7 @@ const EditModal = () => {
   }
 
   async function handleSubmit() {
-    const res = await fetch(`${consts.baseURL}/plugs/edit/${currentPlug.id}`, {
+    const res = await fetch(`${consts.baseURL}/plugs/edit/${upToDatePlug.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -110,6 +112,7 @@ const EditModal = () => {
       contextData["setToastMessage"](
         `${upToDatePlug.name} edited successfully`
       );
+      navigate("/");
     }
 
     handleReset();
@@ -142,7 +145,9 @@ const EditModal = () => {
                 onChange={(e) =>
                   setUpToDatePlug({
                     ...upToDatePlug,
-                    name: e.target.value,
+                    name:
+                      e.target.value.charAt(0).toUpperCase() +
+                      e.target.value.slice(1),
                   })
                 }
               />

@@ -129,7 +129,12 @@ const AddModal = () => {
                 placeholder="plug's name"
                 value={newPlug.name}
                 onChange={(e) =>
-                  setNewPlug({ ...newPlug, name: e.target.value })
+                  setNewPlug({
+                    ...newPlug,
+                    name:
+                      e.target.value.charAt(0).toUpperCase() +
+                      e.target.value.slice(1),
+                  })
                 }
               />
             </div>

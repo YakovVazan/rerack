@@ -12,6 +12,7 @@ import AddModal from "../../PlugActions/Adding/AddModal/AddModal.jsx";
 import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
 import RegisterPage from "../../../pages/RegisterPage/RegisterPage.jsx";
 import EditModal from "../../PlugActions/Editing/EditModal/EditModal.jsx";
+import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx";
 import "./Body.css";
 
 const Body = () => {
@@ -42,6 +43,7 @@ const Body = () => {
       {/* modals area */}
       <AddModal />
       <EditModal />
+      <DeleteModal />
     </>
   );
 };
