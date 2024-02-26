@@ -29,8 +29,15 @@ const EditModal = () => {
   useEffect(() => {
     setFormIsFullyFilledUp(
       Object.values(upToDatePlug).every(
-        (field) => typeof field === "string" && field.trim() !== ""
-      )
+        (field) =>
+          typeof field !== "string" ||
+          (typeof field === "string" && field.trim() !== "")
+      ) &&
+        Object.keys(upToDatePlug)
+          .map((key) => {
+            return upToDatePlug[key] === currentPlug[key];
+          })
+          .some((value) => value === false)
     );
   }, [upToDatePlug]);
 
