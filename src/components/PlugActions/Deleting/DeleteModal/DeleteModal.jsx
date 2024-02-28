@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Context from "../../../../context/Context";
 import { consts } from "../../../../config/constants";
-import "../../../../styles/modals.css";
 import { localStorageToken } from "../../../../config/localStorage";
+import "../../../../styles/modals.css";
 
 const DeleteModal = () => {
   const navigate = useNavigate();

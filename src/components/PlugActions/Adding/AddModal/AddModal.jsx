@@ -98,7 +98,9 @@ const AddModal = () => {
       contextData["setToastMessage"](response?.msg || response.error);
     } else {
       contextData["setToastVisibility"](true);
-      contextData["setToastMessage"](`${newPlug.name} added successfully`);
+      contextData["setToastMessage"](
+        `${newPlug.name} added successfully. Reload the page to see it`
+      );
     }
 
     handleReset();
