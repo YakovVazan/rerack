@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import List from "../List/List.jsx";
 import Toast from "../../Common/Toasts/Toasts.jsx";
 import Context from "../../../context/Context.jsx";
@@ -15,30 +15,38 @@ import EditModal from "../../PlugActions/Editing/EditModal/EditModal.jsx";
 import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx";
 import "./Body.css";
 
+import Controls from "../Controls/Controls.jsx";
+
 const Body = () => {
   const contextData = useContext(Context);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   return (
     <>
-      <section id="main-container">
-        <Routes>
-          <Route path="/" element={<List />}></Route>
-          <Route path="/plugs/:name" element={<PlugPage />}></Route>
-          <Route path="/users" element={<AdminsPage />}></Route>
-          <Route path="/users/register" element={<RegisterPage />}></Route>
-          <Route path="/users/login" element={<LoginPage />}></Route>
-          <Route path="/users/:id" element={<AccountPage />}></Route>
-          <Route path="/privacy_policy" element={<PrivacyPolicy />}></Route>
-          <Route path="/*" element={<NotFound />}></Route>
-        </Routes>
+      <div className={isHomePage ? "wrapper" : ""}>
+        <section id="main-container">
+          <Routes>
+            <Route path="/" element={<List />}></Route>
+            <Route path="/plugs/:name" element={<PlugPage />}></Route>
+            <Route path="/users" element={<AdminsPage />}></Route>
+            <Route path="/users/register" element={<RegisterPage />}></Route>
+            <Route path="/users/login" element={<LoginPage />}></Route>
+            <Route path="/users/:id" element={<AccountPage />}></Route>
+            <Route path="/privacy_policy" element={<PrivacyPolicy />}></Route>
+            <Route path="/*" element={<NotFound />}></Route>
+          </Routes>
 
-        {/* toasts area */}
-        <Toast
-          toastMessage={contextData["toastMessage"]}
-          toastVisibility={contextData["toastVisibility"]}
-          setToastVisibility={contextData["setToastVisibility"]}
-        />
-      </section>
+          {/* toasts area */}
+          <Toast
+            toastMessage={contextData["toastMessage"]}
+            toastVisibility={contextData["toastVisibility"]}
+            setToastVisibility={contextData["setToastVisibility"]}
+          />
+        </section>
+
+        {isHomePage && <Controls />}
+      </div>
 
       {/* modals area */}
       <AddModal />

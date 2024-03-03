@@ -1,0 +1,36 @@
+@import '../../../styles/themes.css';
+
+aside {
+    padding: 5% 5% 1% 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid var(--light-bg-color-1);
+    background-color: var(--light-bg-color-4);
+}
+
+#bottom-lower-aside {
+    display: flex;
+    justify-content: space-between;
+}
+
+#dropDownsContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#dropDownsContainer>* {
+    width: 50%;
+}
+
+#filter-and-layout-container-for-small-screens {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+    aside {
+        display: none;
+    }
+}

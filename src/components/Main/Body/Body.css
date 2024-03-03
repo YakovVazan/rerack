@@ -11,3 +11,29 @@
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
+
+@media screen and (min-width: 769px) {
+    .wrapper {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: "controls plugs plugs"
+            "controls plugs plugs";
+    }
+
+    aside {
+        grid-area: controls;
+    }
+
+    section {
+        grid-area: plugs;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .wrapper {
+        grid-template-columns: 25% auto;
+        grid-template-areas: "controls plugs plugs plugs"
+            "controls plugs plugs plugs";
+    }
+}

@@ -2,23 +2,8 @@
     width: 75%;
 }
 
-#dropDownsContainer {
-    display: flex;
-    justify-content: center;
-}
-
-#dropDownsContainer>* {
-    width: 50%;
-}
-
 .search-button-container>*:first-child {
     width: 100%;
-}
-
-#filter-and-layout-container-for-small-screens {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
 }
 
 .offcanvas-body {

@@ -39,7 +39,7 @@ const AddButton = () => {
         data-bs-dismiss="offcanvas"
         onClick={forceLogin}
       >
-        Add a new plug to Rerack
+        Add a new plug
       </div>
     </div>
   );

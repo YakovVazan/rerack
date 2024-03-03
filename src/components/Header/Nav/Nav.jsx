@@ -1,8 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import SearchBox from "../../SeekingTools/SearchBox/SearchBox.jsx";
-import TypeDropDown from "../../SeekingTools/DropDowns/TypeDropDown/TypeDropDown.jsx";
-import CompanyDropDown from "../../SeekingTools/DropDowns/CompanyDropDown/CompanyDropDown.jsx";
-import FilterAndLayout from "../../SeekingTools/FilterAndLayout/FilterAndLayout.jsx";
+import Auth from "../../Auth/Auth.jsx";
 import HamburgerAndSideBar from "../HamburgerAndSideBar/HamburgerAndSideBar.jsx";
 import "./Nav.css";
 
@@ -45,14 +42,7 @@ const Header = () => {
       {isHomePage ? (
         <>
           <div id="elements-in-nav-container">
-            <FilterAndLayout />
-
-            <div id="drop-down-in-nav-container">
-              <TypeDropDown />
-              <CompanyDropDown />
-            </div>
-
-            <SearchBox />
+            <Auth />
           </div>
 
           <div id="hamburger-for-side-bar">
