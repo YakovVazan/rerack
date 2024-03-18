@@ -23,6 +23,12 @@ const SearchBox = () => {
     contextData["setSearchBoxValue"]("");
     contextData["setTypeFilterValue"](consts.typeDropDownInitialValue);
     contextData["setCompanyFilterValue"](consts.companyDropDownInitialValue);
+    document.querySelector("#main-container").scrollTo({ top: 0 });
+    window.history.replaceState(
+      {},
+      document.title,
+      window.location.href.split("#")[0]
+    );
 
     ResetAllFactors();
   }
