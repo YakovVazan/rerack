@@ -27,17 +27,16 @@ const AccountPage = () => {
 
         if (!res.ok) {
           const errorResponse = await res.json();
-
-          console.log(errorResponse.msg || errorResponse.error);
-          localStorageLogout();
-          contextData.setToken("");
-          navigate("/users/login");
+          throw new Error(errorResponse.msg || errorResponse.error);
+        } else {
+          const data = await res.json();
+          setUserDetails(data);
         }
-
-        const data = await res.json();
-        setUserDetails(data);
       } catch (error) {
         console.error(error);
+        localStorageLogout();
+        contextData.setToken("");
+        navigate("/users/login");
       } finally {
         setLoadingUser(false);
       }
