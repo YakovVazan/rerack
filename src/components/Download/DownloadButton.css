@@ -1,5 +1,5 @@
 #downloader-container {
-    position: absolute;
+    position: fixed;
     bottom: 1em;
     right: 2em;
     width: 3em;
@@ -9,7 +9,8 @@
     align-items: center;
     background: rgba(219, 219, 219, 0.7);
     border-radius: 100%;
-    border-width: 10px;
+    border-width: 1px;
+    border-style: solid;
     cursor: pointer;
     transition: bottom 0.2s ease-in;
     color: #6c757d;
@@ -17,7 +18,8 @@
 }
 
 #downloader-container:hover {
-    box-shadow: 0px 0px 5px #6c757d;
+    box-shadow: 0px 0px 7px #6c757d;
+    transition: box-shadow 0.1s ease-in-out;
 }
 
 #downloader-container:active {
