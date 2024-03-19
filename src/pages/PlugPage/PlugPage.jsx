@@ -50,12 +50,20 @@ const PlugPage = () => {
                   {localStorageIsOwner === "true" && <DeleteButton />}
                 </div>
               </div>
-              <hr />
-              <div
-                dangerouslySetInnerHTML={{ __html: descriptionHTML || "--" }}
-              />
-              <hr />
-              <small>Powered by Gemini. Consume responsibly.</small>
+              <span>
+                {currentPlug["description"] && (
+                  <>
+                    <hr />
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: descriptionHTML || "--",
+                      }}
+                    />
+                    <hr />
+                    <small>Powered by Gemini. Consume responsibly.</small>
+                  </>
+                )}
+              </span>
             </div>
           </div>
         </div>
