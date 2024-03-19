@@ -14,13 +14,21 @@
 
 #plug-page-details {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.upper-card-body {
+    width: 100%;
+    display: flex;
     justify-content: space-between;
 }
 
 .action-buttons {
     display: flex;
-    justify-content: space-between;
-    flex-direction: column;
+    height: fit-content;
+    gap: 0.5em;
+    margin-left: 1em;
 }
 
 @media screen and (max-width:576px) {

@@ -93,11 +93,10 @@ const AddModal = () => {
     });
 
     const response = JSON.parse(await res.text());
+    contextData["setToastVisibility"](true);
     if (!res.ok) {
-      contextData["setToastVisibility"](true);
       contextData["setToastMessage"](response?.msg || response.error);
     } else {
-      contextData["setToastVisibility"](true);
       contextData["setToastMessage"](
         `${newPlug.name} added successfully. Reload the page to see it`
       );

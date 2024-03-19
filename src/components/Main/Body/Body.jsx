@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import List from "../List/List.jsx";
+import Controls from "../Controls/Controls.jsx";
 import Toast from "../../Common/Toasts/Toasts.jsx";
 import Context from "../../../context/Context.jsx";
 import PlugPage from "../../../pages/PlugPage/PlugPage.jsx";
@@ -13,9 +14,9 @@ import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
 import RegisterPage from "../../../pages/RegisterPage/RegisterPage.jsx";
 import EditModal from "../../PlugActions/Editing/EditModal/EditModal.jsx";
 import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx";
+import DescGenModal from "../../PlugActions/DescGen/DescGenModal/DescGenModal.jsx";
 import "./Body.css";
 
-import Controls from "../Controls/Controls.jsx";
 
 const Body = () => {
   const contextData = useContext(Context);
@@ -52,6 +53,7 @@ const Body = () => {
       <AddModal />
       <EditModal />
       <DeleteModal />
+      <DescGenModal/>
     </>
   );
 };

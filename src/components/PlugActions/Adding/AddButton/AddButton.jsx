@@ -1,17 +1,14 @@
 import { useContext } from "react";
 import Context from "../../../../context/Context";
+import useForceAuth from "../../../../hooks/useForceAuth";
 import "./AddButton.css";
 
 const AddButton = () => {
+  const forceAuth = useForceAuth();
   const contextData = useContext(Context);
 
-  function forceLogin() {
-    if (!contextData["token"]) {
-      contextData["setToastVisibility"](true);
-      contextData["setToastMessage"](
-        "Register & log in to contribute to Rerack"
-      );
-    }
+  function handleClick() {
+    forceAuth();
   }
 
   return (
@@ -37,7 +34,7 @@ const AddButton = () => {
         data-bs-toggle={contextData["token"] && "modal"}
         data-bs-target={contextData["token"] && "#addingModal"}
         data-bs-dismiss="offcanvas"
-        onClick={forceLogin}
+        onClick={handleClick}
       >
         Add a new plug
       </div>

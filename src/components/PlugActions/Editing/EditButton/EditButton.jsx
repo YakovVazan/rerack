@@ -1,27 +1,24 @@
 import { useContext } from "react";
 import Context from "../../../../context/Context";
+import useForceAuth from "../../../../hooks/useForceAuth";
 import "./EditButton.css";
 
 const EditButton = () => {
+  const forceAuth = useForceAuth();
   const contextData = useContext(Context);
 
-  function forceLogin() {
-    if (!contextData["token"]) {
-      contextData["setToastVisibility"](true);
-      contextData["setToastMessage"](
-        "Register & log in to contribute to Rerack"
-      );
-    }
+  function handleClick() {
+    forceAuth();
   }
 
   return (
     <div
       id="edit-button"
-      className="btn btn-outline-secondary"
+      className="btn btn-outline-warning"
       title="edit"
       data-bs-toggle={contextData["token"] && "modal"}
       data-bs-target={contextData["token"] && "#editingModal"}
-      onClick={forceLogin}
+      onClick={handleClick}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
