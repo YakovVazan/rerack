@@ -1,52 +1,37 @@
 import { Link, useLocation } from "react-router-dom";
 import Auth from "../../Auth/Auth.jsx";
+import useNavigation from "../../../hooks/useNavigation.jsx";
 import HamburgerAndSideBar from "../HamburgerAndSideBar/HamburgerAndSideBar.jsx";
 import "./Nav.css";
+import SvgReturn from "../../svg/SvgReturn/SvgReturn.jsx";
 
 const Header = () => {
   const location = useLocation();
-  const isHomePage = location.pathname === "/";
+  const { isHomePage, isPlugPage } = useNavigation();
   const secondQuery = location.pathname.split("/")[2];
   const rightHeader = /^\d+$/.test(secondQuery)
     ? "Account Center"
     : secondQuery === undefined
     ? "Dashboard"
-    : secondQuery.replace("_", " ").toUpperCase();
+    : "";
 
   return (
     <nav>
-      {/* nav bar right side */}
+      {/* nav bar left side */}
       <Link to="/" id="logo-name">
         <div id="nav-left">
-          {isHomePage ? (
-            <h1 id="large-main-link">Plugins</h1>
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="currentColor"
-              className="bi bi-chevron-left"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fillRule="evenodd"
-                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"
-              />
-            </svg>
-          )}
+          {isHomePage ? <h1 id="large-main-link">Plugins</h1> : <SvgReturn />}
         </div>
       </Link>
 
-      {/* nav bar left side */}
-      {isHomePage ? (
+      {/* nav bar right side */}
+      {isHomePage || isPlugPage ? (
         <>
-          <div id="elements-in-nav-container">
-            <Auth />
-          </div>
-
           <div id="hamburger-for-side-bar">
             <HamburgerAndSideBar />
+          </div>
+          <div id="elements-in-nav-container">
+            <Auth />
           </div>
         </>
       ) : (

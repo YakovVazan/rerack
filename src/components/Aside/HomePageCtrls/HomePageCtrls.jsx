@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
-import TransparentDivider from "../../Common/TransparentDivider/TransparentDivider";
+import SearchBox from "../../SeekingTools/SearchBox/SearchBox";
 import AddButton from "../../PlugActions/Adding/AddButton/AddButton";
-import CompanyDropDown from "../../SeekingTools/DropDowns/CompanyDropDown/CompanyDropDown";
-import TypeDropDown from "../../SeekingTools/DropDowns/TypeDropDown/TypeDropDown";
 import Filter from "../../SeekingTools/FilterAndLayout/Filter/Filter";
 import Layout from "../../SeekingTools/FilterAndLayout/Layout/Layout";
-import SearchBox from "../../SeekingTools/SearchBox/SearchBox";
-import "./Controls.css";
+import TypeDropDown from "../../SeekingTools/DropDowns/TypeDropDown/TypeDropDown";
+import TransparentDivider from "../../Common/TransparentDivider/TransparentDivider";
+import CompanyDropDown from "../../SeekingTools/DropDowns/CompanyDropDown/CompanyDropDown";
+import "./HomePageCtrls.css";
+import AuthAndInfo from "../../AuthAndInfo/AuthAndInfo";
 
-const Controls = () => {
+const HomePageCtrls = () => {
   return (
-    <aside>
+    <>
       <div id="upper-aside">
         <SearchBox />
         <TransparentDivider />
@@ -28,13 +29,16 @@ const Controls = () => {
       <div id="lower-aside">
         <AddButton />
         <TransparentDivider />
-        <div id="bottom-lower-aside">
+        <div id="big-screens-lower-aside">
           <Link to={"privacy_policy"}>Privacy Policy</Link>
           <span>0.0.0</span>
         </div>
+        <div id="small-screens-lower-aside">
+          <AuthAndInfo />
+        </div>
       </div>
-    </aside>
+    </>
   );
 };
 
-export default Controls;
+export default HomePageCtrls;

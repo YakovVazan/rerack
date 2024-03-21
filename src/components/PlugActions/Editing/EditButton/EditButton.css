@@ -1,3 +1,9 @@
-#edit-button {
-    align-self: self-start;
+.one-button-view {
+    width: 100%;
+}
+
+.two-buttons-view {
+    width: 50%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }

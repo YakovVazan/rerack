@@ -28,6 +28,10 @@ function localStorageLogin(token, id, isOwner) {
 }
 
 function localStorageLogout() {
+  localStorageToken = null;
+  localStorageId = null;
+  localStorageIsOwner = null;
+  
   localStorage.removeItem("rerackToken");
   localStorage.removeItem("rerackId");
   localStorage.removeItem("rerackIsOwner");

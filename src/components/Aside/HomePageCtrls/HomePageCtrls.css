@@ -1,15 +1,13 @@
-@import '../../../styles/themes.css';
-
-aside {
-    padding: 5% 5% 1% 5%;
+.offcanvas-body {
+    padding: 3% 3% 1% 3%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-right: 1px solid var(--light-bg-color-1);
-    background-color: var(--light-bg-color-4);
 }
 
-#bottom-lower-aside {
+#big-screens-lower-aside {
     display: flex;
     justify-content: space-between;
 }
@@ -29,8 +27,14 @@ aside {
     justify-content: space-between;
 }
 
+@media screen and (min-width: 768px) {
+    #small-screens-lower-aside {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 768px) {
-    aside {
+    #big-screens-lower-aside {
         display: none;
     }
 }

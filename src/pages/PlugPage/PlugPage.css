@@ -1,8 +1,8 @@
-.list-item-container {
+.plug-page-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 1em;
+    padding-top: 1em;
     padding-bottom: 1em;
     overflow: auto;
 }
@@ -12,23 +12,9 @@
     height: fit-content;
 }
 
-#plug-page-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.upper-card-body {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.action-buttons {
-    display: flex;
-    height: fit-content;
-    gap: 0.5em;
-    margin-left: 1em;
+.card-img-top {
+    padding: 1em;
+    border-radius: 1.2em;
 }
 
 @media screen and (max-width:576px) {

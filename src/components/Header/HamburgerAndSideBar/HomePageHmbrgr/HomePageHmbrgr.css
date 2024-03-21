@@ -6,12 +6,6 @@
     width: 100%;
 }
 
-.offcanvas-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 @media screen and (min-width: 576px) {
     #offcanvasRight {
         width: 50%;
