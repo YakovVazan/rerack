@@ -28,9 +28,9 @@ const DescGenButton = ({ setDescription, setLoadingDescription }) => {
       const response = await res.json();
       if (!res.ok) {
         contextData["setToastVisibility"](true);
-        contextData["setToastMessage"](response.msg);
+        contextData["setToastMessage"](response?.msg);
       } else {
-        setDescription(response.msg);
+        setDescription(response?.msg);
       }
     } catch (error) {
       console.error(error);
