@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import Context from "../../../../context/Context";
-import SvgDelete from "../../../svg/SvgDelete/SvgDelete";
 import { localStorageIsOwner } from "../../../../config/localStorage";
 import "./DeleteButton.css";
 
@@ -13,10 +12,11 @@ const DeleteButton = () => {
         id="delete-button"
         className="btn btn-outline-danger"
         title="delete"
+        data-bs-dismiss="offcanvas"
         data-bs-toggle={contextData["token"] && "modal"}
         data-bs-target={contextData["token"] && "#deletingModal"}
       >
-        <SvgDelete />
+        Delete
       </div>
     );
   } else return <></>;

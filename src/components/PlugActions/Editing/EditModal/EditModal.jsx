@@ -7,6 +7,7 @@ import Spinner from "../../../Common/Spinner/Spinner";
 import useCompanies from "../../../../hooks/useCompanies";
 import { localStorageToken } from "../../../../config/localStorage";
 import "../../../../styles/modals.css";
+import SvgEdit from "../../../svg/SvgEdit/SvgEdit";
 
 const EditModal = () => {
   const navigate = useNavigate();
@@ -124,7 +125,7 @@ const EditModal = () => {
         <div className="modal-content">
           {/* header */}
           <div className="modal-header">
-            <h1 className="modal-title fs-5">Edit {currentPlug.name}</h1>
+            <SvgEdit/>
             <button
               type="button"
               className="btn-close"
