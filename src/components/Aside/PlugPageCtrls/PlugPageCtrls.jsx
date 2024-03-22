@@ -17,7 +17,7 @@ const PlugPageCtrls = ({ currentPlug }) => {
   };
 
   const isLoading = () => {
-    return currentPlug.name === null;
+    return Object.keys(currentPlug).length === 0;
   };
 
   return (

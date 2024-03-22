@@ -7,9 +7,7 @@ const useForceAuth = () => {
   const forceAuth = () => {
     if (!contextData["token"]) {
       contextData["setToastVisibility"](true);
-      contextData["setToastMessage"](
-        "Register & log in to contribute to Rerack"
-      );
+      contextData["setToastMessage"]("Some actions require authorization.");
     }
   };
 

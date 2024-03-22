@@ -2,11 +2,13 @@ import { useContext } from "react";
 import SvgAi from "../../../svg/SvgAi/SvgAi";
 import Context from "../../../../context/Context";
 import { consts } from "../../../../config/constants";
+import useForceAuth from "../../../../hooks/useForceAuth";
 import { localStorageToken } from "../../../../config/localStorage";
 import "./DescGenButton.css";
 
 const DescGenButton = ({ setDescription, setLoadingDescription }) => {
   const contextData = useContext(Context);
+  const forceAuth = useForceAuth();
   const currentPlug = contextData["currentPlug"];
 
   async function generate() {
@@ -27,8 +29,8 @@ const DescGenButton = ({ setDescription, setLoadingDescription }) => {
 
       const response = await res.json();
       if (!res.ok) {
-        contextData["setToastVisibility"](true);
-        contextData["setToastMessage"](response?.msg);
+        contextData["token"] = ""
+        forceAuth();
       } else {
         setDescription(response?.msg);
       }
