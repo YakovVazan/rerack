@@ -1,9 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Context from "../../../../context/Context";
+import SvgEdit from "../../../svg/SvgEdit/SvgEdit";
 import useForceAuth from "../../../../hooks/useForceAuth";
 import { localStorageIsOwner } from "../../../../config/localStorage";
 import "./EditButton.css";
-import SvgEdit from "../../../svg/SvgEdit/SvgEdit";
 
 const EditButton = () => {
   const forceAuth = useForceAuth();
@@ -13,24 +13,14 @@ const EditButton = () => {
     forceAuth();
   }
 
-  useEffect(() => {
-    if (localStorageIsOwner === "true") {
-      document.getElementById("edit-button").classList.add("two-buttons-view");
-      document
-        .getElementById("edit-button")
-        .classList.remove("one-button-view");
-    } else {
-      document.getElementById("edit-button").classList.add("one-button-view");
-      document
-        .getElementById("edit-button")
-        .classList.remove("two-buttons-view");
-    }
-  }, [localStorageIsOwner]);
-
   return (
     <div
       id="edit-button"
-      className="btn btn-outline-warning"
+      className={`btn btn-outline-warning ${
+        localStorageIsOwner !== null && localStorageIsOwner === "true"
+          ? "two-buttons-view"
+          : "one-button-view"
+      }`}
       title="edit"
       data-bs-toggle={contextData["token"] && "modal"}
       data-bs-target={contextData["token"] && "#editingModal"}

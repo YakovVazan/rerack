@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import "./DescGenButton.css";
+import SvgAi from "../../../svg/SvgAi/SvgAi";
 import Context from "../../../../context/Context";
 import { consts } from "../../../../config/constants";
 import { localStorageToken } from "../../../../config/localStorage";
-import SvgAi from "../../../svg/SvgAi/SvgAi";
+import useForceAuth from "../../../../hooks/useForceAuth";
+import "./DescGenButton.css";
 
 const DescGenButton = ({ setDescription, setLoadingDescription }) => {
+  const forceAuth = useForceAuth();
   const contextData = useContext(Context);
   const currentPlug = contextData["currentPlug"];
 
@@ -26,11 +28,11 @@ const DescGenButton = ({ setDescription, setLoadingDescription }) => {
       });
 
       const response = await res.json();
-      setDescription(response);
       if (!response.ok) {
+        forceAuth();
         console.log(response?.msg || response.error);
       } else {
-        console.log(response);
+        setDescription(response);
       }
     } catch (error) {
       console.error(error);

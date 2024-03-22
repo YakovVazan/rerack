@@ -8,7 +8,8 @@ import "./PlugPageCtrls.css";
 
 const PlugPageCtrls = ({ currentPlug }) => {
   const [loadingDescription, setLoadingDescription] = useState(false);
-  const [description, setDescription] = useState();
+  const [description, setDescription] = useState("");
+
   const content = () => {
     return isLoading()
       ? ["--", "--", "--"]
@@ -63,7 +64,10 @@ const PlugPageCtrls = ({ currentPlug }) => {
           )}
         </div>
         <div className="generator">
-          <DescGenButton setDescription={setDescription} setLoadingDescription={setLoadingDescription}/>
+          <DescGenButton
+            setDescription={setDescription}
+            setLoadingDescription={setLoadingDescription}
+          />
         </div>
       </div>
     </>
