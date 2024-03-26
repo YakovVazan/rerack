@@ -28,11 +28,12 @@
 }
 
 .generated {
-    height: 14em;
     overflow-y: auto;
     background-color: #ffffff;
     border-radius: 0.25rem;
     scrollbar-width: none;
+    margin-bottom: 1em;
+    flex: 1;
 }
 
 #temp-msg {

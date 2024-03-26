@@ -251,7 +251,7 @@ const EditModal = () => {
                   type="text"
                   className="form-control adding-input"
                   placeholder="image's URL"
-                  value={upToDatePlug.src}
+                  value={upToDatePlug.src || ""}
                   onChange={(e) =>
                     setUpToDatePlug({
                       ...upToDatePlug,
