@@ -30,7 +30,7 @@ const DescGenButton = ({ setDescription, setLoadingDescription }) => {
       const response = await res.json();
       if (!res.ok) {
         console.log(res);
-        contextData["token"] = ""
+        contextData["token"] = "";
         forceAuth();
       } else {
         setDescription(response?.msg);
@@ -45,7 +45,7 @@ const DescGenButton = ({ setDescription, setLoadingDescription }) => {
   return (
     <div
       id="desc-gen-button"
-      className="btn btn-outline-primary"
+      className={`btn btn-outline-primary ${"disabled" && !currentPlug}`}
       title="Description generator (ai)"
       onClick={generate}
     >
