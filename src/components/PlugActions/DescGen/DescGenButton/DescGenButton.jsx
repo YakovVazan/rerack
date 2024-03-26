@@ -45,7 +45,9 @@ const DescGenButton = ({ setDescription, setLoadingDescription }) => {
   return (
     <div
       id="desc-gen-button"
-      className={`btn btn-outline-primary ${"disabled" && !currentPlug}`}
+      className={`btn btn-outline-primary ${
+        currentPlug.name === undefined && "disabled"
+      }`}
       title="Description generator (ai)"
       onClick={generate}
     >
