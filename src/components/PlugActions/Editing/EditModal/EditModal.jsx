@@ -2,12 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import useTypes from "../../../../hooks/useTypes";
 import Context from "../../../../context/Context";
+import SvgEdit from "../../../svg/SvgEdit/SvgEdit";
 import { consts } from "../../../../config/constants";
 import Spinner from "../../../Common/Spinner/Spinner";
+import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
 import useCompanies from "../../../../hooks/useCompanies";
 import { localStorageToken } from "../../../../config/localStorage";
 import "../../../../styles/modals.css";
-import SvgEdit from "../../../svg/SvgEdit/SvgEdit";
 
 const EditModal = () => {
   const navigate = useNavigate();
@@ -125,7 +126,7 @@ const EditModal = () => {
         <div className="modal-content">
           {/* header */}
           <div className="modal-header">
-            <SvgEdit/>
+            <SvgEdit />
             <button
               type="button"
               className="btn-close"
@@ -171,7 +172,7 @@ const EditModal = () => {
                   companiesList.map((company, index) => (
                     <li
                       key={index}
-                      className="dropdown-item"
+                      className="dropdown-item modal-dropdown-item"
                       onClick={() =>
                         setUpToDatePlug({
                           ...upToDatePlug,
@@ -179,7 +180,14 @@ const EditModal = () => {
                         })
                       }
                     >
-                      {company}
+                      <span className="modal-dropdown-item-content">
+                        {company}
+                      </span>
+                      {upToDatePlug.company === company && (
+                        <span>
+                          <SvgCheck />
+                        </span>
+                      )}
                     </li>
                   ))
                 ) : (
@@ -205,12 +213,19 @@ const EditModal = () => {
                   typesList.map((type, index) => (
                     <li
                       key={index}
-                      className="dropdown-item"
+                      className="dropdown-item modal-dropdown-item"
                       onClick={() =>
                         setUpToDatePlug({ ...upToDatePlug, type: type })
                       }
                     >
-                      {type}
+                      <span className="modal-dropdown-item-content">
+                        {type}
+                      </span>
+                      {upToDatePlug.type === type && (
+                        <span>
+                          <SvgCheck />
+                        </span>
+                      )}
                     </li>
                   ))
                 ) : (

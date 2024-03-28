@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Context from "../../../../context/Context.jsx";
 import { consts } from "../../../../config/constants.js";
 import Spinner from "../../../Common/Spinner/Spinner.jsx";
+import SvgCheck from "../../../svg/SvgCheck/SvgCheck.jsx";
 import useCompanies from "../../../../hooks/useCompanies.jsx";
 import { ResetCompanyValue } from "../../../../utils/ResetFactors/ResetFactors.jsx";
 import "./CompanyDropDown.css";
@@ -35,10 +36,15 @@ const CompanyDropDown = () => {
         {/* filter drop down */}
         <ul className="dropdown-menu">
           <div
-            className="dropdown-item"
+            className="dropdown-item company-dropdown-item"
             onClick={() => handleClick(consts.companyDropDownInitialValue)}
           >
-            all
+            <span>all</span>
+            {companyFilterValue === "company" && (
+              <span>
+                <SvgCheck />
+              </span>
+            )}
           </div>
           <hr className="dropdown-divider"></hr>
           {companiesList.length === 0 ? (
@@ -47,10 +53,15 @@ const CompanyDropDown = () => {
             companiesList.map((company, index) => (
               <li
                 key={index}
-                className="dropdown-item"
+                className="dropdown-item company-dropdown-item"
                 onClick={() => handleClick(company)}
               >
-                {company}
+                <span className="company-content">{company}</span>
+                {companyFilterValue === company && (
+                  <span>
+                    <SvgCheck />
+                  </span>
+                )}
               </li>
             ))
           )}

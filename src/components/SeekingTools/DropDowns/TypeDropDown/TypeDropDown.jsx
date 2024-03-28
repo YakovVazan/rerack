@@ -3,6 +3,7 @@ import useTypes from "../../../../hooks/useTypes.jsx";
 import Context from "../../../../context/Context.jsx";
 import { consts } from "../../../../config/constants.js";
 import Spinner from "../../../Common/Spinner/Spinner.jsx";
+import SvgCheck from "../../../svg/SvgCheck/SvgCheck.jsx";
 import { ResetTypeValue } from "../../../../utils/ResetFactors/ResetFactors.jsx";
 import "./TypeDropDown.css";
 
@@ -34,10 +35,15 @@ const TypeDropDown = () => {
         {/* filter drop down */}
         <ul className="dropdown-menu" id="type-drop-down">
           <div
-            className="dropdown-item"
+            className="dropdown-item type-dropdown-item"
             onClick={() => handleClick(consts.typeDropDownInitialValue)}
           >
-            all
+            <span>all</span>
+            {typeFilterValue === "type" && (
+              <span>
+                <SvgCheck />
+              </span>
+            )}
           </div>
           <hr className="dropdown-divider"></hr>
           {typesList.length === 0 ? (
@@ -46,10 +52,15 @@ const TypeDropDown = () => {
             typesList.map((type, index) => (
               <li
                 key={index}
-                className="dropdown-item"
+                className="dropdown-item type-dropdown-item"
                 onClick={() => handleClick(type)}
               >
-                {type}
+                <span className="type-content">{type}</span>
+                {typeFilterValue === type && (
+                  <span>
+                    <SvgCheck />
+                  </span>
+                )}
               </li>
             ))
           )}

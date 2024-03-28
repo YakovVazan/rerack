@@ -12,3 +12,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.company-dropdown-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.company-content {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}

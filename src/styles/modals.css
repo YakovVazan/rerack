@@ -37,6 +37,17 @@
     overflow-y: scroll;
 }
 
+.modal-dropdown-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-dropdown-item-content {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
 #image-area {
     text-align: center;
     height: 10rem;

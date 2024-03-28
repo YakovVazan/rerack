@@ -20,7 +20,12 @@
     overflow-y: scroll;
 }
 
-#type-drop-down>* {
+.type-dropdown-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.type-content {
     white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;

@@ -6,6 +6,7 @@ import Spinner from "../../../Common/Spinner/Spinner";
 import useCompanies from "../../../../hooks/useCompanies";
 import { localStorageToken } from "../../../../config/localStorage";
 import "../../../../styles/modals.css";
+import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
 
 const AddModal = () => {
   const { typesList } = useTypes();
@@ -157,12 +158,19 @@ const AddModal = () => {
                   companiesList.map((company, index) => (
                     <li
                       key={index}
-                      className="dropdown-item"
+                      className="dropdown-item modal-dropdown-item"
                       onClick={() =>
                         setNewPlug({ ...newPlug, company: company })
                       }
                     >
-                      {company}
+                      <span className="modal-dropdown-item-content">
+                        {company}
+                      </span>
+                      {newPlug.company === company && (
+                        <span>
+                          <SvgCheck />
+                        </span>
+                      )}
                     </li>
                   ))
                 ) : (
@@ -188,10 +196,17 @@ const AddModal = () => {
                   typesList.map((type, index) => (
                     <li
                       key={index}
-                      className="dropdown-item"
+                      className="dropdown-item modal-dropdown-item"
                       onClick={() => setNewPlug({ ...newPlug, type: type })}
                     >
-                      {type}
+                      <span className="modal-dropdown-item-content">
+                        {type}
+                      </span>
+                      {newPlug.type === type && (
+                        <span>
+                          <SvgCheck />
+                        </span>
+                      )}
                     </li>
                   ))
                 ) : (
