@@ -10,7 +10,9 @@ const DeleteButton = () => {
     return (
       <div
         id="delete-button"
-        className="btn btn-outline-danger"
+        className={`btn btn-outline-danger ${
+          Object.keys(contextData["currentPlug"]).length === 0 && "disabled"
+        }`}
         title="delete"
         data-bs-dismiss="offcanvas"
         data-bs-toggle={contextData["token"] && "modal"}

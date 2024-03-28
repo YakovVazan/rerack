@@ -19,7 +19,7 @@ const EditButton = () => {
         localStorageIsOwner !== null && localStorageIsOwner === "true"
           ? "two-buttons-view"
           : "one-button-view"
-      }`}
+      } ${Object.keys(contextData["currentPlug"]).length === 0 && "disabled"}`}
       title="edit"
       data-bs-dismiss="offcanvas"
       data-bs-toggle={contextData["token"] && "modal"}
