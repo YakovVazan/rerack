@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   localStorageLogout,
   localStorageToken,
+  localStorageId,
 } from "../../config/localStorage";
 import { consts } from "../../config/constants";
 import Spinner from "../../components/Common/Spinner/Spinner";
@@ -26,8 +27,13 @@ const AccountPage = () => {
         });
 
         if (!res.ok) {
-          const errorResponse = await res.json();
-          throw new Error(errorResponse.msg || errorResponse.error);
+          if (res.status === 404) {
+            handleToast("User not found");
+            navigate(`/users/${localStorageId}`);
+          } else {
+            const errorResponse = await res.json();
+            throw new Error(errorResponse.msg || errorResponse.error);
+          }
         } else {
           const data = await res.json();
           setUserDetails(data);

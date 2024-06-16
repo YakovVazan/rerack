@@ -8,10 +8,11 @@ import SvgReturn from "../../svg/SvgReturn/SvgReturn.jsx";
 const Header = () => {
   const location = useLocation();
   const { isHomePage, isPlugPage } = useNavigation();
+  const firstQuery = location.pathname.split("/")[1];
   const secondQuery = location.pathname.split("/")[2];
   const rightHeader = /^\d+$/.test(secondQuery)
     ? "Account Center"
-    : secondQuery === undefined
+    : firstQuery === "users"
     ? "Dashboard"
     : "";
 
