@@ -8,6 +8,7 @@
 }
 
 .list-group-item.active {
+    color: #000;
     background-color: #e8e8e8 !important;
     border: 1px solid #e8e8e8 !important;
 }

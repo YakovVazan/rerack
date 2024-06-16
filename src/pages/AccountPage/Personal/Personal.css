@@ -1,0 +1,67 @@
+.account-sections {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#view-account, #edit-account, #delete-account {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-name {
+    width: fit-content;
+    margin: 0;
+}
+
+.header-line {
+    width: 80%;
+}
+
+.content-section {
+    flex: 1;
+    width: 80%;
+    align-self: end;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.edit-input {
+    width: 100%;
+    border-radius: 0;
+    margin-bottom: 0.25em;
+}
+
+.edit-input:first-child {
+    border-top-right-radius: 0.25em;
+    border-top-left-radius: 0.25em;
+}
+
+.edit-input:last-child {
+    border-bottom-right-radius: 0.25em;
+    border-bottom-left-radius: 0.25em;
+}
+
+.edit-buttons {
+    width: 40%;
+    align-self: end;
+    margin-top: 0.25em;
+}
+
+.edit-button {
+    width: 50%;
+}
+
+#delete-account-button {
+    width: fit-content;
+    align-self: end;
+}

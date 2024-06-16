@@ -3,12 +3,12 @@ import Context from "../../context/Context.jsx";
 import HomePageCtrls from "./HomePageCtrls/HomePageCtrls";
 import PlugPageCtrls from "./PlugPageCtrls/PlugPageCtrls";
 import useNavigation from "../../hooks/useNavigation.jsx";
+import AccountCenterPageCtrls from "./AccountCenterPageCtrls/AccountCenterPageCtrls.jsx";
 import "./Aside.css";
 
 const Aside = () => {
-  const contextData = useContext(Context);
-  const currentPlug = contextData["currentPlug"];
-  const { isHomePage, isPlugPage } = useNavigation();
+  const { currentPlug } = useContext(Context);
+  const { isHomePage, isPlugPage, isAccountPage } = useNavigation();
 
   return (
     <>
@@ -20,6 +20,11 @@ const Aside = () => {
       {isPlugPage && (
         <aside>
           <PlugPageCtrls currentPlug={currentPlug} />
+        </aside>
+      )}
+      {isAccountPage && (
+        <aside>
+          <AccountCenterPageCtrls />
         </aside>
       )}
     </>

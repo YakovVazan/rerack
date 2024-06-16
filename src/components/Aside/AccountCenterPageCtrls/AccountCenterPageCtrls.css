@@ -1,0 +1,23 @@
+.account-center-aside-list {
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-group-item {
+    cursor: pointer;
+}
+
+.user-ctrls {
+    border-radius: 0.25em !important;
+}
+
+.user-ctrls:hover {
+    box-shadow: 0px 0px 2px #6c757d;
+    transition: box-shadow 0.1s ease-in-out;
+}
+
+.active {
+    box-shadow: 0px 0px 2px #6c757d;
+    transition: box-shadow 0.1s ease-in-out;
+}

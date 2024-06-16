@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Context from "./context/Context.jsx";
+import { consts } from "./config/constants.js";
 import Nav from "./components/Header/Nav/Nav.jsx";
 import Body from "./components/Main/Body/Body.jsx";
 import * as localStorageVars from "./config/localStorage.js";
-import { consts } from "./config/constants.js";
 
 const App = () => {
   const [searchBoxValue, setSearchBoxValue] = useState("");
@@ -20,6 +20,7 @@ const App = () => {
   const [toastVisibility, setToastVisibility] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [currentPlug, setCurrentPlug] = useState({});
+  const [accountPageSubRoute, setAccoutPageSubRoute] = useState(0);
 
   return (
     <>
@@ -35,6 +36,7 @@ const App = () => {
           setToastVisibility,
           setToastMessage,
           setCurrentPlug,
+          setAccoutPageSubRoute,
           orderBy,
           orderedData,
           searchBoxValue,
@@ -45,6 +47,7 @@ const App = () => {
           toastVisibility,
           toastMessage,
           currentPlug,
+          accountPageSubRoute,
         }}
       >
         <Nav />

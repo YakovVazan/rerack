@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import AuthAndInfo from "../../AuthAndInfo/AuthAndInfo";
 import SearchBox from "../../SeekingTools/SearchBox/SearchBox";
 import AddButton from "../../PlugActions/Adding/AddButton/AddButton";
 import Filter from "../../SeekingTools/FilterAndLayout/Filter/Filter";
@@ -7,7 +8,6 @@ import TypeDropDown from "../../SeekingTools/DropDowns/TypeDropDown/TypeDropDown
 import TransparentDivider from "../../Common/TransparentDivider/TransparentDivider";
 import CompanyDropDown from "../../SeekingTools/DropDowns/CompanyDropDown/CompanyDropDown";
 import "./HomePageCtrls.css";
-import AuthAndInfo from "../../AuthAndInfo/AuthAndInfo";
 
 const HomePageCtrls = () => {
   return (

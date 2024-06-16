@@ -13,14 +13,17 @@ import AccountPage from "../../../pages/AccountPage/AccountPage.jsx";
 import AddModal from "../../PlugActions/Adding/AddModal/AddModal.jsx";
 import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
 import RegisterPage from "../../../pages/RegisterPage/RegisterPage.jsx";
+import Wishlist from "../../../pages/AccountPage/Wishlist/Wishlist.jsx";
 import EditModal from "../../PlugActions/Editing/EditModal/EditModal.jsx";
 import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx";
+import OwnedPlugins from "../../../pages/AccountPage/OwnedPlugins/OwnedPlugins.jsx";
+import Contributions from "../../../pages/AccountPage/Contributions/Contributions.jsx";
 import "./Body.css";
 
 const Body = () => {
   const contextData = useContext(Context);
   const location = useLocation();
-  const { isHomePage, isPlugPage } = useNavigation();
+  const { isHomePage, isPlugPage, isAccountPage } = useNavigation();
 
   // reset current plug whenever user navigates away from plug page
   useEffect(() => {
@@ -31,7 +34,9 @@ const Body = () => {
 
   return (
     <>
-      <div className={isHomePage || isPlugPage ? "wrapper" : ""}>
+      <div
+        className={isHomePage || isPlugPage || isAccountPage ? "wrapper" : ""}
+      >
         <section id="main-container">
           <Routes>
             <Route path="/" element={<List />}></Route>
@@ -39,7 +44,10 @@ const Body = () => {
             <Route path="/users" element={<AdminsPage />}></Route>
             <Route path="/users/register" element={<RegisterPage />}></Route>
             <Route path="/users/login" element={<LoginPage />}></Route>
-            <Route path="/users/:id" element={<AccountPage />}></Route>
+            <Route path="/users/:id/" element={<AccountPage />}></Route>
+            <Route path="/users/:id/contributions" element={<Contributions />}></Route>
+            <Route path="/users/:id/owned_plugins" element={<OwnedPlugins />}></Route>
+            <Route path="/users/:id/wishlist" element={<Wishlist />}></Route>
             <Route path="/privacy_policy" element={<PrivacyPolicy />}></Route>
             <Route path="/*" element={<NotFound />}></Route>
           </Routes>
