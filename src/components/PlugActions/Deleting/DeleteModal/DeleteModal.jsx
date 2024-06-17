@@ -42,7 +42,9 @@ const DeleteModal = () => {
         localStorageLogout();
         navigate("/");
       } else {
-        location.reload();
+        document
+          .getElementById(contextData["deletionModalContents"]["id"])
+          .remove();
       }
     }
   }

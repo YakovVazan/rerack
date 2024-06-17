@@ -27,6 +27,7 @@ const AdminsPage = () => {
     contextData["setDeletionModalContents"]({
       url: `${consts.baseURL}/users/${userId}/delete`,
       msg: `${username}'s account`,
+      id: `${userId}`,
     });
   }
 
@@ -78,7 +79,7 @@ const AdminsPage = () => {
             </thead>
             <tbody>
               {allUsersData.map((user) => (
-                <tr className="users-tr" key={user.id}>
+                <tr className="users-tr" id={user.id} key={user.id}>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>
