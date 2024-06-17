@@ -1,22 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { consts } from "../../../config/constants";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import SvgPencil from "../../../components/svg/SvgPencil/SvgPencil";
-import {
-  localStorageId,
-  localStorageToken,
-} from "../../../config/localStorage";
+import { localStorageToken } from "../../../config/localStorage";
 import "../SubRoutes.css";
 
 const Contributions = () => {
+  const location = useLocation();
   const [contributedData, setContributedData] = useState([]);
   const [loadingContributions, setLoaddingContributions] = useState(true);
 
   async function fetchUserDistributions() {
     try {
       const res = await fetch(
-        `${consts.baseURL}/users/${localStorageId}/contributions`,
+        `${consts.baseURL}/users/${
+          location.pathname.split("/")[2]
+        }/contributions`,
         {
           headers: {
             Authorization: `Bearer ${localStorageToken}`,
