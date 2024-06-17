@@ -42,7 +42,12 @@ const LoginPage = () => {
       contextData["setToastMessage"](response?.msg || response.error);
       setLoadingUser(false);
     } else {
-      localStorageLogin(response.token, response.id, response.isOwner);
+      localStorageLogin(
+        response.token,
+        response.id,
+        response.isOwner,
+        response.isVerified
+      );
       contextData["setToken"](response.token);
       navigate("/");
       contextData["setToastVisibility"](true);

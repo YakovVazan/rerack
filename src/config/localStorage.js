@@ -3,6 +3,7 @@ let localStorageView = localStorage.getItem("rerackView");
 let localStorageOrder = localStorage.getItem("rerackOrder");
 let localStorageToken = localStorage.getItem("rerackToken");
 let localStorageIsOwner = localStorage.getItem("rerackIsOwner");
+let localStorageIsVerified = localStorage.getItem("rerackIsVerified");
 let localStorageAccountPageSubRouteIndex = localStorage.getItem(
   "rerackAccountPageSubRouteIndex"
 );
@@ -26,30 +27,43 @@ if (!localStorageAccountPageSubRouteIndex) {
     localStorageAccountPageSubRouteIndex
   );
 }
+if (!localStorageIsVerified) {
+  localStorageIsVerified = 0;
+  localStorage.setItem("rerackIsVerified", localStorageIsVerified);
+}
 
-function localStorageLogin(token, id, isOwner) {
-  localStorage.setItem("rerackToken", token);
+function localStorageLogin(token, id, isOwner, isVerified) {
   localStorage.setItem("rerackId", id);
+  localStorage.setItem("rerackToken", token);
   localStorage.setItem("rerackIsOwner", isOwner);
+  localStorage.setItem("rerackIsVerified", isVerified);
 
-  localStorageToken = localStorage.getItem("rerackToken");
   localStorageId = localStorage.getItem("rerackId");
+  localStorageToken = localStorage.getItem("rerackToken");
   localStorageIsOwner = localStorage.getItem("rerackIsOwner");
+  localStorageIsVerified = localStorage.getItem("rerackIsVerified");
 }
 
 function localStorageLogout() {
   localStorageToken = null;
   localStorageId = null;
   localStorageIsOwner = null;
+  localStorageIsVerified = null;
 
-  localStorage.removeItem("rerackToken");
   localStorage.removeItem("rerackId");
+  localStorage.removeItem("rerackToken");
   localStorage.removeItem("rerackIsOwner");
+  localStorage.removeItem("rerackIsVerified");
 }
 
 function setLocalStorageAccountPageSubRouteIndex(index) {
   localStorageAccountPageSubRouteIndex = index;
   localStorage.setItem("rerackAccountPageSubRouteIndex", index);
+}
+
+function setLocalStorageToken(newToken) {
+  localStorageToken = newToken["token"];
+  localStorage.setItem("rerackToken", localStorageToken);
 }
 
 export {
@@ -62,4 +76,5 @@ export {
   localStorageLogin,
   localStorageLogout,
   setLocalStorageAccountPageSubRouteIndex,
+  setLocalStorageToken
 };

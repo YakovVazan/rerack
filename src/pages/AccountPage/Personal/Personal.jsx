@@ -7,6 +7,7 @@ import {
   localStorageId,
   localStorageLogout,
   localStorageToken,
+  setLocalStorageToken,
 } from "../../../config/localStorage";
 import "./Personal.css";
 
@@ -99,16 +100,47 @@ const Personal = () => {
         handleToast(errorResponse.msg || errorResponse.error);
         console.log(errorResponse.msg || errorResponse.error);
       } else {
+        const response = JSON.parse(await res.text());
         setUserDetails({
+          ...userDetails,
+          isVerified: response.isVerified,
           name: userNewDetails.name,
           email: userNewDetails.email,
         });
+        document.getElementById("password-input").value = "";
         handleToast("Details updated successfully");
       }
     } catch (error) {
       console.error(error);
     } finally {
       setLoadingUser(false);
+    }
+  }
+
+  async function handleVerification() {
+    try {
+      const res = await fetch(
+        `${consts.baseURL}/users/${userDetails.id}/verify`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorageToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!res.ok) {
+        const errorResponse = await res.json();
+        handleToast(errorResponse.msg || errorResponse.error);
+        console.log(errorResponse.msg || errorResponse.error);
+      } else {
+        const response = JSON.parse(await res.text());
+        setLocalStorageToken(response);
+        handleToast("A code was sent to your email address");
+      }
+    } catch (error) {
+      console.error(error);
     }
   }
 
@@ -127,6 +159,17 @@ const Personal = () => {
               <span className="content-section">
                 <li>{userDetails.name}</li>
                 <li>{userDetails.email}</li>
+                <div className="edit-button-container">
+                  <button
+                    type="button"
+                    className={`edit-button btn btn-outline-success ${
+                      +userDetails.isVerified === 1 && "d-none"
+                    }`}
+                    onClick={handleVerification}
+                  >
+                    Verify
+                  </button>
+                </div>
               </span>
             </div>
             <div id="edit-account">
@@ -151,20 +194,15 @@ const Personal = () => {
                     onChange={(e) => handleChange("email", e.target.value)}
                   ></input>
                   <input
+                    id="password-input"
                     type="password"
                     className="edit-input form-control"
                     placeholder="new password"
-                    defaultValue={""}
+                    defaultValue={userNewDetails.password}
                     onChange={(e) => handleChange("password", e.target.value)}
                   ></input>
                 </div>
-                <div className="btn-group edit-buttons" role="group">
-                  <button
-                    type="button"
-                    className="edit-button btn btn-outline-success"
-                  >
-                    Verify
-                  </button>
+                <div className="edit-button-container">
                   <button
                     type="button"
                     className={`edit-button btn btn-outline-primary ${

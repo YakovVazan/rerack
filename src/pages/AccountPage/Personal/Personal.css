@@ -54,7 +54,7 @@
 }
 
 .edit-button {
-    width: 50%;
+    width: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -62,7 +62,7 @@
         width: 80%;
     }
 
-    .edit-buttons {
+    .edit-button-container {
         width: 40%;
         align-self: end;
         margin-top: 0.25em;

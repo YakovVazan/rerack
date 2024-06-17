@@ -32,7 +32,7 @@ const DeleteModal = () => {
         `${contextData["deletionModalContents"]["msg"]} deleted successfully`
       );
     }
-    console.log(contextData["deletionModalContents"]);
+
     if (contextData["deletionModalContents"]["url"].includes("plugs")) {
       contextData.setCurrentPlug({});
       navigate("/");
