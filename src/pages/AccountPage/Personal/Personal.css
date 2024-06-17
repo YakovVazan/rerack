@@ -4,7 +4,9 @@
     flex-direction: column;
 }
 
-#view-account, #edit-account, #delete-account {
+#view-account,
+#edit-account,
+#delete-account {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -23,7 +25,7 @@
 }
 
 .header-line {
-    width: 80%;
+    width: 70%;
 }
 
 .content-section {
@@ -51,17 +53,23 @@
     border-bottom-left-radius: 0.25em;
 }
 
-.edit-buttons {
-    width: 40%;
-    align-self: end;
-    margin-top: 0.25em;
-}
-
 .edit-button {
     width: 50%;
 }
 
-#delete-account-button {
-    width: fit-content;
-    align-self: end;
+@media screen and (min-width: 768px) {
+    .header-line {
+        width: 80%;
+    }
+
+    .edit-buttons {
+        width: 40%;
+        align-self: end;
+        margin-top: 0.25em;
+    }
+
+    #delete-account-button {
+        width: fit-content;
+        align-self: end;
+    }
 }
