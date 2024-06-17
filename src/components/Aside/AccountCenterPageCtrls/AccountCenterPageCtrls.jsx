@@ -1,15 +1,16 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SvgTag from "../../svg/SvgTag/SvgTag";
 import Context from "../../../context/Context";
 import SvgHeart from "../../svg/SvgHeart/SvgHeart";
 import SvgPencil from "../../svg/SvgPencil/SvgPencil";
 import SvgAccount from "../../svg/SvgAccount/SvgAccount";
-import { localStorageId } from "../../../config/localStorage";
+import { setLocalStorageAccountPageSubRouteIndex } from "../../../config/localStorage";
 import "./AccountCenterPageCtrls.css";
 
 const AccountCenterPageCtrls = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const contextData = useContext(Context);
 
   const list = [
@@ -20,8 +21,9 @@ const AccountCenterPageCtrls = () => {
   ];
 
   function updateSubRoute(index) {
+    setLocalStorageAccountPageSubRouteIndex(index);
     navigate(
-      `/users/${localStorageId}/${
+      `/users/${location.pathname.split("/")[2]}/${
         index > 0
           ? list[index].title.trim().toLowerCase().replace(" ", "_")
           : ""

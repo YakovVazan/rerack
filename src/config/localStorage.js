@@ -1,8 +1,11 @@
+let localStorageId = localStorage.getItem("rerackId");
 let localStorageView = localStorage.getItem("rerackView");
 let localStorageOrder = localStorage.getItem("rerackOrder");
 let localStorageToken = localStorage.getItem("rerackToken");
-let localStorageId = localStorage.getItem("rerackId");
 let localStorageIsOwner = localStorage.getItem("rerackIsOwner");
+let localStorageAccountPageSubRouteIndex = localStorage.getItem(
+  "rerackAccountPageSubRouteIndex"
+);
 
 // setting defaults
 if (!localStorageView) {
@@ -15,6 +18,13 @@ if (!localStorageOrder) {
 }
 if (!localStorageId) {
   localStorageId = localStorage.getItem("rerackId");
+}
+if (!localStorageAccountPageSubRouteIndex) {
+  localStorageAccountPageSubRouteIndex = 0;
+  localStorage.setItem(
+    "rerackAccountPageSubRouteIndex",
+    localStorageAccountPageSubRouteIndex
+  );
 }
 
 function localStorageLogin(token, id, isOwner) {
@@ -31,10 +41,15 @@ function localStorageLogout() {
   localStorageToken = null;
   localStorageId = null;
   localStorageIsOwner = null;
-  
+
   localStorage.removeItem("rerackToken");
   localStorage.removeItem("rerackId");
   localStorage.removeItem("rerackIsOwner");
+}
+
+function setLocalStorageAccountPageSubRouteIndex(index) {
+  localStorageAccountPageSubRouteIndex = index;
+  localStorage.setItem("rerackAccountPageSubRouteIndex", index);
 }
 
 export {
@@ -43,6 +58,8 @@ export {
   localStorageToken,
   localStorageId,
   localStorageIsOwner,
+  localStorageAccountPageSubRouteIndex,
   localStorageLogin,
   localStorageLogout,
+  setLocalStorageAccountPageSubRouteIndex,
 };

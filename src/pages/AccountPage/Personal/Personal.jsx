@@ -112,13 +112,13 @@ const Personal = () => {
                     type="text"
                     className="edit-input form-control"
                     placeholder="new name"
-                    value={userDetails.name}
+                    defaultValue={userDetails.name}
                   ></input>
                   <input
                     type="email"
                     className="edit-input form-control"
                     placeholder="new email"
-                    value={userDetails.email}
+                    defaultValue={userDetails.email}
                   ></input>
                   <input
                     type="password"

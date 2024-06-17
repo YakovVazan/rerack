@@ -20,7 +20,9 @@ const App = () => {
   const [toastVisibility, setToastVisibility] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [currentPlug, setCurrentPlug] = useState({});
-  const [accountPageSubRoute, setAccoutPageSubRoute] = useState(0);
+  const [accountPageSubRoute, setAccoutPageSubRoute] = useState(
+    +localStorageVars.localStorageAccountPageSubRouteIndex || 0
+  );
 
   return (
     <>

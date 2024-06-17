@@ -1,27 +1,20 @@
 import { useContext, useEffect } from "react";
 import Personal from "./Personal/Personal";
-import Wishlist from "./Wishlist/Wishlist";
 import Context from "../../context/Context";
-import Contributions from "./Contributions/Contributions";
-import OwnedPlugins from "./OwnedPlugins/OwnedPlugins";
+import {
+  setLocalStorageAccountPageSubRouteIndex,
+  localStorageAccountPageSubRouteIndex,
+} from "../../config/localStorage";
 
 const AccountPage = () => {
-  const { accountPageSubRoute, setAccoutPageSubRoute } = useContext(Context);
+  const { setAccoutPageSubRoute } = useContext(Context);
 
   useEffect(() => {
-    setAccoutPageSubRoute(0);
+    setLocalStorageAccountPageSubRouteIndex(0);
+    setAccoutPageSubRoute(+localStorageAccountPageSubRouteIndex);
   }, []);
 
-  switch (accountPageSubRoute) {
-    case 0:
-      return <Personal />;
-    case 1:
-      return <Contributions />;
-    case 2:
-      return <OwnedPlugins />;
-    case 3:
-      return <Wishlist />;
-  }
+  return <Personal />;
 };
 
 export default AccountPage;
