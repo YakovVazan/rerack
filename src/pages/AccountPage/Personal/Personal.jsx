@@ -16,6 +16,14 @@ const Personal = () => {
   const contextData = useContext(Context);
   const [userDetails, setUserDetails] = useState({});
   const [loadingUser, setLoadingUser] = useState(true);
+  const [userNewDetails, setUserNewDetails] = useState({});
+
+  useEffect(() => {
+    contextData["setDeletionModalContents"]({
+      url: `${consts.baseURL}/users/${id}/delete`,
+      msg: "Your account",
+    });
+  }, []);
 
   useEffect(() => {
     async function fetchUserDetails() {
@@ -37,6 +45,11 @@ const Personal = () => {
         } else {
           const data = await res.json();
           setUserDetails(data);
+          setUserNewDetails({
+            name: data.name,
+            email: data.email,
+            password: "",
+          });
         }
       } catch (error) {
         console.error(error);
@@ -56,27 +69,42 @@ const Personal = () => {
     contextData["setToastMessage"](msg);
   }
 
-  async function handleDeletion(id) {
+  const handleChange = (key, value) => {
+    setUserNewDetails((prevDetails) => ({
+      ...prevDetails,
+      [key]: value,
+    }));
+  };
+
+  async function handleEdition() {
     try {
-      const res = await fetch(`${consts.baseURL}/users/${id}/delete`, {
-        method: "DELETE",
+      const payload = {
+        id: id,
+        name: userNewDetails.name,
+        email: userNewDetails.email,
+        password: userNewDetails.password,
+      };
+
+      const res = await fetch(`${consts.baseURL}/users/${id}/edit`, {
+        method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorageToken}`,
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(id),
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
         const errorResponse = await res.json();
-
+        handleToast(errorResponse.msg || errorResponse.error);
         console.log(errorResponse.msg || errorResponse.error);
+      } else {
+        setUserDetails({
+          name: userNewDetails.name,
+          email: userNewDetails.email,
+        });
+        handleToast("Details updated successfully");
       }
-
-      contextData["setToken"]("");
-      contextData["setToastMessage"]("Account deleted successfully");
-      contextData["setToastVisibility"](true);
-      localStorageLogout();
-      navigate("/");
     } catch (error) {
       console.error(error);
     } finally {
@@ -113,24 +141,43 @@ const Personal = () => {
                     className="edit-input form-control"
                     placeholder="new name"
                     defaultValue={userDetails.name}
+                    onChange={(e) => handleChange("name", e.target.value)}
                   ></input>
                   <input
                     type="email"
                     className="edit-input form-control"
                     placeholder="new email"
                     defaultValue={userDetails.email}
+                    onChange={(e) => handleChange("email", e.target.value)}
                   ></input>
                   <input
                     type="password"
                     className="edit-input form-control"
                     placeholder="new password"
+                    defaultValue={""}
+                    onChange={(e) => handleChange("password", e.target.value)}
                   ></input>
                 </div>
                 <div className="btn-group edit-buttons" role="group">
-                  <button type="button" className="edit-button btn btn-outline-success">
+                  <button
+                    type="button"
+                    className="edit-button btn btn-outline-success"
+                  >
                     Verify
                   </button>
-                  <button type="button" className="edit-button btn btn-outline-primary">
+                  <button
+                    type="button"
+                    className={`edit-button btn btn-outline-primary ${
+                      (userNewDetails.password === "" ||
+                        userNewDetails.password.length < 6) &&
+                      (userNewDetails.name === "" ||
+                        userDetails.name === userNewDetails.name) &&
+                      (userNewDetails.email === "" ||
+                        userDetails.email === userNewDetails.email) &&
+                      "disabled"
+                    }`}
+                    onClick={handleEdition}
+                  >
                     Save
                   </button>
                 </div>
@@ -146,7 +193,9 @@ const Personal = () => {
                 <button
                   id="delete-account-button"
                   className="btn btn-outline-danger"
-                  onClick={() => handleDeletion(userDetails.id)}
+                  data-bs-dismiss="offcanvas"
+                  data-bs-toggle={contextData["token"] && "modal"}
+                  data-bs-target={contextData["token"] && "#deletingModal"}
                 >
                   Delete Account
                 </button>

@@ -23,23 +23,11 @@ const AdminsPage = () => {
     if (localStorageIsOwner !== "true") navigate("/");
   });
 
-  async function handleBanning(userId) {
-    try {
-      const res = await fetch(`${consts.baseURL}/users/${userId}/delete`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorageToken}`,
-        },
-        body: JSON.stringify(userId),
-      });
-
-      if (!res.ok) {
-        const errorResponse = await res.json();
-        throw new Error(errorResponse.msg || errorResponse.error);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+  async function handleBanning(username, userId) {
+    contextData["setDeletionModalContents"]({
+      url: `${consts.baseURL}/users/${userId}/delete`,
+      msg: `${username}'s account`,
+    });
   }
 
   async function fetchAllUsers() {
@@ -106,7 +94,12 @@ const AdminsPage = () => {
                         to={``}
                         className="btn btn-outline-danger"
                         title="BAN"
-                        onClick={() => handleBanning(user.id)}
+                        data-bs-dismiss="offcanvas"
+                        data-bs-toggle={contextData["token"] && "modal"}
+                        data-bs-target={
+                          contextData["token"] && "#deletingModal"
+                        }
+                        onClick={() => handleBanning(user.name, user.id)}
                       >
                         <SvgBan />
                       </Link>

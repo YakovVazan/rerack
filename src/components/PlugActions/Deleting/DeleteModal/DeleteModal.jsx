@@ -1,27 +1,26 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Context from "../../../../context/Context";
-import { consts } from "../../../../config/constants";
-import { localStorageToken } from "../../../../config/localStorage";
-import "../../../../styles/modals.css";
 import SvgDelete from "../../../svg/SvgDelete/SvgDelete";
+import {
+  localStorageIsOwner,
+  localStorageLogout,
+  localStorageToken,
+} from "../../../../config/localStorage";
+import "../../../../styles/modals.css";
 
 const DeleteModal = () => {
   const navigate = useNavigate();
   const contextData = useContext(Context);
-  const currentPlug = contextData["currentPlug"];
 
   async function handleDelete() {
-    const res = await fetch(
-      `${consts.baseURL}/plugs/delete/${currentPlug.id}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorageToken}`,
-        },
-      }
-    );
+    const res = await fetch(contextData["deletionModalContents"]["url"], {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorageToken}`,
+      },
+    });
 
     const response = await res.json();
     if (!res.ok) {
@@ -29,11 +28,23 @@ const DeleteModal = () => {
       contextData.setToastMessage(response?.msg || response.error);
     } else {
       contextData.setToastVisibility(true);
-      contextData.setToastMessage(`${currentPlug.name} deleted successfully`);
+      contextData.setToastMessage(
+        `${contextData["deletionModalContents"]["msg"]} deleted successfully`
+      );
     }
-
-    contextData.setCurrentPlug({});
-    navigate("/");
+    console.log(contextData["deletionModalContents"]);
+    if (contextData["deletionModalContents"]["url"].includes("plugs")) {
+      contextData.setCurrentPlug({});
+      navigate("/");
+    } else if (contextData["deletionModalContents"]["url"].includes("users")) {
+      if (localStorageIsOwner !== "true") {
+        contextData["setToken"]("");
+        localStorageLogout();
+        navigate("/");
+      } else {
+        location.reload();
+      }
+    }
   }
 
   return (
@@ -55,7 +66,8 @@ const DeleteModal = () => {
 
           {/* body */}
           <div className="modal-body">
-            Are you sure you want to delete {currentPlug.name}?
+            Are you sure you want to delete{" "}
+            {contextData["deletionModalContents"]["msg"]}?
           </div>
 
           {/* footer */}

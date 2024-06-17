@@ -1,10 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Context from "../../../../context/Context";
+import { consts } from "../../../../config/constants";
 import { localStorageIsOwner } from "../../../../config/localStorage";
 import "./DeleteButton.css";
 
 const DeleteButton = () => {
   const contextData = useContext(Context);
+  const currentPlug = contextData["currentPlug"];
+
+  useEffect(() => {
+    contextData["setDeletionModalContents"]({
+      url: `${consts.baseURL}/plugs/delete/${currentPlug.id}`,
+      msg: currentPlug.name,
+    });
+  }, [currentPlug]);
 
   if (localStorageIsOwner !== null && localStorageIsOwner === "true") {
     return (

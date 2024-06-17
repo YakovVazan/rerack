@@ -45,8 +45,14 @@ const Body = () => {
             <Route path="/users/register" element={<RegisterPage />}></Route>
             <Route path="/users/login" element={<LoginPage />}></Route>
             <Route path="/users/:id/" element={<AccountPage />}></Route>
-            <Route path="/users/:id/contributions" element={<Contributions />}></Route>
-            <Route path="/users/:id/owned_plugins" element={<OwnedPlugins />}></Route>
+            <Route
+              path="/users/:id/contributions"
+              element={<Contributions />}
+            ></Route>
+            <Route
+              path="/users/:id/owned_plugins"
+              element={<OwnedPlugins />}
+            ></Route>
             <Route path="/users/:id/wishlist" element={<Wishlist />}></Route>
             <Route path="/privacy_policy" element={<PrivacyPolicy />}></Route>
             <Route path="/*" element={<NotFound />}></Route>
@@ -65,7 +71,9 @@ const Body = () => {
       {/* modals area */}
       <AddModal />
       <EditModal />
-      <DeleteModal />
+      <DeleteModal
+        deletionModalContents={contextData["deletionModalContents"]}
+      />
     </>
   );
 };
