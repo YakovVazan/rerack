@@ -43,6 +43,7 @@ const AccountCenterPageCtrls = () => {
               }`}
               key={index}
               onClick={() => updateSubRoute(index)}
+              data-bs-dismiss="offcanvas"
             >
               {item.svg}
               {item.title}

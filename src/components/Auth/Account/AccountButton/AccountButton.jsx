@@ -9,6 +9,7 @@ const AccountButton = () => {
       className="btn btn-outline-secondary"
       title="account"
       to={{ pathname: `/users/${localStorageId}` }}
+      data-bs-dismiss="offcanvas"
     >
       <span id="account-icon">
         <SvgAccount/>

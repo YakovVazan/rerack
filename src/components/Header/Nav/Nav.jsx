@@ -7,11 +7,11 @@ import "./Nav.css";
 
 const Header = () => {
   const location = useLocation();
-  const { isHomePage, isPlugPage } = useNavigation();
+  const { isHomePage, isPlugPage, isAccountPage } = useNavigation();
   const firstQuery = location.pathname.split("/")[1];
   const secondQuery = location.pathname.split("/")[2];
   const rightHeader = /^\d+$/.test(secondQuery)
-    ? "Account Center"
+    ? "Settings"
     : firstQuery === "users"
     ? "Dashboard"
     : "";
@@ -26,7 +26,7 @@ const Header = () => {
       </Link>
 
       {/* nav bar right side */}
-      {isHomePage || isPlugPage ? (
+      {isHomePage || isPlugPage || isAccountPage ? (
         <>
           <div id="hamburger-for-side-bar">
             <HamburgerAndSideBar />
