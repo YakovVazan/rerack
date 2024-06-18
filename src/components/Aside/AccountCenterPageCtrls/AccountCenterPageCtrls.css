@@ -1,7 +1,6 @@
 .account-center-aside-list {
     gap: 1em;
-    display: flex;
-    justify-content: space-between;
+    height: 100%;
 }
 
 .list-group-item {
@@ -20,4 +19,13 @@
 .active {
     box-shadow: 0px 0px 2px #6c757d;
     transition: box-shadow 0.1s ease-in-out;
+}
+
+#admin-button-container {
+    width: 100%;
+    margin-bottom: 3%;
+}
+
+.admin-button {
+    margin-bottom: 1em;
 }

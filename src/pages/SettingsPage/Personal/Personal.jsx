@@ -227,16 +227,18 @@ const Personal = () => {
                 <hr className="header-line" />
               </span>
               <span className="content-section">
-                <span>Permanent Deletion, cannot be undone.</span>
-                <button
-                  id="delete-account-button"
-                  className="btn btn-outline-danger"
-                  data-bs-dismiss="offcanvas"
-                  data-bs-toggle={contextData["token"] && "modal"}
-                  data-bs-target={contextData["token"] && "#deletingModal"}
-                >
-                  Delete Account
-                </button>
+                <span>Permanent account deletion, cannot be undone.</span>
+                <div className="edit-button-container">
+                  <button
+                    id="delete-account-button"
+                    className="btn btn-outline-danger"
+                    data-bs-dismiss="offcanvas"
+                    data-bs-toggle={contextData["token"] && "modal"}
+                    data-bs-target={contextData["token"] && "#deletingModal"}
+                  >
+                    Delete
+                  </button>
+                </div>
               </span>
             </div>
           </div>

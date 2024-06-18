@@ -1,10 +1,12 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Context from "../../../../context/Context";
+import SvgLogout from "../../../svg/SvgLogout/SvgLogout";
 import { localStorageLogout } from "../../../../config/localStorage";
 import "./LogoutButton.css";
-import SvgLogout from "../../../svg/SvgLogout/SvgLogout";
 
 const LogoutButton = () => {
+  const navigate = useNavigate();
   const contextData = useContext(Context);
 
   function handleLogout() {
@@ -12,6 +14,7 @@ const LogoutButton = () => {
     contextData["setToken"]("");
     contextData["setToastMessage"]("Loggoud out successfully");
     contextData["setToastVisibility"](true);
+    navigate("/");
   }
 
   return (
@@ -23,7 +26,7 @@ const LogoutButton = () => {
         data-bs-dismiss="offcanvas"
       >
         <span id="logout-icon">
-          <SvgLogout/>
+          <SvgLogout />
         </span>
         <span id="logout-word">logout</span>
       </span>

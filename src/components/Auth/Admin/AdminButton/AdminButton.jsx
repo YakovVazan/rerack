@@ -5,7 +5,7 @@ import "./AdminButton.css";
 const AdminButton = () => {
   return (
     <Link
-      className="btn btn-outline-secondary"
+      className="btn btn-outline-secondary admin-button-link"
       title="admins area"
       to={{ pathname: "/users" }}
     >

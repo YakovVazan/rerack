@@ -12,6 +12,10 @@
     flex-direction: column;
 }
 
+#delete-account-button {
+    width: 100%;
+}
+
 .header-section {
     display: flex;
     flex-direction: row;
@@ -68,13 +72,8 @@
     }
 
     .edit-button-container {
-        width: 40%;
+        width: 30%;
         align-self: end;
         margin-top: 0.25em;
-    }
-
-    #delete-account-button {
-        width: fit-content;
-        align-self: end;
     }
 }
