@@ -1,13 +1,13 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Context from "../../context/Context";
+import useToasts from "../../hooks/useToasts";
 import Spinner from "../../components/Common/Spinner/Spinner";
 import { consts } from "../../config/constants";
 import "../../styles/auth-card.css";
 
 const RegisterPage = () => {
+  const showToast = useToasts();
   const navigate = useNavigate();
-  const contextData = useContext(Context);
   const [loadingUser, setLoadingUser] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -39,16 +39,14 @@ const RegisterPage = () => {
     if (!res.ok) {
       const response = JSON.parse(await res.text());
 
-      contextData["setToastVisibility"](true);
-      contextData["setToastMessage"](response?.msg || response.error);
+      showToast(
+        response?.msg || response.error || "An error occurred while registering"
+      );
 
       setLoadingUser(false);
     } else {
       navigate("/users/login");
-      contextData["setToastVisibility"](true);
-      contextData["setToastMessage"](
-        `${data.name} registered successfully using ${data.email}`
-      );
+      showToast(`${data.name} registered successfully using ${data.email}`);
     }
   }
 

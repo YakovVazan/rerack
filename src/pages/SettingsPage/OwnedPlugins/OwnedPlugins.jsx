@@ -4,12 +4,12 @@ import "../SubRoutes.css";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 
 const OwnedPlugins = () => {
-  const [ownedPlugins, setownedPlugins] = useState([]);
-  const [loadingownedPlugins, setLoaddingownedPlugins] = useState(false); // turn to true
+  const [ownedPlugins, setOwnedPlugins] = useState([]);
+  const [loadingOwnedPlugins, setLoaddingOwnedPlugins] = useState(false); // turn to true
 
   return (
     <>
-      {loadingownedPlugins ? (
+      {loadingOwnedPlugins ? (
         <Spinner />
       ) : (
         <div className="sub-route-wrapper">

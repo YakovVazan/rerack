@@ -1,17 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useTypes from "../../../../hooks/useTypes";
-import Context from "../../../../context/Context";
+import useToasts from "../../../../hooks/useToasts";
+import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
 import { consts } from "../../../../config/constants";
 import Spinner from "../../../Common/Spinner/Spinner";
 import useCompanies from "../../../../hooks/useCompanies";
 import { localStorageToken } from "../../../../config/localStorage";
 import "../../../../styles/modals.css";
-import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
 
 const AddModal = () => {
   const { typesList } = useTypes();
+  const showToast = useToasts();
   const { companiesList } = useCompanies();
-  const contextData = useContext(Context);
   const [hovering, setHovering] = useState(false);
   const [formIsFullyFilledUp, setFormIsFullyFilledUp] = useState(false);
   const [newPlug, setNewPlug] = useState({
@@ -94,11 +94,12 @@ const AddModal = () => {
     });
 
     const response = JSON.parse(await res.text());
-    contextData["setToastVisibility"](true);
     if (!res.ok) {
-      contextData["setToastMessage"](response?.msg || response.error);
+      showToast(
+        response?.msg || response.error || "An error occurred while adding"
+      );
     } else {
-      contextData["setToastMessage"](
+      showToast(
         `${newPlug.name} added successfully. Reload the page to see it`
       );
     }

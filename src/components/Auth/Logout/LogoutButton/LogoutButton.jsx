@@ -1,19 +1,20 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Context from "../../../../context/Context";
+import useToasts from "../../../../hooks/useToasts";
 import SvgLogout from "../../../svg/SvgLogout/SvgLogout";
 import { localStorageLogout } from "../../../../config/localStorage";
 import "./LogoutButton.css";
 
 const LogoutButton = () => {
+  const showToast = useToasts();
   const navigate = useNavigate();
   const contextData = useContext(Context);
 
   function handleLogout() {
     localStorageLogout();
     contextData["setToken"]("");
-    contextData["setToastMessage"]("Loggoud out successfully");
-    contextData["setToastVisibility"](true);
+    showToast("Logged out successfully");
     navigate("/");
   }
 

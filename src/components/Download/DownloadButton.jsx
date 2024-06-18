@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import Context from "../../context/Context";
+import { useState } from "react";
+import useToasts from "../../hooks/useToasts";
 import { consts } from "../../config/constants";
 import Spinner from "../Common/Spinner/Spinner";
 import { localStorageToken } from "../../config/localStorage";
@@ -7,7 +7,7 @@ import SvgDownload from "../svg/SvgDownload/SvgDownload";
 import "./DownloadButton.css";
 
 const DownloadButton = () => {
-  const contextData = useContext(Context);
+  const showToast = useToasts();
   const [isDownloading, setIsDownloading] = useState(false);
 
   async function download() {
@@ -24,7 +24,7 @@ const DownloadButton = () => {
       }
 
       downloader(await response.blob());
-      handleToast("DB download complete");
+      showToast("DB download complete");
     } catch (error) {
       console.error("Download failed:", error);
     } finally {
@@ -42,11 +42,6 @@ const DownloadButton = () => {
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
   };
-
-  function handleToast(msg) {
-    contextData["setToastVisibility"](true);
-    contextData["setToastMessage"](msg);
-  }
 
   return (
     <span id="downloader-container" title="download db" onClick={download}>

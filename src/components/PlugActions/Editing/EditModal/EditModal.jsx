@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import useTypes from "../../../../hooks/useTypes";
 import Context from "../../../../context/Context";
 import SvgEdit from "../../../svg/SvgEdit/SvgEdit";
+import useToasts from "../../../../hooks/useToasts";
 import { consts } from "../../../../config/constants";
 import Spinner from "../../../Common/Spinner/Spinner";
 import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
@@ -12,6 +13,7 @@ import "../../../../styles/modals.css";
 
 const EditModal = () => {
   const navigate = useNavigate();
+  const showToast = useToasts();
   const contextData = useContext(Context);
   const currentPlug = contextData["currentPlug"];
   const { typesList } = useTypes();
@@ -107,13 +109,11 @@ const EditModal = () => {
 
     const response = JSON.parse(await res.text());
     if (!res.ok) {
-      contextData["setToastVisibility"](true);
-      contextData["setToastMessage"](response?.msg || response.error);
-    } else {
-      contextData["setToastVisibility"](true);
-      contextData["setToastMessage"](
-        `${upToDatePlug.name} edited successfully`
+      showToast(
+        response?.msg || response.error || "An error occurred while editing"
       );
+    } else {
+      showToast(`${upToDatePlug.name} edited successfully`);
       navigate("/");
     }
 

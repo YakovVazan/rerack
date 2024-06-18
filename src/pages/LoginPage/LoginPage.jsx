@@ -1,14 +1,16 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Context from "../../context/Context";
+import useToasts from "../../hooks/useToasts";
 import { consts } from "../../config/constants";
 import Spinner from "../../components/Common/Spinner/Spinner";
 import { localStorageLogin } from "../../config/localStorage";
 import "../../styles/auth-card.css";
 
 const LoginPage = () => {
-  const contextData = useContext(Context);
+  const showToast = useToasts();
   const navigate = useNavigate();
+  const contextData = useContext(Context);
   const [loadingUser, setLoadingUser] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -38,8 +40,9 @@ const LoginPage = () => {
 
     const response = JSON.parse(await res.text());
     if (!res.ok) {
-      contextData["setToastVisibility"](true);
-      contextData["setToastMessage"](response?.msg || response.error);
+      showToast(
+        response?.msg || response.error || "An error occurred while logging in"
+      );
       setLoadingUser(false);
     } else {
       localStorageLogin(
@@ -50,10 +53,7 @@ const LoginPage = () => {
       );
       contextData["setToken"](response.token);
       navigate("/");
-      contextData["setToastVisibility"](true);
-      contextData["setToastMessage"](
-        `${response.name} logged in using ${response.email}`
-      );
+      showToast(`${response.name} logged in using ${response.email}`);
     }
   }
 

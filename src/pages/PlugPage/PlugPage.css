@@ -1,3 +1,5 @@
+@import '../../styles/themes.css';
+
 .plug-page-container {
     width: 100%;
     display: flex;
@@ -15,6 +17,14 @@
 .card-img-top {
     padding: 1em;
     border-radius: 1.2em;
+}
+
+.plug-tags {
+    display: flex;
+    justify-content: end;
+    border-top: 1px solid var(--light-bg-color-1);
+    margin: 0 1rem 0 1rem;
+    gap: 1rem;
 }
 
 @media screen and (max-width:576px) {

@@ -1,7 +1,7 @@
 import Context from "../../../context/Context";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Spinner from "../../../components/Common/Spinner/Spinner";
+import useToasts from "../../../hooks/useToasts";
 import { consts } from "../../../config/constants";
 import {
   localStorageId,
@@ -9,10 +9,12 @@ import {
   localStorageToken,
   setLocalStorageToken,
 } from "../../../config/localStorage";
+import Spinner from "../../../components/Common/Spinner/Spinner";
 import "./Personal.css";
 
 const Personal = () => {
   const { id } = useParams();
+  const showToast = useToasts();
   const navigate = useNavigate();
   const contextData = useContext(Context);
   const [userDetails, setUserDetails] = useState({});
@@ -37,7 +39,7 @@ const Personal = () => {
 
         if (!res.ok) {
           if (res.status === 404) {
-            handleToast(res.statusText);
+            showToast(res.statusText);
             navigate(`/users/${localStorageId}`);
           } else {
             const errorResponse = await res.json();
@@ -64,11 +66,6 @@ const Personal = () => {
 
     fetchUserDetails();
   }, [id]);
-
-  function handleToast(msg) {
-    contextData["setToastVisibility"](true);
-    contextData["setToastMessage"](msg);
-  }
 
   const handleChange = (key, value) => {
     setUserNewDetails((prevDetails) => ({
@@ -97,7 +94,7 @@ const Personal = () => {
 
       if (!res.ok) {
         const errorResponse = await res.json();
-        handleToast(errorResponse.msg || errorResponse.error);
+        showToast(errorResponse.msg || errorResponse.error);
         console.log(errorResponse.msg || errorResponse.error);
       } else {
         const response = JSON.parse(await res.text());
@@ -108,7 +105,7 @@ const Personal = () => {
           email: userNewDetails.email,
         });
         document.getElementById("password-input").value = "";
-        handleToast("Details updated successfully");
+        showToast("Details updated successfully");
       }
     } catch (error) {
       console.error(error);
@@ -132,12 +129,12 @@ const Personal = () => {
 
       if (!res.ok) {
         const errorResponse = await res.json();
-        handleToast(errorResponse.msg || errorResponse.error);
+        showToast(errorResponse.msg || errorResponse.error);
         console.log(errorResponse.msg || errorResponse.error);
       } else {
         const response = JSON.parse(await res.text());
         setLocalStorageToken(response);
-        handleToast("A code was sent to your email address");
+        showToast("A code was sent to your email address");
       }
     } catch (error) {
       console.error(error);
