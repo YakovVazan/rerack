@@ -58,6 +58,11 @@
 }
 
 @media screen and (min-width: 768px) {
+    .account-sections {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
     .header-line {
         width: 80%;
     }

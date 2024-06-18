@@ -1,5 +1,5 @@
 .account-center-aside-list {
-    height: 50%;
+    gap: 1em;
     display: flex;
     justify-content: space-between;
 }

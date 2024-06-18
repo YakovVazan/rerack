@@ -9,15 +9,15 @@ import NotFound from "../../../pages/NotFound/NotFound.jsx";
 import useNavigation from "../../../hooks/useNavigation.jsx";
 import LoginPage from "../../../pages/LoginPage/LoginPage.jsx";
 import AdminsPage from "../../../pages/AdminsPage/AdminsPage.jsx";
-import AccountPage from "../../../pages/AccountPage/AccountPage.jsx";
+import SettingsPage from "../../../pages/SettingsPage/SettingsPage.jsx";
 import AddModal from "../../PlugActions/Adding/AddModal/AddModal.jsx";
 import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
 import RegisterPage from "../../../pages/RegisterPage/RegisterPage.jsx";
-import Wishlist from "../../../pages/AccountPage/Wishlist/Wishlist.jsx";
+import Wishlist from "../../../pages/SettingsPage/Wishlist/Wishlist.jsx";
 import EditModal from "../../PlugActions/Editing/EditModal/EditModal.jsx";
 import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx";
-import OwnedPlugins from "../../../pages/AccountPage/OwnedPlugins/OwnedPlugins.jsx";
-import Contributions from "../../../pages/AccountPage/Contributions/Contributions.jsx";
+import OwnedPlugins from "../../../pages/SettingsPage/OwnedPlugins/OwnedPlugins.jsx";
+import Contributions from "../../../pages/SettingsPage/Contributions/Contributions.jsx";
 import "./Body.css";
 
 const Body = () => {
@@ -44,7 +44,7 @@ const Body = () => {
             <Route path="/users" element={<AdminsPage />}></Route>
             <Route path="/users/register" element={<RegisterPage />}></Route>
             <Route path="/users/login" element={<LoginPage />}></Route>
-            <Route path="/users/:id/" element={<AccountPage />}></Route>
+            <Route path="/users/:id/" element={<SettingsPage />}></Route>
             <Route
               path="/users/:id/contributions"
               element={<Contributions />}

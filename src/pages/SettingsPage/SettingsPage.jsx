@@ -6,7 +6,7 @@ import {
   localStorageAccountPageSubRouteIndex,
 } from "../../config/localStorage";
 
-const AccountPage = () => {
+const SettingsPage = () => {
   const { setAccoutPageSubRoute } = useContext(Context);
 
   useEffect(() => {
@@ -17,4 +17,4 @@ const AccountPage = () => {
   return <Personal />;
 };
 
-export default AccountPage;
+export default SettingsPage;
