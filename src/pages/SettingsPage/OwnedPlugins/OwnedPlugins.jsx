@@ -1,11 +1,21 @@
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import SvgTag from "../../../components/svg/SvgTag/SvgTag";
-import "../SubRoutes.css";
-import Spinner from "../../../components/Common/Spinner/Spinner";
+import useToasts from "../../../hooks/useToasts";
+import { consts } from "../../../config/constants";
 import useSavedPlugs from "../../../hooks/useSavedPlugs";
-import { Link } from "react-router-dom";
+import Spinner from "../../../components/Common/Spinner/Spinner";
+import SvgTagAdd from "../../../components/svg/SvgTagAdd/SvgTagAdd";
+import SvgTagRemove from "../../../components/svg/SvgTagRemove/SvgTagRemove";
+import {
+  localStorageId,
+  localStorageToken,
+} from "../../../config/localStorage";
+import "../SubRoutes.css";
 
 const OwnedPlugins = () => {
+  const { id } = useParams();
+  const showToast = useToasts();
+  const navigate = useNavigate();
   const getAllSaved = useSavedPlugs();
   const [isLoading, setIsLoading] = useState(true);
   const [ownedPlugins, setOwnedPlugins] = useState([]);
@@ -17,11 +27,42 @@ const OwnedPlugins = () => {
   const getSaved = async () => {
     try {
       const data = await getAllSaved();
-      setOwnedPlugins(data);
+
+      if (!(data instanceof Array)) {
+        showToast(data.msg);
+        localStorageId == id
+          ? navigate(`/users/${id}`)
+          : navigate(`/users/${localStorageId}`);
+      } else {
+        setOwnedPlugins(data || []);
+      }
     } catch (error) {
       console.error(error);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleUnsave = async (event, plugId) => {
+    event.preventDefault();
+
+    try {
+      const res = await fetch(`${consts.baseURL}/plugs/save/${plugId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorageToken}`,
+        },
+        body: JSON.stringify({
+          needsToBeAdded: false,
+        }),
+      });
+
+      const msg = await res.json();
+      showToast(msg["msg"]);
+      setOwnedPlugins(ownedPlugins.filter((plug) => plug.id !== plugId));
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -38,7 +79,7 @@ const OwnedPlugins = () => {
             } empty-sub-route-list-wrapper`}
           >
             <div className="empty-sub-route-list">
-              <SvgTag />
+              <SvgTagAdd />
               <span>Plugs you tagged as owned will appear here</span>
             </div>
           </div>
@@ -50,27 +91,29 @@ const OwnedPlugins = () => {
             } sub-route-wrapper`}
           >
             <div className="sub-route-list-wrapper">
-            <ul className="sub-route-list list-group">
-              {ownedPlugins.map((item, index) => {
-                return (
-                  <Link
-                    className="list-group-item sub-route-list-item"
-                    to={`/plugs/${item.name.replace(/ /g, "_").toLowerCase()}`}
-                    key={index}
-                  >
-                    <span>{item.name}</span>
-                    {/* {item.actions.includes("Add") &&
-                    item.actions.includes("Edit") ? (
-                      <span>Added and Edited</span>
-                    ) : item.actions.includes("Add") ? (
-                      <span>Added</span>
-                    ) : (
-                      item.actions.includes("Edit") && <span>Edited</span>
-                    )} */}
-                  </Link>
-                );
-              })}
-            </ul>
+              <ul className="sub-route-list list-group">
+                {ownedPlugins.length != 0 &&
+                  ownedPlugins.map((item, index) => {
+                    return (
+                      <Link
+                        className={"list-group-item sub-route-list-item"}
+                        to={`/plugs/${item.name
+                          .replace(/ /g, "_")
+                          .toLowerCase()}`}
+                        key={index}
+                      >
+                        <span>{item.name}</span>
+                        <div
+                          className="btn btn-outline-success"
+                          title="unmark as owned"
+                          onClick={(e) => handleUnsave(e, item.id)}
+                        >
+                          <SvgTagRemove />
+                        </div>
+                      </Link>
+                    );
+                  })}
+              </ul>
             </div>
           </div>
         </div>

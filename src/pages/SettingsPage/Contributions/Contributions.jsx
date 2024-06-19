@@ -1,12 +1,19 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { consts } from "../../../config/constants";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import SvgPencil from "../../../components/svg/SvgPencil/SvgPencil";
-import { localStorageToken } from "../../../config/localStorage";
+import {
+  localStorageId,
+  localStorageToken,
+} from "../../../config/localStorage";
 import "../SubRoutes.css";
+import useToasts from "../../../hooks/useToasts";
 
 const Contributions = () => {
+  const { id } = useParams();
+  const showToast = useToasts();
+  const navigate = useNavigate();
   const location = useLocation();
   const [contributedData, setContributedData] = useState([]);
   const [loadingContributions, setLoaddingContributions] = useState(true);
@@ -26,7 +33,11 @@ const Contributions = () => {
 
       if (!res.ok) {
         const errorResponse = await res.json();
-        throw new Error(errorResponse.msg || errorResponse.error);
+        showToast(errorResponse.msg || errorResponse.error);
+        console.log(errorResponse);
+        localStorageId == id
+          ? navigate(`/users/${id}`)
+          : navigate(`/users/${localStorageId}`);
       } else {
         const data = await res.json();
         setContributedData(data);

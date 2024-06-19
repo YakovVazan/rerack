@@ -6,11 +6,13 @@ import { useParams, Navigate } from "react-router-dom";
 import useForceAuth from "../../hooks/useForceAuth.jsx";
 import useSavedPlugs from "../../hooks/useSavedPlugs.jsx";
 import usePlugsNames from "../../hooks/usePlugsNames.jsx";
-import SvgTag from "../../components/svg/SvgTag/SvgTag.jsx";
 import useFavoritePlugs from "../../hooks/useFavoritePlugs.jsx";
+import { localStorageToken } from "../../config/localStorage.js";
 import Spinner from "../../components/Common/Spinner/Spinner.jsx";
 import SvgHeart from "../../components/svg/SvgHeart/SvgHeart.jsx";
-import { localStorageToken } from "../../config/localStorage.js";
+import SvgTagAdd from "../../components/svg/SvgTagAdd/SvgTagAdd.jsx";
+import SvgTagRemove from "../../components/svg/SvgTagRemove/SvgTagRemove.jsx";
+import SvgHeartBroken from "../../components/svg/SvgHeartBroken/SvgHeartBroken.jsx";
 import "./PlugPage.css";
 
 const PlugPage = () => {
@@ -104,24 +106,20 @@ const PlugPage = () => {
             />
             <div className="card-body plug-tags">
               <div
-                className={`btn btn-outline-danger ${
-                  alreadyFavorited && "active"
-                }`}
+                className="btn btn-outline-danger"
                 title={
                   alreadyFavorited ? "remove from wishlist" : "add to wishlist"
                 }
                 onClick={() => handleSelections("favore", currentPlug["id"])}
               >
-                <SvgHeart />
+                {!alreadyFavorited ? <SvgHeart /> : <SvgHeartBroken />}
               </div>
               <div
-                className={`btn btn-outline-success ${
-                  alreadySaved && "active"
-                }`}
+                className="btn btn-outline-success"
                 title={alreadySaved ? "unmark as owned" : "mark as owned"}
                 onClick={() => handleSelections("save", currentPlug["id"])}
               >
-                <SvgTag />
+                {!alreadySaved ? <SvgTagAdd /> : <SvgTagRemove />}
               </div>
             </div>
           </div>

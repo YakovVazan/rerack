@@ -29,43 +29,50 @@ const Personal = () => {
   }, []);
 
   useEffect(() => {
-    async function fetchUserDetails() {
-      try {
-        const res = await fetch(`${consts.baseURL}/users/${id}`, {
-          headers: {
-            Authorization: `Bearer ${localStorageToken}`,
-          },
-        });
-
-        if (!res.ok) {
-          if (res.status === 404) {
-            showToast(res.statusText);
-            navigate(`/users/${localStorageId}`);
-          } else {
-            const errorResponse = await res.json();
-            throw new Error(errorResponse.msg || errorResponse.error);
-          }
-        } else {
-          const data = await res.json();
-          setUserDetails(data);
-          setUserNewDetails({
-            name: data.name,
-            email: data.email,
-            password: "",
-          });
-        }
-      } catch (error) {
-        console.error(error);
-        localStorageLogout();
-        contextData.setToken("");
-        navigate("/users/login");
-      } finally {
-        setLoadingUser(false);
-      }
-    }
-
     fetchUserDetails();
   }, [id]);
+
+  const fetchUserDetails = async () => {
+    try {
+      const res = await fetch(`${consts.baseURL}/users/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorageToken}`,
+        },
+      });
+
+      if (!res.ok) {
+        if (res.status === 404) {
+          showToast(res.statusText);
+          localStorageId == id
+            ? navigate(`/users/${id}`)
+            : navigate(`/users/${localStorageId}`);
+          setUserNewDetails({
+            name: userDetails.name,
+            email: userDetails.email,
+            password: "",
+          });
+        } else {
+          const errorResponse = await res.json();
+          throw new Error(errorResponse.msg || errorResponse.error);
+        }
+      } else {
+        const data = await res.json();
+        setUserDetails(data);
+        setUserNewDetails({
+          name: data.name,
+          email: data.email,
+          password: "",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      localStorageLogout();
+      contextData.setToken("");
+      navigate("/users/login");
+    } finally {
+      setLoadingUser(false);
+    }
+  };
 
   const handleChange = (key, value) => {
     setUserNewDetails((prevDetails) => ({
@@ -104,6 +111,7 @@ const Personal = () => {
           name: userNewDetails.name,
           email: userNewDetails.email,
         });
+        setUserNewDetails({ ...userNewDetails, password: "" });
         document.getElementById("password-input").value = "";
         showToast("Details updated successfully");
       }
