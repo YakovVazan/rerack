@@ -12,7 +12,7 @@ const useFavoritePlugs = () => {
       }
     );
 
-    return await res.json();
+    return await res.json() || [];
   };
 
   return getAllFavorites;

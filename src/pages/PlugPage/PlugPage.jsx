@@ -37,7 +37,7 @@ const PlugPage = () => {
     const data = await getAllFavorites();
 
     data.forEach((item) => {
-      if (item["plugId"] == currentPlug["id"]) {
+      if (item["id"] && item["id"] == currentPlug["id"]) {
         setAlreadyFavorited(true);
         return;
       }
@@ -48,7 +48,7 @@ const PlugPage = () => {
     const data = await getAllSaved();
 
     data.forEach((item) => {
-      if (item["plugId"] == currentPlug["id"]) {
+      if (item["id"] && item["id"] == currentPlug["id"]) {
         setAlreadySaved(true);
         return;
       }
@@ -68,12 +68,18 @@ const PlugPage = () => {
           Authorization: `Bearer ${localStorageToken}`,
         },
         body: JSON.stringify({
-          needsToBeAdded: type === "favore" ? alreadyFavorited : alreadySaved,
+          needsToBeAdded: type === "favore" ? !alreadyFavorited : !alreadySaved,
         }),
       });
 
       const msg = await res.json();
       handleToast(msg["msg"]);
+
+      if (type === "favore") {
+        setAlreadyFavorited(!alreadyFavorited);
+      } else {
+        setAlreadySaved(!alreadySaved);
+      }
     } catch (error) {
       console.error(error);
     }

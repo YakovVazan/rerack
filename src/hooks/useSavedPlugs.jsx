@@ -12,7 +12,7 @@ const useSavedPlugs = () => {
       }
     );
 
-    return await res.json();
+    return await res.json() || [];
   };
 
   return getAllSaved;
