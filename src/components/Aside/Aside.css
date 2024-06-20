@@ -10,6 +10,15 @@ aside {
     background-color: var(--light-bg-color-4);
 }
 
+.aside-controls {
+    border-radius: 0.25em !important;
+}
+
+.aside-controls:hover {
+    box-shadow: 0px 0px 2px #6c757d;
+    transition: box-shadow 0.1s ease-in-out;
+}
+
 @media screen and (max-width: 768px) {
     aside {
         display: none;

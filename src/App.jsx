@@ -23,6 +23,9 @@ const App = () => {
   const [accountPageSubRoute, setAccoutPageSubRoute] = useState(
     +localStorageVars.localStorageAccountPageSubRouteIndex || 0
   );
+  const [adminPageSubRoute, setAdminPageSubRoute] = useState(
+    +localStorageVars.localStorageAdminPageSubRouteIndex || 0
+  );
   const [deletionModalContents, setDeletionModalContents] = useState({});
 
   return (
@@ -40,6 +43,7 @@ const App = () => {
           setToastMessage,
           setCurrentPlug,
           setAccoutPageSubRoute,
+          setAdminPageSubRoute,
           setDeletionModalContents,
           orderBy,
           orderedData,
@@ -52,7 +56,8 @@ const App = () => {
           toastMessage,
           currentPlug,
           accountPageSubRoute,
-          deletionModalContents, 
+          adminPageSubRoute,
+          deletionModalContents,
         }}
       >
         <Nav />

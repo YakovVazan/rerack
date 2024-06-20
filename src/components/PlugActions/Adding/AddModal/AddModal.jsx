@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useTypes from "../../../../hooks/useTypes";
 import useToasts from "../../../../hooks/useToasts";
 import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
@@ -9,8 +10,9 @@ import { localStorageToken } from "../../../../config/localStorage";
 import "../../../../styles/modals.css";
 
 const AddModal = () => {
-  const { typesList } = useTypes();
   const showToast = useToasts();
+  const navigate = useNavigate();
+  const { typesList } = useTypes();
   const { companiesList } = useCompanies();
   const [hovering, setHovering] = useState(false);
   const [formIsFullyFilledUp, setFormIsFullyFilledUp] = useState(false);
@@ -99,8 +101,9 @@ const AddModal = () => {
         response?.msg || response.error || "An error occurred while adding"
       );
     } else {
-      showToast(
-        `${newPlug.name} added successfully. Reload the page to see it`
+      showToast(`${newPlug.name} added successfully`);
+      navigate(
+        `/plugs/${newPlug.name.trim().replace(/ /g, "_").toLowerCase()}`
       );
     }
 

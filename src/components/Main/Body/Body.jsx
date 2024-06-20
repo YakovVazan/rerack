@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import List from "../List/List.jsx";
 import Aside from "../../Aside/Aside.jsx";
 import Toast from "../../Common/Toasts/Toasts.jsx";
@@ -9,8 +9,10 @@ import NotFound from "../../../pages/NotFound/NotFound.jsx";
 import useNavigation from "../../../hooks/useNavigation.jsx";
 import LoginPage from "../../../pages/LoginPage/LoginPage.jsx";
 import AdminsPage from "../../../pages/AdminsPage/AdminsPage.jsx";
-import SettingsPage from "../../../pages/SettingsPage/SettingsPage.jsx";
 import AddModal from "../../PlugActions/Adding/AddModal/AddModal.jsx";
+import Activity from "../../../pages/AdminsPage/Activity/Activity.jsx";
+import Download from "../../../pages/AdminsPage/Download/Download.jsx";
+import SettingsPage from "../../../pages/SettingsPage/SettingsPage.jsx";
 import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
 import RegisterPage from "../../../pages/RegisterPage/RegisterPage.jsx";
 import Wishlist from "../../../pages/SettingsPage/Wishlist/Wishlist.jsx";
@@ -21,27 +23,40 @@ import Contributions from "../../../pages/SettingsPage/Contributions/Contributio
 import "./Body.css";
 
 const Body = () => {
-  const contextData = useContext(Context);
+  const navigate = useNavigate();
   const location = useLocation();
-  const { isHomePage, isPlugPage, isAccountPage } = useNavigation();
+  const contextData = useContext(Context);
+  const { isHomePage, isPlugPage, isAccountPage, isAdminPage } =
+    useNavigation();
 
-  // reset current plug whenever user navigates away from plug page
   useEffect(() => {
+    // reset current plug whenever user navigates away from plug page
     if (!location.pathname.includes("plugs")) {
       contextData["setCurrentPlug"]({});
+    }
+
+    // trim '/' from end of pathname
+    if (location.pathname.endsWith("/")) {
+      navigate(location.pathname.slice(0, -1), { replace: true });
     }
   }, [location.pathname]);
 
   return (
     <>
       <div
-        className={isHomePage || isPlugPage || isAccountPage ? "wrapper" : ""}
+        className={
+          isHomePage || isPlugPage || isAccountPage || isAdminPage
+            ? "wrapper"
+            : ""
+        }
       >
         <section id="main-container">
           <Routes>
             <Route path="/" element={<List />}></Route>
             <Route path="/plugs/:name" element={<PlugPage />}></Route>
             <Route path="/users" element={<AdminsPage />}></Route>
+            <Route path="/users/activity" element={<Activity />}></Route>
+            <Route path="/users/download" element={<Download />}></Route>
             <Route path="/users/register" element={<RegisterPage />}></Route>
             <Route path="/users/login" element={<LoginPage />}></Route>
             <Route path="/users/:id/" element={<SettingsPage />}></Route>

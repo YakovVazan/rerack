@@ -7,6 +7,9 @@ let localStorageIsVerified = localStorage.getItem("rerackIsVerified");
 let localStorageAccountPageSubRouteIndex = localStorage.getItem(
   "rerackAccountPageSubRouteIndex"
 );
+let localStorageAdminPageSubRouteIndex = localStorage.getItem(
+  "rerackAdminPageSubRouteIndex"
+);
 
 // setting defaults
 if (!localStorageView) {
@@ -25,6 +28,13 @@ if (!localStorageAccountPageSubRouteIndex) {
   localStorage.setItem(
     "rerackAccountPageSubRouteIndex",
     localStorageAccountPageSubRouteIndex
+  );
+}
+if (!localStorageAdminPageSubRouteIndex) {
+  localStorageAdminPageSubRouteIndex = 0;
+  localStorage.setItem(
+    "rerackAdminPageSubRouteIndex",
+    localStorageAdminPageSubRouteIndex
   );
 }
 if (!localStorageIsVerified) {
@@ -61,6 +71,11 @@ function setLocalStorageAccountPageSubRouteIndex(index) {
   localStorage.setItem("rerackAccountPageSubRouteIndex", index);
 }
 
+function setLocalStorageAdminPageSubRouteIndex(index) {
+  localStorageAdminPageSubRouteIndex = index;
+  localStorage.setItem("rerackAdminPageSubRouteIndex", index);
+}
+
 function setLocalStorageToken(newToken) {
   localStorageToken = newToken["token"];
   localStorage.setItem("rerackToken", localStorageToken);
@@ -73,8 +88,10 @@ export {
   localStorageId,
   localStorageIsOwner,
   localStorageAccountPageSubRouteIndex,
+  localStorageAdminPageSubRouteIndex,
   localStorageLogin,
   localStorageLogout,
   setLocalStorageAccountPageSubRouteIndex,
-  setLocalStorageToken
+  setLocalStorageAdminPageSubRouteIndex,
+  setLocalStorageToken,
 };

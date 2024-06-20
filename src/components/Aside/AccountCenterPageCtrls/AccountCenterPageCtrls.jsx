@@ -32,7 +32,7 @@ const AccountCenterPageCtrls = () => {
         ? "/users"
         : `/users/${location.pathname.split("/")[2]}/${
             index > 0
-              ? list[index].title.trim().toLowerCase().replace(" ", "_")
+              ? list[index].title.trim().toLowerCase().replace(/ /g, "_")
               : ""
           }`
     );
@@ -45,7 +45,7 @@ const AccountCenterPageCtrls = () => {
         {list.map((item, index) => {
           return (
             <li
-              className={`list-group-item user-ctrls ${
+              className={`list-group-item aside-controls ${
                 contextData["accountPageSubRoute"] === index && "active"
               } ${index === list.length - 1 && "d-none"}`}
               key={index}
@@ -59,7 +59,7 @@ const AccountCenterPageCtrls = () => {
       </ul>
       {localStorageIsOwner === "true" && (
         <span
-          className={`admin-button list-group-item user-ctrls ${
+          className={`admin-button list-group-item aside-controls ${
             contextData["accountPageSubRoute"] === list.length - 1 && "active"
           }`}
           onClick={() => updateSubRoute(list.length - 1)}

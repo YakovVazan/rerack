@@ -1,7 +1,4 @@
 #downloader-container {
-    position: fixed;
-    bottom: 1em;
-    right: 2em;
     width: 3em;
     height: 3em;
     display: flex;

@@ -7,8 +7,8 @@ import {
   localStorageId,
   localStorageToken,
 } from "../../../config/localStorage";
-import "../SubRoutes.css";
 import useToasts from "../../../hooks/useToasts";
+import "../SubRoutes.css";
 
 const Contributions = () => {
   const { id } = useParams();
@@ -18,7 +18,7 @@ const Contributions = () => {
   const [contributedData, setContributedData] = useState([]);
   const [loadingContributions, setLoaddingContributions] = useState(true);
 
-  async function fetchUserDistributions() {
+  const fetchUserDistributions = async () => {
     try {
       const res = await fetch(
         `${consts.baseURL}/users/${
@@ -40,14 +40,14 @@ const Contributions = () => {
           : navigate(`/users/${localStorageId}`);
       } else {
         const data = await res.json();
-        setContributedData(data);
+        setContributedData(data[0]["contributions"] || []);
       }
     } catch (error) {
       console.error(error);
     } finally {
       setLoaddingContributions(false);
     }
-  }
+  };
 
   useEffect(() => {
     fetchUserDistributions();

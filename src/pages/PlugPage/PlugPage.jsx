@@ -50,7 +50,7 @@ const PlugPage = () => {
     const data = await getAllSaved();
 
     data.forEach((item) => {
-      if (item["id"] && item["id"] == currentPlug["id"]) {
+      if (item && item["id"] && item["id"] == currentPlug["id"]) {
         setAlreadySaved(true);
         return;
       }
@@ -70,14 +70,14 @@ const PlugPage = () => {
           Authorization: `Bearer ${localStorageToken}`,
         },
         body: JSON.stringify({
-          needsToBeAdded: type === "favore" ? !alreadyFavorited : !alreadySaved,
+          needsToBeAdded: type === "favor" ? !alreadyFavorited : !alreadySaved,
         }),
       });
 
       const msg = await res.json();
       handleToast(msg["msg"]);
 
-      if (type === "favore") {
+      if (type === "favor") {
         setAlreadyFavorited(!alreadyFavorited);
       } else {
         setAlreadySaved(!alreadySaved);
@@ -110,7 +110,7 @@ const PlugPage = () => {
                 title={
                   alreadyFavorited ? "remove from wishlist" : "add to wishlist"
                 }
-                onClick={() => handleSelections("favore", currentPlug["id"])}
+                onClick={() => handleSelections("favor", currentPlug["id"])}
               >
                 {!alreadyFavorited ? <SvgHeart /> : <SvgHeartBroken />}
               </div>
