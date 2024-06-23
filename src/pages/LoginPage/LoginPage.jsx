@@ -4,7 +4,10 @@ import Context from "../../context/Context";
 import useToasts from "../../hooks/useToasts";
 import { consts } from "../../config/constants";
 import Spinner from "../../components/Common/Spinner/Spinner";
-import { localStorageLogin } from "../../config/localStorage";
+import {
+  localStorageLogin,
+  localStorageHistory,
+} from "../../config/localStorage";
 import "../../styles/auth-card.css";
 
 const LoginPage = () => {
@@ -51,8 +54,9 @@ const LoginPage = () => {
         response.isOwner,
         response.isVerified
       );
+      const userLastRoute = JSON.parse(localStorageHistory);
       contextData["setToken"](response.token);
-      navigate("/");
+      navigate(userLastRoute[userLastRoute.length - 2] || "/");
       showToast(`${response.name} logged in using ${response.email}`);
     }
   }

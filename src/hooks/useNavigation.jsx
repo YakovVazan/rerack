@@ -34,7 +34,7 @@ const useNavigation = () => {
     } else if (isAdminPage) {
       contextData["setAdminPageSubRoute"](adminPageKeyword.indexOf(url[2]) + 1);
     }
-  }, [isAccountPage, isAdminPage]);
+  }, [isAccountPage, isAdminPage, location.pathname]);
 
   return { isHomePage, isPlugPage, isAccountPage, isAdminPage };
 };

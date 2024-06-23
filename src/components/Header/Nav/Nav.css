@@ -16,6 +16,12 @@ nav {
     justify-content: space-between;
 }
 
+#nav-left-container {
+    line-height: normal;
+    display: flex;
+    align-items: center;
+}
+
 #logo-name {
     text-decoration: none;
     color: inherit;

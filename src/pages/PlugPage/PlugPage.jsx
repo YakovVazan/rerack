@@ -30,9 +30,11 @@ const PlugPage = () => {
     if (plugsNames.length !== 0) {
       contextData["setCurrentPlug"](currentPlug);
     }
-
-    getFavorites();
-    getSaved();
+    
+    if (localStorageToken) {
+      getFavorites();
+      getSaved();
+    }
   }, [plugsNames]);
 
   const getFavorites = async () => {
