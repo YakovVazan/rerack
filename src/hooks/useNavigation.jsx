@@ -11,7 +11,7 @@ const useNavigation = () => {
   const [isAdminPage, setIsAdminPage] = useState(null);
 
   const adminPageKeyword = ["activity", "download"];
-  const settingsKeywords = ["contributions", "owned_plugs", "wishlist"];
+  const settingsKeywords = ["contributions", "owned_plugins", "wishlist"];
 
   let url = location.pathname.split("/");
 

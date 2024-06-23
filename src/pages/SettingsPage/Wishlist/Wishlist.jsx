@@ -72,7 +72,7 @@ const Wishlist = () => {
       console.error(error);
     }
   };
-
+console.log(favoritePlugins);
   return (
     <>
       {isLoading ? (
