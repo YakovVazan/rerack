@@ -56,7 +56,7 @@ const LoginPage = () => {
       );
       const userLastRoute = JSON.parse(localStorageHistory);
       contextData["setToken"](response.token);
-      navigate(userLastRoute[userLastRoute.length - 2] || "/");
+      navigate(userLastRoute[userLastRoute.length - 1] || "/");
       showToast(`${response.name} logged in using ${response.email}`);
     }
   }

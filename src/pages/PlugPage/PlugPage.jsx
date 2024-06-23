@@ -30,7 +30,7 @@ const PlugPage = () => {
     if (plugsNames.length !== 0) {
       contextData["setCurrentPlug"](currentPlug);
     }
-    
+
     if (localStorageToken) {
       getFavorites();
       getSaved();
@@ -79,10 +79,12 @@ const PlugPage = () => {
       const msg = await res.json();
       handleToast(msg["msg"]);
 
-      if (type === "favor") {
-        setAlreadyFavorited(!alreadyFavorited);
-      } else {
-        setAlreadySaved(!alreadySaved);
+      if (res.ok) {
+        if (type === "favor") {
+          setAlreadyFavorited(!alreadyFavorited);
+        } else {
+          setAlreadySaved(!alreadySaved);
+        }
       }
     } catch (error) {
       console.error(error);

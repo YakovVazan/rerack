@@ -26,7 +26,7 @@ const useHistory = () => {
       return Array.from(newHistory);
     });
   }, [location]);
-  console.log(history);
+
   // logics to determine the title of the back arrow in the nav bar
   useEffect(() => {
     if (history[history.length - 2] === "/") setBackArrowTitle("Home");
