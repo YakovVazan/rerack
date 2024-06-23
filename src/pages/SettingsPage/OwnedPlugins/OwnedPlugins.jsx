@@ -88,8 +88,13 @@ const OwnedPlugins = () => {
           <div
             className={`${
               ownedPlugins.length <= 0 && "d-none"
-            } sub-route-wrapper`}
+            } sub-route-wrapper-container`}
           >
+            <h2 className="total-header">
+              <strong>
+                Total: {ownedPlugins.length > 0 && ownedPlugins.length}
+              </strong>
+            </h2>
             <div className="sub-route-list-wrapper">
               <ul className="sub-route-list list-group">
                 {ownedPlugins.length != 0 &&

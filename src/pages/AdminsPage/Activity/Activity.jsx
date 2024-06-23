@@ -51,6 +51,11 @@ const Activity = () => {
       ) : (
         <div className="sub-route-wrapper">
           <div className="sub-route-list-wrapper">
+            <h2 className="total-header">
+              <strong>
+                Total: {activities.length > 0 && activities.length}
+              </strong>
+            </h2>
             <ul className="sub-route-list list-group">
               {activities.map((user) =>
                 user.actions.map((contribution, index) => (

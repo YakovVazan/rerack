@@ -79,6 +79,11 @@ const Contributions = () => {
               contributedData.length <= 0 && "d-none"
             } sub-route-list-wrapper`}
           >
+            <h2 className="total-header">
+              <strong>
+                Total: {contributedData.length > 0 && contributedData.length}
+              </strong>
+            </h2>
             <ul className="sub-route-list list-group">
               {contributedData.map((item, index) => {
                 return (

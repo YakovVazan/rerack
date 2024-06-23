@@ -66,6 +66,11 @@ const Users = () => {
       ) : (
         <div className="table-wrapper">
           <div className="sub-route-list-wrapper">
+            <h2 className="total-header">
+              <strong>
+                Total: {allUsersData.length > 0 && allUsersData.length}
+              </strong>
+            </h2>
             <table
               id="admins-table"
               className="table table-striped table-bordered"

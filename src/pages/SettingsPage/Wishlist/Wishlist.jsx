@@ -95,8 +95,13 @@ const Wishlist = () => {
           <div
             className={`${
               favoritePlugins.length <= 0 && "d-none"
-            } sub-route-wrapper`}
+            } sub-route-wrapper-container`}
           >
+            <h2 className="total-header">
+              <strong>
+                Total: {favoritePlugins.length > 0 && favoritePlugins.length}
+              </strong>
+            </h2>
             <div className="sub-route-list-wrapper">
               <ul className="sub-route-list list-group">
                 {favoritePlugins.map((item, index) => {

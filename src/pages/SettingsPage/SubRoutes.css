@@ -26,6 +26,16 @@
     height: 40%;
 }
 
+.sub-route-wrapper-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.total-header {
+    padding-left: 0.25em;
+}
+
 .sub-route-list-wrapper {
     width: 100%;
     height: fit-content;
