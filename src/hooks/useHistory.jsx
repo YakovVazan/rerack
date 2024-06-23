@@ -26,7 +26,7 @@ const useHistory = () => {
       return Array.from(newHistory);
     });
   }, [location]);
-
+  console.log(history);
   // logics to determine the title of the back arrow in the nav bar
   useEffect(() => {
     if (history[history.length - 2] === "/") setBackArrowTitle("Home");
@@ -38,7 +38,11 @@ const useHistory = () => {
       setBackArrowTitle(
         plugName.charAt(0).toUpperCase() + plugName.slice(1).replace("_", " ")
       );
-    } else if (history[history.length - 1] === "/users")
+    } else if (
+      history[history.length - 1] === "/users" ||
+      (history[history.length - 2] &&
+        history[history.length - 2].includes("/users"))
+    )
       setBackArrowTitle("Settings");
   }, [location, history]);
 
