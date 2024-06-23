@@ -60,57 +60,59 @@ const LoginPage = () => {
   return loadingUser ? (
     <Spinner />
   ) : (
-    <form method="post" onSubmit={(event) => handleSubmit(event)}>
-      <div className="card auth-card">
-        <div className="card-header">
-          <h3>
-            <strong>Login</strong>
-          </h3>
+    <div className="authentication-form">
+      <form method="post" onSubmit={(event) => handleSubmit(event)}>
+        <div className="card auth-card">
+          <div className="card-header">
+            <h3>
+              <strong>Login</strong>
+            </h3>
+          </div>
+          <div className="card-body">
+            <div className="form-floating">
+              <input
+                type="email"
+                name="email"
+                id="floatingEmail"
+                className="form-control"
+                placeholder="Email"
+                onChange={handleChange}
+                autoFocus
+              />
+              <label htmlFor="floatingEmail">Email</label>
+            </div>
+            <div className="form-floating">
+              <input
+                type="password"
+                name="password"
+                id="floatingPassword"
+                className="form-control"
+                placeholder="Password"
+                onChange={handleChange}
+              />
+              <label htmlFor="floatingPassword">Password</label>
+            </div>
+            <div id="auth-buttons">
+              <input
+                type="reset"
+                value="Reset"
+                className="btn btn-outline-secondary"
+              />
+              <input
+                type="submit"
+                value="Submit"
+                className="btn btn-outline-secondary"
+              />
+            </div>
+            <hr />
+            <small>
+              Don&#39;t have an account yet?{" "}
+              <Link to={"/users/register"}>Register</Link>
+            </small>
+          </div>
         </div>
-        <div className="card-body">
-          <div className="form-floating">
-            <input
-              type="email"
-              name="email"
-              id="floatingEmail"
-              className="form-control"
-              placeholder="Email"
-              onChange={handleChange}
-              autoFocus
-            />
-            <label htmlFor="floatingEmail">Email</label>
-          </div>
-          <div className="form-floating">
-            <input
-              type="password"
-              name="password"
-              id="floatingPassword"
-              className="form-control"
-              placeholder="Password"
-              onChange={handleChange}
-            />
-            <label htmlFor="floatingPassword">Password</label>
-          </div>
-          <div id="auth-buttons">
-            <input
-              type="reset"
-              value="Reset"
-              className="btn btn-outline-secondary"
-            />
-            <input
-              type="submit"
-              value="Submit"
-              className="btn btn-outline-secondary"
-            />
-          </div>
-          <hr />
-          <small>
-            Don&#39;t have an account yet?{" "}
-            <Link to={"/users/register"}>Register</Link>
-          </small>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

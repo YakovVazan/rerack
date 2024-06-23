@@ -1,9 +1,18 @@
+.authentication-form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
 form {
     display: flex;
+    width: 400px;
+    padding: 1em;
 }
 
 .auth-card {
     align-self: center;
+    width: 100%;
 }
 
 .card-header {
@@ -19,6 +28,12 @@ h3 {
 }
 
 #auth-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+small {
     width: 100%;
     display: flex;
     justify-content: space-between;
