@@ -27,7 +27,7 @@ const Header = () => {
     <nav>
       {/* nav bar left side */}
       <Link
-        to={history[history.length - 2]}
+        to={history.length >= 2 ? history[history.length - 2] : "/"}
         id="logo-name"
         onClick={trimHistory}
       >
@@ -37,7 +37,7 @@ const Header = () => {
           ) : (
             <span id="nav-left-container">
               <SvgReturn />
-              <span>{backArrowTitle}</span>
+              <span>{backArrowTitle || "Home"}</span>
             </span>
           )}
         </div>
