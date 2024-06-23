@@ -28,6 +28,7 @@
 
 .sub-route-list-wrapper {
     width: 100%;
+    height: fit-content;
 }
 
 .sub-route-list {

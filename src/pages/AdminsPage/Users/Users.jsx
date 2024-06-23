@@ -10,7 +10,7 @@ import {
   localStorageLogout,
   localStorageToken,
 } from "../../../config/localStorage";
-import './Users.css'
+import "./Users.css";
 
 const Users = () => {
   const navigate = useNavigate();
@@ -64,52 +64,54 @@ const Users = () => {
       {loadingUsers ? (
         <Spinner />
       ) : (
-        <>
-          <table
-            id="admins-table"
-            className="table table-striped table-bordered"
-          >
-            <thead>
-              <tr className="users-tr">
-                <th>Name</th>
-                <th>Email</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allUsersData.map((user) => (
-                <tr className="users-tr" id={user.id} key={user.id}>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>
-                    <div className="btn-group">
-                      <Link
-                        to={`/users/${user.id}`}
-                        className="btn btn-outline-primary"
-                        title="Watch"
-                      >
-                        <SvgEye />
-                      </Link>
-                      <Link
-                        to={``}
-                        className="btn btn-outline-danger"
-                        title="BAN"
-                        data-bs-dismiss="offcanvas"
-                        data-bs-toggle={contextData["token"] && "modal"}
-                        data-bs-target={
-                          contextData["token"] && "#deletingModal"
-                        }
-                        onClick={() => handleBanning(user.name, user.id)}
-                      >
-                        <SvgBan />
-                      </Link>
-                    </div>
-                  </td>
+        <div className="table-wrapper">
+          <div className="sub-route-list-wrapper">
+            <table
+              id="admins-table"
+              className="table table-striped table-bordered"
+            >
+              <thead>
+                <tr className="users-tr">
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
+              </thead>
+              <tbody>
+                {allUsersData.map((user) => (
+                  <tr className="users-tr" id={user.id} key={user.id}>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>
+                      <div className="btn-group">
+                        <Link
+                          to={`/users/${user.id}`}
+                          className="btn btn-outline-primary"
+                          title="Watch"
+                        >
+                          <SvgEye />
+                        </Link>
+                        <Link
+                          to={``}
+                          className="btn btn-outline-danger"
+                          title="BAN"
+                          data-bs-dismiss="offcanvas"
+                          data-bs-toggle={contextData["token"] && "modal"}
+                          data-bs-target={
+                            contextData["token"] && "#deletingModal"
+                          }
+                          onClick={() => handleBanning(user.name, user.id)}
+                        >
+                          <SvgBan />
+                        </Link>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       )}
     </>
   );

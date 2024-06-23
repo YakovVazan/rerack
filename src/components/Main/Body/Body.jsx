@@ -4,6 +4,7 @@ import List from "../List/List.jsx";
 import Aside from "../../Aside/Aside.jsx";
 import Toast from "../../Common/Toasts/Toasts.jsx";
 import Context from "../../../context/Context.jsx";
+import Scroller from "../../Common/Scroller/Scroller.jsx";
 import PlugPage from "../../../pages/PlugPage/PlugPage.jsx";
 import NotFound from "../../../pages/NotFound/NotFound.jsx";
 import useNavigation from "../../../hooks/useNavigation.jsx";
@@ -79,6 +80,7 @@ const Body = () => {
             toastVisibility={contextData["toastVisibility"]}
             setToastVisibility={contextData["setToastVisibility"]}
           />
+          <Scroller />
         </section>
         <Aside />
       </div>

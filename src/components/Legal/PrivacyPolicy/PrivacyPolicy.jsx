@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Scroller from "../../Common/Scroller/Scroller";
 import "./PrivacyPolicy.css";
 import SvgWarning from "../../svg/SvgWarning/SvgWarning";
 
@@ -121,7 +120,6 @@ const PrivacyPolicy = () => {
           <li>By email: rerack.plugs@gmail.com</li>
         </ul>
       </div>
-      <Scroller />
     </>
   );
 };
