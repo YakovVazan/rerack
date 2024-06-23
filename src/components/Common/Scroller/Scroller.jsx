@@ -1,9 +1,12 @@
 import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import useFetchData from "../../../hooks/useFetchData";
 import SvgScroller from "../../svg/SvgScroller/SvgScroller";
 import "./Scroller.css";
 
 const Scroller = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { isLoading } = useFetchData();
   const parentContainer = document.querySelector("#main-container");
 
@@ -28,6 +31,7 @@ const Scroller = () => {
   }, [isLoading, parentContainer]);
 
   function handleClick() {
+    navigate(location.pathname)
     parentContainer.scrollTo({ top: 0, behavior: "smooth" });
   }
 
