@@ -8,8 +8,10 @@ import {
   localStorageToken,
 } from "../../../../config/localStorage";
 import "../../../../styles/modals.css";
+import useToasts from "../../../../hooks/useToasts";
 
 const DeleteModal = () => {
+  const showToast = useToasts();
   const navigate = useNavigate();
   const contextData = useContext(Context);
 
@@ -24,11 +26,11 @@ const DeleteModal = () => {
 
     const response = await res.json();
     if (!res.ok) {
-      contextData.setToastVisibility(true);
-      contextData.setToastMessage(response?.msg || response.error);
+      showToast(
+        response?.msg || response.error || "An error occurred while deleting"
+      );
     } else {
-      contextData.setToastVisibility(true);
-      contextData.setToastMessage(
+      showToast(
         `${contextData["deletionModalContents"]["msg"]} deleted successfully`
       );
     }

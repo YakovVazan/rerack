@@ -13,6 +13,7 @@ const Activity = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
   const [activities, setActivities] = useState([]);
+  const [activityCount, setActivityCount] = useState(0);
   const [loadingActivity, setLoaddingActivity] = useState(true);
 
   const fetchUsersActivity = async () => {
@@ -44,6 +45,17 @@ const Activity = () => {
     } else fetchUsersActivity();
   }, []);
 
+  useEffect(() => {
+    if (activities.length > 0) {
+      // Count the total number of actions
+      let count = 0;
+      activities.forEach((user) => {
+        count += user.actions.length;
+      });
+      setActivityCount(count);
+    }
+  }, [activities]);
+
   return (
     <>
       {loadingActivity ? (
@@ -52,9 +64,7 @@ const Activity = () => {
         <div className="sub-route-wrapper">
           <div className="sub-route-list-wrapper">
             <h2 className="total-header">
-              <strong>
-                Total: {activities.length > 0 && activities.length}
-              </strong>
+              <strong>Total: {activityCount}</strong>
             </h2>
             <ul className="sub-route-list list-group">
               {activities.map((user) =>

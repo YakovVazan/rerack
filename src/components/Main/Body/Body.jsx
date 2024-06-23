@@ -26,14 +26,20 @@ import "./Body.css";
 const Body = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const contextData = useContext(Context);
+  const {
+    setCurrentPlug,
+    toastMessage,
+    toastVisibility,
+    setToastVisibility,
+    deletionModalContents,
+  } = useContext(Context);
   const { isHomePage, isPlugPage, isAccountPage, isAdminPage } =
     useNavigation();
 
   useEffect(() => {
     // reset current plug whenever user navigates away from plug page
     if (!location.pathname.includes("plugs")) {
-      contextData["setCurrentPlug"]({});
+      setCurrentPlug({});
     }
 
     // trim '/' from end of pathname
@@ -76,10 +82,12 @@ const Body = () => {
 
           {/* toasts area */}
           <Toast
-            toastMessage={contextData["toastMessage"]}
-            toastVisibility={contextData["toastVisibility"]}
-            setToastVisibility={contextData["setToastVisibility"]}
+            toastMessage={toastMessage}
+            toastVisibility={toastVisibility}
+            setToastVisibility={setToastVisibility}
           />
+
+          {/* scroller injection */}
           <Scroller />
         </section>
         <Aside />
@@ -88,9 +96,7 @@ const Body = () => {
       {/* modals area */}
       <AddModal />
       <EditModal />
-      <DeleteModal
-        deletionModalContents={contextData["deletionModalContents"]}
-      />
+      <DeleteModal deletionModalContents={deletionModalContents} />
     </>
   );
 };
