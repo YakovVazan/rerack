@@ -1,5 +1,5 @@
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { consts } from "../../../config/constants";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import SvgPencil from "../../../components/svg/SvgPencil/SvgPencil";
@@ -11,7 +11,6 @@ import useToasts from "../../../hooks/useToasts";
 import "../SubRoutes.css";
 
 const Contributions = () => {
-  const { id } = useParams();
   const showToast = useToasts();
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,10 +33,9 @@ const Contributions = () => {
       if (!res.ok) {
         const errorResponse = await res.json();
         showToast(errorResponse.msg || errorResponse.error);
-        console.log(errorResponse);
-        localStorageId == id
-          ? navigate(`/users/${id}`)
-          : navigate(`/users/${localStorageId}`);
+        localStorageId
+          ? navigate(`/users/${localStorageId}/contributions`)
+          : navigate(`/users/login`);
       } else {
         const data = await res.json();
         setContributedData(data[0]["contributions"] || []);

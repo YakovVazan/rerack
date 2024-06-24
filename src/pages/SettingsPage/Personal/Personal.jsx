@@ -43,9 +43,9 @@ const Personal = () => {
       if (!res.ok) {
         if (res.status === 404) {
           showToast(res.statusText);
-          localStorageId == id
-            ? navigate(`/users/${id}`)
-            : navigate(`/users/${localStorageId}`);
+          localStorageId
+            ? navigate(`/users/${localStorageId}`)
+            : navigate(`/users/login`);
           setUserNewDetails({
             name: userDetails.name,
             email: userDetails.email,

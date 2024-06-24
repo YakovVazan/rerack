@@ -1,5 +1,5 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import useToasts from "../../../hooks/useToasts";
 import { consts } from "../../../config/constants";
 import useSavedPlugs from "../../../hooks/useSavedPlugs";
@@ -13,7 +13,6 @@ import {
 import "../SubRoutes.css";
 
 const OwnedPlugins = () => {
-  const { id } = useParams();
   const showToast = useToasts();
   const navigate = useNavigate();
   const getAllSaved = useSavedPlugs();
@@ -30,9 +29,9 @@ const OwnedPlugins = () => {
 
       if (!(data instanceof Array)) {
         showToast(data.msg);
-        localStorageId == id
-          ? navigate(`/users/${id}`)
-          : navigate(`/users/${localStorageId}`);
+        localStorageId
+          ? navigate(`/users/${localStorageId}/owned_plugins`)
+          : navigate(`/users/login`);
       } else {
         setOwnedPlugins(data || []);
       }

@@ -5,6 +5,7 @@ import SvgReturn from "../../svg/SvgReturn/SvgReturn.jsx";
 import useNavigation from "../../../hooks/useNavigation.jsx";
 import HamburgerAndSideBar from "../HamburgerAndSideBar/HamburgerAndSideBar.jsx";
 import "./Nav.css";
+import { setLocalStorageHistory } from "../../../config/localStorage.js";
 
 const Header = () => {
   const location = useLocation();
@@ -20,7 +21,12 @@ const Header = () => {
     : "";
 
   const trimHistory = () => {
-    setHistory(history.slice(0, -1));
+    if (history.length > 1) {
+      setHistory(history.slice(0, -1));
+      setLocalStorageHistory(
+        JSON.stringify(Array.from(new Set(history.slice(0, -1))))
+      );
+    }
   };
 
   return (
