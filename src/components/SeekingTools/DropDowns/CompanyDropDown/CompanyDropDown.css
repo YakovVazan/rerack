@@ -16,6 +16,7 @@
 .company-dropdown-item {
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .company-content {

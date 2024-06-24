@@ -1,4 +1,5 @@
 .filter-dropdown-item {
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
 }

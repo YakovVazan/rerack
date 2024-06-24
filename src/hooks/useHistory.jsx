@@ -45,6 +45,7 @@ const useHistory = () => {
       newHistory[newHistory.length - 1] = location.pathname;
       setLocalStorageHistory(JSON.stringify(newHistory));
       setHistory(newHistory);
+      return;
     }
     // zero out the history whenever the user navigates to the home page
     if (location.pathname === "/") {
