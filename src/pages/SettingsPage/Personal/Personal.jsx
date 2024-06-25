@@ -1,10 +1,11 @@
-import Context from "../../../context/Context";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Context from "../../../context/Context";
 import useToasts from "../../../hooks/useToasts";
 import { consts } from "../../../config/constants";
 import {
   localStorageId,
+  localStorageLogin,
   localStorageLogout,
   localStorageToken,
   setLocalStorageToken,
@@ -102,18 +103,31 @@ const Personal = () => {
       if (!res.ok) {
         const errorResponse = await res.json();
         showToast(errorResponse.msg || errorResponse.error);
-        console.log(errorResponse.msg || errorResponse.error);
       } else {
         const response = JSON.parse(await res.text());
+        setUserNewDetails({
+          name: userNewDetails.name || userDetails.name,
+          email: userNewDetails.email || userDetails.email,
+          password: "",
+        });
         setUserDetails({
           ...userDetails,
           isVerified: response.isVerified,
-          name: userNewDetails.name,
-          email: userNewDetails.email,
+          name: userNewDetails.name || userDetails.name,
+          email: userNewDetails.email || userDetails.email,
         });
-        setUserNewDetails({ ...userNewDetails, password: "" });
+        document.getElementById("name-input").value =
+          userNewDetails.name || userDetails.name;
+        document.getElementById("email-input").value =
+          userNewDetails.email || userDetails.email;
         document.getElementById("password-input").value = "";
         showToast("Details updated successfully");
+        localStorageLogin(
+          response.token,
+          response.id,
+          response.isOwner,
+          response.isVerified
+        );
       }
     } catch (error) {
       console.error(error);
@@ -185,6 +199,7 @@ const Personal = () => {
               <span className="content-section">
                 <div className="edit-fields">
                   <input
+                    id="name-input"
                     type="text"
                     className="edit-input form-control"
                     placeholder="new name"
@@ -192,6 +207,7 @@ const Personal = () => {
                     onChange={(e) => handleChange("name", e.target.value)}
                   ></input>
                   <input
+                    id="email-input"
                     type="email"
                     className="edit-input form-control"
                     placeholder="new email"
