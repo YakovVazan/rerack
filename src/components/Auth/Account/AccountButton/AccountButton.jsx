@@ -5,10 +5,11 @@ import { localStorageId } from "../../../../config/localStorage";
 import "./AccountButton.css";
 
 const AccountButton = () => {
-  const { isSettingsPage } = useNavigation();
+  const { isSettingsPage, isAdminPage } = useNavigation();
 
   return (
-    !isSettingsPage && (
+    !isSettingsPage &&
+    !isAdminPage && (
       <Link
         className="btn btn-outline-secondary"
         title="settings"
