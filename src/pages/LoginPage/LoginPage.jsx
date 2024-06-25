@@ -95,6 +95,9 @@ const LoginPage = () => {
                 onChange={handleChange}
               />
               <label htmlFor="floatingPassword">Password</label>
+              <Link to={"/users/forgot_password"}>
+                <small>Forgot password?</small>
+              </Link>
             </div>
             <div id="auth-buttons">
               <input

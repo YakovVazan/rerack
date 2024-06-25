@@ -18,6 +18,7 @@ import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
 import RegisterPage from "../../../pages/RegisterPage/RegisterPage.jsx";
 import Wishlist from "../../../pages/SettingsPage/Wishlist/Wishlist.jsx";
 import EditModal from "../../PlugActions/Editing/EditModal/EditModal.jsx";
+import ForgotPswdPage from "../../../pages/ForgotPswdPage/ForgotPswdPage.jsx";
 import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx";
 import OwnedPlugins from "../../../pages/SettingsPage/OwnedPlugins/OwnedPlugins.jsx";
 import Contributions from "../../../pages/SettingsPage/Contributions/Contributions.jsx";
@@ -66,6 +67,7 @@ const Body = () => {
             <Route path="/users/download" element={<Download />}></Route>
             <Route path="/users/register" element={<RegisterPage />}></Route>
             <Route path="/users/login" element={<LoginPage />}></Route>
+            <Route path="/users/forgot_password" element={<ForgotPswdPage />}></Route>
             <Route path="/users/:id/" element={<SettingsPage />}></Route>
             <Route
               path="/users/:id/contributions"

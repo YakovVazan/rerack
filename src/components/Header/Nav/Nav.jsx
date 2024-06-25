@@ -5,27 +5,24 @@ import SvgReturn from "../../svg/SvgReturn/SvgReturn.jsx";
 import useNavigation from "../../../hooks/useNavigation.jsx";
 import HamburgerAndSideBar from "../HamburgerAndSideBar/HamburgerAndSideBar.jsx";
 import "./Nav.css";
-import { setLocalStorageHistory } from "../../../config/localStorage.js";
 
 const Header = () => {
   const location = useLocation();
-  const { history, setHistory, backArrowTitle } = useHistory();
+  const { history, forceGoingBack, backArrowTitle } = useHistory();
   const { isHomePage, isPlugPage, isSettingsPage, isAdminPage } =
     useNavigation();
   const firstQuery = location.pathname.split("/")[1];
   const secondQuery = location.pathname.split("/")[2];
   const rightHeader = /^\d+$/.test(secondQuery)
     ? "Settings"
-    : firstQuery === "users" && !["login", "register"].includes(secondQuery)
+    : firstQuery === "users" &&
+      !["login", "register", "forgot_password"].includes(secondQuery)
     ? "Dashboard"
     : "";
 
   const trimHistory = () => {
     if (history.length > 1) {
-      setHistory(history.slice(0, -1));
-      setLocalStorageHistory(
-        JSON.stringify(Array.from(new Set(history.slice(0, -1))))
-      );
+      forceGoingBack();
     }
   };
 

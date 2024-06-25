@@ -32,14 +32,17 @@ const useHistory = () => {
     );
   };
 
+  const isLoginTitle = () => {
+    return history[history.length - 1].includes("/users/forgot_password");
+  };
+
   // logics to determine the history of the user while ignoring in-page navigations
   useEffect(() => {
     // prevent adding to history for login-to-register navigation and vice versa
     if (
       (location.pathname.includes("login") &&
         history[history.length - 1].includes("register")) ||
-      (location.pathname.includes("register") &&
-        history[history.length - 1].includes("login"))
+      location.pathname.includes("register")
     ) {
       let newHistory = history;
       newHistory[newHistory.length - 1] = location.pathname;
@@ -47,22 +50,30 @@ const useHistory = () => {
       setHistory(newHistory);
       return;
     }
+
     // zero out the history whenever the user navigates to the home page
     if (location.pathname === "/") {
       setLocalStorageHistory(JSON.stringify(["/"]));
       setHistory(["/"]);
       return;
     }
+
     // prevent adding to history for subroutings in settings page
     if (url.length != 3 && url[1] === "users" && !isNaN(url[2])) return;
+
     // add properly to history when login comes after plug page
     if (
       history.length == 3 &&
       history[1].includes("plugs") &&
       history[2].includes("login")
     ) {
-      setLocalStorageHistory(JSON.stringify(history.slice(0, -1)));
-      setHistory(history.slice(0, -1));
+      forceGoingBack();
+      return;
+    }
+
+    // allow going back from reset password page to login page
+    if (history[history.length - 1].includes("/users/forgot_password")) {
+      forceGoingBack();
       return;
     }
 
@@ -82,10 +93,18 @@ const useHistory = () => {
       setBackArrowTitle(
         plugName.charAt(0).toUpperCase() + plugName.slice(1).replace("_", " ")
       );
-    } else if (isSettingsTitle()) setBackArrowTitle("Settings");
+    } else if (isLoginTitle()) setBackArrowTitle("Login");
+    else if (isSettingsTitle()) setBackArrowTitle("Settings");
   }, [location, history]);
 
-  return { history, setHistory, backArrowTitle };
+  const forceGoingBack = () => {
+    let newHistory = history.slice(0, -1);
+
+    setHistory(newHistory);
+    setLocalStorageHistory(JSON.stringify(newHistory));
+  };
+
+  return { history, setHistory, backArrowTitle, forceGoingBack };
 };
 
 export default useHistory;
