@@ -8,12 +8,14 @@ import {
   localStorageToken,
 } from "../../../config/localStorage";
 import "./Activity.css";
+import SvgCheck from "../../../components/svg/SvgCheck/SvgCheck";
 
 const Activity = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
+  const [filter, setFilter] = useState("All");
   const [activities, setActivities] = useState([]);
-  const [activityCount, setActivityCount] = useState(0);
+  const [formattedData, setFormattedData] = useState([]);
   const [loadingActivity, setLoaddingActivity] = useState(true);
 
   const fetchUsersActivity = async () => {
@@ -39,22 +41,42 @@ const Activity = () => {
     }
   };
 
+  const handleFormattedData = (item) => {
+    setFilter(item);
+    setFormattedData(
+      activities.flatMap((user) =>
+        user.actions
+          .filter((action) => item === "All" || action === item)
+          .map((action) => ({
+            userId: user.userId,
+            username: user.username,
+            plugId: user.plugId,
+            plugName: user.plugName,
+            action: action,
+          }))
+      )
+    );
+  };
+
+  useEffect(() => {
+    setFormattedData(
+      activities.flatMap((user) => {
+        return user.actions.map((action) => ({
+          userId: user.userId,
+          username: user.username,
+          plugId: user.plugId,
+          plugName: user.plugName,
+          action: action,
+        }));
+      })
+    );
+  }, [activities]);
+
   useEffect(() => {
     if (localStorageIsOwner !== "true") {
       navigate("/");
     } else fetchUsersActivity();
   }, []);
-
-  useEffect(() => {
-    if (activities.length > 0) {
-      // Count the total number of actions
-      let count = 0;
-      activities.forEach((user) => {
-        count += user.actions.length;
-      });
-      setActivityCount(count);
-    }
-  }, [activities]);
 
   return (
     <>
@@ -63,37 +85,72 @@ const Activity = () => {
       ) : (
         <div className="sub-route-wrapper">
           <div className="sub-route-list-wrapper">
-            <h2 className="total-header">
-              <strong>Total: {activityCount}</strong>
-            </h2>
+            <div className="total-and-filter">
+              {/* total */}
+              <h2 className="total-header">
+                <strong>Total: {formattedData.length}</strong>
+              </h2>
+
+              {/* filter icon */}
+              <div
+                className="btn btn-outline-secondary dropdown-toggle filter-icon"
+                data-bs-toggle="dropdown"
+                title="filter what you see"
+              >
+                <span className="inner-button-text-type">{filter}</span>
+              </div>
+
+              {/* filter drop down */}
+              <ul className="dropdown-menu">
+                {["All", "Add", "Edit"].map((item) => {
+                  return (
+                    <li
+                      key={item}
+                      className="dropdown-item filter-dropdown-item"
+                      onClick={() => handleFormattedData(item)}
+                    >
+                      <span>
+                        {item.charAt(0).toUpperCase() + item.slice(1)}
+                      </span>
+                      {filter === item && (
+                        <span id="check-sign-container">
+                          <SvgCheck />
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            <hr />
+
             <ul className="sub-route-list list-group">
-              {activities.map((user) =>
-                user.actions.map((contribution, index) => (
-                  <li
-                    className="list-group-item sub-route-list-item activity-item"
-                    key={index}
-                  >
-                    <span>
-                      <Link
-                        className="activity-links"
-                        to={`/users/${user.userId}`}
-                      >
-                        {user.username}
-                      </Link>
-                      {" " + contribution.toLowerCase() + "ed "}
-                      <Link
-                        className="activity-links"
-                        to={`/plugs/${user["plugName"]
-                          .trim()
-                          .replace(/ /g, "_")
-                          .toLowerCase()}`}
-                      >
-                        {user["plugName"]}
-                      </Link>
-                    </span>
-                  </li>
-                ))
-              )}
+              {formattedData.map((activiy, index) => (
+                <li
+                  className="list-group-item sub-route-list-item activity-item"
+                  key={index}
+                >
+                  <span>
+                    <Link
+                      className="activity-links"
+                      to={`/users/${activiy.userId}`}
+                    >
+                      {activiy.username}
+                    </Link>
+                    {" " + activiy.action.toLowerCase() + "ed "}
+                    <Link
+                      className="activity-links"
+                      to={`/plugs/${activiy["plugName"]
+                        .trim()
+                        .replace(/ /g, "_")
+                        .toLowerCase()}`}
+                    >
+                      {activiy["plugName"]}
+                    </Link>
+                  </span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

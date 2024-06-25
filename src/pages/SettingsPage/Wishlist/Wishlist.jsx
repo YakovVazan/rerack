@@ -101,6 +101,9 @@ const Wishlist = () => {
                 Total: {favoritePlugins.length > 0 && favoritePlugins.length}
               </strong>
             </h2>
+
+            <hr />
+            
             <div className="sub-route-list-wrapper">
               <ul className="sub-route-list list-group">
                 {favoritePlugins.map((item, index) => {

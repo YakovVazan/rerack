@@ -71,6 +71,9 @@ const Users = () => {
                 Total: {allUsersData.length > 0 && allUsersData.length}
               </strong>
             </h2>
+
+            <hr />
+            
             <table
               id="admins-table"
               className="table table-striped table-bordered"

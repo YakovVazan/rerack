@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useToasts from "../../../hooks/useToasts";
 import { consts } from "../../../config/constants";
 import Spinner from "../../../components/Common/Spinner/Spinner";
+import SvgCheck from "../../../components/svg/SvgCheck/SvgCheck";
 import SvgPencil from "../../../components/svg/SvgPencil/SvgPencil";
 import {
   localStorageId,
   localStorageToken,
 } from "../../../config/localStorage";
-import useToasts from "../../../hooks/useToasts";
 import "../SubRoutes.css";
 
 const Contributions = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
   const location = useLocation();
+  const [filter, setFilter] = useState("All");
+  const [formattedData, setFormattedData] = useState([]);
   const [contributedData, setContributedData] = useState([]);
   const [loadingContributions, setLoaddingContributions] = useState(true);
 
@@ -38,12 +41,22 @@ const Contributions = () => {
           : navigate(`/users/login`);
       } else {
         const data = await res.json();
+        setFormattedData(data[0]["contributions"] || []);
         setContributedData(data[0]["contributions"] || []);
       }
     } catch (error) {
       console.error(error);
     } finally {
       setLoaddingContributions(false);
+    }
+  };
+
+  const handleFormattedData = (item) => {
+    setFilter(item);
+    if (item === "All") {
+      setFormattedData(contributedData);
+    } else {
+      setFormattedData(contributedData.filter((x) => x.actions.includes(item)));
     }
   };
 
@@ -77,13 +90,48 @@ const Contributions = () => {
               contributedData.length <= 0 && "d-none"
             } sub-route-list-wrapper`}
           >
-            <h2 className="total-header">
-              <strong>
-                Total: {contributedData.length > 0 && contributedData.length}
-              </strong>
-            </h2>
+            <div className="total-and-filter">
+              {/* total */}
+              <h2 className="total-header">
+                <strong>Total: {formattedData.length}</strong>
+              </h2>
+
+              {/* filter icon */}
+              <div
+                className="btn btn-outline-secondary dropdown-toggle filter-icon"
+                data-bs-toggle="dropdown"
+                title="filter what you see"
+              >
+                <span className="inner-button-text-type">{filter}</span>
+              </div>
+
+              {/* filter drop down */}
+              <ul className="dropdown-menu">
+                {["All", "Add", "Edit"].map((item) => {
+                  return (
+                    <li
+                      key={item}
+                      className="dropdown-item filter-dropdown-item"
+                      onClick={() => handleFormattedData(item)}
+                    >
+                      <span>
+                        {item.charAt(0).toUpperCase() + item.slice(1)}
+                      </span>
+                      {filter === item && (
+                        <span id="check-sign-container">
+                          <SvgCheck />
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            <hr />
+
             <ul className="sub-route-list list-group">
-              {contributedData.map((item, index) => {
+              {formattedData.map((item, index) => {
                 return (
                   <Link
                     className="list-group-item sub-route-list-item"

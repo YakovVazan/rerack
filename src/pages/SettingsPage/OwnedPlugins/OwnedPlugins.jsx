@@ -94,6 +94,9 @@ const OwnedPlugins = () => {
                 Total: {ownedPlugins.length > 0 && ownedPlugins.length}
               </strong>
             </h2>
+
+            <hr />
+            
             <div className="sub-route-list-wrapper">
               <ul className="sub-route-list list-group">
                 {ownedPlugins.length != 0 &&
