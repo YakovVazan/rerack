@@ -5,13 +5,14 @@ import AdminPageHmbrgr from "./AdminPageHmbrgr/AdminPageHmbrgr";
 import AccountPageHmbrgr from "./AccountPageHmbrgr/AccountPageHmbrgr";
 
 const HamburgerAndSideBar = () => {
-  const { isHomePage, isPlugPage, isAccountPage, isAdminPage } = useNavigation();
+  const { isHomePage, isPlugPage, isSettingsPage, isAdminPage } =
+    useNavigation();
 
   return (
     <>
       {isHomePage && <HomePageHmbrgr />}
       {isPlugPage && <PlugPageHmbrgr />}
-      {isAccountPage && <AccountPageHmbrgr />}
+      {isSettingsPage && <AccountPageHmbrgr />}
       {isAdminPage && <AdminPageHmbrgr />}
     </>
   );

@@ -7,7 +7,7 @@ const useNavigation = () => {
   const contextData = useContext(Context);
   const [isHomePage, setIsHomePage] = useState(null);
   const [isPlugPage, setIsPlugPage] = useState(null);
-  const [isAccountPage, setIsAccountPage] = useState(null);
+  const [isSettingsPage, setIsSettingsPage] = useState(null);
   const [isAdminPage, setIsAdminPage] = useState(null);
 
   const adminPageKeyword = ["activity", "download"];
@@ -18,7 +18,7 @@ const useNavigation = () => {
   useEffect(() => {
     setIsHomePage(location.pathname.length === 1);
     setIsPlugPage(url[1] === "plugs");
-    setIsAccountPage(url[1] === "users" && !isNaN(+url[2]));
+    setIsSettingsPage(url[1] === "users" && !isNaN(+url[2]));
     setIsAdminPage(
       (url.length === 2 && url[1] === "users") ||
         (url.length === 3 && adminPageKeyword.includes(url[2]))
@@ -27,16 +27,16 @@ const useNavigation = () => {
 
   // align sub route visuals with url browsing
   useEffect(() => {
-    if (isAccountPage) {
+    if (isSettingsPage) {
       contextData["setAccoutPageSubRoute"](
         settingsKeywords.indexOf(url[3]) + 1
       );
     } else if (isAdminPage) {
       contextData["setAdminPageSubRoute"](adminPageKeyword.indexOf(url[2]) + 1);
     }
-  }, [isAccountPage, isAdminPage, location.pathname]);
+  }, [isSettingsPage, isAdminPage, location.pathname]);
 
-  return { isHomePage, isPlugPage, isAccountPage, isAdminPage };
+  return { isHomePage, isPlugPage, isSettingsPage, isAdminPage };
 };
 
 export default useNavigation;

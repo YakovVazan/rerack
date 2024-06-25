@@ -9,7 +9,7 @@ import "./Aside.css";
 
 const Aside = () => {
   const { currentPlug } = useContext(Context);
-  const { isHomePage, isPlugPage, isAccountPage, isAdminPage } =
+  const { isHomePage, isPlugPage, isSettingsPage, isAdminPage } =
     useNavigation();
 
   return (
@@ -24,7 +24,7 @@ const Aside = () => {
           <PlugPageCtrls currentPlug={currentPlug} />
         </aside>
       )}
-      {isAccountPage && (
+      {isSettingsPage && (
         <aside>
           <AccountCenterPageCtrls />
         </aside>

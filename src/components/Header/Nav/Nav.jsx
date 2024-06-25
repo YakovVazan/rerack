@@ -10,7 +10,7 @@ import { setLocalStorageHistory } from "../../../config/localStorage.js";
 const Header = () => {
   const location = useLocation();
   const { history, setHistory, backArrowTitle } = useHistory();
-  const { isHomePage, isPlugPage, isAccountPage, isAdminPage } =
+  const { isHomePage, isPlugPage, isSettingsPage, isAdminPage } =
     useNavigation();
   const firstQuery = location.pathname.split("/")[1];
   const secondQuery = location.pathname.split("/")[2];
@@ -50,7 +50,7 @@ const Header = () => {
       </Link>
 
       {/* nav bar right side */}
-      {isHomePage || isPlugPage || isAccountPage || isAdminPage ? (
+      {isHomePage || isPlugPage || isSettingsPage || isAdminPage ? (
         <>
           <div id="hamburger-for-side-bar">
             <HamburgerAndSideBar />

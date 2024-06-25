@@ -33,7 +33,7 @@ const Body = () => {
     setToastVisibility,
     deletionModalContents,
   } = useContext(Context);
-  const { isHomePage, isPlugPage, isAccountPage, isAdminPage } =
+  const { isHomePage, isPlugPage, isSettingsPage, isAdminPage } =
     useNavigation();
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const Body = () => {
     <>
       <div
         className={
-          isHomePage || isPlugPage || isAccountPage || isAdminPage
+          isHomePage || isPlugPage || isSettingsPage || isAdminPage
             ? "wrapper"
             : ""
         }
