@@ -41,12 +41,13 @@ const Activity = () => {
     }
   };
 
+  // update contents of fomatted data's array
   const handleFormattedData = (item) => {
     setFilter(item);
     setFormattedData(
       activities.flatMap((user) =>
         user.actions
-          .filter((action) => item === "All" || action === item)
+          .filter((action) => item === "All" || action.action === item)
           .map((action) => ({
             userId: user.userId,
             username: user.username,
@@ -58,6 +59,7 @@ const Activity = () => {
     );
   };
 
+  // 
   useEffect(() => {
     setFormattedData(
       activities.flatMap((user) => {
@@ -72,6 +74,7 @@ const Activity = () => {
     );
   }, [activities]);
 
+  // block unauthorized users
   useEffect(() => {
     if (localStorageIsOwner !== "true") {
       navigate("/");
@@ -126,31 +129,39 @@ const Activity = () => {
             <hr />
 
             <ul className="sub-route-list list-group">
-              {formattedData.map((activiy, index) => (
-                <li
-                  className="list-group-item sub-route-list-item activity-item"
-                  key={index}
-                >
-                  <span>
-                    <Link
-                      className="activity-links"
-                      to={`/users/${activiy.userId}`}
-                    >
-                      {activiy.username}
-                    </Link>
-                    {" " + activiy.action.toLowerCase() + "ed "}
-                    <Link
-                      className="activity-links"
-                      to={`/plugs/${activiy["plugName"]
-                        .trim()
-                        .replace(/ /g, "_")
-                        .toLowerCase()}`}
-                    >
-                      {activiy["plugName"]}
-                    </Link>
-                  </span>
-                </li>
-              ))}
+              {formattedData.map((activiy, index) => {
+                return (
+                  <li
+                    className="list-group-item sub-route-list-item activity-item"
+                    key={index}
+                  >
+                    <span>
+                      <Link
+                        className="activity-links"
+                        to={`/users/${activiy.userId}`}
+                      >
+                        {activiy.username}
+                      </Link>
+                      <span>
+                        {" " + activiy.action.action.toLowerCase() + "ed "}
+                      </span>
+                      <Link
+                        className="activity-links"
+                        to={`/plugs/${activiy["plugName"]
+                          .trim()
+                          .replace(/ /g, "_")
+                          .toLowerCase()}`}
+                      >
+                        {activiy["plugName"]}
+                      </Link>
+                      <span>
+                        {" at " +
+                          new Date(activiy.action.time).toLocaleString()}
+                      </span>
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

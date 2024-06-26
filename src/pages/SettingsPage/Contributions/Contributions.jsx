@@ -132,6 +132,10 @@ const Contributions = () => {
 
             <ul className="sub-route-list list-group">
               {formattedData.map((item, index) => {
+                let actions = [];
+                item.actions.forEach((action) => {
+                  !actions.includes(action) && actions.push(action.action);
+                });
                 return (
                   <Link
                     className="list-group-item sub-route-list-item"
@@ -139,13 +143,12 @@ const Contributions = () => {
                     key={index}
                   >
                     <span>{item.name}</span>
-                    {item.actions.includes("Add") &&
-                    item.actions.includes("Edit") ? (
+                    {actions.includes("Add") && actions.includes("Edit") ? (
                       <span>Added and Edited</span>
-                    ) : item.actions.includes("Add") ? (
+                    ) : actions.includes("Add") ? (
                       <span>Added</span>
                     ) : (
-                      item.actions.includes("Edit") && <span>Edited</span>
+                      actions.includes("Edit") && <span>Edited</span>
                     )}
                   </Link>
                 );
