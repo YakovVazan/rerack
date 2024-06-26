@@ -1,6 +1,6 @@
 import { Fragment, useContext, useEffect } from "react";
-import ListItem from "../ListItem/ListItem.jsx";
-import ListHeader from "../ListHeader/ListHeader.jsx";
+import ListItem from "./ListItem/ListItem.jsx";
+import ListHeader from "./ListHeader/ListHeader.jsx";
 import Spinner from "../../Common/Spinner/Spinner.jsx";
 import Context from "../../../context/Context.jsx";
 import useFetchData from "../../../hooks/useFetchData.jsx";

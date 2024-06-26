@@ -1,0 +1,140 @@
+/* list view */
+.list-item-plugin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 100%;
+    height: 145px;
+}
+
+.list-item-plugin:hover {
+    background-color: #efefef;
+}
+
+.list-image-container {
+    width: 30%;
+    max-width: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    background-color: #e0e0e0;
+    border-radius: calc(.25rem - 1px);
+}
+
+.list-img-and-text-container {
+    display: flex;
+    width: 80%;
+    height: 100%;
+}
+
+.list-plugin-image {
+    align-self: center;
+    height: 100%;
+}
+
+.list-plugin-name {
+    width: 80%;
+    font-size: 1.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list-name-and-details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1em;
+    width: 50%;
+}
+
+.list-company-and-type-container {
+    color: rgb(117, 117, 117);
+}
+
+
+/* gallery view */
+.gallery-ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 2.5%;
+    padding-left: 0;
+}
+
+.gallery-li {
+    margin: 0.5em;
+}
+
+.gallery-item-plugin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 20em;
+    height: 17em;
+}
+
+.gallery-img-and-text-container {
+    height: 100%;
+    width: 100%;
+}
+
+.gallery-image-container {
+    height: 80%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0;
+}
+
+.gallery-plugin-image {
+    width: 100%;
+}
+
+.gallery-plugin-name {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+/* both */
+.item-link {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #212529 !important;
+}
+
+.hide-plugin-arrow {
+    display: none;
+}
+
+/* responsiveness */
+@media screen and (min-width: 767px) {
+    .list-plugin-name {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .list-company-and-type-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .list-type {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #list-company-and-type-dash {
+        display: none;
+    }
+}

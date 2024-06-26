@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import Context from "../../../context/Context.jsx";
-import { consts } from "../../../config/constants.js";
+import Context from "../../../../context/Context.jsx";
+import { consts } from "../../../../config/constants.js";
+import SvgArrowRight from "../../../svg/SvgArrowRight/SvgArrowRight.jsx";
 import "./ListItem.css";
-import SvgArrowRight from "../../svg/SvgArrowRight/SvgArrowRight.jsx";
 
 const ListItem = ({ plug, index }) => {
   const data = useContext(Context);
