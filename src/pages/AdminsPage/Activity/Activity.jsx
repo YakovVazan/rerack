@@ -147,10 +147,7 @@ const Activity = () => {
                       </span>
                       <Link
                         className="activity-links"
-                        to={`/plugs/${activiy["plugName"]
-                          .trim()
-                          .replace(/ /g, "_")
-                          .toLowerCase()}`}
+                        to={`/plugs/${activiy["plugId"]}`}
                       >
                         {activiy["plugName"]}
                       </Link>

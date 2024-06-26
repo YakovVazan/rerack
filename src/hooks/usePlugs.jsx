@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import useFetchData from "./useFetchData";
 
-const usePlugsNames = ({ name }) => {
+const usePlugs = ({ plugId }) => {
   const { data, isLoading } = useFetchData();
-  const [currentPlug, setCurrentPlug] = useState({});
+  const [plugsIds, setPlugsIds] = useState([]);
   const [plugsNames, setPlugsNames] = useState([]);
+  const [currentPlug, setCurrentPlug] = useState({});
 
   useEffect(() => {
     if (!isLoading) {
@@ -14,13 +15,14 @@ const usePlugsNames = ({ name }) => {
           data[key].name.replace(/ /g, "_").toLowerCase(),
         ]);
 
-        if (data[key].name.replace(/ /g, "_").toLowerCase() === name)
-          setCurrentPlug(data[key]);
+        setPlugsIds((prevPlugsNames) => [...prevPlugsNames, data[key].id]);
+
+        if (data[key].id === +plugId) setCurrentPlug(data[key]);
       });
     }
   }, [isLoading]);
 
-  return { plugsNames, currentPlug };
+  return { plugsNames, plugsIds, currentPlug };
 };
 
-export default usePlugsNames;
+export default usePlugs;

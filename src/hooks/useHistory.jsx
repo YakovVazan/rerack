@@ -13,6 +13,10 @@ const useHistory = () => {
   );
   const [backArrowTitle, setBackArrowTitle] = useState("");
 
+  const isNotFoundPage = () => {
+    return location.pathname === "/not-found";
+  };
+
   const isHomeTitle = () => {
     return history.length >= 2 && history[history.length - 2] === "/";
   };
@@ -33,7 +37,10 @@ const useHistory = () => {
   };
 
   const isLoginTitle = () => {
-    return history[history.length - 1].includes("/users/forgot_password");
+    return (
+      history[history.length - 1] &&
+      history[history.length - 1].includes("/users/forgot_password")
+    );
   };
 
   // logics to determine the history of the user while ignoring in-page navigations
@@ -52,14 +59,14 @@ const useHistory = () => {
     }
 
     // zero out the history whenever the user navigates to the home page
-    if (location.pathname === "/") {
+    if (location.pathname === "/" || isNotFoundPage()) {
       setLocalStorageHistory(JSON.stringify(["/"]));
       setHistory(["/"]);
       return;
     }
 
     // prevent adding to history for subroutings in settings page
-    if (url.length != 3 && url[1] === "users" && !isNaN(url[2])) return;
+    if (url.length != 3 && url[1] === "users") return;
 
     // add properly to history when login comes after plug page
     if (
@@ -87,7 +94,7 @@ const useHistory = () => {
 
   // logics to determine the title of the back arrow in the nav bar
   useEffect(() => {
-    if (isHomeTitle()) setBackArrowTitle("Home");
+    if (isHomeTitle() || isNotFoundPage()) setBackArrowTitle("Home");
     else if (isPlugTitle()) {
       let plugName = history[history.length - 2].split("/")[2];
       setBackArrowTitle(

@@ -7,8 +7,8 @@ import TransparentDivider from "../../Common/TransparentDivider/TransparentDivid
 import "./PlugPageCtrls.css";
 
 const PlugPageCtrls = ({ currentPlug }) => {
-  const [loadingDescription, setLoadingDescription] = useState(false);
   const [description, setDescription] = useState("");
+  const [loadingDescription, setLoadingDescription] = useState(false);
 
   const content = () => {
     return isLoading()

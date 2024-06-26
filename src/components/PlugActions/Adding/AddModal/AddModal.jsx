@@ -102,9 +102,7 @@ const AddModal = () => {
       );
     } else {
       showToast(`${newPlug.name} added successfully`);
-      navigate(
-        `/plugs/${newPlug.name.trim().replace(/ /g, "_").toLowerCase()}`
-      );
+      navigate(`/plugs/${response}`);
     }
 
     handleReset();

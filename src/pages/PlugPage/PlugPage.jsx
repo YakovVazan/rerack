@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import Context from "../../context/Context.jsx";
+import usePlugs from "../../hooks/usePlugs.jsx";
 import useToasts from "../../hooks/useToasts.jsx";
 import { consts } from "../../config/constants.js";
 import { useParams, Navigate } from "react-router-dom";
 import useForceAuth from "../../hooks/useForceAuth.jsx";
 import useSavedPlugs from "../../hooks/useSavedPlugs.jsx";
-import usePlugsNames from "../../hooks/usePlugsNames.jsx";
 import useFavoritePlugs from "../../hooks/useFavoritePlugs.jsx";
 import { localStorageToken } from "../../config/localStorage.js";
 import Spinner from "../../components/Common/Spinner/Spinner.jsx";
@@ -16,7 +16,7 @@ import SvgHeartBroken from "../../components/svg/SvgHeartBroken/SvgHeartBroken.j
 import "./PlugPage.css";
 
 const PlugPage = () => {
-  const { name } = useParams();
+  const { plugId } = useParams();
   const showToast = useToasts();
   const forceAuth = useForceAuth();
   const getAllSaved = useSavedPlugs();
@@ -24,7 +24,7 @@ const PlugPage = () => {
   const getAllFavorites = useFavoritePlugs();
   const [alreadySaved, setAlreadySaved] = useState(false);
   const [alreadyFavorited, setAlreadyFavorited] = useState(false);
-  const { plugsNames, currentPlug } = usePlugsNames({ name });
+  const { plugsNames, plugsIds, currentPlug } = usePlugs({ plugId });
 
   useEffect(() => {
     if (plugsNames.length !== 0) {
@@ -95,7 +95,7 @@ const PlugPage = () => {
     <>
       {plugsNames.length === 0 ? (
         <Spinner />
-      ) : plugsNames.includes(name) ? (
+      ) : plugsIds.includes(+plugId) ? (
         <div className="plug-page-container">
           <div className="card list-item">
             <div className="card-header">

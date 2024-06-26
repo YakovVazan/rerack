@@ -25,7 +25,7 @@ const ListItem = ({ plug, index }) => {
     <Link
       className="item-link"
       to={{
-        pathname: `/plugs/${plug["name"].replace(/ /g, "_").toLowerCase()}`,
+        pathname: `/plugs/${plug["id"]}`,
       }}
       state={plug}
       key={index}

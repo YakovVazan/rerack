@@ -61,7 +61,7 @@ const Body = () => {
         <section id="main-container">
           <Routes>
             <Route path="/" element={<List />}></Route>
-            <Route path="/plugs/:name" element={<PlugPage />}></Route>
+            <Route path="/plugs/:plugId/" element={<PlugPage />}></Route>
             <Route path="/users" element={<AdminsPage />}></Route>
             <Route path="/users/activity" element={<Activity />}></Route>
             <Route path="/users/download" element={<Download />}></Route>

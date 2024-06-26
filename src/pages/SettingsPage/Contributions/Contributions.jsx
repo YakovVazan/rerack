@@ -139,7 +139,7 @@ const Contributions = () => {
                 return (
                   <Link
                     className="list-group-item sub-route-list-item"
-                    to={`/plugs/${item.name.replace(/ /g, "_").toLowerCase()}`}
+                    to={`/plugs/${item.id}`}
                     key={index}
                   >
                     <span>{item.name}</span>
