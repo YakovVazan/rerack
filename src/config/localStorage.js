@@ -3,8 +3,8 @@ let localStorageView = localStorage.getItem("rerackView");
 let localStorageOrder = localStorage.getItem("rerackOrder");
 let localStorageToken = localStorage.getItem("rerackToken");
 let localStorageIsOwner = localStorage.getItem("rerackIsOwner");
-let localStorageIsVerified = localStorage.getItem("rerackIsVerified");
 let localStorageHistory = localStorage.getItem("rerackHistory");
+let localStorageIsVerified = localStorage.getItem("rerackIsVerified");
 let localStorageAccountPageSubRouteIndex = localStorage.getItem(
   "rerackAccountPageSubRouteIndex"
 );
@@ -45,6 +45,8 @@ if (!localStorageIsVerified) {
 if (!localStorageHistory) {
   localStorageHistory = ["/"];
   localStorage.setItem("rerackHistory", JSON.stringify(localStorageHistory));
+} else {
+  localStorageHistory = JSON.parse(localStorageHistory);
 }
 
 function localStorageLogin(token, id, isOwner, isVerified) {

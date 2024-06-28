@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import useNavigation from "./useNavigation";
 import {
   localStorageHistory,
   setLocalStorageHistory,
@@ -7,111 +8,87 @@ import {
 
 const useHistory = () => {
   const location = useLocation();
-  const url = location.pathname.split("/");
-  const [history, setHistory] = useState(
-    JSON.parse(localStorageHistory) || ["/"]
-  );
   const [backArrowTitle, setBackArrowTitle] = useState("");
+  const [history, setHistory] = useState(localStorageHistory);
+  const {
+    adminPageKeyword,
+    settingsPageKeywords,
+    isNotFoundPage,
+    isLoginPage,
+    isRegisterPage,
+    isForgotPasswordPage,
+    urlToArray,
+  } = useNavigation();
 
-  const isNotFoundPage = () => {
-    return location.pathname === "/not-found";
+  const titleShouldBeHome = (newHistory) => {
+    return newHistory[newHistory.length - 2] === "/";
   };
 
-  const isHomeTitle = () => {
-    return history.length >= 2 && history[history.length - 2] === "/";
+  const updateBackArrowTitle = (newHistory) => {
+    if (titleShouldBeHome(newHistory)) setBackArrowTitle("Home");
+    else setBackArrowTitle("Back");
   };
-
-  const isPlugTitle = () => {
-    return (
-      history[history.length - 2] &&
-      history[history.length - 2].includes("/plugs")
-    );
-  };
-
-  const isSettingsTitle = () => {
-    return (
-      history[history.length - 1] === "/users" ||
-      (history[history.length - 2] &&
-        history[history.length - 2].includes("/users"))
-    );
-  };
-
-  const isLoginTitle = () => {
-    return (
-      history[history.length - 1] &&
-      history[history.length - 1].includes("/users/forgot_password")
-    );
-  };
-
-  // logics to determine the history of the user while ignoring in-page navigations
-  useEffect(() => {
-    // prevent adding to history for login-to-register navigation and vice versa
-    if (
-      (location.pathname.includes("login") &&
-        history[history.length - 1].includes("register")) ||
-      location.pathname.includes("register")
-    ) {
-      let newHistory = history;
-      newHistory[newHistory.length - 1] = location.pathname;
-      setLocalStorageHistory(JSON.stringify(newHistory));
-      setHistory(newHistory);
-      return;
-    }
-
-    // zero out the history whenever the user navigates to the home page
-    if (location.pathname === "/" || isNotFoundPage()) {
-      setLocalStorageHistory(JSON.stringify(["/"]));
-      setHistory(["/"]);
-      return;
-    }
-
-    // prevent adding to history for subroutings in settings page
-    if (url.length != 3 && url[1] === "users") return;
-
-    // add properly to history when login comes after plug page
-    if (
-      history.length == 3 &&
-      history[1].includes("plugs") &&
-      history[2].includes("login")
-    ) {
-      forceGoingBack();
-      return;
-    }
-
-    // allow going back from reset password page to login page
-    if (history[history.length - 1].includes("/users/forgot_password")) {
-      forceGoingBack();
-      return;
-    }
-
-    const historySet = new Set(history);
-    historySet.add(location.pathname);
-    const historyArray = Array.from(historySet);
-
-    setLocalStorageHistory(JSON.stringify(historyArray));
-    setHistory(historyArray);
-  }, [location.pathname]);
-
-  // logics to determine the title of the back arrow in the nav bar
-  useEffect(() => {
-    if (isHomeTitle() || isNotFoundPage()) setBackArrowTitle("Home");
-    else if (isPlugTitle()) {
-      let plugName = history[history.length - 2].split("/")[2];
-      setBackArrowTitle(
-        plugName.charAt(0).toUpperCase() + plugName.slice(1).replace("_", " ")
-      );
-    } else if (isLoginTitle()) setBackArrowTitle("Login");
-    else if (isSettingsTitle()) setBackArrowTitle("Settings");
-  }, [location, history]);
 
   const forceGoingBack = () => {
-    let newHistory = history.slice(0, -1);
-
-    setHistory(newHistory);
-    setLocalStorageHistory(JSON.stringify(newHistory));
+    // force cutting down the last element in the history
+    history.length > 1 && updateHistory(history.slice(0, -1));
   };
 
-  return { history, setHistory, backArrowTitle, forceGoingBack };
+  const updateHistory = (newHistory) => {
+    setLocalStorageHistory(JSON.stringify(newHistory));
+    setHistory(newHistory);
+    updateBackArrowTitle(newHistory);
+  };
+
+  // FIX forgot_password after login history
+  // FIX back arrow title after login from plug page
+  useEffect(() => {
+    if (location.pathname === "/") {
+      console.log(1);
+      // zero history when reaching home page
+      updateHistory(["/"]);
+    } else if (location.pathname === history[history.length - 1]) {
+      console.log(2);
+      // avoid duplicates
+      return;
+    } else if (
+      adminPageKeyword.includes(urlToArray(location.pathname).at(-1)) ||
+      settingsPageKeywords.includes(urlToArray(location.pathname).at(-1))
+    ) {
+      console.log(3);
+      // avoid adding sub routes to history
+      return;
+    } else if (isLoginPage || isRegisterPage) {
+      console.log(4);
+      // swap register in login and vice versa
+      let newHistory = history;
+      newHistory = newHistory.slice(0, -1);
+      newHistory.push(location.pathname);
+
+      updateHistory(newHistory);
+      return;
+    } else if (isNotFoundPage) {
+      console.log(5);
+      // force cutting down the two last element in the history
+      updateHistory(history.slice(0, -2));
+    } else {
+      console.log(6);
+      // push to history
+      let newHistory =
+        typeof history === "string" ? JSON.parse(history) : history;
+      newHistory.push(location.pathname);
+
+      updateHistory(newHistory);
+    }
+  }, [
+    location.pathname,
+    isForgotPasswordPage,
+    isNotFoundPage,
+    isLoginPage,
+    isRegisterPage,
+  ]);
+
+  return { history, backArrowTitle, forceGoingBack };
 };
 
 export default useHistory;

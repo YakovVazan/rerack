@@ -49,3 +49,7 @@ small {
     display: flex;
     justify-content: space-between;
 }
+
+#forgot-password-element {
+    justify-content: end;
+}

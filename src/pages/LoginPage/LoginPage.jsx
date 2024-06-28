@@ -96,7 +96,7 @@ const LoginPage = () => {
               />
               <label htmlFor="floatingPassword">Password</label>
               <Link to={"/users/forgot_password"}>
-                <small>Forgot password?</small>
+                <small id="forgot-password-element">Forgot password?</small>
               </Link>
             </div>
             <div id="auth-buttons">

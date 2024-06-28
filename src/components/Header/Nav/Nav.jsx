@@ -9,30 +9,37 @@ import "./Nav.css";
 const Header = () => {
   const location = useLocation();
   const { history, forceGoingBack, backArrowTitle } = useHistory();
-  const { isHomePage, isPlugPage, isSettingsPage, isAdminPage } =
-    useNavigation();
-  const firstQuery = location.pathname.split("/")[1];
-  const secondQuery = location.pathname.split("/")[2];
+  const {
+    isHomePage,
+    isPlugPage,
+    isSettingsPage,
+    isAdminPage,
+    isNotFoundPage,
+    authenticationKeywords,
+    urlToArray,
+  } = useNavigation();
+
+  const firstQuery = urlToArray(location.pathname)[0];
+  const secondQuery = urlToArray(location.pathname)[1];
   const rightHeader = /^\d+$/.test(secondQuery)
     ? "Settings"
-    : firstQuery === "users" &&
-      !["login", "register", "forgot_password"].includes(secondQuery)
+    : firstQuery === "users" && !authenticationKeywords.includes(secondQuery)
     ? "Dashboard"
     : "";
-
-  const trimHistory = () => {
-    if (history.length > 1) {
-      forceGoingBack();
-    }
-  };
 
   return (
     <nav>
       {/* nav bar left side */}
       <Link
-        to={history.length >= 2 ? history[history.length - 2] : "/"}
+        to={
+          history.length >= 2
+            ? isNotFoundPage
+              ? history[history.length - 3]
+              : history[history.length - 2]
+            : "/"
+        }
         id="logo-name"
-        onClick={trimHistory}
+        onClick={forceGoingBack}
       >
         <div id="nav-left">
           {isHomePage ? (
@@ -40,7 +47,7 @@ const Header = () => {
           ) : (
             <span id="nav-left-container">
               <SvgReturn />
-              <span>{backArrowTitle || "Home"}</span>
+              <span>{backArrowTitle}</span>
             </span>
           )}
         </div>
