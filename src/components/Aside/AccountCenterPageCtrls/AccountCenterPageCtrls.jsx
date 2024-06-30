@@ -30,9 +30,9 @@ const AccountCenterPageCtrls = () => {
     navigate(
       index === list.length - 1
         ? "/users"
-        : `/users/${location.pathname.split("/")[2]}/${
+        : `/users/${location.pathname.split("/")[2]}${
             index > 0
-              ? list[index].title.trim().toLowerCase().replace(/ /g, "_")
+              ? "/" + list[index].title.trim().toLowerCase().replace(/ /g, "_")
               : ""
           }`
     );
