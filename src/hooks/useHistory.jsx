@@ -45,10 +45,11 @@ const useHistory = () => {
     updateBackArrowTitle(newHistory);
   };
 
-  // FIX forgot_password after login history
   // FIX back arrow title after login from plug page
   useEffect(() => {
-    // console.log(isForgotPasswordPage);
+    // keep back arrow title up to date even after reloading
+    updateBackArrowTitle(history);
+
     if (location.pathname === "/") {
       console.log(1);
       // zero history when reaching home page
