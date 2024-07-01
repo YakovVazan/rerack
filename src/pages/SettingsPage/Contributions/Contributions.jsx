@@ -53,10 +53,20 @@ const Contributions = () => {
 
   const handleFormattedData = (item) => {
     setFilter(item);
+
     if (item === "All") {
       setFormattedData(contributedData);
+    } else if (item === "Add & Edit") {
+      setFormattedData(
+        contributedData.filter((x) => {
+          const actions = x.actions.map((y) => y.action);
+          return actions.includes("Add") && actions.includes("Edit");
+        })
+      );
     } else {
-      setFormattedData(contributedData.filter((x) => x.actions.includes(item)));
+      setFormattedData(
+        contributedData.filter((x) => x.actions.every((y) => y.action === item))
+      );
     }
   };
 
@@ -107,7 +117,7 @@ const Contributions = () => {
 
               {/* filter drop down */}
               <ul className="dropdown-menu">
-                {["All", "Add", "Edit"].map((item) => {
+                {["All", "Add", "Edit", "Add & Edit"].map((item) => {
                   return (
                     <li
                       key={item}
