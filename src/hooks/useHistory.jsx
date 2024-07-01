@@ -9,7 +9,11 @@ import {
 const useHistory = () => {
   const location = useLocation();
   const [backArrowTitle, setBackArrowTitle] = useState("");
-  const [history, setHistory] = useState(localStorageHistory);
+  const [history, setHistory] = useState(
+    typeof localStorageHistory === "string"
+      ? JSON.parse(localStorageHistory)
+      : localStorageHistory
+  );
   const {
     adminPageKeyword,
     settingsPageKeywords,
@@ -30,6 +34,7 @@ const useHistory = () => {
   };
 
   const forceGoingBack = () => {
+    console.log("forced going back");
     // force cutting down the last element in the history
     history.length > 1 && updateHistory(history.slice(0, -1));
   };
@@ -43,6 +48,7 @@ const useHistory = () => {
   // FIX forgot_password after login history
   // FIX back arrow title after login from plug page
   useEffect(() => {
+    // console.log(isForgotPasswordPage);
     if (location.pathname === "/") {
       console.log(1);
       // zero history when reaching home page
@@ -62,7 +68,11 @@ const useHistory = () => {
       console.log(4);
       // swap register in login and vice versa
       let newHistory = history;
-      newHistory = newHistory.slice(0, -1);
+
+      if (location.pathname !== "/users/forgot_password") {
+        newHistory = newHistory.slice(0, -1);
+      }
+
       newHistory.push(location.pathname);
 
       updateHistory(newHistory);
@@ -74,8 +84,7 @@ const useHistory = () => {
     } else {
       console.log(6);
       // push to history
-      let newHistory =
-        typeof history === "string" ? JSON.parse(history) : history;
+      let newHistory = history;
       newHistory.push(location.pathname);
 
       updateHistory(newHistory);

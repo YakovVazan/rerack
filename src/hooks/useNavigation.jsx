@@ -5,15 +5,15 @@ import Context from "../context/Context";
 const useNavigation = () => {
   const location = useLocation();
   const contextData = useContext(Context);
-  const [isHomePage, setIsHomePage] = useState(null);
-  const [isPlugPage, setIsPlugPage] = useState(null);
-  const [isLoginPage, setIsLoginPage] = useState(null);
-  const [isAdminPage, setIsAdminPage] = useState(null);
-  const [isRegisterPage, setIsRegisterPage] = useState(null);
-  const [isSettingsPage, setIsSettingsPage] = useState(null);
-  const [isNotFoundPage, setIsNotFoundPage] = useState(null);
-  const [isAdminPageSubRoute, setIsAdminPageSubRoute] = useState(null);
-  const [isForgotPasswordPage, setIsForgotPasswordPage] = useState(null);
+  const [isHomePage, setIsHomePage] = useState(false);
+  const [isPlugPage, setIsPlugPage] = useState(false);
+  const [isLoginPage, setIsLoginPage] = useState(false);
+  const [isAdminPage, setIsAdminPage] = useState(false);
+  const [isRegisterPage, setIsRegisterPage] = useState(false);
+  const [isSettingsPage, setIsSettingsPage] = useState(false);
+  const [isNotFoundPage, setIsNotFoundPage] = useState(false);
+  const [isAdminPageSubRoute, setIsAdminPageSubRoute] = useState(false);
+  const [isForgotPasswordPage, setIsForgotPasswordPage] = useState(false);
 
   const adminPageKeyword = ["activity", "download"];
   const authenticationKeywords = ["login", "register", "forgot_password"];
