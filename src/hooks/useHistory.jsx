@@ -33,9 +33,8 @@ const useHistory = () => {
     else setBackArrowTitle("Back");
   };
 
+  // force cutting down the last element in the history
   const forceGoingBack = () => {
-    console.log("forced going back");
-    // force cutting down the last element in the history
     history.length > 1 && updateHistory(history.slice(0, -1));
   };
 
@@ -50,23 +49,27 @@ const useHistory = () => {
     // keep back arrow title up to date even after reloading
     updateBackArrowTitle(history);
 
+    // delete duplications from history
+    if (
+      history.length > 2 &&
+      history[history.length - 1] === history[history.length - 2]
+    ) {
+      updateHistory(history.slice(0, -1));
+    }
+
     if (location.pathname === "/") {
-      console.log(1);
       // zero history when reaching home page
       updateHistory(["/"]);
     } else if (location.pathname === history[history.length - 1]) {
-      console.log(2);
       // avoid duplicates
       return;
     } else if (
       adminPageKeyword.includes(urlToArray(location.pathname).at(-1)) ||
       settingsPageKeywords.includes(urlToArray(location.pathname).at(-1))
     ) {
-      console.log(3);
       // avoid adding sub routes to history
       return;
     } else if (isLoginPage || isRegisterPage) {
-      console.log(4);
       // swap register in login and vice versa
       let newHistory = history;
 
@@ -79,11 +82,9 @@ const useHistory = () => {
       updateHistory(newHistory);
       return;
     } else if (isNotFoundPage) {
-      console.log(5);
       // force cutting down the two last element in the history
       updateHistory(history.slice(0, -2));
     } else {
-      console.log(6);
       // push to history
       let newHistory = history;
       newHistory.push(location.pathname);
