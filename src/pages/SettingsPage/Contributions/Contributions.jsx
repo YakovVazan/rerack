@@ -73,7 +73,7 @@ const Contributions = () => {
   useEffect(() => {
     fetchUserDistributions();
   }, []);
-  console.log(contributedData.length > 0 && formattedData.length <= 0);
+
   return (
     <>
       {loadingContributions ? (
@@ -119,7 +119,7 @@ const Contributions = () => {
 
                 {/* filter drop down */}
                 <ul className="dropdown-menu">
-                  {["All", "Add", "Edit", "Add & Edit"].map((item) => {
+                  {["All", "Add", "Edit", "Add & Edit", "Delete"].map((item) => {
                     return (
                       <li
                         key={item}

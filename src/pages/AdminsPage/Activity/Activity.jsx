@@ -105,7 +105,7 @@ const Activity = () => {
 
               {/* filter drop down */}
               <ul className="dropdown-menu">
-                {["All", "Add", "Edit"].map((item) => {
+                {["All", "Add", "Edit", "Delete"].map((item) => {
                   return (
                     <li
                       key={item}
