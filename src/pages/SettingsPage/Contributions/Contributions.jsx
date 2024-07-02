@@ -73,97 +73,110 @@ const Contributions = () => {
   useEffect(() => {
     fetchUserDistributions();
   }, []);
-
+  console.log(contributedData.length > 0 && formattedData.length <= 0);
   return (
     <>
       {loadingContributions ? (
         <Spinner />
       ) : (
         <div className="sub-route-wrapper">
-          {/* Empty list */}
-          <div
-            className={`${
-              contributedData.length > 0 && "d-none"
-            } empty-sub-route-list-wrapper`}
-          >
-            <div className="empty-sub-route-list">
-              <SvgPencil />
-              <span>
-                Plugs you contributed to (by adding or editing) will appear here
-              </span>
+          <div className="contributions-wrapper">
+            {/* Empty list */}
+            <div
+              className={`${
+                contributedData.length > 0 && "d-none"
+              } empty-sub-route-list-wrapper`}
+            >
+              <div className="empty-sub-route-list">
+                <SvgPencil />
+                <span>
+                  Plugs you contributed to (by adding or editing) will appear
+                  here
+                </span>
+              </div>
             </div>
-          </div>
 
-          {/* Not empty list */}
-          <div
-            className={`${
-              contributedData.length <= 0 && "d-none"
-            } sub-route-list-wrapper`}
-          >
-            <div className="total-and-filter">
-              {/* total */}
-              <h2 className="total-header">
-                <strong>Total: {formattedData.length}</strong>
-              </h2>
+            {/* Not empty list */}
+            <div
+              className={`${
+                contributedData.length <= 0 && "d-none"
+              } sub-route-list-wrapper`}
+            >
+              <div className="total-and-filter">
+                {/* total */}
+                <h2 className="total-header">
+                  <strong>Total: {formattedData.length}</strong>
+                </h2>
 
-              {/* filter icon */}
-              <div
-                className="btn btn-outline-secondary dropdown-toggle filter-icon"
-                data-bs-toggle="dropdown"
-                title="filter what you see"
-              >
-                <span className="inner-button-text-type">{filter}</span>
+                {/* filter icon */}
+                <div
+                  className="btn btn-outline-secondary dropdown-toggle filter-icon"
+                  data-bs-toggle="dropdown"
+                  title="filter what you see"
+                >
+                  <span className="inner-button-text-type">{filter}</span>
+                </div>
+
+                {/* filter drop down */}
+                <ul className="dropdown-menu">
+                  {["All", "Add", "Edit", "Add & Edit"].map((item) => {
+                    return (
+                      <li
+                        key={item}
+                        className="dropdown-item filter-dropdown-item"
+                        onClick={() => handleFormattedData(item)}
+                      >
+                        <span>
+                          {item.charAt(0).toUpperCase() + item.slice(1)}
+                        </span>
+                        {filter === item && (
+                          <span id="check-sign-container">
+                            <SvgCheck />
+                          </span>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
 
-              {/* filter drop down */}
-              <ul className="dropdown-menu">
-                {["All", "Add", "Edit", "Add & Edit"].map((item) => {
+              <hr />
+
+              <ul
+                className={`${
+                  formattedData.length <= 0 && "d-none"
+                } sub-route-list list-group`}
+              >
+                {formattedData.map((item, index) => {
+                  let actions = [];
+                  item.actions.forEach((action) => {
+                    !actions.includes(action) && actions.push(action.action);
+                  });
                   return (
-                    <li
-                      key={item}
-                      className="dropdown-item filter-dropdown-item"
-                      onClick={() => handleFormattedData(item)}
+                    <Link
+                      className="list-group-item sub-route-list-item"
+                      to={`/plugs/${item.id}`}
+                      key={index}
                     >
-                      <span>
-                        {item.charAt(0).toUpperCase() + item.slice(1)}
-                      </span>
-                      {filter === item && (
-                        <span id="check-sign-container">
-                          <SvgCheck />
-                        </span>
+                      <span>{item.name}</span>
+                      {actions.includes("Add") && actions.includes("Edit") ? (
+                        <span>Added and Edited</span>
+                      ) : actions.includes("Add") ? (
+                        <span>Added</span>
+                      ) : (
+                        actions.includes("Edit") && <span>Edited</span>
                       )}
-                    </li>
+                    </Link>
                   );
                 })}
               </ul>
             </div>
 
-            <hr />
-
-            <ul className="sub-route-list list-group">
-              {formattedData.map((item, index) => {
-                let actions = [];
-                item.actions.forEach((action) => {
-                  !actions.includes(action) && actions.push(action.action);
-                });
-                return (
-                  <Link
-                    className="list-group-item sub-route-list-item"
-                    to={`/plugs/${item.id}`}
-                    key={index}
-                  >
-                    <span>{item.name}</span>
-                    {actions.includes("Add") && actions.includes("Edit") ? (
-                      <span>Added and Edited</span>
-                    ) : actions.includes("Add") ? (
-                      <span>Added</span>
-                    ) : (
-                      actions.includes("Edit") && <span>Edited</span>
-                    )}
-                  </Link>
-                );
-              })}
-            </ul>
+            {contributedData.length > 0 && formattedData.length <= 0 && (
+              <div className="empty-sub-route-list-wrapper">
+                <div>Plugs you {filter.toLowerCase()} will show here</div>
+              </div>
+            )}
           </div>
         </div>
       )}
