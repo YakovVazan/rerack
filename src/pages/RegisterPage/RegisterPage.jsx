@@ -39,9 +39,17 @@ const RegisterPage = () => {
     if (!res.ok) {
       const response = JSON.parse(await res.text());
 
-      showToast(
-        response?.msg || response.error || "An error occurred while registering"
-      );
+      let errorMessages = response.msg;
+
+      for (let i = 0; i < errorMessages.length; i++) {
+        if (i < errorMessages.length - 2) {
+          errorMessages[i] += ", ";
+        } else if (i === errorMessages.length - 2) {
+          errorMessages[i] += " and ";
+        }
+      }
+
+      showToast(errorMessages || "An error occurred while registering");
 
       setLoadingUser(false);
     } else {
