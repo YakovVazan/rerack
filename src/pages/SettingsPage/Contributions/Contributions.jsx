@@ -119,7 +119,7 @@ const Contributions = () => {
 
                 {/* filter drop down */}
                 <ul className="dropdown-menu">
-                  {["All", "Add", "Edit", "Add & Edit", "Delete"].map((item) => {
+                  {["All", "Add", "Edit", "Add & Edit"].map((item) => {
                     return (
                       <li
                         key={item}
@@ -141,6 +141,12 @@ const Contributions = () => {
               </div>
 
               <hr />
+
+              {contributedData.length > 0 && formattedData.length <= 0 && (
+                <div className="empty-sub-route-list-wrapper">
+                  <div>Plugs you {filter.toLowerCase()} will show here</div>
+                </div>
+              )}
 
               <ul
                 className={`${
@@ -171,12 +177,6 @@ const Contributions = () => {
                 })}
               </ul>
             </div>
-
-            {contributedData.length > 0 && formattedData.length <= 0 && (
-              <div className="empty-sub-route-list-wrapper">
-                <div>Plugs you {filter.toLowerCase()} will show here</div>
-              </div>
-            )}
           </div>
         </div>
       )}
