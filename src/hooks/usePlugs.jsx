@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useFetchData from "./useFetchData";
+import Context from "../context/Context";
 
 const usePlugs = ({ plugId }) => {
+  const contextData = useContext(Context);
   const { data, isLoading } = useFetchData();
   const [plugsIds, setPlugsIds] = useState([]);
   const [plugsNames, setPlugsNames] = useState([]);
@@ -21,6 +23,10 @@ const usePlugs = ({ plugId }) => {
       });
     }
   }, [isLoading]);
+
+  useEffect(() => {
+    setCurrentPlug(contextData["currentPlug"]);
+  }, [contextData["currentPlug"]]);
 
   return { plugsNames, plugsIds, currentPlug };
 };

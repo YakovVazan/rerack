@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import useTypes from "../../../../hooks/useTypes";
 import Context from "../../../../context/Context";
@@ -14,11 +13,10 @@ import "../../../../styles/modals.css";
 
 const EditModal = () => {
   const showToast = useToasts();
-  const navigate = useNavigate();
   const { typesList } = useTypes();
   const contextData = useContext(Context);
   const { companiesList } = useCompanies();
-  const currentPlug = contextData["currentPlug"];
+  const { currentPlug, setCurrentPlug } = contextData;
   const [formIsFullyFilledUp, setFormIsFullyFilledUp] = useState(false);
   const [upToDatePlug, setUpToDatePlug] = useState({
     name: "",
@@ -99,7 +97,7 @@ const EditModal = () => {
       );
     } else {
       showToast(`${upToDatePlug.name} edited successfully`);
-      navigate("/");
+      setCurrentPlug(upToDatePlug);
     }
 
     handleReset();
