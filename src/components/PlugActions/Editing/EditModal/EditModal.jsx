@@ -8,17 +8,17 @@ import { consts } from "../../../../config/constants";
 import Spinner from "../../../Common/Spinner/Spinner";
 import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
 import useCompanies from "../../../../hooks/useCompanies";
+import useDragAndDrop from "../../../../hooks/useDragAndDrop";
 import { localStorageToken } from "../../../../config/localStorage";
 import "../../../../styles/modals.css";
 
 const EditModal = () => {
-  const navigate = useNavigate();
   const showToast = useToasts();
-  const contextData = useContext(Context);
-  const currentPlug = contextData["currentPlug"];
+  const navigate = useNavigate();
   const { typesList } = useTypes();
+  const contextData = useContext(Context);
   const { companiesList } = useCompanies();
-  const [hovering, setHovering] = useState(false);
+  const currentPlug = contextData["currentPlug"];
   const [formIsFullyFilledUp, setFormIsFullyFilledUp] = useState(false);
   const [upToDatePlug, setUpToDatePlug] = useState({
     name: "",
@@ -26,7 +26,19 @@ const EditModal = () => {
     type: "",
     src: "",
   });
+  const {
+    hovering,
+    isShaking,
+    emtpyImageBoxText,
+    isMobile,
+    handleDragOver,
+    handleDragLeave,
+    checkDroppedItem,
+    showInvalidImageMsg,
+    cancelHovering,
+  } = useDragAndDrop();
 
+  // initialize input tracking
   useEffect(() => {
     if (currentPlug) setUpToDatePlug(currentPlug);
   }, [currentPlug]);
@@ -47,57 +59,30 @@ const EditModal = () => {
     );
   }, [upToDatePlug]);
 
-  const isMobile = () => {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
-  };
-
-  function handleDragOver(e) {
-    e.preventDefault();
-    setHovering(true);
-  }
-
-  function handleDragLeave(e) {
-    // Check if the drag event is leaving the drop area itself, not its children
-    if (
-      !e.relatedTarget ||
-      e.relatedTarget === document ||
-      !e.currentTarget.contains(e.relatedTarget)
-    ) {
-      setHovering(false);
-    }
-  }
-
-  function handleDrop(e) {
-    e.preventDefault();
-
-    const urlRegex = /^https?:\/\/.+/i;
-    const droppedData = e.dataTransfer.getData("URL");
-    const imageUrl = droppedData.includes("imgurl=")
-      ? decodeURIComponent(droppedData.split("imgurl=")[1].split("&")[0])
-      : droppedData;
-
-    if (urlRegex.test(droppedData)) {
+  // catch and inspect the dropped element
+  const handleDrop = async (e) => {
+    const imageUrl = await checkDroppedItem(e);
+    if (imageUrl) {
       setUpToDatePlug({ ...upToDatePlug, src: imageUrl });
     } else {
-      console.log("Invalid dropped data:", droppedData);
+      setUpToDatePlug((prevPlug) => ({ ...prevPlug, src: "" }));
+      showInvalidImageMsg();
     }
+  };
 
-    setHovering(false);
-  }
-
-  function removeImage() {
+  // remove image when double clicked
+  const removeImage = () => {
     setUpToDatePlug({ ...upToDatePlug, src: "" });
-  }
+  };
 
-  function handleReset() {
+  // reset details
+  const handleReset = () => {
     setUpToDatePlug(currentPlug);
 
-    setHovering(false);
-  }
+    cancelHovering();
+  };
 
-  async function handleSubmit() {
+  const handleSubmit = async () => {
     const res = await fetch(`${consts.baseURL}/plugs/edit/${upToDatePlug.id}`, {
       method: "PUT",
       headers: {
@@ -118,7 +103,7 @@ const EditModal = () => {
     }
 
     handleReset();
-  }
+  };
 
   return (
     <div className="modal fade" id="editingModal" aria-hidden="true">
@@ -242,20 +227,24 @@ const EditModal = () => {
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
               >
-                <div id="image-area-body" className="card-body">
+                <div
+                  id="image-area-body"
+                  className="card-body"
+                  onDoubleClick={removeImage}
+                >
                   {hovering ? (
                     <div id="spinner-for-image">
                       <Spinner />
                     </div>
                   ) : upToDatePlug.src ? (
-                    <img
-                      id="new-plug-img"
-                      src={upToDatePlug.src}
-                      alt=""
-                      onDoubleClick={removeImage}
-                    />
+                    <img id="new-plug-img" src={upToDatePlug.src} alt="" />
                   ) : (
-                    <p className="card-text">Drag and drop an image URL</p>
+                    <p
+                      className={`card-text ${isShaking ? "shake-text" : ""}`}
+                      id="image-text"
+                    >
+                      {emtpyImageBoxText}
+                    </p>
                   )}
                 </div>
               </div>

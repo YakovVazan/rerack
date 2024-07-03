@@ -6,6 +6,7 @@ import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
 import { consts } from "../../../../config/constants";
 import Spinner from "../../../Common/Spinner/Spinner";
 import useCompanies from "../../../../hooks/useCompanies";
+import useDragAndDrop from "../../../../hooks/useDragAndDrop";
 import { localStorageToken } from "../../../../config/localStorage";
 import "../../../../styles/modals.css";
 
@@ -14,7 +15,6 @@ const AddModal = () => {
   const navigate = useNavigate();
   const { typesList } = useTypes();
   const { companiesList } = useCompanies();
-  const [hovering, setHovering] = useState(false);
   const [formIsFullyFilledUp, setFormIsFullyFilledUp] = useState(false);
   const [newPlug, setNewPlug] = useState({
     name: "",
@@ -22,6 +22,17 @@ const AddModal = () => {
     type: "",
     src: "",
   });
+  const {
+    hovering,
+    isShaking,
+    emtpyImageBoxText,
+    isMobile,
+    handleDragOver,
+    handleDragLeave,
+    checkDroppedItem,
+    showInvalidImageMsg,
+    cancelHovering,
+  } = useDragAndDrop();
 
   // control when submition button is enabled
   useEffect(() => {
@@ -30,51 +41,24 @@ const AddModal = () => {
     );
   }, [newPlug]);
 
-  const isMobile = () => {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
+  // catch and inspect the dropped element
+  const handleDrop = async (e) => {
+    const imageUrl = await checkDroppedItem(e);
+    if (imageUrl) {
+      setNewPlug((prevPlug) => ({ ...prevPlug, src: imageUrl }));
+    } else {
+      setNewPlug((prevPlug) => ({ ...prevPlug, src: "" }));
+      showInvalidImageMsg();
+    }
   };
 
-  function handleDragOver(e) {
-    e.preventDefault();
-    setHovering(true);
-  }
-
-  function handleDragLeave(e) {
-    // Check if the drag event is leaving the drop area itself, not its children
-    if (
-      !e.relatedTarget ||
-      e.relatedTarget === document ||
-      !e.currentTarget.contains(e.relatedTarget)
-    ) {
-      setHovering(false);
-    }
-  }
-
-  function handleDrop(e) {
-    e.preventDefault();
-
-    const urlRegex = /^https?:\/\/.+/i;
-    const droppedData = e.dataTransfer.getData("URL");
-    const imageUrl = droppedData.includes("imgurl=")
-      ? decodeURIComponent(droppedData.split("imgurl=")[1].split("&")[0])
-      : droppedData;
-
-    if (urlRegex.test(droppedData)) {
-      setNewPlug({ ...newPlug, src: imageUrl });
-    } else {
-      console.log("Invalid dropped data:", droppedData);
-    }
-
-    setHovering(false);
-  }
-
-  function removeImage() {
+  // remove image when double clicked
+  const removeImage = () => {
     setNewPlug({ ...newPlug, src: "" });
-  }
+  };
 
-  function handleReset() {
+  // reset details
+  const handleReset = () => {
     setNewPlug({
       name: "",
       company: "",
@@ -82,10 +66,11 @@ const AddModal = () => {
       src: "",
     });
 
-    setHovering(false);
-  }
+    cancelHovering();
+  };
 
-  async function handleSubmit() {
+  // submit the form
+  const handleSubmit = async () => {
     const res = await fetch(`${consts.baseURL}/plugs/add`, {
       method: "POST",
       headers: {
@@ -106,7 +91,7 @@ const AddModal = () => {
     }
 
     handleReset();
-  }
+  };
 
   return (
     <div className="modal fade" id="addingModal" aria-hidden="true">
@@ -225,20 +210,24 @@ const AddModal = () => {
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
               >
-                <div id="image-area-body" className="card-body">
+                <div
+                  id="image-area-body"
+                  className="card-body"
+                  onDoubleClick={removeImage}
+                >
                   {hovering ? (
                     <div id="spinner-for-image">
                       <Spinner />
                     </div>
                   ) : newPlug.src ? (
-                    <img
-                      id="new-plug-img"
-                      src={newPlug.src}
-                      alt=""
-                      onDoubleClick={removeImage}
-                    />
+                    <img id="new-plug-img" src={newPlug.src} alt="" />
                   ) : (
-                    <p className="card-text">Drag and drop an image URL</p>
+                    <p
+                      className={`card-text ${isShaking ? "shake-text" : ""}`}
+                      id="image-text"
+                    >
+                      {emtpyImageBoxText}
+                    </p>
                   )}
                 </div>
               </div>
