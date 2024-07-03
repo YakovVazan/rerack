@@ -6,3 +6,9 @@
     color: inherit;
     text-decoration: none;
 }
+
+.activity-item {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}

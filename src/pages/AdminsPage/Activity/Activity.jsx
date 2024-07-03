@@ -59,7 +59,7 @@ const Activity = () => {
     );
   };
 
-  // 
+  //
   useEffect(() => {
     setFormattedData(
       activities.flatMap((user) => {
@@ -135,25 +135,26 @@ const Activity = () => {
                     className="list-group-item sub-route-list-item activity-item"
                     key={index}
                   >
-                    <span>
-                      <Link
-                        className="activity-links"
-                        to={`/users/${activiy.userId}`}
-                      >
-                        {activiy.username}
-                      </Link>
+                    <span className="activity-item">
                       <span>
-                        {" " + activiy.action.action.toLowerCase() + "ed "}
+                        <Link
+                          className="activity-links"
+                          to={`/users/${activiy.userId}`}
+                        >
+                          {activiy.username}
+                        </Link>
+                        <span>
+                          {" " + activiy.action.action.toLowerCase() + "ed "}
+                        </span>
+                        <Link
+                          className="activity-links"
+                          to={`/plugs/${activiy["plugId"]}`}
+                        >
+                          {activiy["plugName"]}
+                        </Link>
                       </span>
-                      <Link
-                        className="activity-links"
-                        to={`/plugs/${activiy["plugId"]}`}
-                      >
-                        {activiy["plugName"]}
-                      </Link>
                       <span>
-                        {" at " +
-                          new Date(activiy.action.time).toLocaleString()}
+                        {new Date(activiy.action.time).toLocaleString()}
                       </span>
                     </span>
                   </li>
