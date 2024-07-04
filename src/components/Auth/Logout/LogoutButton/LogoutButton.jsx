@@ -1,29 +1,70 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Context from "../../../../context/Context";
 import useToasts from "../../../../hooks/useToasts";
+import { consts } from "../../../../config/constants";
 import SvgLogout from "../../../svg/SvgLogout/SvgLogout";
-import { localStorageLogout } from "../../../../config/localStorage";
+import {
+  localStorageId,
+  localStorageLogout,
+  localStorageToken,
+} from "../../../../config/localStorage";
 import "./LogoutButton.css";
 
 const LogoutButton = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
+  const location = useLocation();
   const contextData = useContext(Context);
 
-  function handleLogout() {
-    localStorageLogout();
-    contextData["setToken"]("");
+  useEffect(() => {
+    handleSessionExpired();
+  }, [location.pathname]);
+
+  // log out user if session expired
+  const handleSessionExpired = async () => {
+    try {
+      const response = await fetch(
+        `${consts.baseURL}/users/sessions/${localStorageId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorageToken}`,
+          },
+        }
+      );
+
+      const res = await response.json();
+
+      if (!response.ok) {
+        handleLogout();
+        showToast(
+          <span>
+            {res.msg}. Please <Link to={"users/login"}>relogin</Link>
+          </span>
+        );
+      }
+    } catch (error) {
+      showToast("Error checking user's session: ", error);
+    }
+  };
+
+  const handleClick = () => {
+    handleLogout();
     showToast("Logged out successfully");
     navigate("/");
-  }
+  };
+
+  const handleLogout = () => {
+    localStorageLogout();
+    contextData["setToken"]("");
+  };
 
   return (
     <>
       <span
         className="btn btn-outline-secondary"
         title="logout"
-        onClick={handleLogout}
+        onClick={handleClick}
         data-bs-dismiss="offcanvas"
       >
         <span id="logout-icon">
