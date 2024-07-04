@@ -29,7 +29,6 @@ const DescGenButton = ({ setDescription, setLoadingDescription }) => {
 
       const response = await res.json();
       if (!res.ok) {
-        console.log(res);
         contextData["token"] = "";
         forceAuth();
       } else {

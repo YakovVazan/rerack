@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useToasts from "../../../hooks/useToasts";
 import { consts } from "../../../config/constants";
+import SvgCheck from "../../../components/svg/SvgCheck/SvgCheck";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import {
   localStorageIsOwner,
   localStorageToken,
 } from "../../../config/localStorage";
 import "./Activity.css";
-import SvgCheck from "../../../components/svg/SvgCheck/SvgCheck";
 
 const Activity = () => {
   const showToast = useToasts();
@@ -28,8 +28,9 @@ const Activity = () => {
 
       if (!res.ok) {
         const errorResponse = await res.json();
-        showToast(errorResponse.msg || errorResponse.error);
-        console.log(errorResponse);
+        showToast(
+          errorResponse.msg || errorResponse.error || "Error fetching activity"
+        );
       } else {
         const data = await res.json();
         setActivities(data);
