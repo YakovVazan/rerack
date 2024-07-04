@@ -3,11 +3,14 @@ import Context from "../../context/Context.jsx";
 import usePlugs from "../../hooks/usePlugs.jsx";
 import useToasts from "../../hooks/useToasts.jsx";
 import { consts } from "../../config/constants.js";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, Link } from "react-router-dom";
 import useForceAuth from "../../hooks/useForceAuth.jsx";
 import useSavedPlugs from "../../hooks/useSavedPlugs.jsx";
 import useFavoritePlugs from "../../hooks/useFavoritePlugs.jsx";
-import { localStorageToken } from "../../config/localStorage.js";
+import {
+  localStorageId,
+  localStorageToken,
+} from "../../config/localStorage.js";
 import Spinner from "../../components/Common/Spinner/Spinner.jsx";
 import SvgHeart from "../../components/svg/SvgHeart/SvgHeart.jsx";
 import SvgTagAdd from "../../components/svg/SvgTagAdd/SvgTagAdd.jsx";
@@ -76,8 +79,8 @@ const PlugPage = () => {
         }),
       });
 
-      const msg = await res.json();
-      handleToast(msg["msg"]);
+      // show proper toast with link
+      handleToast(createProperToastContent(await res.json()));
 
       if (res.ok) {
         if (type === "favor") {
@@ -89,6 +92,40 @@ const PlugPage = () => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const createProperToastContent = (response) => {
+    // define links to wishlist and saved
+    const links = {
+      wishlist: `/users/${localStorageId}/wishlist`,
+      owned_plugins: `/users/${localStorageId}/owned_plugins`,
+    };
+
+    // define messages for successful selections
+    const messages = {
+      favored: (
+        <span>
+          plug added to your <Link to={links.wishlist}>wishlist</Link>
+        </span>
+      ),
+      unfavored: (
+        <span>
+          plug removed from your <Link to={links.wishlist}>wishlist</Link>
+        </span>
+      ),
+      saved: (
+        <span>
+          plug marked as <Link to={links.owned_plugins}>saved</Link>
+        </span>
+      ),
+      unsaved: (
+        <span>
+          plug unmarked as <Link to={links.owned_plugins}>saved</Link>
+        </span>
+      ),
+    };
+
+    return messages[response["msg"]] || "";
   };
 
   return (

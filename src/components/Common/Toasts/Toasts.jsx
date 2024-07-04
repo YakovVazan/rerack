@@ -11,7 +11,7 @@ const Toast = ({ toastMessage, toastVisibility, setToastVisibility }) => {
 
       toastContainer.classList.remove("hidden-toast");
       toastElement.classList.add("slide-hide");
-      
+
       timeoutId = setTimeout(() => {
         toastElement.classList.remove("slide-hide");
         toastElement.classList.add("slide-show");
