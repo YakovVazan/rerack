@@ -103,16 +103,14 @@ const Wishlist = () => {
             </h2>
 
             <hr />
-            
+
             <div className="sub-route-list-wrapper">
               <ul className="sub-route-list list-group">
                 {favoritePlugins.map((item, index) => {
                   return (
                     <Link
                       className="list-group-item sub-route-list-item"
-                      to={`/plugs/${item.name
-                        .replace(/ /g, "_")
-                        .toLowerCase()}`}
+                      to={`/plugs/${item.id}`}
                       key={index}
                     >
                       <span>{item.name}</span>
