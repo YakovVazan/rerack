@@ -154,7 +154,7 @@ const Activity = () => {
                           {activiy["plugName"]}
                         </Link>
                       </span>
-                      <span>
+                      <span className="time-container-for-activity-page">
                         {new Date(activiy.action.time).toLocaleString()}
                       </span>
                     </span>

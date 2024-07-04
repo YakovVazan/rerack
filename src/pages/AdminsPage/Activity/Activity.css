@@ -12,3 +12,10 @@
     width: 100%;
     justify-content: space-between;
 }
+
+.time-container-for-activity-page {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    align-items: center;
+}
