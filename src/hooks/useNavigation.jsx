@@ -12,7 +12,6 @@ const useNavigation = () => {
   const [isRegisterPage, setIsRegisterPage] = useState(false);
   const [isSettingsPage, setIsSettingsPage] = useState(false);
   const [isNotFoundPage, setIsNotFoundPage] = useState(false);
-  const [isAdminPageSubRoute, setIsAdminPageSubRoute] = useState(false);
   const [isForgotPasswordPage, setIsForgotPasswordPage] = useState(false);
 
   const adminPageKeyword = ["activity", "download"];
@@ -43,12 +42,6 @@ const useNavigation = () => {
       (url.length === 1 && url[0] === "users") ||
         (url.length === 2 && adminPageKeyword.includes(url[1]))
     );
-    setIsAdminPageSubRoute(
-      isAdminPage &&
-        url.length === 2 &&
-        url[0] === "users" &&
-        adminPageKeyword.includes(url[1])
-    );
     setIsNotFoundPage(url.length === 1 && url[0] === "not-found");
   }, [location.pathname]);
 
@@ -61,7 +54,7 @@ const useNavigation = () => {
     } else if (isAdminPage) {
       contextData["setAdminPageSubRoute"](adminPageKeyword.indexOf(url[1]) + 1);
     }
-  }, [isSettingsPage, isAdminPage, isAdminPageSubRoute, location.pathname]);
+  }, [isSettingsPage, isAdminPage, location.pathname]);
 
   return {
     adminPageKeyword,
@@ -75,7 +68,6 @@ const useNavigation = () => {
     isSettingsPage,
     isAdminPage,
     isNotFoundPage,
-    isAdminPageSubRoute,
     urlToArray,
   };
 };

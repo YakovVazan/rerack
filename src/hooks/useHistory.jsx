@@ -18,6 +18,8 @@ const useHistory = () => {
     adminPageKeyword,
     settingsPageKeywords,
     isNotFoundPage,
+    isAdminPage,
+    isSettingsPage,
     isLoginPage,
     isRegisterPage,
     isForgotPasswordPage,
@@ -44,7 +46,6 @@ const useHistory = () => {
     updateBackArrowTitle(newHistory);
   };
 
-  // FIX back arrow title after login from plug page
   useEffect(() => {
     // keep back arrow title up to date even after reloading
     updateBackArrowTitle(history);
@@ -67,8 +68,16 @@ const useHistory = () => {
       adminPageKeyword.includes(urlToArray(location.pathname).at(-1)) ||
       settingsPageKeywords.includes(urlToArray(location.pathname).at(-1))
     ) {
-      // avoid adding sub routes to history
-      return;
+      if (isSettingsPage || isAdminPage) {
+        // avoid adding sub routes to history
+        return;
+      } else {
+        // add main route to history in case of navigation from outside
+        let newHistory = history;
+        newHistory.push(location.pathname.split("/").slice(0, -1).join("/"));
+
+        updateHistory(newHistory);
+      }
     } else if (isLoginPage || isRegisterPage) {
       // swap register in login and vice versa
       let newHistory = history;
@@ -97,6 +106,8 @@ const useHistory = () => {
     isNotFoundPage,
     isLoginPage,
     isRegisterPage,
+    isAdminPage,
+    isSettingsPage,
   ]);
 
   return { history, backArrowTitle, forceGoingBack };
