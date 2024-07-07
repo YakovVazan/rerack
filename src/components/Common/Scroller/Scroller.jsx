@@ -1,3 +1,9 @@
+/**
+* In order to use this scroller, you need to place it right next to the scrollable element.
+* Then, you should pass it the common parent's selector as props with apropriate prefix for id and class.
+* The props name is 'parentContainerSelector'.
+**/
+
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useFetchData from "../../../hooks/useFetchData";

@@ -7,7 +7,7 @@ const useCompanies = () => {
 
   useEffect(() => {
     if (!isLoading)
-      setCompaniesList([...new Set(data.map((plug) => plug.company))]);
+      setCompaniesList([...new Set(data.map((plug) => plug.company))].sort());
   }, [isLoading]);
 
   return { companiesList };

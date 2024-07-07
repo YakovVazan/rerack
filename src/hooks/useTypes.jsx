@@ -6,7 +6,8 @@ const useTypes = () => {
   const [typesList, setTypesList] = useState([]);
 
   useEffect(() => {
-    if (!isLoading) setTypesList([...new Set(data.map((plug) => plug.type))]);
+    if (!isLoading)
+      setTypesList([...new Set(data.map((plug) => plug.type))].sort());
   }, [isLoading]);
 
   return { typesList };
