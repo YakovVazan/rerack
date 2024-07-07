@@ -18,6 +18,29 @@ const useNavigation = () => {
   const authenticationKeywords = ["login", "register", "forgot_password"];
   const settingsPageKeywords = ["contributions", "owned_plugins", "wishlist"];
 
+  const isSettingsURL = (url) => {
+    const urlArray = urlToArray(url);
+
+    return (
+      (urlArray.length == 2 &&
+        urlArray[0] === "users" &&
+        !isNaN(+urlArray[1])) ||
+      (urlArray.length == 3 &&
+        urlArray[0] === "users" &&
+        !isNaN(+urlArray[1]) &&
+        settingsPageKeywords.includes(urlArray[2]))
+    );
+  };
+
+  const isAdminURL = (url) => {
+    const urlArray = urlToArray(url);
+
+    return (
+      (urlArray.length === 1 && urlArray[0] === "users") ||
+      (urlArray.length === 2 && adminPageKeyword.includes(urlArray[1]))
+    );
+  };
+
   const urlToArray = (url) => {
     return url.split("/").filter((segment) => segment !== "");
   };
@@ -68,6 +91,8 @@ const useNavigation = () => {
     isSettingsPage,
     isAdminPage,
     isNotFoundPage,
+    isSettingsURL,
+    isAdminURL,
     urlToArray,
   };
 };

@@ -23,6 +23,8 @@ const useHistory = () => {
     isLoginPage,
     isRegisterPage,
     isForgotPasswordPage,
+    isSettingsURL,
+    isAdminURL,
     urlToArray,
   } = useNavigation();
 
@@ -49,6 +51,14 @@ const useHistory = () => {
   useEffect(() => {
     // keep back arrow title up to date even after reloading
     updateBackArrowTitle(history);
+
+    // prevent adding sub routes of admin and settings pages after reload
+    if (
+      (isSettingsURL(location.pathname) && isSettingsURL(history.at(-1))) ||
+      (isAdminURL(location.pathname) && isAdminURL(history.at(-1)))
+    ) {
+      return;
+    }
 
     // delete duplications from history
     if (
