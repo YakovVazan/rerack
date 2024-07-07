@@ -1,3 +1,7 @@
+#contributions-with-scroller-container {
+    overflow-y: auto;
+}
+
 .activity-item {
     cursor: default;
 }

@@ -1,10 +1,11 @@
 import { Fragment, useContext, useEffect } from "react";
 import ListItem from "./ListItem/ListItem.jsx";
-import ListHeader from "./ListHeader/ListHeader.jsx";
-import Spinner from "../../Common/Spinner/Spinner.jsx";
 import Context from "../../../context/Context.jsx";
-import useFetchData from "../../../hooks/useFetchData.jsx";
+import ListHeader from "./ListHeader/ListHeader.jsx";
 import { consts } from "../../../config/constants.js";
+import Spinner from "../../Common/Spinner/Spinner.jsx";
+import useFetchData from "../../../hooks/useFetchData.jsx";
+import Scroller from "../../Common/Scroller/Scroller.jsx";
 import "./List.css";
 
 const List = () => {
@@ -90,6 +91,9 @@ const List = () => {
                 return <ListItem plug={plug} index={index} key={index} />;
               }
             })}
+            
+            {/* scroller injection */}
+            <Scroller parentContainerSelector={"#main-container"}/>
           </ul>
           <span id="none-found-message">
             Nothing to see here, try another search query.

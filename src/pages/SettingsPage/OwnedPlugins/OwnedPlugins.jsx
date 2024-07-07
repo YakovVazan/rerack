@@ -5,7 +5,9 @@ import { consts } from "../../../config/constants";
 import useSavedPlugs from "../../../hooks/useSavedPlugs";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import SvgTagAdd from "../../../components/svg/SvgTagAdd/SvgTagAdd";
+import Scroller from "../../../components/Common/Scroller/Scroller";
 import SvgTagRemove from "../../../components/svg/SvgTagRemove/SvgTagRemove";
+import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
 import {
   localStorageId,
   localStorageToken,
@@ -95,7 +97,7 @@ const OwnedPlugins = () => {
               </strong>
             </h2>
 
-            <hr />
+            <ColoredDivider />
 
             <div className="sub-route-list-wrapper">
               <ul className="sub-route-list list-group">
@@ -119,6 +121,11 @@ const OwnedPlugins = () => {
                     );
                   })}
               </ul>
+
+              {/* scroller injection */}
+              <Scroller
+                parentContainerSelector={".sub-route-list.list-group"}
+              />
             </div>
           </div>
         </div>

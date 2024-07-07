@@ -9,7 +9,7 @@
     z-index: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth !important;
 }
 
 @media screen and (min-width: 769px) {

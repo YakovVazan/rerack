@@ -4,6 +4,8 @@ import useToasts from "../../../hooks/useToasts";
 import { consts } from "../../../config/constants";
 import SvgCheck from "../../../components/svg/SvgCheck/SvgCheck";
 import Spinner from "../../../components/Common/Spinner/Spinner";
+import Scroller from "../../../components/Common/Scroller/Scroller";
+import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
 import {
   localStorageIsOwner,
   localStorageToken,
@@ -127,41 +129,49 @@ const Activity = () => {
               </ul>
             </div>
 
-            <hr />
+            <ColoredDivider />
 
-            <ul className="sub-route-list list-group">
-              {formattedData.map((activiy, index) => {
-                return (
-                  <li
-                    className="list-group-item sub-route-list-item activity-item"
-                    key={index}
-                  >
-                    <span className="activity-item">
-                      <span>
-                        <Link
-                          className="activity-links"
-                          to={`/users/${activiy.userId}`}
-                        >
-                          {activiy.username}
-                        </Link>
+            <span id="contributions-with-scroller-container">
+              <ul className="sub-route-list list-group">
+                {formattedData.map((activiy, index) => {
+                  return (
+                    <li
+                      className="list-group-item sub-route-list-item activity-item"
+                      key={index}
+                    >
+                      <span className="activity-item">
                         <span>
-                          {" " + activiy.action.action.toLowerCase() + "ed "}
+                          <Link
+                            className="activity-links"
+                            to={`/users/${activiy.userId}`}
+                          >
+                            {activiy.username}
+                          </Link>
+                          <span>
+                            {" " + activiy.action.action.toLowerCase() + "ed "}
+                          </span>
+                          <Link
+                            className="activity-links"
+                            to={`/plugs/${activiy["plugId"]}`}
+                          >
+                            {activiy["plugName"]}
+                          </Link>
                         </span>
-                        <Link
-                          className="activity-links"
-                          to={`/plugs/${activiy["plugId"]}`}
-                        >
-                          {activiy["plugName"]}
-                        </Link>
+                        <span className="time-container-for-activity-page">
+                          {new Date(activiy.action.time).toLocaleString()}
+                        </span>
                       </span>
-                      <span className="time-container-for-activity-page">
-                        {new Date(activiy.action.time).toLocaleString()}
-                      </span>
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
+                    </li>
+                  );
+                })}
+              </ul>
+              {/* scroller injection */}
+              <Scroller
+                parentContainerSelector={
+                  "#contributions-with-scroller-container"
+                }
+              />
+            </span>
           </div>
         </div>
       )}

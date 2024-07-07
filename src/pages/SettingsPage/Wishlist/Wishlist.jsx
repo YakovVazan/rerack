@@ -9,7 +9,9 @@ import {
 } from "../../../config/localStorage";
 import SvgHeart from "../../../components/svg/SvgHeart/SvgHeart";
 import Spinner from "../../../components/Common/Spinner/Spinner";
+import Scroller from "../../../components/Common/Scroller/Scroller";
 import SvgHeartBroken from "../../../components/svg/SvgHeartBroken/SvgHeartBroken";
+import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
 import "../SubRoutes.css";
 
 const Wishlist = () => {
@@ -102,7 +104,7 @@ const Wishlist = () => {
               </strong>
             </h2>
 
-            <hr />
+            <ColoredDivider />
 
             <div className="sub-route-list-wrapper">
               <ul className="sub-route-list list-group">
@@ -125,6 +127,9 @@ const Wishlist = () => {
                   );
                 })}
               </ul>
+
+              {/* Scroller injections */}
+              <Scroller parentContainerSelector={".sub-route-list"} />
             </div>
           </div>
         </div>

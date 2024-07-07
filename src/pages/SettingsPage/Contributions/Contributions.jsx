@@ -5,6 +5,8 @@ import { consts } from "../../../config/constants";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import SvgCheck from "../../../components/svg/SvgCheck/SvgCheck";
 import SvgPencil from "../../../components/svg/SvgPencil/SvgPencil";
+import Scroller from "../../../components/Common/Scroller/Scroller";
+import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
 import {
   localStorageId,
   localStorageToken,
@@ -140,7 +142,7 @@ const Contributions = () => {
                 </ul>
               </div>
 
-              <hr />
+              <ColoredDivider />
 
               {contributedData.length > 0 && formattedData.length <= 0 && (
                 <div className="empty-sub-route-list-wrapper">
@@ -176,6 +178,11 @@ const Contributions = () => {
                   );
                 })}
               </ul>
+              
+              {/* scroller injection */}
+              <Scroller
+                parentContainerSelector={".sub-route-list.list-group"}
+              />
             </div>
           </div>
         </div>

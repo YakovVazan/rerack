@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import "./PrivacyPolicy.css";
+import Scroller from "../../Common/Scroller/Scroller";
 import SvgWarning from "../../svg/SvgWarning/SvgWarning";
+import "./PrivacyPolicy.css";
 
 const PrivacyPolicy = () => {
   useEffect(() => {
@@ -117,8 +118,12 @@ const PrivacyPolicy = () => {
           us:
         </p>
         <ul>
-          <li>By email: rerack.plugs@gmail.com</li>
+          <li>
+            <a href="mailto:rerack.plugs@gmail.com">By email</a>
+          </li>
         </ul>
+        {/* scroller injection */}
+        <Scroller parentContainerSelector={"#main-container"}/>
       </div>
     </>
   );

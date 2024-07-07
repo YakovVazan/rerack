@@ -1,7 +1,12 @@
 .table-wrapper {
     padding: 1em;
     width: 100%;
-    height: fit-content;
+    /* height: fit-content; */
+    overflow: hidden;
+}
+
+#table-container {
+    overflow-y: auto;
 }
 
 #admins-table {

@@ -1,0 +1,8 @@
+@import '../../../styles/themes.css';
+
+#colored-divider {
+    margin: 1rem 0;
+    color: inherit;
+    opacity: .20;
+    border-bottom: 1px solid var(--light-color-2);
+}

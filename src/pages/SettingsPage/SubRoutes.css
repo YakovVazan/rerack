@@ -2,6 +2,7 @@
     padding: 1em;
     display: flex;
     width: 100%;
+    overflow: hidden;
 }
 
 .contributions-wrapper {
@@ -60,10 +61,10 @@
     display: flex;
     flex-direction: column;
     height: -webkit-fill-available;
+    overflow: hidden;
 }
 
 .sub-route-list {
-    padding-bottom: 1em;
     flex: 1;
     overflow-y: auto;
 }
