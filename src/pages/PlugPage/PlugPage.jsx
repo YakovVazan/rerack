@@ -44,7 +44,7 @@ const PlugPage = () => {
     const data = await getAllFavorites();
 
     data.forEach((item) => {
-      if (item["id"] && item["id"] == currentPlug["id"]) {
+      if (item && item?.id == currentPlug["id"]) {
         setAlreadyFavorited(true);
         return;
       }
@@ -55,7 +55,7 @@ const PlugPage = () => {
     const data = await getAllSaved();
 
     data.forEach((item) => {
-      if (item && item["id"] && item["id"] == currentPlug["id"]) {
+      if (item && item?.id == currentPlug["id"]) {
         setAlreadySaved(true);
         return;
       }
@@ -145,22 +145,40 @@ const PlugPage = () => {
               className="card-img-top"
               alt={currentPlug["name"]}
             />
-            <div className="card-body plug-tags">
-              <div
-                className="btn btn-outline-danger"
-                title={
-                  alreadyFavorited ? "remove from wishlist" : "add to wishlist"
-                }
-                onClick={() => handleSelections("favor", currentPlug["id"])}
-              >
-                {!alreadyFavorited ? <SvgHeart /> : <SvgHeartBroken />}
+            <div className="card-body plug-buttons">
+              <div className="plug-price">
+                <a
+                  className={`btn btn-outline-primary price-link ${
+                    (currentPlug["price"] == "" ||
+                      currentPlug["price"] == -1) &&
+                    "d-none"
+                  }`}
+                  title="get it at the official website"
+                  href={currentPlug["link"]}
+                  target="blank"
+                >
+                  <span>{currentPlug["price"]}</span>
+                </a>
               </div>
-              <div
-                className="btn btn-outline-success"
-                title={alreadySaved ? "unmark as owned" : "mark as owned"}
-                onClick={() => handleSelections("save", currentPlug["id"])}
-              >
-                {!alreadySaved ? <SvgTagAdd /> : <SvgTagRemove />}
+              <div className="plug-tags">
+                <div
+                  className="btn btn-outline-danger"
+                  title={
+                    alreadyFavorited
+                      ? "remove from wishlist"
+                      : "add to wishlist"
+                  }
+                  onClick={() => handleSelections("favor", currentPlug["id"])}
+                >
+                  {!alreadyFavorited ? <SvgHeart /> : <SvgHeartBroken />}
+                </div>
+                <div
+                  className="btn btn-outline-success"
+                  title={alreadySaved ? "unmark as owned" : "mark as owned"}
+                  onClick={() => handleSelections("save", currentPlug["id"])}
+                >
+                  {!alreadySaved ? <SvgTagAdd /> : <SvgTagRemove />}
+                </div>
               </div>
             </div>
           </div>

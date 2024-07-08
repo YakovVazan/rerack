@@ -44,7 +44,7 @@ const LogoutButton = () => {
         );
       }
     } catch (error) {
-      showToast("Error checking user's session: ", error);
+      showToast("Server's down: ", error);
     }
   };
 
