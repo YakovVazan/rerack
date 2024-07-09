@@ -9,22 +9,24 @@ import Scroller from "../../Common/Scroller/Scroller.jsx";
 import "./List.css";
 
 const List = () => {
-  const contextData = useContext(Context);
-  const orderedData = contextData["orderedData"];
-  const searchBoxValue = contextData["searchBoxValue"];
-  const typeFilterValue = contextData["typeFilterValue"];
-  const companyFilterValue = contextData["companyFilterValue"];
-  const view = contextData["view"];
   const { isLoading } = useFetchData();
+  const {
+    orderedData,
+    searchBoxValue,
+    typeFilterValue,
+    companyFilterValue,
+    view,
+    orderBy,
+  } = useContext(Context);
   const shouldWait = isLoading || orderedData.length === 0;
 
   const initials = Array.from(
     new Set(
       orderedData.map((piece) => {
-        if (contextData["orderBy"] === "name") {
+        if (orderBy === "name") {
           return piece["name"][0];
         } else {
-          return piece[contextData["orderBy"]];
+          return piece[orderBy];
         }
       })
     )
@@ -32,6 +34,17 @@ const List = () => {
 
   let currentInitial = initials[0];
   let previousInitial = currentInitial;
+
+  const isSubHeaderCompatible = (plug) => {
+    return (
+      searchBoxValue === "" &&
+      companyFilterValue === consts.companyDropDownInitialValue &&
+      typeFilterValue === consts.typeDropDownInitialValue &&
+      view === "list" &&
+      ((orderBy === "name" && plug["name"][0] === currentInitial) ||
+        plug[orderBy] === currentInitial)
+    );
+  };
 
   // control 'no plugs found' message
   useEffect(() => {
@@ -64,18 +77,7 @@ const List = () => {
             className={view === "list" ? "list-group" : "gallery-ul"}
           >
             {orderedData.map((plug, index) => {
-              const itsHeaderCompliance =
-                contextData["searchBoxValue"] === "" &&
-                contextData["companyFilterValue"] ===
-                  consts.companyDropDownInitialValue &&
-                contextData["typeFilterValue"] ===
-                  consts.typeDropDownInitialValue &&
-                view === "list" &&
-                ((contextData["orderBy"] === "name" &&
-                  plug["name"][0] === currentInitial) ||
-                  plug[contextData["orderBy"]] === currentInitial);
-
-              if (itsHeaderCompliance) {
+              if (isSubHeaderCompatible(plug)) {
                 // pick headers from initials array
                 initials.shift();
                 previousInitial = currentInitial;
@@ -91,9 +93,9 @@ const List = () => {
                 return <ListItem plug={plug} index={index} key={index} />;
               }
             })}
-            
+
             {/* scroller injection */}
-            <Scroller parentContainerSelector={"#main-container"}/>
+            <Scroller parentContainerSelector={"#main-container"} />
           </ul>
           <span id="none-found-message">
             Nothing to see here, try another search query.
