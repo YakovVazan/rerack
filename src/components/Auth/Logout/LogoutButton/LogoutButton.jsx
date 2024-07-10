@@ -44,7 +44,8 @@ const LogoutButton = () => {
         );
       }
     } catch (error) {
-      showToast("Server's down: ", error);
+      console.error(error);
+      showToast("Server's down");
     }
   };
 

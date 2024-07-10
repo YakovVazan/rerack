@@ -6,16 +6,20 @@ const useSavedPlugs = () => {
   const { id } = useParams();
 
   const getAllSaved = async () => {
-    const res = await fetch(
-      `${consts.baseURL}/users/${id || localStorageId}/saved`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorageToken}`,
-        },
-      }
-    );
+    try {
+      const res = await fetch(
+        `${consts.baseURL}/users/${id || localStorageId}/saved`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorageToken}`,
+          },
+        }
+      );
 
-    return (await res.json()) || [];
+      return (await res.json()) || [];
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return getAllSaved;

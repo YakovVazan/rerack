@@ -14,6 +14,12 @@
     justify-content: space-between;
 }
 
+.info-container {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 #lower-plug-aside {
     height: 65%;
     padding: 0.5em;

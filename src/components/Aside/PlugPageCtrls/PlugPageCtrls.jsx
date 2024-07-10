@@ -24,15 +24,15 @@ const PlugPageCtrls = ({ currentPlug }) => {
     <>
       <div id="upper-plug-aside">
         <div>
-          <div>
+          <div className="info-container">
             <u>Name:</u>
             {" " + content()[0]}
           </div>
-          <div>
+          <div className="info-container">
             <u>Type:</u>
             {" " + content()[1]}
           </div>
-          <div>
+          <div className="info-container">
             <u>Company:</u>
             {" " + content()[2]}
           </div>
