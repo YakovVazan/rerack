@@ -36,6 +36,7 @@ const Activity = () => {
       } else {
         const data = await res.json();
         setActivities(data);
+        setFormattedData(data);
       }
     } catch (error) {
       console.error(error);
@@ -44,38 +45,15 @@ const Activity = () => {
     }
   };
 
-  // update contents of fomatted data's array
+  // update contents of formatted data's array
   const handleFormattedData = (item) => {
     setFilter(item);
     setFormattedData(
-      activities.flatMap((user) =>
-        user.actions
-          .filter((action) => item === "All" || action.action === item)
-          .map((action) => ({
-            userId: user.userId,
-            username: user.username,
-            plugId: user.plugId,
-            plugName: user.plugName,
-            action: action,
-          }))
-      )
-    );
-  };
-
-  //
-  useEffect(() => {
-    setFormattedData(
-      activities.flatMap((user) => {
-        return user.actions.map((action) => ({
-          userId: user.userId,
-          username: user.username,
-          plugId: user.plugId,
-          plugName: user.plugName,
-          action: action,
-        }));
+      activities.filter((activity) => {
+        return item === "All" || activity.type === item;
       })
     );
-  }, [activities]);
+  };
 
   // block unauthorized users
   useEffect(() => {
@@ -148,7 +126,7 @@ const Activity = () => {
                             {activiy.username}
                           </Link>
                           <span>
-                            {" " + activiy.action.action.toLowerCase() + "ed "}
+                            {" " + activiy.type.toLowerCase() + "ed "}
                           </span>
                           <Link
                             className="activity-links"
@@ -158,7 +136,7 @@ const Activity = () => {
                           </Link>
                         </span>
                         <span className="time-container-for-activity-page">
-                          {new Date(activiy.action.time).toLocaleString()}
+                          {new Date(activiy.time).toLocaleString()}
                         </span>
                       </span>
                     </li>

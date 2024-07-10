@@ -43,8 +43,7 @@ const Contributions = () => {
           : navigate(`/users/login`);
       } else {
         const data = await res.json();
-        setFormattedData(data[0]["contributions"] || []);
-        setContributedData(data[0]["contributions"] || []);
+        setContributedData(data || []);
       }
     } catch (error) {
       console.error(error);
@@ -53,24 +52,54 @@ const Contributions = () => {
     }
   };
 
-  const handleFormattedData = (item) => {
-    setFilter(item);
+  const handleFormattedData = (filterValue) => {
+    setFilter(filterValue);
 
-    if (item === "All") {
-      setFormattedData(contributedData);
-    } else if (item === "Add & Edit") {
-      setFormattedData(
-        contributedData.filter((x) => {
-          const actions = x.actions.map((y) => y.action);
-          return actions.includes("Add") && actions.includes("Edit");
-        })
-      );
-    } else {
-      setFormattedData(
-        contributedData.filter((x) => x.actions.every((y) => y.action === item))
-      );
+    let filteredContributions = [];
+
+    // modify the type field if added and edited
+    for (let i = 0; i < contributedData.length; i++) {
+      if (filterValue === "Add & Edit") {
+        for (let j = i; j < contributedData.length; j++) {
+          if (
+            contributedData[i].plugId === contributedData[j].plugId &&
+            contributedData[i].type !== contributedData[j].type
+          ) {
+            filteredContributions.push({
+              ...contributedData[i],
+              type: "Added & Edtied",
+            });
+            break;
+          }
+        }
+      } else if (
+        filterValue === "All" ||
+        filterValue === contributedData[i].type
+      ) {
+        let plugWasAdded = false;
+        for (let j = 0; j < filteredContributions.length; j++) {
+          // avoid duplicates
+          if (filteredContributions[j].plugId === contributedData[i].plugId) {
+            filteredContributions[j].type = "Added & Edited";
+            plugWasAdded = true;
+            break;
+          }
+        }
+        // push only if no duplicates are found
+        if (!plugWasAdded)
+          filteredContributions.push({
+            ...contributedData[i],
+            type: contributedData[i]["type"] + "ed",
+          });
+      }
     }
+
+    setFormattedData(filteredContributions);
   };
+
+  useEffect(() => {
+    handleFormattedData("All");
+  }, [contributedData]);
 
   useEffect(() => {
     fetchUserDistributions();
@@ -156,29 +185,19 @@ const Contributions = () => {
                 } sub-route-list list-group`}
               >
                 {formattedData.map((item, index) => {
-                  let actions = [];
-                  item.actions.forEach((action) => {
-                    !actions.includes(action) && actions.push(action.action);
-                  });
                   return (
                     <Link
                       className="list-group-item sub-route-list-item"
-                      to={`/plugs/${item.id}`}
+                      to={`/plugs/${item.plugId}`}
                       key={index}
                     >
-                      <span>{item.name}</span>
-                      {actions.includes("Add") && actions.includes("Edit") ? (
-                        <span>Added and Edited</span>
-                      ) : actions.includes("Add") ? (
-                        <span>Added</span>
-                      ) : (
-                        actions.includes("Edit") && <span>Edited</span>
-                      )}
+                      <span>{item.plugName}</span>
+                      {item.type}
                     </Link>
                   );
                 })}
               </ul>
-              
+
               {/* scroller injection */}
               <Scroller
                 parentContainerSelector={".sub-route-list.list-group"}
