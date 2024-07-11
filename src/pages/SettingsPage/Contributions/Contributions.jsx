@@ -160,15 +160,15 @@ const Contributions = () => {
                       >
                         <span>{item.plugName}</span>
                       </Link>
-                      <span
+                      <div
                         data-bs-toggle={token && "modal"}
                         data-bs-target={token && "#contributionsModal"}
                         data-bs-dismiss="offcanvas"
-                        className="btn"
+                        className="btn btn-outline-dark"
                         onClick={() => handleContributionsModal(item)}
                       >
                         <SvgInfo />
-                      </span>
+                      </div>
                     </span>
                   );
                 })}

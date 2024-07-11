@@ -142,16 +142,16 @@ const Activity = () => {
                             {activiy["plugName"]}
                           </Link>
                         </span>
-                        <span className="time-container-for-activity-page">
-                          <span
+                        <span className="info-container-for-activity-page">
+                          <div
                             data-bs-toggle={token && "modal"}
                             data-bs-target={token && "#contributionsModal"}
                             data-bs-dismiss="offcanvas"
-                            className="btn"
+                            className="btn btn-outline-dark"
                             onClick={() => handleContributionsModal(activiy)}
                           >
                             <SvgInfo />
-                          </span>
+                          </div>
                         </span>
                       </span>
                     </li>

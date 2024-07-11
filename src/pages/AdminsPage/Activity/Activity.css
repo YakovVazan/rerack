@@ -3,18 +3,15 @@
 }
 
 .activity-item {
-    cursor: default;
-}
-
-.activity-item {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
+    cursor: default;
 }
 
-.time-container-for-activity-page {
+.info-container-for-activity-page {
     display: flex;
-    width: 100%;
     justify-content: end;
     align-items: center;
 }
