@@ -6,11 +6,6 @@
     cursor: default;
 }
 
-.activity-links {
-    color: inherit;
-    text-decoration: none;
-}
-
 .activity-item {
     display: flex;
     width: 100%;

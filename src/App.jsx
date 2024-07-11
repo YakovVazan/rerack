@@ -27,6 +27,7 @@ const App = () => {
     +localStorageVars.localStorageAdminPageSubRouteIndex || 0
   );
   const [deletionModalContents, setDeletionModalContents] = useState({});
+  const [contributions, setContributions] = useState([]);
 
   return (
     <>
@@ -45,6 +46,7 @@ const App = () => {
           setAccoutPageSubRoute,
           setAdminPageSubRoute,
           setDeletionModalContents,
+          setContributions,
           orderBy,
           orderedData,
           searchBoxValue,
@@ -58,6 +60,7 @@ const App = () => {
           accountPageSubRoute,
           adminPageSubRoute,
           deletionModalContents,
+          contributions,
         }}
       >
         <Nav />

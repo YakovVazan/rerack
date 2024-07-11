@@ -17,8 +17,10 @@ import "../SubRoutes.css";
 const Wishlist = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
+  const [total, setTotal] = useState(0);
   const getAllFavorites = useFavoritePlugs();
   const [isLoading, setIsLoading] = useState(true);
+  const [searchBoxValue, setSearchBoxValue] = useState("");
   const [favoritePlugins, setFavoritePlugins] = useState([]);
 
   useEffect(() => {
@@ -74,6 +76,15 @@ const Wishlist = () => {
     }
   };
 
+  // update total value
+  useEffect(() => {
+    setTotal(
+      favoritePlugins.filter((f) =>
+        f["name"].toLowerCase().includes(searchBoxValue)
+      ).length
+    );
+  }, [searchBoxValue, favoritePlugins]);
+
   return (
     <>
       {isLoading ? (
@@ -98,11 +109,21 @@ const Wishlist = () => {
               favoritePlugins.length <= 0 && "d-none"
             } sub-route-wrapper-container`}
           >
-            <h2 className="total-header">
-              <strong>
-                Total: {favoritePlugins.length > 0 && favoritePlugins.length}
-              </strong>
-            </h2>
+            <div className="total-and-filter">
+              <h2 className="total-header">
+                <strong>Total: {total}</strong>
+              </h2>
+              <div className="input-group search-box-container">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search"
+                  onInput={(event) => setSearchBoxValue(event.target.value)}
+                  value={searchBoxValue}
+                  autoFocus
+                />
+              </div>
+            </div>
 
             <ColoredDivider />
 
@@ -111,7 +132,12 @@ const Wishlist = () => {
                 {favoritePlugins.map((item, index) => {
                   return (
                     <Link
-                      className="list-group-item sub-route-list-item"
+                      className={`${
+                        !searchBoxValue ||
+                        item["name"].toLowerCase().includes(searchBoxValue)
+                          ? "list-group-item sub-route-list-item"
+                          : "d-none"
+                      } `}
                       to={`/plugs/${item.id}`}
                       key={index}
                     >

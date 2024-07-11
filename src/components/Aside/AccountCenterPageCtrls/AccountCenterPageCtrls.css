@@ -1,6 +1,7 @@
 .account-center-aside-list {
     gap: 1em;
     height: 100%;
+    margin-bottom: 1em;
 }
 
 .list-group-item {

@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Context from "../../../context/Context";
 import useToasts from "../../../hooks/useToasts";
 import { consts } from "../../../config/constants";
-import SvgCheck from "../../../components/svg/SvgCheck/SvgCheck";
+import SvgInfo from "../../../components/svg/SvgInfo/SvgInfo";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import Scroller from "../../../components/Common/Scroller/Scroller";
 import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
@@ -10,14 +11,17 @@ import {
   localStorageIsOwner,
   localStorageToken,
 } from "../../../config/localStorage";
+import "../../SettingsPage/SubRoutes.css";
 import "./Activity.css";
 
 const Activity = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
-  const [filter, setFilter] = useState("All");
+  const [total, setTotal] = useState(0);
   const [activities, setActivities] = useState([]);
   const [formattedData, setFormattedData] = useState([]);
+  const { token, setContributions } = useContext(Context);
+  const [searchBoxValue, setSearchBoxValue] = useState("");
   const [loadingActivity, setLoaddingActivity] = useState(true);
 
   const fetchUsersActivity = async () => {
@@ -36,7 +40,6 @@ const Activity = () => {
       } else {
         const data = await res.json();
         setActivities(data);
-        setFormattedData(data);
       }
     } catch (error) {
       console.error(error);
@@ -45,12 +48,10 @@ const Activity = () => {
     }
   };
 
-  // update contents of formatted data's array
-  const handleFormattedData = (item) => {
-    setFilter(item);
-    setFormattedData(
-      activities.filter((activity) => {
-        return item === "All" || activity.type === item;
+  const handleContributionsModal = (item) => {
+    setContributions(
+      activities.filter((x) => {
+        return x.plugId === item.plugId;
       })
     );
   };
@@ -62,6 +63,28 @@ const Activity = () => {
     } else fetchUsersActivity();
   }, []);
 
+  // remove duplicates from contributedData array
+  useEffect(() => {
+    if (activities.length === 0) return;
+    setFormattedData(
+      activities.reduce((acc, item) => {
+        if (!acc.some((existingItem) => existingItem.plugId === item.plugId)) {
+          acc.push(item);
+        }
+        return acc;
+      }, [])
+    );
+  }, [activities]);
+
+  // update total value
+  useEffect(() => {
+    setTotal(
+      formattedData.filter((f) =>
+        f["plugName"].toLowerCase().includes(searchBoxValue)
+      ).length
+    );
+  }, [searchBoxValue, formattedData]);
+
   return (
     <>
       {loadingActivity ? (
@@ -72,39 +95,19 @@ const Activity = () => {
             <div className="total-and-filter">
               {/* total */}
               <h2 className="total-header">
-                <strong>Total: {formattedData.length}</strong>
+                <strong>Total: {total}</strong>
               </h2>
-
-              {/* filter icon */}
-              <div
-                className="btn btn-outline-secondary dropdown-toggle filter-icon"
-                data-bs-toggle="dropdown"
-                title="filter what you see"
-              >
-                <span className="inner-button-text-type">{filter}</span>
+              {/* search box */}
+              <div className="input-group search-box-container">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search"
+                  onInput={(event) => setSearchBoxValue(event.target.value)}
+                  value={searchBoxValue}
+                  autoFocus
+                />
               </div>
-
-              {/* filter drop down */}
-              <ul className="dropdown-menu">
-                {["All", "Add", "Edit", "Delete"].map((item) => {
-                  return (
-                    <li
-                      key={item}
-                      className="dropdown-item filter-dropdown-item"
-                      onClick={() => handleFormattedData(item)}
-                    >
-                      <span>
-                        {item.charAt(0).toUpperCase() + item.slice(1)}
-                      </span>
-                      {filter === item && (
-                        <span id="check-sign-container">
-                          <SvgCheck />
-                        </span>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
             </div>
 
             <ColoredDivider />
@@ -114,29 +117,42 @@ const Activity = () => {
                 {formattedData.map((activiy, index) => {
                   return (
                     <li
-                      className="list-group-item sub-route-list-item activity-item"
+                      className={`${
+                        !searchBoxValue ||
+                        activiy["plugName"]
+                          .toLowerCase()
+                          .includes(searchBoxValue)
+                          ? "list-group-item sub-route-list-item activity-item"
+                          : "d-none"
+                      } `}
                       key={index}
                     >
                       <span className="activity-item">
                         <span>
                           <Link
-                            className="activity-links"
+                            className="undecorated-link"
                             to={`/users/${activiy.userId}`}
                           >
                             {activiy.username}
                           </Link>
-                          <span>
-                            {" " + activiy.type.toLowerCase() + "ed "}
-                          </span>
+                          <span> contributed to </span>
                           <Link
-                            className="activity-links"
+                            className="undecorated-link"
                             to={`/plugs/${activiy["plugId"]}`}
                           >
                             {activiy["plugName"]}
                           </Link>
                         </span>
                         <span className="time-container-for-activity-page">
-                          {new Date(activiy.time).toLocaleString()}
+                          <span
+                            data-bs-toggle={token && "modal"}
+                            data-bs-target={token && "#contributionsModal"}
+                            data-bs-dismiss="offcanvas"
+                            className="btn"
+                            onClick={() => handleContributionsModal(activiy)}
+                          >
+                            <SvgInfo />
+                          </span>
                         </span>
                       </span>
                     </li>

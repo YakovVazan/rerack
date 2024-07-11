@@ -16,9 +16,11 @@ import "./Users.css";
 
 const Users = () => {
   const navigate = useNavigate();
+  const [total, setTotal] = useState(0);
   const contextData = useContext(Context);
   const [allUsersData, setAllUsersData] = useState([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
+  const [searchBoxValue, setSearchBoxValue] = useState("");
 
   useEffect(() => {
     if (localStorageIsOwner !== "true") navigate("/");
@@ -61,6 +63,15 @@ const Users = () => {
     fetchAllUsers();
   }, []);
 
+  // update total value
+  useEffect(() => {
+    setTotal(
+      allUsersData.filter((f) =>
+        f["name"].toLowerCase().includes(searchBoxValue)
+      ).length
+    );
+  }, [searchBoxValue, allUsersData]);
+
   return (
     <>
       {loadingUsers ? (
@@ -68,11 +79,21 @@ const Users = () => {
       ) : (
         <div className="table-wrapper">
           <div className="sub-route-list-wrapper">
-            <h2 className="total-header">
-              <strong>
-                Total: {allUsersData.length > 0 && allUsersData.length}
-              </strong>
-            </h2>
+            <div className="total-and-filter">
+              <h2 className="total-header">
+                <strong>Total: {total}</strong>
+              </h2>
+              <div className="input-group search-box-container">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search"
+                  onInput={(event) => setSearchBoxValue(event.target.value)}
+                  value={searchBoxValue}
+                  autoFocus
+                />
+              </div>
+            </div>
 
             <ColoredDivider />
 
@@ -90,7 +111,16 @@ const Users = () => {
                 </thead>
                 <tbody>
                   {allUsersData.map((user) => (
-                    <tr className="users-tr" id={user.id} key={user.id}>
+                    <tr
+                      className={`${
+                        !searchBoxValue ||
+                        user["name"].toLowerCase().includes(searchBoxValue)
+                          ? "users-tr"
+                          : "d-none"
+                      } `}
+                      id={user.id}
+                      key={user.id}
+                    >
                       <td>{user.name}</td>
                       <td>{user.email}</td>
                       <td>

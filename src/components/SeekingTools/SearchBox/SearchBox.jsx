@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import Context from "../../../context/Context.jsx";
 import { consts } from "../../../config/constants.js";
+import SvgReset from "../../svg/SvgReset/SvgReset.jsx";
+import SvgSearch from "../../svg/SvgSearch/SvgSearch.jsx";
 import { ResetAllFactors } from "../../../utils/ResetFactors/ResetFactors.jsx";
 import "./SearchBox.css";
-import SvgSearch from "../../svg/SvgSearch/SvgSearch.jsx";
-import SvgReset from "../../svg/SvgReset/SvgReset.jsx";
 
 const SearchBox = () => {
   const contextData = useContext(Context);

@@ -8,6 +8,7 @@ aside {
     justify-content: space-between;
     border-right: 1px solid var(--light-bg-color-1);
     background-color: var(--light-bg-color-4);
+    overflow-y: auto;
 }
 
 .aside-controls {

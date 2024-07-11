@@ -44,6 +44,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0.25em .25em 0 .25em;
+}
+
+.search-box-container {
+    width: unset;
 }
 
 .total-header {
@@ -67,6 +72,7 @@
 .sub-route-list {
     flex: 1;
     overflow-y: auto;
+    border-radius: 0;
 }
 
 .sub-route-list-item {
@@ -74,14 +80,5 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.sub-route-list-item:first-child {
-    border-top-right-radius: 0.25em;
-    border-top-left-radius: 0.25em;
-}
-
-.sub-route-list-item:last-child {
-    border-bottom-right-radius: 0.25em;
-    border-bottom-left-radius: 0.25em;
+    cursor: auto;
 }

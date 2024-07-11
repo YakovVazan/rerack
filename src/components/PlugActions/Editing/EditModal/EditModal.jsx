@@ -14,9 +14,8 @@ import "../../../../styles/modals.css";
 const EditModal = () => {
   const showToast = useToasts();
   const { typesList } = useTypes();
-  const contextData = useContext(Context);
   const { companiesList } = useCompanies();
-  const { currentPlug, setCurrentPlug } = contextData;
+  const { currentPlug, setCurrentPlug } = useContext(Context);
   const [formIsFullyFilledUp, setFormIsFullyFilledUp] = useState(false);
   const [upToDatePlug, setUpToDatePlug] = useState({
     name: "",

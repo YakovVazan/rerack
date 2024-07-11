@@ -21,6 +21,7 @@ import ForgotPswdPage from "../../../pages/ForgotPswdPage/ForgotPswdPage.jsx";
 import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx";
 import OwnedPlugins from "../../../pages/SettingsPage/OwnedPlugins/OwnedPlugins.jsx";
 import Contributions from "../../../pages/SettingsPage/Contributions/Contributions.jsx";
+import ContributionsModal from "../../../pages/SettingsPage/Contributions/ContributionsModal/ContributionsModal.jsx";
 import "./Body.css";
 
 const Body = () => {
@@ -32,6 +33,7 @@ const Body = () => {
     toastVisibility,
     setToastVisibility,
     deletionModalContents,
+    contributions,
   } = useContext(Context);
   const { isHomePage, isPlugPage, isSettingsPage, isAdminPage } =
     useNavigation();
@@ -66,7 +68,10 @@ const Body = () => {
             <Route path="/users/download" element={<Download />}></Route>
             <Route path="/users/register" element={<RegisterPage />}></Route>
             <Route path="/users/login" element={<LoginPage />}></Route>
-            <Route path="/users/forgot_password" element={<ForgotPswdPage />}></Route>
+            <Route
+              path="/users/forgot_password"
+              element={<ForgotPswdPage />}
+            ></Route>
             <Route path="/users/:id/" element={<SettingsPage />}></Route>
             <Route
               path="/users/:id/contributions"
@@ -94,6 +99,7 @@ const Body = () => {
       {/* modals area */}
       <AddModal />
       <EditModal />
+      <ContributionsModal contributions={contributions} />
       <DeleteModal deletionModalContents={deletionModalContents} />
     </>
   );
