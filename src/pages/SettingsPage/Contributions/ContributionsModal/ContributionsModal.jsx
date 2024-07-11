@@ -12,7 +12,7 @@ const ContributionsModal = () => {
         <div className="modal-content">
           {/* header */}
           <div className="modal-header">
-            <h1 className="modal-title fs-5">{contributions[0]?.plugName}</h1>
+            <h1 className="modal-title fs-5">{`${contributions[0]?.plugName}'s history`}</h1>
             <button
               type="button"
               className="btn-close"

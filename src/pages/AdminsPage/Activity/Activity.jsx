@@ -65,7 +65,6 @@ const Activity = () => {
 
   // remove duplicates from contributedData array
   useEffect(() => {
-    if (activities.length === 0) return;
     setFormattedData(
       activities.reduce((acc, item) => {
         if (!acc.some((existingItem) => existingItem.plugId === item.plugId)) {
