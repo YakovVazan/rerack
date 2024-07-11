@@ -7,11 +7,15 @@ import { ResetAllFactors } from "../../../utils/ResetFactors/ResetFactors.jsx";
 import "./SearchBox.css";
 
 const SearchBox = () => {
-  const contextData = useContext(Context);
-  const typeFilterValue = contextData["typeFilterValue"];
-  const companyFilterValue = contextData["companyFilterValue"];
-  const searchBoxValue = contextData["searchBoxValue"];
-  const setSearchBoxValue = contextData["setSearchBoxValue"];
+  const {
+    typeFilterValue,
+    companyFilterValue,
+    searchBoxValue,
+    setSearchBoxValue,
+    setTypeFilterValue,
+    setCompanyFilterValue,
+  } = useContext(Context);
+  
   const shouldBeDisabled =
     searchBoxValue === "" &&
     typeFilterValue === consts.typeDropDownInitialValue &&
@@ -22,9 +26,9 @@ const SearchBox = () => {
   }
 
   function resetAllFactors() {
-    contextData["setSearchBoxValue"]("");
-    contextData["setTypeFilterValue"](consts.typeDropDownInitialValue);
-    contextData["setCompanyFilterValue"](consts.companyDropDownInitialValue);
+    setSearchBoxValue("");
+    setTypeFilterValue(consts.typeDropDownInitialValue);
+    setCompanyFilterValue(consts.companyDropDownInitialValue);
     document.querySelector("#main-container").scrollTo({ top: 0 });
     window.history.replaceState(
       {},
