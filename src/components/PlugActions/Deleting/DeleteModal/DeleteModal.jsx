@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Context from "../../../../context/Context";
+import useToasts from "../../../../hooks/useToasts";
 import SvgDelete from "../../../svg/SvgDelete/SvgDelete";
 import {
   localStorageIsOwner,
@@ -8,15 +9,15 @@ import {
   localStorageToken,
 } from "../../../../config/localStorage";
 import "../../../../styles/modals.css";
-import useToasts from "../../../../hooks/useToasts";
 
 const DeleteModal = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
-  const contextData = useContext(Context);
+  const { deletionModalContents, setCurrentPlug, setToken } =
+    useContext(Context);
 
   async function handleDelete() {
-    const res = await fetch(contextData["deletionModalContents"]["url"], {
+    const res = await fetch(deletionModalContents["url"], {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -30,23 +31,19 @@ const DeleteModal = () => {
         response?.msg || response.error || "An error occurred while deleting"
       );
     } else {
-      showToast(
-        `${contextData["deletionModalContents"]["msg"]} deleted successfully`
-      );
+      showToast(`${deletionModalContents["msg"]} deleted successfully`);
     }
 
-    if (contextData["deletionModalContents"]["url"].includes("plugs")) {
-      contextData.setCurrentPlug({});
+    if (deletionModalContents["url"].includes("plugs")) {
+      setCurrentPlug({});
       navigate("/");
-    } else if (contextData["deletionModalContents"]["url"].includes("users")) {
+    } else if (deletionModalContents["url"].includes("users")) {
       if (localStorageIsOwner !== "true") {
-        contextData["setToken"]("");
+        setToken("");
         localStorageLogout();
         navigate("/");
       } else {
-        document
-          .getElementById(contextData["deletionModalContents"]["id"])
-          .remove();
+        document.getElementById(deletionModalContents["id"]).remove();
       }
     }
   }
@@ -70,8 +67,7 @@ const DeleteModal = () => {
 
           {/* body */}
           <div className="modal-body">
-            Are you sure you want to delete{" "}
-            {contextData["deletionModalContents"]["msg"]}?
+            Are you sure you want to delete {deletionModalContents["msg"]}?
           </div>
 
           {/* footer */}

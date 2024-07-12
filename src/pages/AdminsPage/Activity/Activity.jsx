@@ -20,7 +20,7 @@ const Activity = () => {
   const [total, setTotal] = useState(0);
   const [activities, setActivities] = useState([]);
   const [formattedData, setFormattedData] = useState([]);
-  const { token, setContributions } = useContext(Context);
+  const { token, setActivitiesHistory } = useContext(Context);
   const [searchBoxValue, setSearchBoxValue] = useState("");
   const [loadingActivity, setLoaddingActivity] = useState(true);
 
@@ -49,7 +49,7 @@ const Activity = () => {
   };
 
   const handleContributionsModal = (item) => {
-    setContributions(
+    setActivitiesHistory(
       activities.filter((x) => {
         return x.plugId === item.plugId;
       })
@@ -130,13 +130,6 @@ const Activity = () => {
                         <span>
                           <Link
                             className="undecorated-link"
-                            to={`/users/${activiy.userId}`}
-                          >
-                            {activiy.username}
-                          </Link>
-                          <span> contributed to </span>
-                          <Link
-                            className="undecorated-link"
                             to={`/plugs/${activiy["plugId"]}`}
                           >
                             {activiy["plugName"]}
@@ -145,7 +138,7 @@ const Activity = () => {
                         <span className="info-container-for-activity-page">
                           <div
                             data-bs-toggle={token && "modal"}
-                            data-bs-target={token && "#contributionsModal"}
+                            data-bs-target={token && "#activitiesModal"}
                             data-bs-dismiss="offcanvas"
                             className="btn btn-outline-dark"
                             onClick={() => handleContributionsModal(activiy)}

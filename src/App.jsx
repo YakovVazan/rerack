@@ -28,6 +28,7 @@ const App = () => {
   );
   const [deletionModalContents, setDeletionModalContents] = useState({});
   const [contributions, setContributions] = useState([]);
+  const [activitiesHistory, setActivitiesHistory] = useState([]);
 
   return (
     <>
@@ -47,6 +48,7 @@ const App = () => {
           setAdminPageSubRoute,
           setDeletionModalContents,
           setContributions,
+          setActivitiesHistory,
           orderBy,
           orderedData,
           searchBoxValue,
@@ -61,6 +63,7 @@ const App = () => {
           adminPageSubRoute,
           deletionModalContents,
           contributions,
+          activitiesHistory,
         }}
       >
         <Nav />

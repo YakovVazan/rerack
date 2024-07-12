@@ -21,20 +21,15 @@ import ForgotPswdPage from "../../../pages/ForgotPswdPage/ForgotPswdPage.jsx";
 import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx";
 import OwnedPlugins from "../../../pages/SettingsPage/OwnedPlugins/OwnedPlugins.jsx";
 import Contributions from "../../../pages/SettingsPage/Contributions/Contributions.jsx";
+import ActivitiesModal from "../../../pages/AdminsPage/Activity/ActivitiesModal/ActivitiesModal.jsx";
 import ContributionsModal from "../../../pages/SettingsPage/Contributions/ContributionsModal/ContributionsModal.jsx";
 import "./Body.css";
 
 const Body = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {
-    setCurrentPlug,
-    toastMessage,
-    toastVisibility,
-    setToastVisibility,
-    deletionModalContents,
-    contributions,
-  } = useContext(Context);
+  const { setCurrentPlug, toastMessage, toastVisibility, setToastVisibility } =
+    useContext(Context);
   const { isHomePage, isPlugPage, isSettingsPage, isAdminPage } =
     useNavigation();
 
@@ -99,8 +94,9 @@ const Body = () => {
       {/* modals area */}
       <AddModal />
       <EditModal />
-      <ContributionsModal contributions={contributions} />
-      <DeleteModal deletionModalContents={deletionModalContents} />
+      <ContributionsModal />
+      <ActivitiesModal />
+      <DeleteModal />
     </>
   );
 };
