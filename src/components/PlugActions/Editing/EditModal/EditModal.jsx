@@ -22,6 +22,8 @@ const EditModal = () => {
     company: "",
     type: "",
     src: "",
+    price: "",
+    link: null,
   });
   const {
     hovering,
@@ -43,16 +45,11 @@ const EditModal = () => {
   // control when submition button is enabled
   useEffect(() => {
     setFormIsFullyFilledUp(
-      Object.values(upToDatePlug).every(
-        (field) =>
-          typeof field !== "string" ||
-          (typeof field === "string" && field.trim() !== "")
-      ) &&
-        Object.keys(upToDatePlug)
-          .map((key) => {
-            return upToDatePlug[key] === currentPlug[key];
-          })
-          .some((value) => value === false)
+      Object.keys(upToDatePlug)
+        .map((key) => {
+          return upToDatePlug[key] && upToDatePlug[key] === currentPlug[key];
+        })
+        .some((value) => value === false)
     );
   }, [upToDatePlug]);
 

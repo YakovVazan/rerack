@@ -14,6 +14,8 @@ const DescGenButton = ({ setDescription, setLoadingDescription }) => {
   async function generate() {
     try {
       setLoadingDescription(true);
+      setDescription("");
+      
       const res = await fetch(`${consts.baseURL}/plugs/generate/description`, {
         method: "POST",
         headers: {

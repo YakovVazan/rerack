@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import Context from "../context/Context";
+import { Link } from "react-router-dom";
 import useToasts from "./useToasts";
+import Context from "../context/Context";
 
 const useForceAuth = () => {
   const showToast = useToasts();
@@ -8,7 +9,11 @@ const useForceAuth = () => {
 
   const forceAuth = () => {
     if (!contextData["token"]) {
-      showToast("You need to log in first");
+      showToast(
+        <span>
+          You need to <Link to={"users/login"}>log in</Link> first
+        </span>
+      );
       return false;
     }
 
