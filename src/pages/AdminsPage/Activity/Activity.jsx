@@ -20,8 +20,8 @@ const Activity = () => {
   const [total, setTotal] = useState(0);
   const [activities, setActivities] = useState([]);
   const [formattedData, setFormattedData] = useState([]);
-  const { token, setActivitiesHistory } = useContext(Context);
   const [searchBoxValue, setSearchBoxValue] = useState("");
+  const { token, setActivitiesHistory } = useContext(Context);
   const [loadingActivity, setLoaddingActivity] = useState(true);
 
   const fetchUsersActivity = async () => {
@@ -34,15 +34,16 @@ const Activity = () => {
 
       if (!res.ok) {
         const errorResponse = await res.json();
-        showToast(
-          errorResponse.msg || errorResponse.error || "Error fetching activity"
-        );
+        const responseText =
+          errorResponse.msg || errorResponse.error || "Error fetching activity";
+        showToast(responseText);
+        throw new Error(responseText);
       } else {
         const data = await res.json();
         setActivities(data);
       }
     } catch (error) {
-      console.error(error);
+      navigate("/");
     } finally {
       setLoaddingActivity(false);
     }

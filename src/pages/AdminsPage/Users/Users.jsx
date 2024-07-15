@@ -9,7 +9,6 @@ import Scroller from "../../../components/Common/Scroller/Scroller";
 import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
 import {
   localStorageIsOwner,
-  localStorageLogout,
   localStorageToken,
 } from "../../../config/localStorage";
 import "./Users.css";
@@ -17,17 +16,17 @@ import "./Users.css";
 const Users = () => {
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
-  const contextData = useContext(Context);
   const [allUsersData, setAllUsersData] = useState([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [searchBoxValue, setSearchBoxValue] = useState("");
+  const { setDeletionModalContents, token } = useContext(Context);
 
   useEffect(() => {
     if (localStorageIsOwner !== "true") navigate("/");
   });
 
   async function handleBanning(username, userId) {
-    contextData["setDeletionModalContents"]({
+    setDeletionModalContents({
       url: `${consts.baseURL}/users/${userId}/delete`,
       msg: `${username}'s account`,
       id: `${userId}`,
@@ -50,10 +49,7 @@ const Users = () => {
         setAllUsersData(data);
       }
     } catch (error) {
-      console.error(error);
-      localStorageLogout();
-      contextData.setToken("");
-      navigate("/users/login");
+      navigate("/");
     } finally {
       setLoadingUsers(false);
     }
@@ -137,10 +133,8 @@ const Users = () => {
                             className="btn btn-outline-danger"
                             title="BAN"
                             data-bs-dismiss="offcanvas"
-                            data-bs-toggle={contextData["token"] && "modal"}
-                            data-bs-target={
-                              contextData["token"] && "#deletingModal"
-                            }
+                            data-bs-toggle={token && "modal"}
+                            data-bs-target={token && "#deletingModal"}
                             onClick={() => handleBanning(user.name, user.id)}
                           >
                             <SvgBan />
