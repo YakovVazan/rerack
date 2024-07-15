@@ -39,7 +39,8 @@ const RegisterPage = () => {
     if (!res.ok) {
       const response = JSON.parse(await res.text());
 
-      let errorMessages = response.msg;
+      let errorMessages =
+        typeof response.msg === "string" ? [response.msg] : response.msg;
 
       for (let i = 0; i < errorMessages.length; i++) {
         if (i < errorMessages.length - 2) {

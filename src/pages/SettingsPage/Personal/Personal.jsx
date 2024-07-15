@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Context from "../../../context/Context";
 import useToasts from "../../../hooks/useToasts";
 import { consts } from "../../../config/constants";
+import useHistory from "../../../hooks/useHistory";
+import Spinner from "../../../components/Common/Spinner/Spinner";
 import {
   localStorageId,
   localStorageLogin,
@@ -10,13 +12,13 @@ import {
   localStorageToken,
   setLocalStorageToken,
 } from "../../../config/localStorage";
-import Spinner from "../../../components/Common/Spinner/Spinner";
 import "./Personal.css";
 
 const Personal = () => {
   const { id } = useParams();
   const showToast = useToasts();
   const navigate = useNavigate();
+  const { forceGoingBack } = useHistory();
   const contextData = useContext(Context);
   const [userDetails, setUserDetails] = useState({});
   const [loadingUser, setLoadingUser] = useState(true);
@@ -52,6 +54,7 @@ const Personal = () => {
             email: userDetails.email,
             password: "",
           });
+          forceGoingBack();
         } else {
           const errorResponse = await res.json();
           throw new Error(errorResponse.msg || errorResponse.error);
