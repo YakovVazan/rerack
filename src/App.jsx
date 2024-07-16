@@ -29,6 +29,8 @@ const App = () => {
   const [deletionModalContents, setDeletionModalContents] = useState({});
   const [contributions, setContributions] = useState([]);
   const [activitiesHistory, setActivitiesHistory] = useState([]);
+  const [adminsModalContents, setAdminsModalContents] = useState({});
+  const [usersState, setUsersState] = useState([]); // to update UI state in users table
 
   return (
     <>
@@ -49,6 +51,8 @@ const App = () => {
           setDeletionModalContents,
           setContributions,
           setActivitiesHistory,
+          setAdminsModalContents,
+          setUsersState,
           orderBy,
           orderedData,
           searchBoxValue,
@@ -64,6 +68,8 @@ const App = () => {
           deletionModalContents,
           contributions,
           activitiesHistory,
+          adminsModalContents,
+          usersState,
         }}
       >
         <Nav />

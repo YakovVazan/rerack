@@ -20,6 +20,7 @@ import EditModal from "../../PlugActions/Editing/EditModal/EditModal.jsx";
 import ForgotPswdPage from "../../../pages/ForgotPswdPage/ForgotPswdPage.jsx";
 import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx";
 import OwnedPlugins from "../../../pages/SettingsPage/OwnedPlugins/OwnedPlugins.jsx";
+import AdminsModal from "../../../pages/AdminsPage/Users/AdminsModal/AdminsModal.jsx";
 import Contributions from "../../../pages/SettingsPage/Contributions/Contributions.jsx";
 import ActivitiesModal from "../../../pages/AdminsPage/Activity/ActivitiesModal/ActivitiesModal.jsx";
 import ContributionsModal from "../../../pages/SettingsPage/Contributions/ContributionsModal/ContributionsModal.jsx";
@@ -95,6 +96,7 @@ const Body = () => {
       <AddModal />
       <EditModal />
       <ContributionsModal />
+      <AdminsModal />
       <ActivitiesModal />
       <DeleteModal />
     </>
