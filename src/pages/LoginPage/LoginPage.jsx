@@ -62,6 +62,7 @@ const LoginPage = () => {
       localStorageLogin(
         response.token,
         response.id,
+        response.isAdmin,
         response.isOwner,
         response.isVerified
       );

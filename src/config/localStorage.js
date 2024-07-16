@@ -3,6 +3,7 @@ let localStorageView = localStorage.getItem("rerackView");
 let localStorageOrder = localStorage.getItem("rerackOrder");
 let localStorageToken = localStorage.getItem("rerackToken");
 let localStorageIsOwner = localStorage.getItem("rerackIsOwner");
+let localStorageIsAdmin = localStorage.getItem("rerackIsAdmin");
 let localStorageHistory = localStorage.getItem("rerackHistory");
 let localStorageIsVerified = localStorage.getItem("rerackIsVerified");
 let localStorageAccountPageSubRouteIndex = localStorage.getItem(
@@ -49,14 +50,16 @@ if (!localStorageHistory) {
   localStorageHistory = JSON.parse(localStorageHistory);
 }
 
-function localStorageLogin(token, id, isOwner, isVerified) {
+function localStorageLogin(token, id, isAdmin, isOwner, isVerified) {
   localStorage.setItem("rerackId", id);
   localStorage.setItem("rerackToken", token);
+  localStorage.setItem("rerackIsAdmin", isAdmin);
   localStorage.setItem("rerackIsOwner", isOwner);
   localStorage.setItem("rerackIsVerified", isVerified);
 
   localStorageId = localStorage.getItem("rerackId");
   localStorageToken = localStorage.getItem("rerackToken");
+  localStorageIsAdmin = localStorage.getItem("rerackIsAdmin");
   localStorageIsOwner = localStorage.getItem("rerackIsOwner");
   localStorageIsVerified = localStorage.getItem("rerackIsVerified");
 }
@@ -64,11 +67,13 @@ function localStorageLogin(token, id, isOwner, isVerified) {
 function localStorageLogout() {
   localStorageToken = null;
   localStorageId = null;
+  localStorageIsAdmin = null;
   localStorageIsOwner = null;
   localStorageIsVerified = null;
 
   localStorage.removeItem("rerackId");
   localStorage.removeItem("rerackToken");
+  localStorage.removeItem("rerackIsAdmin");
   localStorage.removeItem("rerackIsOwner");
   localStorage.removeItem("rerackIsVerified");
 }
@@ -98,6 +103,7 @@ export {
   localStorageOrder,
   localStorageToken,
   localStorageId,
+  localStorageIsAdmin,
   localStorageIsOwner,
   localStorageAccountPageSubRouteIndex,
   localStorageAdminPageSubRouteIndex,

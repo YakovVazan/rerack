@@ -8,7 +8,7 @@ import Spinner from "../../../components/Common/Spinner/Spinner";
 import Scroller from "../../../components/Common/Scroller/Scroller";
 import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
 import {
-  localStorageIsOwner,
+  localStorageIsAdmin,
   localStorageToken,
 } from "../../../config/localStorage";
 import "../../SettingsPage/SubRoutes.css";
@@ -59,7 +59,7 @@ const Activity = () => {
 
   // block unauthorized users
   useEffect(() => {
-    if (localStorageIsOwner !== "true") {
+    if (localStorageIsAdmin !== "true") {
       navigate("/");
     } else fetchUsersActivity();
   }, []);

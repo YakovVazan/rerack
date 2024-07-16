@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import Context from "../../../../context/Context";
 import { consts } from "../../../../config/constants";
-import { localStorageIsOwner } from "../../../../config/localStorage";
+import { localStorageIsAdmin } from "../../../../config/localStorage";
 import "./DeleteButton.css";
 
 const DeleteButton = () => {
@@ -15,7 +15,7 @@ const DeleteButton = () => {
     });
   }, [currentPlug]);
 
-  if (localStorageIsOwner !== null && localStorageIsOwner === "true") {
+  if (localStorageIsAdmin !== null && localStorageIsAdmin === "true") {
     return (
       <div
         id="delete-button"

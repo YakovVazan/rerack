@@ -7,7 +7,7 @@ import SvgAdmin from "../../svg/SvgAdmin/SvgAdmin";
 import SvgPencil from "../../svg/SvgPencil/SvgPencil";
 import SvgAccount from "../../svg/SvgAccount/SvgAccount";
 import {
-  localStorageIsOwner,
+  localStorageIsAdmin,
   setLocalStorageAccountPageSubRouteIndex,
 } from "../../../config/localStorage";
 import "./AccountCenterPageCtrls.css";
@@ -57,7 +57,7 @@ const AccountCenterPageCtrls = () => {
           );
         })}
       </ul>
-      {localStorageIsOwner === "true" && (
+      {localStorageIsAdmin === "true" && (
         <span
           className={`admin-button list-group-item aside-controls ${
             contextData["accountPageSubRoute"] === list.length - 1 && "active"

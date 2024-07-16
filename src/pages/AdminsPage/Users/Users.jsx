@@ -6,11 +6,14 @@ import { consts } from "../../../config/constants";
 import SvgEye from "../../../components/svg/SvgEye/SvgEye";
 import SvgBan from "../../../components/svg/SvgBan/SvgBan";
 import Spinner from "../../../components/Common/Spinner/Spinner";
-import { localStorageIsOwner } from "../../../config/localStorage";
 import Scroller from "../../../components/Common/Scroller/Scroller";
 import SvgPersonAdd from "../../../components/svg/SvgPersonAdd/SvgPersonAdd";
 import SvgPersonRemove from "../../../components/svg/SvgPersonRemove/SvgPersonRemove";
 import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
+import {
+  localStorageIsAdmin,
+  localStorageIsOwner,
+} from "../../../config/localStorage";
 import "./Users.css";
 
 const Users = () => {
@@ -27,7 +30,7 @@ const Users = () => {
   } = useContext(Context);
 
   useEffect(() => {
-    if (localStorageIsOwner !== "true") navigate("/");
+    if (localStorageIsAdmin !== "true") navigate("/");
   });
 
   const handleAdmins = (userName, email, userId, isAdmin) => {
@@ -121,7 +124,9 @@ const Users = () => {
                             <SvgEye />
                           </Link>
                           <span
-                            className="btn btn-outline-success"
+                            className={`${
+                              localStorageIsOwner === "false" && "d-none"
+                            } btn btn-outline-success`}
                             title={`${user.isAdmin ? "remove" : "add"} admin`}
                             data-bs-dismiss="offcanvas"
                             data-bs-toggle={token && "modal"}

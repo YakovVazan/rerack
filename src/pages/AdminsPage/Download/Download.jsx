@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { localStorageIsOwner } from "../../../config/localStorage";
+import { localStorageIsAdmin } from "../../../config/localStorage";
 import DownloadButton from "../../../components/Download/DownloadButton";
 import "./Download.css";
 
@@ -8,7 +8,7 @@ const Download = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorageIsOwner !== "true") {
+    if (localStorageIsAdmin !== "true") {
       navigate("/");
       return;
     }
@@ -27,8 +27,8 @@ const Download = () => {
         <br />
         <p>
           The directory downloaded is compressed to a zip file. Unzip it, inside
-          are two CSV files. One contains the users&lsquo; database and the other the
-          plugins&lsquo;.
+          are two CSV files. One contains the users&lsquo; database and the
+          other the plugins&lsquo;.
         </p>
         <br />
         <p>To begin download, click the button below:</p>

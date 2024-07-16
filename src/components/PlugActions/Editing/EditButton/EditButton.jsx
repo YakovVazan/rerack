@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Context from "../../../../context/Context";
 import useForceAuth from "../../../../hooks/useForceAuth";
-import { localStorageIsOwner } from "../../../../config/localStorage";
+import { localStorageIsAdmin } from "../../../../config/localStorage";
 import "./EditButton.css";
 
 const EditButton = () => {
@@ -16,7 +16,7 @@ const EditButton = () => {
     <div
       id="edit-button"
       className={`btn btn-outline-warning ${
-        localStorageIsOwner !== null && localStorageIsOwner === "true"
+        localStorageIsAdmin !== null && localStorageIsAdmin === "true"
           ? "two-buttons-view"
           : "one-button-view"
       } ${Object.keys(contextData["currentPlug"]).length === 0 && "disabled"}`}

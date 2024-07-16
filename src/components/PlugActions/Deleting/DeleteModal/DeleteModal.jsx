@@ -4,7 +4,7 @@ import Context from "../../../../context/Context";
 import useToasts from "../../../../hooks/useToasts";
 import SvgDelete from "../../../svg/SvgDelete/SvgDelete";
 import {
-  localStorageIsOwner,
+  localStorageIsAdmin,
   localStorageLogout,
   localStorageToken,
 } from "../../../../config/localStorage";
@@ -38,7 +38,7 @@ const DeleteModal = () => {
       setCurrentPlug({});
       navigate("/");
     } else if (deletionModalContents["url"].includes("users")) {
-      if (localStorageIsOwner !== "true") {
+      if (localStorageIsAdmin !== "true") {
         setToken("");
         localStorageLogout();
         navigate("/");
