@@ -26,9 +26,9 @@ const Download = () => {
         </p>
         <br />
         <p>
-          The directory downloaded is compressed to a zip file. Unzip it, inside
-          are two CSV files. One contains the users&lsquo; database and the
-          other the plugins&lsquo;.
+          The directory downloaded is compressed to a zip file. Unzip it. Inside
+          are couple of CSV files. Containing the users, plugins, saved,
+          favorites and contributions tables&lsquo;s data.
         </p>
         <br />
         <p>To begin download, click the button below:</p>
