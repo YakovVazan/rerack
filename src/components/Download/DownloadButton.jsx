@@ -36,7 +36,7 @@ const DownloadButton = () => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "rerack db.zip";
+    a.download = `Rerack's DB at ${new Date().toLocaleDateString()}.zip`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

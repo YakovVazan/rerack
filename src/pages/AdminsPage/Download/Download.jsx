@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { localStorageIsOwner } from "../../../config/localStorage";
 import { useNavigate } from "react-router-dom";
-import "./Download.css";
+import { localStorageIsOwner } from "../../../config/localStorage";
 import DownloadButton from "../../../components/Download/DownloadButton";
+import "./Download.css";
 
 const Download = () => {
   const navigate = useNavigate();
