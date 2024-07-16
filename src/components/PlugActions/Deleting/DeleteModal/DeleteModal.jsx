@@ -30,6 +30,7 @@ const DeleteModal = () => {
       showToast(
         response?.msg || response.error || "An error occurred while deleting"
       );
+      return;
     } else {
       showToast(`${deletionModalContents["msg"]} deleted successfully`);
     }

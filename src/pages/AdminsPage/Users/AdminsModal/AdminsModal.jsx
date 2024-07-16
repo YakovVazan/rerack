@@ -71,6 +71,8 @@ const AdminsModal = () => {
 
         setUsersState(updatedUsersState);
         showToast(`${adminsModalContents.userName} is no longer admin`);
+      } else {
+        showToast((await res.json())?.msg);
       }
     } catch (error) {
       showToast(error);
