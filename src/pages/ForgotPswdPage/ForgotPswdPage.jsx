@@ -31,9 +31,17 @@ const ForgotPswdPage = () => {
       body: JSON.stringify({ email: givenEmail }),
     });
 
-    const response = JSON.parse(await res.text());
+    let response;
+    let text = await res.text();
+
+    try {
+      response = JSON.parse(text);
+    } catch (error) {
+      response = text;
+    }
+
     if (!res.ok) {
-      showToast(response?.msg || response.error);
+      showToast(response?.msg || response.error || response);
     } else {
       showToast("A new password has been sent to your email successfully.");
       setAlreadySent(true);
@@ -52,9 +60,17 @@ const ForgotPswdPage = () => {
       }),
     });
 
-    const response = JSON.parse(await res.text());
+    let response;
+    let text = await res.text();
+
+    try {
+      response = JSON.parse(text);
+    } catch (error) {
+      response = text;
+    }
+
     if (!res.ok) {
-      showToast(response?.msg || response?.error);
+      showToast(response?.msg || response?.error || response);
       setGivenPassword("");
     } else {
       showToast(

@@ -41,10 +41,21 @@ const LoginPage = () => {
       body: JSON.stringify(data),
     });
 
-    const response = JSON.parse(await res.text());
+    let response;
+    let text = await res.text();
+
+    try {
+      response = JSON.parse(text);
+    } catch (error) {
+      response = text;
+    }
+
     if (!res.ok) {
       showToast(
-        response?.msg || response.error || "An error occurred while logging in"
+        response?.msg ||
+          response.error ||
+          response ||
+          "An error occurred while logging in"
       );
       setLoadingUser(false);
     } else {
