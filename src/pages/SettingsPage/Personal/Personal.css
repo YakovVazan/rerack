@@ -1,3 +1,5 @@
+@import '../../../styles/themes.css';
+
 .account-sections {
     width: 100%;
     display: flex;
@@ -30,6 +32,9 @@
 
 .header-line {
     width: 70%;
+    background-color: var(--bg-color-4);
+    border: none;
+    opacity: unset;
 }
 
 .content-section {
@@ -62,13 +67,11 @@
 }
 
 @media screen and (min-width: 768px) {
-    .account-sections {
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-
     .header-line {
         width: 80%;
+        background-color: var(--bg-color-4);
+        border: none;
+        opacity: unset;
     }
 
     .edit-button-container {

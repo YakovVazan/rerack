@@ -1,3 +1,5 @@
+@import './styles/themes.css';
+
 /* For Firefox */
 /* * {
     scrollbar-width: thin;
@@ -10,28 +12,44 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: #888;
+    background-color: var(--bg-color-5);
     border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb:active {
-    background-color: #515151;
+    background-color: var(--bg-color-6);
 }
 
 *::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
+    background-color: var(--bg-color-1);
 }
 
 #root {
     font-family: 'Courier New', Courier, monospace;
 }
 
+.form-control {
+    color: var(--color-3) !important;
+    background-color: var(--bg-color-3) !important;
+    border: .5px solid var(--bg-color-5) !important;
+}
+
 .form-control:focus {
-    box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.25) !important;
+    box-shadow: 0 0 0 0.25rem var(--bg-color-3) !important;
+}
+
+.input-group-text {
+    color: var(--color-3) !important;
+    background-color: var(--bg-color-3) !important;   
+    border: .5px solid var(--bg-color-5) !important;
+}
+
+a {
+    color: var(--color-3) !important;
 }
 
 .dropdown-menu {
-    box-shadow: 0 0 1rem rgba(0, 0, 0, .15);
+    box-shadow: 0 0 1rem var(--bg-color-8);
 }
 
 .undecorated-link {

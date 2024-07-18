@@ -4,7 +4,10 @@ import { consts } from "../../../../config/constants.js";
 import Spinner from "../../../Common/Spinner/Spinner.jsx";
 import SvgCheck from "../../../svg/SvgCheck/SvgCheck.jsx";
 import useCompanies from "../../../../hooks/useCompanies.jsx";
+import ColoredDivider from "../../../Common/ColoredDivider/ColoredDivider.jsx";
 import { ResetCompanyValue } from "../../../../utils/ResetFactors/ResetFactors.jsx";
+import "../../../../styles/dropdowns.css";
+import "../../../../styles/buttons.css";
 import "./CompanyDropDown.css";
 
 const CompanyDropDown = () => {
@@ -24,7 +27,7 @@ const CompanyDropDown = () => {
       <div className="dropdown-center search-button-container" title="company">
         <button
           id="company-filter"
-          className="btn btn-outline-secondary dropdown-toggle"
+          className="btn customed-dropdown-button dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -34,9 +37,9 @@ const CompanyDropDown = () => {
           </span>
         </button>
         {/* filter drop down */}
-        <ul className="dropdown-menu">
+        <ul className="dropdown-menu customed-dropdown">
           <div
-            className="dropdown-item company-dropdown-item"
+            className="dropdown-item customed-dropdown-item"
             onClick={() => handleClick(consts.companyDropDownInitialValue)}
           >
             <span>all</span>
@@ -46,14 +49,14 @@ const CompanyDropDown = () => {
               </span>
             )}
           </div>
-          <hr className="dropdown-divider"></hr>
+          <ColoredDivider />
           {companiesList.length === 0 ? (
             <Spinner />
           ) : (
             companiesList.map((company, index) => (
               <li
                 key={index}
-                className="dropdown-item company-dropdown-item"
+                className="dropdown-item customed-dropdown-item"
                 onClick={() => handleClick(company)}
               >
                 <span className="company-content">{company}</span>

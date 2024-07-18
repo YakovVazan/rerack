@@ -20,12 +20,12 @@ const Toast = ({ toastMessage, toastVisibility, setToastVisibility }) => {
       timeoutId = setTimeout(() => {
         toastElement.classList.remove("slide-show");
         toastElement.classList.add("slide-hide");
-      }, 3000);
+      }, 4000);
 
       setTimeout(() => {
         toastContainer.classList.add("hidden-toast");
         setToastVisibility(false);
-      }, 3500);
+      }, 4500);
     }
 
     return () => {

@@ -6,7 +6,8 @@
     display: block;
     position: sticky;
     top: 0;
-    background-color: var(--light-bg-color-2);
+    background-color: var(--bg-color-3);
+    color: var(--color-1);
     z-index: 1;
     padding-left: 0.5rem;
 }

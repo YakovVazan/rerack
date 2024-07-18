@@ -5,6 +5,7 @@ import useToasts from "../../hooks/useToasts";
 import { consts } from "../../config/constants";
 import useHistory from "../../hooks/useHistory";
 import "../../styles/auth-card.css";
+import "../../styles/buttons.css";
 
 const ForgotPswdPage = () => {
   const ReactIf = useIf();
@@ -146,7 +147,7 @@ const ForgotPswdPage = () => {
                 <input
                   type="submit"
                   value="Get code"
-                  className="btn btn-outline-secondary"
+                  className="btn customed-button"
                   disabled={!givenEmail}
                 />
               </ReactIf>
@@ -155,7 +156,7 @@ const ForgotPswdPage = () => {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-outline-secondary"
+                  className="btn customed-button"
                   disabled={!givenPassword}
                 />
               </ReactIf>

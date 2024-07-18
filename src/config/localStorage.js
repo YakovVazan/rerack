@@ -6,6 +6,7 @@ let localStorageIsOwner = localStorage.getItem("rerackIsOwner");
 let localStorageIsAdmin = localStorage.getItem("rerackIsAdmin");
 let localStorageHistory = localStorage.getItem("rerackHistory");
 let localStorageIsVerified = localStorage.getItem("rerackIsVerified");
+let localStorageIsDarkMode = localStorage.getItem("rerackIsDarkMode");
 let localStorageAccountPageSubRouteIndex = localStorage.getItem(
   "rerackAccountPageSubRouteIndex"
 );
@@ -48,6 +49,10 @@ if (!localStorageHistory) {
   localStorage.setItem("rerackHistory", JSON.stringify(localStorageHistory));
 } else {
   localStorageHistory = JSON.parse(localStorageHistory);
+}
+if (!localStorageIsDarkMode) {
+  localStorageIsDarkMode = false;
+  localStorage.setItem("rerackIsDarkMode", localStorageIsDarkMode);
 }
 
 function localStorageLogin(token, id, isAdmin, isOwner, isVerified) {
@@ -98,6 +103,11 @@ function setLocalStorageHistory(newHistory) {
   localStorage.setItem("rerackHistory", localStorageHistory);
 }
 
+function setLocalStorageIsDarkMode(isDarkMode) {
+  localStorageIsDarkMode = isDarkMode;
+  localStorage.setItem("rerackIsDarkMode", isDarkMode);
+}
+
 export {
   localStorageView,
   localStorageOrder,
@@ -108,10 +118,12 @@ export {
   localStorageAccountPageSubRouteIndex,
   localStorageAdminPageSubRouteIndex,
   localStorageHistory,
+  localStorageIsDarkMode,
   localStorageLogin,
   localStorageLogout,
   setLocalStorageAccountPageSubRouteIndex,
   setLocalStorageAdminPageSubRouteIndex,
   setLocalStorageToken,
   setLocalStorageHistory,
+  setLocalStorageIsDarkMode,
 };

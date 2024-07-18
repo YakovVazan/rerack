@@ -1,4 +1,5 @@
 @import '../../styles/layout.css';
+@import '../../styles/themes.css';
 
 aside {
     padding: 5% 5% 1% 5%;
@@ -6,18 +7,27 @@ aside {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-right: 1px solid var(--light-bg-color-1);
-    background-color: var(--light-bg-color-4);
+    border-right: 1px solid var(--bg-color-4);
+    background-color: var(--bg-color-2);
+    color: var(--color-2);
     overflow-y: auto;
 }
 
 .aside-controls {
+    color: var(--color-3);
+    background-color: var(--bg-color-3) !important;
     border-radius: 0.25em !important;
 }
 
 .aside-controls:hover {
-    box-shadow: 0px 0px 2px #6c757d;
+    box-shadow: 0px 0px 2px var(--bg-color-6);
     transition: box-shadow 0.1s ease-in-out;
+}
+
+.aside-controls.active {
+    color: var(--color-5);
+    background-color: var(--bg-color-5)!important;
+    box-shadow: 0px 0px 2px var(--bg-color-5);
 }
 
 @media screen and (max-width: 768px) {

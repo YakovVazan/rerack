@@ -1,3 +1,5 @@
+@import '../../../styles/themes.css';
+
 .toast-container {
     position: static;
 }
@@ -16,6 +18,20 @@ strong {
     margin-bottom: 2%;
     margin-right: 2%;
     transition: right 0.4s ease-in-out;
+    box-shadow: 0 .5rem 1rem var(--bg-color-3);
+    border: 1px solid var(--bg-color-4);
+
+}
+
+.toast-header {
+    color: var(--color-2);
+    background-color: var(--bg-color-2);
+    border-bottom: 1px solid var(--bg-color-4);
+}
+
+.toast-body {
+    color: var(--color-3);
+    background-color: var(--bg-color-3);
 }
 
 .toast.slide-hide {

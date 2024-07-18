@@ -13,12 +13,6 @@
     text-overflow: ellipsis;
 }
 
-.company-dropdown-item {
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-}
-
 .company-content {
     white-space: nowrap;
     overflow-x: hidden;

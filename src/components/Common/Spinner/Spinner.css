@@ -1,7 +1,14 @@
+@import '../../../styles/themes.css';
+
 #spinner-container {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--bg-color-1);
+}
+
+.spinner-grow {
+    color: var(--color-1);
 }

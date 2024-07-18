@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import "./RegisterButton.css";
 import SvgRegister from "../../../svg/SvgRegister/SvgRegister";
+import "../../../../styles/buttons.css";
+import "./RegisterButton.css";
 
 const RegisterButton = () => {
   return (
     <Link
-      className="btn btn-outline-secondary"
+      className="btn customed-button"
       title="register"
       to={"users/register"}
     >

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Context from "../../../../context/Context.jsx";
 import SvgList from "../../../svg/SvgList/SvgList.jsx";
 import SvgGallery from "../../../svg/SvgGallery/SvgGallery.jsx";
+import '../../../../styles/buttons.css'
 
 const Layout = () => {
   const data = useContext(Context);
@@ -18,7 +19,7 @@ const Layout = () => {
       <div className="btn-group" role="group">
         <div
           type="button"
-          className={`btn btn-outline-secondary ${
+          className={`btn customed-button ${
             view === "list" ? "active" : ""
           }`}
           title="list view"
@@ -28,7 +29,7 @@ const Layout = () => {
         </div>
         <div
           type="button"
-          className={`btn btn-outline-secondary ${
+          className={`btn customed-button ${
             view === "gallery" ? "active" : ""
           }`}
           title="galery view"

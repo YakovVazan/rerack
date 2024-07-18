@@ -1,3 +1,5 @@
+@import '../../../styles/themes.css';
+
 #scroller-container {
     width: 100%;
     display: flex;
@@ -7,8 +9,9 @@
 #scroller {
     position: fixed;
     bottom: -54px;
-    color: #6c757d;
-    background: rgba(219, 219, 219, 0.7);
+    color: var(--bg-color-5);
+    background: var(--bg-color-4);
+    opacity: 0.9;
     border-radius: 100%;
     cursor: pointer;
     transition: bottom 0.2s ease-in;
@@ -16,5 +19,5 @@
 }
 
 #scroller:active {
-    color: #b6b8b9;
+    color: var(--bg-color-7);
 }

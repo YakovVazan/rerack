@@ -4,6 +4,7 @@ import SearchBox from "../../SeekingTools/SearchBox/SearchBox";
 import AddButton from "../../PlugActions/Adding/AddButton/AddButton";
 import Filter from "../../SeekingTools/FilterAndLayout/Filter/Filter";
 import Layout from "../../SeekingTools/FilterAndLayout/Layout/Layout";
+import ColoredDivider from "../../Common/ColoredDivider/ColoredDivider";
 import TypeDropDown from "../../SeekingTools/DropDowns/TypeDropDown/TypeDropDown";
 import TransparentDivider from "../../Common/TransparentDivider/TransparentDivider";
 import CompanyDropDown from "../../SeekingTools/DropDowns/CompanyDropDown/CompanyDropDown";
@@ -24,7 +25,7 @@ const HomePageCtrls = () => {
           <Layout />
           <Filter />
         </div>
-        <hr className="dropdown-divider"></hr>
+        <ColoredDivider/>
       </div>
       <div id="lower-aside">
         <AddButton />

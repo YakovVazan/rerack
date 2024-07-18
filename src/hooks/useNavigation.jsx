@@ -16,7 +16,12 @@ const useNavigation = () => {
 
   const adminPageKeyword = ["activity", "download"];
   const authenticationKeywords = ["login", "register", "forgot_password"];
-  const settingsPageKeywords = ["contributions", "owned_plugins", "wishlist"];
+  const settingsPageKeywords = [
+    "preferences",
+    "contributions",
+    "owned_plugins",
+    "wishlist",
+  ];
 
   const isSettingsURL = (url) => {
     const urlArray = urlToArray(url);

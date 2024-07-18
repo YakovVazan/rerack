@@ -12,6 +12,7 @@ import {
   localStorageToken,
 } from "../../../config/localStorage";
 import "../../SettingsPage/SubRoutes.css";
+import "../../../styles/buttons.css";
 import "./Activity.css";
 
 const Activity = () => {
@@ -141,7 +142,7 @@ const Activity = () => {
                             data-bs-toggle={token && "modal"}
                             data-bs-target={token && "#activitiesModal"}
                             data-bs-dismiss="offcanvas"
-                            className="btn btn-outline-dark"
+                            className="btn customed-svg"
                             onClick={() => handleContributionsModal(activiy)}
                           >
                             <SvgInfo />

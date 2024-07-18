@@ -1,9 +1,10 @@
 import SvgInfo from "../../svg/SvgInfo/SvgInfo";
+import "../../../styles/buttons.css";
 
 const InfoButton = () => {
   return (
     <div
-      className="btn btn-outline-secondary"
+      className="btn customed-svg"
       data-bs-toggle="dropdown"
       title="info"
     >

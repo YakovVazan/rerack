@@ -4,6 +4,7 @@ import useToasts from "../../hooks/useToasts";
 import Spinner from "../../components/Common/Spinner/Spinner";
 import { consts } from "../../config/constants";
 import "../../styles/auth-card.css";
+import "../../styles/buttons.css";
 
 const RegisterPage = () => {
   const showToast = useToasts();
@@ -109,12 +110,12 @@ const RegisterPage = () => {
               <input
                 type="reset"
                 value="Reset"
-                className="btn btn-outline-secondary"
+                className="btn customed-button"
               />
               <input
                 type="submit"
                 value="Submit"
-                className="btn btn-outline-secondary"
+                className="btn customed-button"
               />
             </div>
             <hr />

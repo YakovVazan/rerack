@@ -9,6 +9,7 @@ import {
   localStorageLogout,
   localStorageToken,
 } from "../../../../config/localStorage";
+import '../../../../styles/buttons.css'
 import "./LogoutButton.css";
 
 const LogoutButton = () => {
@@ -63,7 +64,7 @@ const LogoutButton = () => {
   return (
     <>
       <span
-        className="btn btn-outline-secondary"
+        className="btn customed-button"
         title="logout"
         onClick={handleClick}
         data-bs-dismiss="offcanvas"

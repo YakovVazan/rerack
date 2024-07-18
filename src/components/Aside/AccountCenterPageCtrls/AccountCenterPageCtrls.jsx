@@ -6,6 +6,8 @@ import SvgHeart from "../../svg/SvgHeart/SvgHeart";
 import SvgAdmin from "../../svg/SvgAdmin/SvgAdmin";
 import SvgPencil from "../../svg/SvgPencil/SvgPencil";
 import SvgAccount from "../../svg/SvgAccount/SvgAccount";
+import SvgPreferences from "../../svg/SvgPreferences/SvgPreferences";
+import ColoredDivider from "../../Common/ColoredDivider/ColoredDivider";
 import {
   localStorageIsAdmin,
   setLocalStorageAccountPageSubRouteIndex,
@@ -19,6 +21,7 @@ const AccountCenterPageCtrls = () => {
 
   const list = [
     { title: "Account", svg: <SvgAccount /> },
+    { title: "Preferences", svg: <SvgPreferences /> },
     { title: "Contributions", svg: <SvgPencil /> },
     { title: "Owned Plugins", svg: <SvgTag /> },
     { title: "Wishlist", svg: <SvgHeart /> },
@@ -44,16 +47,19 @@ const AccountCenterPageCtrls = () => {
       <ul className="list-group account-center-aside-list">
         {list.map((item, index) => {
           return (
-            <li
-              className={`list-group-item aside-controls ${
-                contextData["accountPageSubRoute"] === index && "active"
-              } ${index === list.length - 1 && "d-none"}`}
-              key={index}
-              onClick={() => updateSubRoute(index)}
-              data-bs-dismiss="offcanvas"
-            >
-              {item.svg} {item.title}
-            </li>
+            <>
+              <li
+                className={`list-group-item aside-controls ${
+                  contextData["accountPageSubRoute"] === index && "active"
+                } ${index === list.length - 1 && "d-none"}`}
+                key={index}
+                onClick={() => updateSubRoute(index)}
+                data-bs-dismiss="offcanvas"
+              >
+                {item.svg} {item.title}
+              </li>
+              {index === 1 && <ColoredDivider margin={"0"} />}
+            </>
           );
         })}
       </ul>

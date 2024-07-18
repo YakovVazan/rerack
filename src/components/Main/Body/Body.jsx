@@ -19,6 +19,7 @@ import Wishlist from "../../../pages/SettingsPage/Wishlist/Wishlist.jsx";
 import EditModal from "../../PlugActions/Editing/EditModal/EditModal.jsx";
 import ForgotPswdPage from "../../../pages/ForgotPswdPage/ForgotPswdPage.jsx";
 import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx";
+import Preferences from "../../../pages/SettingsPage/Preferences/Preferences.jsx";
 import OwnedPlugins from "../../../pages/SettingsPage/OwnedPlugins/OwnedPlugins.jsx";
 import AdminsModal from "../../../pages/AdminsPage/Users/AdminsModal/AdminsModal.jsx";
 import Contributions from "../../../pages/SettingsPage/Contributions/Contributions.jsx";
@@ -69,6 +70,10 @@ const Body = () => {
               element={<ForgotPswdPage />}
             ></Route>
             <Route path="/users/:id/" element={<SettingsPage />}></Route>
+            <Route
+              path="/users/:id/preferences"
+              element={<Preferences />}
+            ></Route>
             <Route
               path="/users/:id/contributions"
               element={<Contributions />}

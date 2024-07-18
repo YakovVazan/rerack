@@ -1,0 +1,11 @@
+.theme-toggler {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+}
+
+.theme-button {
+    display: flex;
+    align-items: center;
+    gap: .25em;
+}

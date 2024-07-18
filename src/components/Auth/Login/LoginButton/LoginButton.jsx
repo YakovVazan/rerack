@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom";
-import "./LoginButton.css";
 import SvgLogin from "../../../svg/SvgLogin/SvgLogin";
+import "../../../../styles/buttons.css";
+import "./LoginButton.css";
 
 const LoginButton = () => {
   return (
-    <Link
-      className="btn btn-outline-secondary"
-      title="login"
-      to={"users/login"}
-    >
+    <Link className="btn customed-button" title="login" to={"users/login"}>
       <span id="login-icon">
         <SvgLogin />
       </span>

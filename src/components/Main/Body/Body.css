@@ -1,3 +1,4 @@
+@import '../../../styles/themes.css';
 @import '../../../styles/layout.css';
 
 #main-container {
@@ -10,6 +11,8 @@
     overflow-y: auto;
     overflow-x: hidden;
     scroll-behavior: smooth !important;
+    background-color: var(--bg-color-1);
+    color: var(--color-1);
 }
 
 @media screen and (min-width: 769px) {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Context from "./context/Context.jsx";
 import { consts } from "./config/constants.js";
 import Nav from "./components/Header/Nav/Nav.jsx";
@@ -31,6 +31,18 @@ const App = () => {
   const [activitiesHistory, setActivitiesHistory] = useState([]);
   const [adminsModalContents, setAdminsModalContents] = useState({});
   const [usersState, setUsersState] = useState([]); // to update UI state in users table
+  const [isDarkMode, setIsDarkMode] = useState(
+    Boolean(localStorageVars.localStorageIsDarkMode)
+  );
+
+  useEffect(() => {
+    if (isDarkMode === true) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+    localStorageVars.setLocalStorageIsDarkMode(isDarkMode);
+  }, [isDarkMode]);
 
   return (
     <>
@@ -53,6 +65,7 @@ const App = () => {
           setActivitiesHistory,
           setAdminsModalContents,
           setUsersState,
+          setIsDarkMode,
           orderBy,
           orderedData,
           searchBoxValue,
@@ -70,6 +83,7 @@ const App = () => {
           activitiesHistory,
           adminsModalContents,
           usersState,
+          isDarkMode
         }}
       >
         <Nav />

@@ -4,7 +4,10 @@ import Context from "../../../../context/Context.jsx";
 import { consts } from "../../../../config/constants.js";
 import Spinner from "../../../Common/Spinner/Spinner.jsx";
 import SvgCheck from "../../../svg/SvgCheck/SvgCheck.jsx";
+import ColoredDivider from "../../../Common/ColoredDivider/ColoredDivider.jsx";
 import { ResetTypeValue } from "../../../../utils/ResetFactors/ResetFactors.jsx";
+import "../../../../styles/dropdowns.css";
+import "../../../../styles/buttons.css";
 import "./TypeDropDown.css";
 
 const TypeDropDown = () => {
@@ -25,7 +28,7 @@ const TypeDropDown = () => {
       <div className="dropdown-center search-button-container" title="Type">
         <button
           id="type-filter"
-          className="btn btn-outline-secondary dropdown-toggle"
+          className="btn customed-dropdown-button dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -33,9 +36,9 @@ const TypeDropDown = () => {
           <span className="inner-button-text-type">{typeFilterValue}</span>
         </button>
         {/* filter drop down */}
-        <ul className="dropdown-menu" id="type-drop-down">
+        <ul className="dropdown-menu customed-dropdown">
           <div
-            className="dropdown-item type-dropdown-item"
+            className="dropdown-item customed-dropdown-item"
             onClick={() => handleClick(consts.typeDropDownInitialValue)}
           >
             <span>all</span>
@@ -45,14 +48,14 @@ const TypeDropDown = () => {
               </span>
             )}
           </div>
-          <hr className="dropdown-divider"></hr>
+          <ColoredDivider />
           {typesList.length === 0 ? (
             <Spinner />
           ) : (
             typesList.map((type, index) => (
               <li
                 key={index}
-                className="dropdown-item type-dropdown-item"
+                className="dropdown-item customed-dropdown-item"
                 onClick={() => handleClick(type)}
               >
                 <span className="type-content">{type}</span>

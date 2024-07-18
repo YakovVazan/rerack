@@ -1,3 +1,5 @@
+@import '../../styles/themes.css';
+
 .sub-route-wrapper {
     padding: 1em;
     display: flex;
@@ -81,4 +83,7 @@
     justify-content: space-between;
     align-items: center;
     cursor: auto;
+    color: var(--color-1);
+    background-color: var(--bg-color-1);
+    border-color: var(--bg-color-4);
 }

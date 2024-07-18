@@ -3,15 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import Context from "../../context/Context";
 import useToasts from "../../hooks/useToasts";
 import { consts } from "../../config/constants";
+import useTimeOfDay from "../../hooks/useTimeOfDay";
 import Spinner from "../../components/Common/Spinner/Spinner";
 import {
   localStorageLogin,
   localStorageHistory,
 } from "../../config/localStorage";
 import "../../styles/auth-card.css";
+import "../../styles/buttons.css";
 
 const LoginPage = () => {
   const showToast = useToasts();
+  const { timeWord } = useTimeOfDay();
   const navigate = useNavigate();
   const contextData = useContext(Context);
   const [loadingUser, setLoadingUser] = useState(false);
@@ -69,7 +72,7 @@ const LoginPage = () => {
       const userLastRoute = JSON.parse(localStorageHistory);
       contextData["setToken"](response.token);
       navigate(userLastRoute[userLastRoute.length - 2] || "/");
-      showToast(`${response.name} logged in using ${response.email}`);
+      showToast(`${timeWord}, ${response.name}!`);
     }
   }
 
@@ -115,12 +118,12 @@ const LoginPage = () => {
               <input
                 type="reset"
                 value="Reset"
-                className="btn btn-outline-secondary"
+                className="btn customed-button"
               />
               <input
                 type="submit"
                 value="Submit"
-                className="btn btn-outline-secondary"
+                className="btn customed-button"
               />
             </div>
             <hr />

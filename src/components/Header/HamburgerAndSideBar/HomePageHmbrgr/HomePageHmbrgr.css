@@ -1,5 +1,8 @@
+@import '../../../../styles/themes.css';
+
 #offcanvasRight {
     width: 75%;
+    background-color: var(--bg-color-1);
 }
 
 .search-button-container>*:first-child {

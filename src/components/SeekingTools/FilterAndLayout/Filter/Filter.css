@@ -1,9 +1,3 @@
-.filter-dropdown-item {
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-}
-
 #check-sign-container {
     display: flex;
     align-items: center;

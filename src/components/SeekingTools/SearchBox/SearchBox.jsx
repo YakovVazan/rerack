@@ -4,6 +4,7 @@ import { consts } from "../../../config/constants.js";
 import SvgReset from "../../svg/SvgReset/SvgReset.jsx";
 import SvgSearch from "../../svg/SvgSearch/SvgSearch.jsx";
 import { ResetAllFactors } from "../../../utils/ResetFactors/ResetFactors.jsx";
+import "../../../styles/buttons.css";
 import "./SearchBox.css";
 
 const SearchBox = () => {
@@ -15,7 +16,7 @@ const SearchBox = () => {
     setTypeFilterValue,
     setCompanyFilterValue,
   } = useContext(Context);
-  
+
   const shouldBeDisabled =
     searchBoxValue === "" &&
     typeFilterValue === consts.typeDropDownInitialValue &&
@@ -42,7 +43,7 @@ const SearchBox = () => {
   return (
     <div className="input-group">
       <div
-        className={`btn btn-outline-secondary input-group-text ${
+        className={`btn customed-button input-group-text ${
           shouldBeDisabled && "disabled"
         }`}
         type="button"
@@ -59,7 +60,7 @@ const SearchBox = () => {
         value={searchBoxValue}
       />
       <div
-        className="btn btn-outline-secondary"
+        className="btn customed-button"
         type="button"
         title="reset factors"
         data-bs-dismiss="offcanvas"

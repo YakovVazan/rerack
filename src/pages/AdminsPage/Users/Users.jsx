@@ -91,7 +91,7 @@ const Users = () => {
             <span id="table-container">
               <table
                 id="admins-table"
-                className="table table-striped table-bordered"
+                className="table table-bordered"
               >
                 <thead>
                   <tr className="users-tr">

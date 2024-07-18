@@ -5,7 +5,7 @@ const AdminPageHmbrgr = () => {
   return (
     <>
       <div
-        className="btn btn-outline-secondary"
+        className="btn customed-svg"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
@@ -26,7 +26,7 @@ const AdminPageHmbrgr = () => {
           </h3>
           <button
             type="button"
-            className="btn-close"
+            className="btn-close customed-close-button"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
           ></button>

@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import Context from "../../../../context/Context";
-import useForceAuth from "../../../../hooks/useForceAuth";
-import "./AddButton.css";
 import SvgPlus from "../../../svg/SvgPlus/SvgPlus";
+import useForceAuth from "../../../../hooks/useForceAuth";
+import '../../../../styles/buttons.css'
+import "./AddButton.css";
 
 const AddButton = () => {
   const forceAuth = useForceAuth();
@@ -19,7 +20,7 @@ const AddButton = () => {
       </div>
       <div
         id="add-plug-button"
-        className="btn btn-outline-secondary form-control"
+        className="btn customed-button form-control"
         data-bs-toggle={contextData["token"] && "modal"}
         data-bs-target={contextData["token"] && "#addingModal"}
         data-bs-dismiss="offcanvas"

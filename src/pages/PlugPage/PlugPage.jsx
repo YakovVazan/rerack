@@ -136,51 +136,53 @@ const PlugPage = () => {
         <div className="plug-page-container">
           <div className="card list-item">
             <div className="card-header">
-              <h2>
+              <h2 id="plug-name-header">
                 <b>{currentPlug["name"].toUpperCase()}</b>
               </h2>
             </div>
-            <img
-              src={currentPlug["src"]}
-              className="card-img-top"
-              alt={currentPlug["name"]}
-            />
-            <div className="card-body plug-buttons">
-              <div className="plug-price">
-                <a
-                  className={`btn btn-outline-primary price-link ${
-                    (currentPlug["price"] == "" ||
-                      currentPlug["price"] == -1) &&
-                    "d-none"
-                  }`}
-                  title="get it at the official website"
-                  href={currentPlug["link"]}
-                  target="blank"
-                >
-                  <span>{currentPlug["price"]}</span>
-                </a>
-              </div>
-              <div className="plug-tags">
-                <div
-                  className="btn btn-outline-danger"
-                  title={
-                    alreadyFavorited
-                      ? "remove from wishlist"
-                      : "add to wishlist"
-                  }
-                  onClick={() => handleSelections("favor", currentPlug["id"])}
-                >
-                  {!alreadyFavorited ? <SvgHeart /> : <SvgHeartBroken />}
+            <span className="card-main">
+              <img
+                src={currentPlug["src"]}
+                className="card-img-top"
+                alt={currentPlug["name"]}
+              />
+              <div className="card-body plug-buttons">
+                <div className="plug-price">
+                  <a
+                    className={`btn btn-outline-primary price-link ${
+                      (currentPlug["price"] == "" ||
+                        currentPlug["price"] == -1) &&
+                      "d-none"
+                    }`}
+                    title="get it at the official website"
+                    href={currentPlug["link"]}
+                    target="blank"
+                  >
+                    <span>{currentPlug["price"]}</span>
+                  </a>
                 </div>
-                <div
-                  className="btn btn-outline-success"
-                  title={alreadySaved ? "unmark as owned" : "mark as owned"}
-                  onClick={() => handleSelections("save", currentPlug["id"])}
-                >
-                  {!alreadySaved ? <SvgTagAdd /> : <SvgTagRemove />}
+                <div className="plug-tags">
+                  <div
+                    className="btn btn-outline-danger"
+                    title={
+                      alreadyFavorited
+                        ? "remove from wishlist"
+                        : "add to wishlist"
+                    }
+                    onClick={() => handleSelections("favor", currentPlug["id"])}
+                  >
+                    {!alreadyFavorited ? <SvgHeart /> : <SvgHeartBroken />}
+                  </div>
+                  <div
+                    className="btn btn-outline-success"
+                    title={alreadySaved ? "unmark as owned" : "mark as owned"}
+                    onClick={() => handleSelections("save", currentPlug["id"])}
+                  >
+                    {!alreadySaved ? <SvgTagAdd /> : <SvgTagRemove />}
+                  </div>
                 </div>
               </div>
-            </div>
+            </span>
           </div>
         </div>
       ) : (

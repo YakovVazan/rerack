@@ -9,6 +9,10 @@
     overflow: auto;
 }
 
+#plug-name-header {
+    margin: 0;
+}
+
 .list-item {
     max-width: 80%;
     height: fit-content;
@@ -17,11 +21,13 @@
 .card-img-top {
     padding: 1em;
     border-radius: 1.2em;
+    background-color: var(--bg-color-3);
 }
 
 .plug-buttons {
-    border-top: 1px solid var(--light-bg-color-1);
-    margin: 0 1rem 0 1rem;
+    border-top: 1px solid var(--bg-color-3);
+    background-color: var(--bg-color-1);
+    padding: 1rem 2rem 1rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;

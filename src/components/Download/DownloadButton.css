@@ -1,24 +1,27 @@
+@import '../../styles/themes.css';
+
 #downloader-container {
     width: 3em;
     height: 3em;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(219, 219, 219, 0.7);
+    background: var(--bg-color-4);
+    opacity: 0.7;
     border-radius: 100%;
     border-width: 1px;
     border-style: solid;
     cursor: pointer;
     transition: bottom 0.2s ease-in;
-    color: #6c757d;
-    box-shadow: 0px 0px 3px #6c757d;
+    color: var(--bg-color-8);
+    box-shadow: 0px 0px 3px var(--bg-color-8);
 }
 
 #downloader-container:hover {
-    box-shadow: 0px 0px 7px #6c757d;
+    box-shadow: 0px 0px 7px var(--bg-color-8);
     transition: box-shadow 0.1s ease-in-out;
 }
 
 #downloader-container:active {
-    color: #b6b8b9;
+    color: var(--bg-color-5);
 }

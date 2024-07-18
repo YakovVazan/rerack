@@ -1,3 +1,16 @@
+.modal-content {
+    color: var(--color-2);
+    background-color: var(--bg-color-2);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--bg-color-4);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--bg-color-4);
+}
+
 .modal.fade .modal-dialog {
     transform: scale(0.8);
     transition: transform 0.1s ease-out;
@@ -34,7 +47,7 @@
 .type-or-comp-list {
     width: 75%;
     max-height: 10rem;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .modal-dropdown-item {
@@ -60,7 +73,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-color: #e0e0e0;
+    background-color: var(--bg-color-4);
 }
 
 #spinner-for-image {
