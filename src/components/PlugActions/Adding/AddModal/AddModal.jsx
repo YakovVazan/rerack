@@ -102,7 +102,7 @@ const AddModal = () => {
             <h1 className="modal-title fs-5">New plug&#39;s details</h1>
             <button
               type="button"
-              className="btn-close"
+              className="btn-close customed-close-button"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
@@ -132,7 +132,7 @@ const AddModal = () => {
               <span className="input-group-text adding-title">Company</span>
               <button
                 type="button"
-                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split adding-input"
+                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split adding-input customed-dropdown-button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
@@ -140,12 +140,12 @@ const AddModal = () => {
                   {newPlug.company || "choose the plug's company"}
                 </div>
               </button>
-              <ul className="dropdown-menu type-or-comp-list">
+              <ul className="dropdown-menu type-or-comp-list customed-dropdown">
                 {companiesList.length > 0 ? (
                   companiesList.map((company, index) => (
                     <li
                       key={index}
-                      className="dropdown-item modal-dropdown-item"
+                      className="dropdown-item modal-dropdown-item customed-dropdown-item"
                       onClick={() =>
                         setNewPlug({ ...newPlug, company: company })
                       }
@@ -170,7 +170,7 @@ const AddModal = () => {
               <span className="input-group-text adding-title">Type</span>
               <button
                 type="button"
-                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split adding-input"
+                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split adding-input customed-dropdown-button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
@@ -178,12 +178,12 @@ const AddModal = () => {
                   {newPlug.type || "choose the plug's type"}
                 </div>
               </button>
-              <ul className="dropdown-menu type-or-comp-list">
+              <ul className="dropdown-menu type-or-comp-list customed-dropdown">
                 {typesList.length > 0 ? (
                   typesList.map((type, index) => (
                     <li
                       key={index}
-                      className="dropdown-item modal-dropdown-item"
+                      className="dropdown-item modal-dropdown-item customed-dropdown-item"
                       onClick={() => setNewPlug({ ...newPlug, type: type })}
                     >
                       <span className="modal-dropdown-item-content">

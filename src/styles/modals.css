@@ -73,7 +73,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-color: var(--bg-color-4);
+    background-color: var(--bg-color-1);
 }
 
 #spinner-for-image {

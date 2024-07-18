@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import SvgTag from "../../svg/SvgTag/SvgTag";
 import Context from "../../../context/Context";
@@ -47,19 +47,18 @@ const AccountCenterPageCtrls = () => {
       <ul className="list-group account-center-aside-list">
         {list.map((item, index) => {
           return (
-            <>
+            <Fragment key={index}>
               <li
                 className={`list-group-item aside-controls ${
                   contextData["accountPageSubRoute"] === index && "active"
                 } ${index === list.length - 1 && "d-none"}`}
-                key={index}
                 onClick={() => updateSubRoute(index)}
                 data-bs-dismiss="offcanvas"
               >
                 {item.svg} {item.title}
               </li>
               {index === 1 && <ColoredDivider margin={"0"} />}
-            </>
+            </Fragment>
           );
         })}
       </ul>

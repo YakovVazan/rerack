@@ -45,7 +45,7 @@ const Toast = ({ toastMessage, toastVisibility, setToastVisibility }) => {
           <strong>Rerack</strong>
           <button
             type="button"
-            className="btn-close"
+            className="btn-close customed-close-button"
             onClick={() => setToastVisibility(false)}
           ></button>
         </div>

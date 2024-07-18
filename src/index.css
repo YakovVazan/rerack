@@ -21,7 +21,7 @@
 }
 
 *::-webkit-scrollbar-track {
-    background-color: var(--bg-color-1);
+    background-color: var(--bg-color-3);
 }
 
 #root {
@@ -40,11 +40,11 @@
 
 .input-group-text {
     color: var(--color-3) !important;
-    background-color: var(--bg-color-3) !important;   
+    background-color: var(--bg-color-3) !important;
     border: .5px solid var(--bg-color-5) !important;
 }
 
-a {
+a:not(.watch-user) {
     color: var(--color-3) !important;
 }
 

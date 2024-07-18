@@ -3,6 +3,7 @@ import HomePageHmbrgr from "./HomePageHmbrgr/HomePageHmbrgr";
 import PlugPageHmbrgr from "./PlugPageHmbrgr/PlugPageHmbrgr";
 import AdminPageHmbrgr from "./AdminPageHmbrgr/AdminPageHmbrgr";
 import AccountPageHmbrgr from "./AccountPageHmbrgr/AccountPageHmbrgr";
+import './HamburgerAndSideBar.css'
 
 const HamburgerAndSideBar = () => {
   const { isHomePage, isPlugPage, isSettingsPage, isAdminPage } =

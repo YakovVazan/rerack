@@ -32,7 +32,7 @@ const App = () => {
   const [adminsModalContents, setAdminsModalContents] = useState({});
   const [usersState, setUsersState] = useState([]); // to update UI state in users table
   const [isDarkMode, setIsDarkMode] = useState(
-    Boolean(localStorageVars.localStorageIsDarkMode)
+    localStorageVars.localStorageIsDarkMode === "true"
   );
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const App = () => {
           activitiesHistory,
           adminsModalContents,
           usersState,
-          isDarkMode
+          isDarkMode,
         }}
       >
         <Nav />

@@ -13,7 +13,7 @@ const ActivitiesModal = () => {
             <h1 className="modal-title fs-5">{`${activitiesHistory[0]?.plugName}'s history`}</h1>
             <button
               type="button"
-              className="btn-close"
+              className="btn-close customed-close-button"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>

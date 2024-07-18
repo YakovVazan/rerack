@@ -3,7 +3,7 @@
 .customed-button {
     color: var(--color-1) !important;
     background-color: var(--bg-color-3) !important;
-    border-color: var(--bg-color-5);
+    border-color: var(--bg-color-5) !important;
 }
 
 .customed-button:hover {
@@ -14,6 +14,10 @@
 .customed-button.active {
     color: var(--color-8) !important;
     background-color: var(--bg-color-7) !important;
+}
+
+.customed-button:focus {
+    box-shadow: none !important;
 }
 
 .customed-dropdown-button {
@@ -30,17 +34,18 @@
 
 .customed-svg {
     fill: var(--color-1);
-    border-color: var(--bg-color-5);
+    border-color: var(--bg-color-8);
 }
 
 .customed-svg:hover {
-    /* fill: var(--color-1) !important; */
-    background-color: var(--bg-color-1) !important;
+    fill: var(--color-6) !important;
+    background-color: var(--bg-color-8) !important;
 }
 
 .customed-close-button {
     color: var(--color-1) !important;
     background-color: var(--bg-color-6);
+    box-shadow: none !important;
 }
 
 .customed-close-button:hover {

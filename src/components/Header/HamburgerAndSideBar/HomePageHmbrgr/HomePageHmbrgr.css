@@ -1,16 +1,3 @@
-@import '../../../../styles/themes.css';
-
-#offcanvasRight {
-    width: 75%;
-    background-color: var(--bg-color-1);
-}
-
 .search-button-container>*:first-child {
     width: 100%;
-}
-
-@media screen and (min-width: 576px) {
-    #offcanvasRight {
-        width: 50%;
-    }
 }

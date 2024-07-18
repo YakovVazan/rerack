@@ -118,7 +118,7 @@ const Users = () => {
                         <div className="btn-group">
                           <Link
                             to={`/users/${user.id}`}
-                            className="btn btn-outline-primary"
+                            className="btn btn-outline-primary watch-user"
                             title="Watch"
                           >
                             <SvgEye />

@@ -20,9 +20,9 @@ const Filter = () => {
   return (
     <>
       <div
-        className="btn customed-button"
+        className="btn customed-dropdown-button dropdown-toggle"
         data-bs-toggle="dropdown"
-        title="filter A-Z"
+        title="filter"
       >
         <SvgFilter />
       </div>
