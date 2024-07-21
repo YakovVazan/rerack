@@ -1,11 +1,21 @@
-.theme-toggler {
+.preference-section {
+    width: 80%;
+    align-self: end;
     display: flex;
-    width: 100%;
-    justify-content: end;
+    justify-content: space-between;
 }
 
-.theme-button {
+#theme-section {
+    flex: 1;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+}
+
+.theme-text {
+    width: 50%;
+}
+
+.theme-toggle {
+    align-self: flex-end;
     gap: .25em;
 }

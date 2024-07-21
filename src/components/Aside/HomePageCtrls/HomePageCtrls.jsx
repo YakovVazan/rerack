@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import AuthAndInfo from "../../AuthAndInfo/AuthAndInfo";
 import SearchBox from "../../SeekingTools/SearchBox/SearchBox";
 import AddButton from "../../PlugActions/Adding/AddButton/AddButton";
 import Filter from "../../SeekingTools/FilterAndLayout/Filter/Filter";
@@ -12,8 +10,8 @@ import "./HomePageCtrls.css";
 
 const HomePageCtrls = () => {
   return (
-    <>
-      <div id="upper-aside">
+    <div id="home-page-aside-list-wrapper">
+      <span>
         <SearchBox />
         <TransparentDivider />
         <div id="dropDownsContainer">
@@ -25,20 +23,10 @@ const HomePageCtrls = () => {
           <Layout />
           <Filter />
         </div>
-        <ColoredDivider/>
-      </div>
-      <div id="lower-aside">
-        <AddButton />
-        <TransparentDivider />
-        <div id="big-screens-lower-aside">
-          <Link to={"privacy_policy"}>Privacy Policy</Link>
-          <span>0.0.0</span>
-        </div>
-        <div id="small-screens-lower-aside">
-          <AuthAndInfo />
-        </div>
-      </div>
-    </>
+        <ColoredDivider />
+      </span>
+      <AddButton />
+    </div>
   );
 };
 

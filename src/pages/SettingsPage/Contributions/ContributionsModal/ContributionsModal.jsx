@@ -13,12 +13,6 @@ const ContributionsModal = () => {
           {/* header */}
           <div className="modal-header">
             <h1 className="modal-title fs-5">{`${contributions[0]?.plugName}`}</h1>
-            <button
-              type="button"
-              className="btn-close customed-close-button"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
           </div>
 
           {/* body */}
@@ -43,7 +37,7 @@ const ContributionsModal = () => {
           <div className="modal-footer">
             <button
               type="button"
-              className="btn btn-outline-secondary"
+              className="btn customed-button"
               data-bs-dismiss="modal"
             >
               Close

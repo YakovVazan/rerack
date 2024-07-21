@@ -52,7 +52,7 @@ const Body = () => {
       <div
         className={
           isHomePage || isPlugPage || isSettingsPage || isAdminPage
-            ? "wrapper"
+            ? "main-wrapper"
             : ""
         }
       >

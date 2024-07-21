@@ -2,8 +2,8 @@ import { useState } from "react";
 import useToasts from "../../hooks/useToasts";
 import { consts } from "../../config/constants";
 import Spinner from "../Common/Spinner/Spinner";
-import { localStorageToken } from "../../config/localStorage";
 import SvgDownload from "../svg/SvgDownload/SvgDownload";
+import { localStorageToken } from "../../config/localStorage";
 import "./DownloadButton.css";
 
 const DownloadButton = () => {

@@ -31,18 +31,20 @@ const App = () => {
   const [activitiesHistory, setActivitiesHistory] = useState([]);
   const [adminsModalContents, setAdminsModalContents] = useState({});
   const [usersState, setUsersState] = useState([]); // to update UI state in users table
-  const [isDarkMode, setIsDarkMode] = useState(
-    localStorageVars.localStorageIsDarkMode === "true"
-  );
+  const [theme, setTheme] = useState(localStorageVars.localStorageTheme);
 
   useEffect(() => {
-    if (isDarkMode === true) {
+    if (
+      (theme === "machine" &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches) ||
+      theme === "dark"
+    ) {
       document.body.classList.add("dark-mode");
     } else {
       document.body.classList.remove("dark-mode");
     }
-    localStorageVars.setLocalStorageIsDarkMode(isDarkMode);
-  }, [isDarkMode]);
+    localStorageVars.setLocalStorageTheme(theme);
+  });
 
   return (
     <>
@@ -65,7 +67,7 @@ const App = () => {
           setActivitiesHistory,
           setAdminsModalContents,
           setUsersState,
-          setIsDarkMode,
+          setTheme,
           orderBy,
           orderedData,
           searchBoxValue,
@@ -83,7 +85,7 @@ const App = () => {
           activitiesHistory,
           adminsModalContents,
           usersState,
-          isDarkMode,
+          theme,
         }}
       >
         <Nav />

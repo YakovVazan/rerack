@@ -2,34 +2,31 @@
 
 .customed-button {
     color: var(--color-1) !important;
-    background-color: var(--bg-color-3) !important;
+    background-color: var(--bg-color-2) !important;
     border-color: var(--bg-color-5) !important;
 }
 
 .customed-button:hover {
-    color: var(--color-8) !important;
-    background-color: var(--bg-color-7) !important;
+    color: var(--color-6 ) !important;
+    background-color: var(--bg-color-6) !important;
 }
 
 .customed-button.active {
-    color: var(--color-8) !important;
-    background-color: var(--bg-color-7) !important;
+    color: var(--color-6 ) !important;
+    background-color: var(--bg-color-6) !important;
+    box-shadow: none !important;
+
 }
 
 .customed-button:focus {
     box-shadow: none !important;
 }
 
-.customed-dropdown-button {
-    color: var(--color-1);
-    background-color: var(--bg-color-3);
-    border-color: var(--bg-color-5);
-    box-shadow: none !important;
-}
-
-.customed-dropdown-button:hover {
-    color: var(--color-6) !important;
-    background-color: var(--bg-color-5);
+.customed-button-with-icon {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    padding: .45rem .75rem;
 }
 
 .customed-svg {
@@ -40,15 +37,4 @@
 .customed-svg:hover {
     fill: var(--color-6) !important;
     background-color: var(--bg-color-8) !important;
-}
-
-.customed-close-button {
-    color: var(--color-1) !important;
-    background-color: var(--bg-color-6);
-    box-shadow: none !important;
-}
-
-.customed-close-button:hover {
-    color: var(--color-6) !important;
-    background-color: var(--bg-color-5);
 }

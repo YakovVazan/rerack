@@ -20,7 +20,7 @@ const Filter = () => {
   return (
     <>
       <div
-        className="btn customed-dropdown-button dropdown-toggle"
+        className="btn customed-button dropdown-toggle"
         data-bs-toggle="dropdown"
         title="filter"
       >

@@ -9,7 +9,7 @@
 #scroller {
     position: fixed;
     bottom: -54px;
-    color: var(--bg-color-5);
+    color: var(--color-2);
     background: var(--bg-color-4);
     opacity: 0.9;
     border-radius: 100%;
@@ -19,5 +19,5 @@
 }
 
 #scroller:active {
-    color: var(--bg-color-7);
+    color: var(--bg-color-5);
 }

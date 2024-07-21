@@ -6,13 +6,11 @@
     border-radius: 0.25rem;
     font-size: 1rem;
     font-weight: bolder;
-    margin: 0;
-    height: 30%;
     color: var(--color-1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow-y: auto;
+    margin-bottom: 1rem;
 }
 
 .info-container {
@@ -22,9 +20,9 @@
 }
 
 #lower-plug-aside {
-    height: 65%;
+    max-height: 65%;
+    flex: 1;
     padding: 0.5em;
-    margin-bottom: 0.7em;
     border: 1px solid var(--bg-color-4);
     border-radius: 0.25rem;
     font-size: 1rem;
@@ -51,4 +49,9 @@
     align-items: center;
     justify-content: center;
     color: var(--color-2);
+    gap: 1rem;
+}
+
+#temp-msg p {
+    margin: 0;
 }

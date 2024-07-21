@@ -100,12 +100,6 @@ const AddModal = () => {
           {/* header */}
           <div className="modal-header">
             <h1 className="modal-title fs-5">New plug&#39;s details</h1>
-            <button
-              type="button"
-              className="btn-close customed-close-button"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
           </div>
 
           {/* body */}
@@ -132,7 +126,7 @@ const AddModal = () => {
               <span className="input-group-text adding-title">Company</span>
               <button
                 type="button"
-                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split adding-input customed-dropdown-button"
+                className="btn dropdown-toggle dropdown-toggle-split adding-input customed-button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
@@ -170,7 +164,7 @@ const AddModal = () => {
               <span className="input-group-text adding-title">Type</span>
               <button
                 type="button"
-                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split adding-input customed-dropdown-button"
+                className="btn dropdown-toggle dropdown-toggle-split adding-input customed-button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >

@@ -28,7 +28,7 @@ const TypeDropDown = () => {
       <div className="dropdown-center search-button-container" title="Type">
         <button
           id="type-filter"
-          className="btn customed-dropdown-button dropdown-toggle"
+          className="btn customed-button dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"

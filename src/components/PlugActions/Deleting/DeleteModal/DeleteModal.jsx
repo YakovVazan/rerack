@@ -58,12 +58,6 @@ const DeleteModal = () => {
             <h1 className="modal-title fs-5">
               <SvgDelete />
             </h1>
-            <button
-              type="button"
-              className="btn-close customed-close-button"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
           </div>
 
           {/* body */}

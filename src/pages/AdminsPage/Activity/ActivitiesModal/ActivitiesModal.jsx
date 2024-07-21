@@ -11,12 +11,6 @@ const ActivitiesModal = () => {
           {/* header */}
           <div className="modal-header">
             <h1 className="modal-title fs-5">{`${activitiesHistory[0]?.plugName}'s history`}</h1>
-            <button
-              type="button"
-              className="btn-close customed-close-button"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
           </div>
 
           {/* body */}
@@ -43,7 +37,7 @@ const ActivitiesModal = () => {
           <div className="modal-footer">
             <button
               type="button"
-              className="btn btn-outline-secondary"
+              className="btn customed-button"
               data-bs-dismiss="modal"
             >
               Close

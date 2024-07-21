@@ -2,7 +2,7 @@
 @import '../../styles/themes.css';
 
 aside {
-    padding: 5% 5% 1% 5%;
+    padding: 5% 3%;
     height: calc(100dvh - var(--header-height));
     display: flex;
     flex-direction: column;
@@ -11,25 +11,6 @@ aside {
     background-color: var(--bg-color-2);
     color: var(--color-2);
     overflow-y: auto;
-}
-
-.aside-controls {
-    color: var(--color-3);
-    background-color: var(--bg-color-3) !important;
-    border-radius: 0.25em !important;
-}
-
-.aside-controls:hover {
-    color: var(--color-3);
-    background-color: var(--bg-color-3)!important;
-    box-shadow: 0px 0px 2px var(--bg-color-6);
-    transition: box-shadow 0.1s ease-in-out;
-}
-
-.aside-controls.active {
-    color: var(--color-5);
-    background-color: var(--bg-color-5)!important;
-    box-shadow: 0px 0px 2px var(--bg-color-5);
 }
 
 @media screen and (max-width: 768px) {

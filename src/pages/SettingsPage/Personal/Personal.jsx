@@ -180,8 +180,10 @@ const Personal = () => {
                 <hr className="header-line" />
               </span>
               <span className="content-section">
-                <li>{userDetails.name}</li>
-                <li>{userDetails.email}</li>
+                <ul>
+                  <li>{userDetails.name}</li>
+                  <li>{userDetails.email}</li>
+                </ul>
                 <div className="edit-button-container">
                   <button
                     type="button"

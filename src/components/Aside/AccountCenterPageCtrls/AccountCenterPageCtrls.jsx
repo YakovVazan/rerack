@@ -44,35 +44,37 @@ const AccountCenterPageCtrls = () => {
 
   return (
     <>
-      <ul className="list-group account-center-aside-list">
-        {list.map((item, index) => {
-          return (
-            <Fragment key={index}>
-              <li
-                className={`list-group-item aside-controls ${
-                  contextData["accountPageSubRoute"] === index && "active"
-                } ${index === list.length - 1 && "d-none"}`}
-                onClick={() => updateSubRoute(index)}
-                data-bs-dismiss="offcanvas"
-              >
-                {item.svg} {item.title}
-              </li>
-              {index === 1 && <ColoredDivider margin={"0"} />}
-            </Fragment>
-          );
-        })}
-      </ul>
-      {localStorageIsAdmin === "true" && (
-        <span
-          className={`admin-button list-group-item aside-controls ${
-            contextData["accountPageSubRoute"] === list.length - 1 && "active"
-          }`}
-          onClick={() => updateSubRoute(list.length - 1)}
-          data-bs-dismiss="offcanvas"
-        >
-          {list[list.length - 1].svg} {list[list.length - 1].title}
-        </span>
-      )}
+      <span id="account-center-aside-list-wrapper">
+        <ul className="list-group account-center-aside-list">
+          {list.map((item, index) => {
+            return (
+              <Fragment key={index}>
+                <li
+                  className={`btn customed-button customed-button-with-icon ${
+                    contextData["accountPageSubRoute"] === index && "active"
+                  } ${index === list.length - 1 && "d-none"}`}
+                  onClick={() => updateSubRoute(index)}
+                  data-bs-dismiss="offcanvas"
+                >
+                  {item.svg} {item.title}
+                </li>
+                {index === 1 && <ColoredDivider margin={"0"} />}
+              </Fragment>
+            );
+          })}
+        </ul>
+        {localStorageIsAdmin === "true" && (
+          <span
+            className={`btn customed-button customed-button-with-icon ${
+              contextData["accountPageSubRoute"] === list.length - 1 && "active"
+            }`}
+            onClick={() => updateSubRoute(list.length - 1)}
+            data-bs-dismiss="offcanvas"
+          >
+            {list[list.length - 1].svg} {list[list.length - 1].title}
+          </span>
+        )}
+      </span>
     </>
   );
 };

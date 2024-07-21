@@ -92,12 +92,6 @@ const AdminsModal = () => {
                 <SvgPersonAdd />
               )}
             </h1>
-            <button
-              type="button"
-              className="btn-close customed-close-button"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
           </div>
 
           {/* body */}

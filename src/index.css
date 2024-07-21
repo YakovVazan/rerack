@@ -28,6 +28,10 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
+.search-button-container>*:first-child {
+    width: 100%;
+}
+
 .form-control {
     color: var(--color-3) !important;
     background-color: var(--bg-color-3) !important;

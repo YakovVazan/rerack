@@ -105,13 +105,10 @@ const EditModal = () => {
         <div className="modal-content">
           {/* header */}
           <div className="modal-header">
-            <SvgEdit />
-            <button
-              type="button"
-              className="btn-close customed-close-button"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+            <span id="edit-modal-header">
+              <SvgEdit />
+              <span style={{marginLeft: '.5em'}}>Edit {currentPlug.name}</span>
+            </span>
           </div>
 
           {/* body */}
@@ -138,7 +135,7 @@ const EditModal = () => {
               <span className="input-group-text adding-title">Company</span>
               <button
                 type="button"
-                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split adding-input customed-dropdown-button"
+                className="btn dropdown-toggle dropdown-toggle-split adding-input customed-button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
@@ -179,7 +176,7 @@ const EditModal = () => {
               <span className="input-group-text adding-title">Type</span>
               <button
                 type="button"
-                className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split adding-input customed-dropdown-button"
+                className="btn dropdown-toggle dropdown-toggle-split adding-input customed-button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >

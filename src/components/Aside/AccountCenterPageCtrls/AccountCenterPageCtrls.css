@@ -1,11 +1,15 @@
-.account-center-aside-list {
-    gap: 1em;
-    height: 100%;
-    margin-bottom: 1em;
+@import "../../../styles/themes.css";
+
+#account-center-aside-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
 }
 
-.list-group-item {
-    cursor: pointer;
+.account-center-aside-list {
+    gap: 1em;
+    margin-bottom: 1em;
 }
 
 .active {
@@ -16,8 +20,4 @@
 #admin-button-container {
     width: 100%;
     margin-bottom: 3%;
-}
-
-.admin-button {
-    margin-bottom: 1em;
 }

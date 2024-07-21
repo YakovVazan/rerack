@@ -16,7 +16,7 @@
 }
 
 @media screen and (min-width: 769px) {
-    .wrapper {
+    .main-wrapper {
         width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -34,7 +34,7 @@
 }
 
 @media screen and (min-width: 992px) {
-    .wrapper {
+    .main-wrapper {
         grid-template-columns: 25% auto;
         grid-template-areas: "controls plugs plugs plugs"
             "controls plugs plugs plugs";
