@@ -148,7 +148,7 @@ const AddModal = () => {
                         {company}
                       </span>
                       {newPlug.company === company && (
-                        <span>
+                        <span className="customed-svg">
                           <SvgCheck />
                         </span>
                       )}
@@ -184,7 +184,7 @@ const AddModal = () => {
                         {type}
                       </span>
                       {newPlug.type === type && (
-                        <span>
+                        <span className="customed-svg">
                           <SvgCheck />
                         </span>
                       )}

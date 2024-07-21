@@ -160,7 +160,7 @@ const EditModal = () => {
                         {company}
                       </span>
                       {upToDatePlug.company === company && (
-                        <span>
+                        <span className="customed-svg">
                           <SvgCheck />
                         </span>
                       )}
@@ -198,7 +198,7 @@ const EditModal = () => {
                         {type}
                       </span>
                       {upToDatePlug.type === type && (
-                        <span>
+                        <span className="customed-svg">
                           <SvgCheck />
                         </span>
                       )}

@@ -14,6 +14,7 @@ form {
 
 .auth-card {
     align-self: center;
+    background-color: inherit;
     width: 100%;
 }
 
@@ -25,6 +26,7 @@ form {
     text-align: center;
     background-color: var(--bg-color-2);
     color: var(--color-2);
+    border-bottom: 1px solid var(--bg-color-5);
 }
 
 .card-main {

@@ -44,7 +44,7 @@ const CompanyDropDown = () => {
           >
             <span>all</span>
             {companyFilterValue === "company" && (
-              <span>
+              <span className="customed-svg">
                 <SvgCheck />
               </span>
             )}
@@ -61,7 +61,7 @@ const CompanyDropDown = () => {
               >
                 <span className="company-content">{company}</span>
                 {companyFilterValue === company && (
-                  <span>
+                  <span className="customed-svg">
                     <SvgCheck />
                   </span>
                 )}

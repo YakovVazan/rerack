@@ -43,7 +43,7 @@ const TypeDropDown = () => {
           >
             <span>all</span>
             {typeFilterValue === "type" && (
-              <span>
+              <span className="customed-svg">
                 <SvgCheck />
               </span>
             )}
@@ -60,7 +60,7 @@ const TypeDropDown = () => {
               >
                 <span className="type-content">{type}</span>
                 {typeFilterValue === type && (
-                  <span>
+                  <span className="customed-svg">
                     <SvgCheck />
                   </span>
                 )}
