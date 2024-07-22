@@ -165,7 +165,7 @@ const Contributions = () => {
                         data-bs-toggle={token && "modal"}
                         data-bs-target={token && "#contributionsModal"}
                         data-bs-dismiss="offcanvas"
-                        className="btn customed-svg"
+                        className="btn customed-svg-button"
                         onClick={() => handleContributionsModal(item)}
                       >
                         <SvgInfo />

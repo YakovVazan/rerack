@@ -20,6 +20,7 @@ form {
 
 .card {
     border: 1px solid var(--bg-color-3);
+    background-color: unset;
 }
 
 .card-header {

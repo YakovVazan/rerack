@@ -4,7 +4,7 @@ import "../../../styles/buttons.css";
 const InfoButton = () => {
   return (
     <div
-      className="btn customed-svg"
+      className="btn customed-svg-button"
       data-bs-toggle="dropdown"
       title="info"
     >

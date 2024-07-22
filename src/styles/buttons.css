@@ -34,7 +34,12 @@
     border-color: var(--bg-color-8);
 }
 
-.customed-svg:hover {
+.customed-svg-button {
+    fill: var(--color-1);
+    border-color: var(--bg-color-8);
+}
+
+.customed-svg-button:hover {
     fill: var(--color-6) !important;
     background-color: var(--bg-color-8) !important;
 }

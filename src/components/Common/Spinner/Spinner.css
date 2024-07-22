@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--bg-color-1);
+    background-color: inherit;
 }
 
 .spinner-grow {

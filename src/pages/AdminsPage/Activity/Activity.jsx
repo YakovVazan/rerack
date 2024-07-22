@@ -142,7 +142,7 @@ const Activity = () => {
                             data-bs-toggle={token && "modal"}
                             data-bs-target={token && "#activitiesModal"}
                             data-bs-dismiss="offcanvas"
-                            className="btn customed-svg"
+                            className="btn customed-svg-button"
                             onClick={() => handleContributionsModal(activiy)}
                           >
                             <SvgInfo />
