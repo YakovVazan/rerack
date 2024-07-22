@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Context from "../../../../context/Context";
 import useToasts from "../../../../hooks/useToasts";
 import SvgDelete from "../../../svg/SvgDelete/SvgDelete";
+import useNavigation from "../../../../hooks/useNavigation";
 import {
+  localStorageId,
   localStorageIsAdmin,
   localStorageLogout,
   localStorageToken,
@@ -13,6 +15,7 @@ import "../../../../styles/modals.css";
 const DeleteModal = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
+  const { isAdminPage } = useNavigation();
   const { deletionModalContents, setCurrentPlug, setToken } =
     useContext(Context);
 
@@ -39,7 +42,10 @@ const DeleteModal = () => {
       setCurrentPlug({});
       navigate("/");
     } else if (deletionModalContents["url"].includes("users")) {
-      if (localStorageIsAdmin !== "true") {
+      if (
+        localStorageIsAdmin !== "true" ||
+        (isAdminPage && deletionModalContents["id"] == localStorageId)
+      ) {
         setToken("");
         localStorageLogout();
         navigate("/");
