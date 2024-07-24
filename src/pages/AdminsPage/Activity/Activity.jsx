@@ -94,7 +94,7 @@ const Activity = () => {
             <div className="total-and-filter">
               {/* total */}
               <h2 className="total-header">
-                <strong>Total: {total}</strong>
+                <strong>Total: {total || "--"}</strong>
               </h2>
               {/* search box */}
               <div className="input-group search-box-container">

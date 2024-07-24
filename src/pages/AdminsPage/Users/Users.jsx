@@ -72,7 +72,7 @@ const Users = () => {
           <div className="sub-route-list-wrapper">
             <div className="total-and-filter">
               <h2 className="total-header">
-                <strong>Total: {total}</strong>
+                <strong>Total: {total || "--"}</strong>
               </h2>
               <div className="input-group search-box-container">
                 <input
@@ -89,10 +89,7 @@ const Users = () => {
             <ColoredDivider />
 
             <span id="table-container">
-              <table
-                id="admins-table"
-                className="table table-bordered"
-              >
+              <table id="admins-table" className="table table-bordered">
                 <thead>
                   <tr className="users-tr">
                     <th>Name</th>

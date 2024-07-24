@@ -104,7 +104,7 @@ const OwnedPlugins = () => {
           >
             <div className="total-and-filter">
               <h2 className="total-header">
-                <strong>Total: {total}</strong>
+                <strong>Total: {total || "--"}</strong>
               </h2>
               <div className="input-group search-box-container">
                 <input
