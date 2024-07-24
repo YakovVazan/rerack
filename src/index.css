@@ -48,7 +48,7 @@
     border: .5px solid var(--bg-color-5) !important;
 }
 
-a:not(.watch-user) {
+a:not(.watch-user, .price-link) {
     color: var(--color-3) !important;
 }
 
