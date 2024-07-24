@@ -8,7 +8,6 @@ import Spinner from "../../../Common/Spinner/Spinner";
 import useCompanies from "../../../../hooks/useCompanies";
 import useDragAndDrop from "../../../../hooks/useDragAndDrop";
 import { localStorageToken } from "../../../../config/localStorage";
-import "../../../../styles/modals.css";
 
 const AddModal = () => {
   const showToast = useToasts();

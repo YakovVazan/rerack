@@ -4,8 +4,6 @@ import useIf from "../../hooks/useIf";
 import useToasts from "../../hooks/useToasts";
 import { consts } from "../../config/constants";
 import useHistory from "../../hooks/useHistory";
-import "../../styles/auth-card.css";
-import "../../styles/buttons.css";
 
 const ForgotPswdPage = () => {
   const ReactIf = useIf();

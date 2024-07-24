@@ -6,8 +6,6 @@ import SvgCheck from "../../../svg/SvgCheck/SvgCheck.jsx";
 import useCompanies from "../../../../hooks/useCompanies.jsx";
 import ColoredDivider from "../../../Common/ColoredDivider/ColoredDivider.jsx";
 import { ResetCompanyValue } from "../../../../utils/ResetFactors/ResetFactors.jsx";
-import "../../../../styles/dropdowns.css";
-import "../../../../styles/buttons.css";
 import "./CompanyDropDown.css";
 
 const CompanyDropDown = () => {

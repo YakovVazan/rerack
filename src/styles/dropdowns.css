@@ -2,12 +2,12 @@
     max-width: 80%;
     max-height: 15rem;
     overflow-y: auto;
-    background-color: var(--bg-color-2);
-    box-shadow: 0 0 .25rem var(--bg-color-5);
+    background-color: var(--bg-color-2) !important;
+    box-shadow: 0 0 .25rem var(--bg-color-5) !important;
 }
 
 .customed-dropdown-item {
-    color: var(--color-2);
+    color: var(--color-2) !important;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -15,6 +15,6 @@
 }
 
 .customed-dropdown-item:hover {
-    color: var(--color-2);
-    background-color: var(--bg-color-3);
+    color: var(--color-2) !important;
+    background-color: var(--bg-color-3) !important;
 }

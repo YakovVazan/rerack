@@ -9,7 +9,6 @@ import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
 import useCompanies from "../../../../hooks/useCompanies";
 import useDragAndDrop from "../../../../hooks/useDragAndDrop";
 import { localStorageToken } from "../../../../config/localStorage";
-import "../../../../styles/modals.css";
 
 const EditModal = () => {
   const showToast = useToasts();

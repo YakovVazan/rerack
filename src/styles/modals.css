@@ -1,14 +1,14 @@
 .modal-content {
-    color: var(--color-2);
-    background-color: var(--bg-color-2);
+    color: var(--color-2) !important;
+    background-color: var(--bg-color-2) !important;
 }
 
 .modal-header {
-    border-bottom: 1px solid var(--bg-color-4);
+    border-bottom: 1px solid var(--bg-color-4) !important;
 }
 
 .modal-footer {
-    border-top: 1px solid var(--bg-color-4);
+    border-top: 1px solid var(--bg-color-4) !important;
 }
 
 .modal.fade .modal-dialog {
@@ -73,7 +73,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-color: var(--bg-color-1);
+    background-color: var(--bg-color-1) !important;
 }
 
 #spinner-for-image {

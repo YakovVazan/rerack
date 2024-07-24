@@ -3,8 +3,6 @@ import Context from "../../../../context/Context";
 import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
 import useDataSorter from "../../../../hooks/useDataSorter";
 import SvgFilter from "../../../svg/SvgFilter/SvgFilter";
-import "../../../../styles/dropdowns.css";
-import "../../../../styles/buttons.css";
 import "./Filter.css";
 
 const Filter = () => {

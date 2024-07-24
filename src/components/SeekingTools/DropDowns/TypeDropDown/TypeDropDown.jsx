@@ -6,8 +6,6 @@ import Spinner from "../../../Common/Spinner/Spinner.jsx";
 import SvgCheck from "../../../svg/SvgCheck/SvgCheck.jsx";
 import ColoredDivider from "../../../Common/ColoredDivider/ColoredDivider.jsx";
 import { ResetTypeValue } from "../../../../utils/ResetFactors/ResetFactors.jsx";
-import "../../../../styles/dropdowns.css";
-import "../../../../styles/buttons.css";
 import "./TypeDropDown.css";
 
 const TypeDropDown = () => {

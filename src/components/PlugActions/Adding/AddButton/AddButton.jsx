@@ -2,7 +2,6 @@ import { useContext } from "react";
 import Context from "../../../../context/Context";
 import SvgPlus from "../../../svg/SvgPlus/SvgPlus";
 import useForceAuth from "../../../../hooks/useForceAuth";
-import '../../../../styles/buttons.css'
 import "./AddButton.css";
 
 const AddButton = () => {

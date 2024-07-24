@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import SvgRegister from "../../../svg/SvgRegister/SvgRegister";
-import "../../../../styles/buttons.css";
 import "./RegisterButton.css";
 
 const RegisterButton = () => {

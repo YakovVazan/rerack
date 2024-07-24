@@ -4,7 +4,6 @@ import { consts } from "../../../config/constants.js";
 import SvgReset from "../../svg/SvgReset/SvgReset.jsx";
 import SvgSearch from "../../svg/SvgSearch/SvgSearch.jsx";
 import { ResetAllFactors } from "../../../utils/ResetFactors/ResetFactors.jsx";
-import "../../../styles/buttons.css";
 import "./SearchBox.css";
 
 const SearchBox = () => {

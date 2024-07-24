@@ -1,6 +1,3 @@
-@import '../../styles/layout.css';
-@import '../../styles/themes.css';
-
 .not-found-container {
     display: flex;
     align-items: center;

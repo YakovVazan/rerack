@@ -15,25 +15,31 @@ const Aside = () => {
   const { isHomePage, isPlugPage, isSettingsPage, isAdminPage } =
     useNavigation();
 
+  const asideShouldBeVisible = () => {
+    return isHomePage || isPlugPage || isSettingsPage || isAdminPage;
+  };
+
   return (
     <>
-      <aside>
-        {isHomePage && <HomePageCtrls />}
-        {isPlugPage && <PlugPageCtrls currentPlug={currentPlug} />}
-        {isSettingsPage && <AccountCenterPageCtrls />}
-        {isAdminPage && <AdminPageCtrls />}
+      {asideShouldBeVisible() && (
+        <aside>
+          {isHomePage && <HomePageCtrls />}
+          {isPlugPage && <PlugPageCtrls currentPlug={currentPlug} />}
+          {isSettingsPage && <AccountCenterPageCtrls />}
+          {isAdminPage && <AdminPageCtrls />}
 
-        <div id="lower-aside">
-          <ColoredDivider />
-          <div id="big-screens-lower-aside">
-            <Link to={"privacy_policy"}>Privacy Policy</Link>
-            <span>0.0.0</span>
+          <div id="lower-aside">
+            <ColoredDivider />
+            <div id="big-screens-lower-aside">
+              <Link to={"privacy_policy"}>Privacy Policy</Link>
+              <span>0.0.0</span>
+            </div>
+            <div id="small-screens-lower-aside">
+              <AuthAndInfo />
+            </div>
           </div>
-          <div id="small-screens-lower-aside">
-            <AuthAndInfo />
-          </div>
-        </div>
-      </aside>
+        </aside>
+      )}
     </>
   );
 };

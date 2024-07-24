@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "../../../styles/dropdowns.css";
 
 const InfoMenu = () => {
   return (

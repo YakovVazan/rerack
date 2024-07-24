@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import useNavigation from "../../../../hooks/useNavigation";
 import SvgSettings from "../../../svg/SvgSettings/SvgSettings";
 import { localStorageId } from "../../../../config/localStorage";
-import '../../../../styles/buttons.css';
 import "./AccountButton.css";
 
 const AccountButton = () => {

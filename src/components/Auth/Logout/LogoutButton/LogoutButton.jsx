@@ -9,7 +9,6 @@ import {
   localStorageLogout,
   localStorageToken,
 } from "../../../../config/localStorage";
-import '../../../../styles/buttons.css'
 import "./LogoutButton.css";
 
 const LogoutButton = () => {

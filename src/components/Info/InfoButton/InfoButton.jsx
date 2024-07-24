@@ -1,5 +1,4 @@
 import SvgInfo from "../../svg/SvgInfo/SvgInfo";
-import "../../../styles/buttons.css";
 
 const InfoButton = () => {
   return (

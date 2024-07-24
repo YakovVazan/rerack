@@ -9,8 +9,6 @@ import {
   localStorageLogin,
   localStorageHistory,
 } from "../../config/localStorage";
-import "../../styles/auth-card.css";
-import "../../styles/buttons.css";
 
 const LoginPage = () => {
   const showToast = useToasts();

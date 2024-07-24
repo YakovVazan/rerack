@@ -2,7 +2,6 @@ import { useContext } from "react";
 import Context from "../../../../context/Context.jsx";
 import SvgList from "../../../svg/SvgList/SvgList.jsx";
 import SvgGallery from "../../../svg/SvgGallery/SvgGallery.jsx";
-import '../../../../styles/buttons.css'
 
 const Layout = () => {
   const data = useContext(Context);

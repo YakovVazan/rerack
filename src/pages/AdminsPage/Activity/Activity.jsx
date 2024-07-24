@@ -11,8 +11,6 @@ import {
   localStorageIsAdmin,
   localStorageToken,
 } from "../../../config/localStorage";
-import "../../SettingsPage/SubRoutes.css";
-import "../../../styles/buttons.css";
 import "./Activity.css";
 
 const Activity = () => {

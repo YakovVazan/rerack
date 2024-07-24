@@ -10,7 +10,6 @@ import {
   localStorageLogout,
   localStorageToken,
 } from "../../../../config/localStorage";
-import "../../../../styles/modals.css";
 
 const DeleteModal = () => {
   const showToast = useToasts();

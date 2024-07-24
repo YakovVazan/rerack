@@ -1,5 +1,3 @@
-@import "../../../styles/themes.css";
-
 #account-center-aside-list-wrapper {
     display: flex;
     flex-direction: column;

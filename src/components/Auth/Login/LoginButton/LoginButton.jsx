@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import SvgLogin from "../../../svg/SvgLogin/SvgLogin";
-import "../../../../styles/buttons.css";
 import "./LoginButton.css";
 
 const LoginButton = () => {

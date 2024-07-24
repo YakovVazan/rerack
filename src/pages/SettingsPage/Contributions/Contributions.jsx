@@ -12,7 +12,6 @@ import {
   localStorageId,
   localStorageToken,
 } from "../../../config/localStorage";
-import "../../../styles/buttons.css";
 import "../SubRoutes.css";
 
 const Contributions = () => {

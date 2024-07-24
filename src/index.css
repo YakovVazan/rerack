@@ -1,3 +1,8 @@
+@import './styles/auth-card.css';
+@import './styles/buttons.css';
+@import './styles/dropdowns.css';
+@import './styles/layout.css';
+@import './styles/modals.css';
 @import './styles/themes.css';
 
 /* For Firefox */

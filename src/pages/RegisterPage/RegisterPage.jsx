@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import useToasts from "../../hooks/useToasts";
 import Spinner from "../../components/Common/Spinner/Spinner";
 import { consts } from "../../config/constants";
-import "../../styles/auth-card.css";
-import "../../styles/buttons.css";
 
 const RegisterPage = () => {
   const showToast = useToasts();

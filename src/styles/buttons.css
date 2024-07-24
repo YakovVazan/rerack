@@ -1,5 +1,3 @@
-@import '../styles/themes.css';
-
 .customed-button {
     color: var(--color-1) !important;
     background-color: var(--bg-color-2) !important;
@@ -30,13 +28,13 @@
 }
 
 .customed-svg {
-    fill: var(--color-1);
-    border-color: var(--bg-color-8);
+    fill: var(--color-1) !important;
+    border-color: var(--bg-color-8) !important;
 }
 
 .customed-svg-button {
-    fill: var(--color-1);
-    border-color: var(--bg-color-8);
+    fill: var(--color-1) !important;
+    border-color: var(--bg-color-8) !important;
 }
 
 .customed-svg-button:hover {
