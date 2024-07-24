@@ -1,3 +1,7 @@
+.customed-dropdown-toggle {
+    padding-left: 12px !important;
+}
+
 .customed-dropdown {
     max-width: 80%;
     max-height: 15rem;
@@ -9,7 +13,7 @@
 .customed-dropdown-item {
     color: var(--color-2) !important;
     cursor: pointer;
-    display: flex;
+    display: flex !important;
     justify-content: space-between;
     align-items: center;
 }

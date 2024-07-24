@@ -1,7 +1,7 @@
 #type-filter {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
 }
@@ -12,6 +12,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: start;
 }
 
 .type-content {

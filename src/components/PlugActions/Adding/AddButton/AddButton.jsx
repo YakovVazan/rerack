@@ -19,7 +19,7 @@ const AddButton = () => {
       </div>
       <div
         id="add-plug-button"
-        className="btn customed-button form-control"
+        className="btn customed-button"
         data-bs-toggle={contextData["token"] && "modal"}
         data-bs-target={contextData["token"] && "#addingModal"}
         data-bs-dismiss="offcanvas"

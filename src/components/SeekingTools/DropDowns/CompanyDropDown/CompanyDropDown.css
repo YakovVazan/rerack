@@ -1,6 +1,7 @@
 #company-filter {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
@@ -11,6 +12,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: start;
 }
 
 .company-content {

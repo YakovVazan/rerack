@@ -125,7 +125,7 @@ const AddModal = () => {
               <span className="input-group-text adding-title">Company</span>
               <button
                 type="button"
-                className="btn dropdown-toggle dropdown-toggle-split adding-input customed-button"
+                className="btn dropdown-toggle dropdown-toggle-split adding-input customed-button customed-dropdown-toggle"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
@@ -163,7 +163,7 @@ const AddModal = () => {
               <span className="input-group-text adding-title">Type</span>
               <button
                 type="button"
-                className="btn dropdown-toggle dropdown-toggle-split adding-input customed-button"
+                className="btn dropdown-toggle dropdown-toggle-split adding-input customed-button customed-dropdown-toggle"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >

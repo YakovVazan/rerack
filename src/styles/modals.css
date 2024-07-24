@@ -31,14 +31,14 @@
 
 .adding-input {
     width: 75%;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: space-between;
 }
 
 #adding-company-title,
 #adding-type-title {
-    width: 90%;
+    width: fit-content;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -73,6 +73,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border-radius: .25em;
     background-color: var(--bg-color-1) !important;
 }
 
