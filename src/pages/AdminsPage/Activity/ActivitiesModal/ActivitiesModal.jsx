@@ -24,7 +24,7 @@ const ActivitiesModal = () => {
                   >
                     {item["type"] +
                       "ed by " +
-                      item["username"] +
+                      (item["username"] || "DeletedAccount") +
                       " at " +
                       new Date(item["time"]).toLocaleString()}
                   </li>
