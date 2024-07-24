@@ -1,21 +1,22 @@
 import { useContext, useEffect, useState } from "react";
+import { useParams, Navigate, Link } from "react-router-dom";
 import Context from "../../context/Context.jsx";
 import usePlugs from "../../hooks/usePlugs.jsx";
 import useToasts from "../../hooks/useToasts.jsx";
 import { consts } from "../../config/constants.js";
-import { useParams, Navigate, Link } from "react-router-dom";
 import useForceAuth from "../../hooks/useForceAuth.jsx";
 import useSavedPlugs from "../../hooks/useSavedPlugs.jsx";
 import useFavoritePlugs from "../../hooks/useFavoritePlugs.jsx";
+import Spinner from "../../components/Common/Spinner/Spinner.jsx";
+import SvgHeart from "../../components/svg/SvgHeart/SvgHeart.jsx";
+import SvgTagAdd from "../../components/svg/SvgTagAdd/SvgTagAdd.jsx";
+import SvgNewPage from "../../components/svg/SvgNewPage/SvgNewPage.jsx";
+import SvgTagRemove from "../../components/svg/SvgTagRemove/SvgTagRemove.jsx";
+import SvgHeartBroken from "../../components/svg/SvgHeartBroken/SvgHeartBroken.jsx";
 import {
   localStorageId,
   localStorageToken,
 } from "../../config/localStorage.js";
-import Spinner from "../../components/Common/Spinner/Spinner.jsx";
-import SvgHeart from "../../components/svg/SvgHeart/SvgHeart.jsx";
-import SvgTagAdd from "../../components/svg/SvgTagAdd/SvgTagAdd.jsx";
-import SvgTagRemove from "../../components/svg/SvgTagRemove/SvgTagRemove.jsx";
-import SvgHeartBroken from "../../components/svg/SvgHeartBroken/SvgHeartBroken.jsx";
 import "./PlugPage.css";
 
 const PlugPage = () => {
@@ -159,6 +160,7 @@ const PlugPage = () => {
                     target="blank"
                   >
                     <span>{currentPlug["price"]}</span>
+                    <SvgNewPage />
                   </a>
                 </div>
                 <div className="plug-tags">
