@@ -8,6 +8,7 @@ import { getCurrentReport } from "../../../../services/reports";
 import SvgReply from "../../../../components/svg/SvgReply/SvgReply";
 import SvgDelete from "../../../../components/svg/SvgDelete/SvgDelete";
 import SvgReturn from "../../../../components/svg/SvgReturn/SvgReturn";
+import ColoredDivider from "../../../../components/Common/ColoredDivider/ColoredDivider";
 import {
   localStorageId,
   localStorageToken,
@@ -17,13 +18,9 @@ import "./ReportPage.css";
 const ReportPage = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
-  const { urlToArray } = useNavigation();
+  const { urlToArray, isReportNotInbox } = useNavigation();
   const { currentReport, setCurrentReport, setDeletionModalContents } =
     useContext(Context);
-
-  const isReportNotInbox = () => {
-    return !urlToArray(location.pathname).includes("inbox");
-  };
 
   const handleBackClick = () => {
     navigate("/" + urlToArray(location.pathname).slice(0, -1).join("/"));
@@ -55,57 +52,83 @@ const ReportPage = () => {
     <>
       <div className="sub-route-wrapper">
         <div className="contributions-wrapper">
-          <span className="report-letter-back" onClick={handleBackClick}>
-            <SvgReturn />
-            {isReportNotInbox() ? "Reports" : "Inbox"}
-          </span>
-          <div className="report-letter-container">
-            <div className="report-letter-header">
-              <h3>
-                <strong>{currentReport.subject}</strong>
-              </h3>
-            </div>
-            <div className="report-letter-date">
-              <p>
-                Date: {new Date(currentReport.requestDate).toLocaleDateString()}
-              </p>
-            </div>
-            <div className="report-letter-content">
-              <p>{currentReport.request}</p>
-              {!isReportNotInbox() && (
-                <span>
-                  Reported by:{" "}
-                  <Link to={"/users/" + currentReport?.senderUserId}>
-                    {currentReport?.senderUsername}
-                  </Link>
-                </span>
-              )}
-            </div>
-            <div className="report-letter-footer">
-              <small>
-                {currentReport.response
-                  ? "Report was close"
-                  : "Report still open"}
-              </small>
-              <div
-                className={`${
-                  isReportNotInbox() && "d-none"
-                } btn btn-outline-primary`}
-                data-bs-dismiss="offcanvas"
-                data-bs-toggle={localStorageToken && "modal"}
-                data-bs-target={localStorageToken && "#deletingModal"}
-                onClick={handleReportDelete}
-              >
-                <SvgReply />
+          <div style={{ paddingBottom: "1em" }}>
+            {" "}
+            <span className="report-letter-back" onClick={handleBackClick}>
+              <SvgReturn />
+              {isReportNotInbox() ? "Reports" : "Inbox"}
+            </span>
+            <div className="report-letter-container">
+              <div className="report-letter-header">
+                <h3>
+                  <strong>{currentReport.subject}</strong>
+                </h3>
               </div>
-              <div
-                className="btn btn-outline-danger"
-                data-bs-dismiss="offcanvas"
-                data-bs-toggle={localStorageToken && "modal"}
-                data-bs-target={localStorageToken && "#deletingModal"}
-                onClick={handleReportDelete}
-              >
-                <SvgDelete />
+              <div className="report-letter-date">
+                <p>
+                  Date:{" "}
+                  {new Date(currentReport.requestDate).toLocaleDateString()}
+                </p>
+              </div>
+              <div className="report-letter-content">
+                <p>
+                  <b>Report:</b> {currentReport.request}
+                </p>
+                {!isReportNotInbox() && (
+                  <p>
+                    Reported by:{" "}
+                    <Link to={"/users/" + currentReport?.senderUserId}>
+                      {currentReport?.senderUsername}
+                    </Link>
+                  </p>
+                )}
+                {currentReport.response && (
+                  <>
+                    <ColoredDivider />
+                    <p>
+                      <b>Reply:</b> {currentReport.response}
+                    </p>
+                  </>
+                )}
+                {!isReportNotInbox() && (
+                  <p>
+                    Replied by:{" "}
+                    <Link to={"/users/" + currentReport?.adminUserId}>
+                      {currentReport?.adminUsername}
+                    </Link>
+                  </p>
+                )}
+              </div>
+              <div className="report-letter-footer">
+                <small>
+                  {currentReport.response
+                    ? `Report was close at ${new Date(
+                        currentReport.responseDate
+                      ).toLocaleDateString()}`
+                    : "Report still open"}
+                </small>
+                <div
+                  className={`${
+                    (isReportNotInbox() || currentReport.response) && "d-none"
+                  } btn btn-outline-success`}
+                  data-bs-dismiss="offcanvas"
+                  data-bs-toggle={localStorageToken && "modal"}
+                  data-bs-target={localStorageToken && "#replyModal"}
+                  // onClick={handleReportDelete}
+                >
+                  <SvgReply />
+                </div>
+                {!currentReport.response && (
+                  <div
+                    className="btn btn-outline-danger"
+                    data-bs-dismiss="offcanvas"
+                    data-bs-toggle={localStorageToken && "modal"}
+                    data-bs-target={localStorageToken && "#deletingModal"}
+                    onClick={handleReportDelete}
+                  >
+                    <SvgDelete />
+                  </div>
+                )}
               </div>
             </div>
           </div>

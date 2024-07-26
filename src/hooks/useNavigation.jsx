@@ -28,6 +28,10 @@ const useNavigation = () => {
     return url.split("/").filter((segment) => segment !== "");
   };
 
+  const isReportNotInbox = () => {
+    return !urlToArray(location.pathname).includes("inbox");
+  };
+
   const isSettingsURL = (url) => {
     const urlArray = urlToArray(url);
 
@@ -110,6 +114,7 @@ const useNavigation = () => {
     isSettingsURL,
     isAdminURL,
     urlToArray,
+    isReportNotInbox
   };
 };
 

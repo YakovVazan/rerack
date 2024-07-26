@@ -56,7 +56,7 @@ export const getCurrentReport = async (reportId) => {
 };
 
 export const sendReport = async (reportData) => {
-  const response = await fetch(`${consts.baseURL}/users/reports/add`, {
+  const response = await fetch(`${consts.baseURL}/users/reports/report`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -64,6 +64,33 @@ export const sendReport = async (reportData) => {
     },
     body: JSON.stringify(reportData),
   });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    const error = new Error(data.msg);
+    error.msg = data.msg;
+    throw error;
+  }
+
+  return data;
+};
+
+export const sendReply = async (reportData) => {
+  const response = await fetch(
+    `${consts.baseURL}/users/reports/${location.pathname
+      .split("/")
+      .filter((segment) => segment !== "")
+      .at(-1)}/reply`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorageToken}`,
+      },
+      body: JSON.stringify(reportData),
+    }
+  );
 
   const data = await response.json();
 

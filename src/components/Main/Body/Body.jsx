@@ -23,6 +23,7 @@ import PrivacyPolicy from "../../../pages/PrivacyPolicy/PrivacyPolicy.jsx";
 import ForgotPswdPage from "../../../pages/ForgotPswdPage/ForgotPswdPage.jsx";
 import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx";
 import Preferences from "../../../pages/SettingsPage/Preferences/Preferences.jsx";
+import ReplyModal from "../../../pages/AdminsPage/Inbox/ReplyModal/ReplyModal.jsx";
 import OwnedPlugins from "../../../pages/SettingsPage/OwnedPlugins/OwnedPlugins.jsx";
 import AdminsModal from "../../../pages/AdminsPage/Users/AdminsModal/AdminsModal.jsx";
 import ReportPage from "../../../pages/SettingsPage/Reports/ReportPage/ReportPage.jsx";
@@ -68,7 +69,10 @@ const Body = () => {
             <Route path="/users" element={<AdminsPage />}></Route>
             <Route path="/users/activity" element={<Activity />}></Route>
             <Route path="/users/inbox" element={<Inbox />}></Route>
-            <Route path="/users/inbox/:reportId" element={<ReportPage />}></Route>
+            <Route
+              path="/users/inbox/:reportId"
+              element={<ReportPage />}
+            ></Route>
             <Route path="/users/download" element={<Download />}></Route>
             <Route path="/users/register" element={<RegisterPage />}></Route>
             <Route path="/users/login" element={<LoginPage />}></Route>
@@ -111,13 +115,14 @@ const Body = () => {
       </div>
 
       {/* modals area */}
-      <AddModal />
-      <EditModal />
-      <NewReportModal />
-      <ContributionsModal />
-      <AdminsModal />
-      <ActivitiesModal />
-      <DeleteModal />
+      {isHomePage && <AddModal />}
+      {isPlugPage && <EditModal />}
+      {isSettingsPage && <NewReportModal />}
+      {isSettingsPage && <ContributionsModal />}
+      {isAdminPage && <AdminsModal />}
+      {isAdminPage && <ReplyModal />}
+      {isAdminPage && <ActivitiesModal />}
+      {(isPlugPage || isSettingsPage || isAdminPage) && <DeleteModal />}
     </>
   );
 };

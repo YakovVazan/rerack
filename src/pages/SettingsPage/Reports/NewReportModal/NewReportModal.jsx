@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import SvgFlag from "../../../../components/svg/SvgFlag/SvgFlag";
-import "./NewReportModal.css";
-import { localStorageId } from "../../../../config/localStorage";
-import { sendReport } from "../../../../services/reports";
-import useToasts from "../../../../hooks/useToasts";
 import Context from "../../../../context/Context";
+import useToasts from "../../../../hooks/useToasts";
+import { sendReport } from "../../../../services/reports";
+import SvgFlag from "../../../../components/svg/SvgFlag/SvgFlag";
+import { localStorageId } from "../../../../config/localStorage";
+import "./NewReportModal.css";
+import SvgX from "../../../../components/svg/SvgX/SvgX";
 
 const NewReportModal = () => {
   const showToast = useToasts();
@@ -56,6 +57,9 @@ const NewReportModal = () => {
           {/* header */}
           <div className="modal-header">
             <SvgFlag />
+            <span className="customed-close-button">
+              <SvgX />
+            </span>
           </div>
 
           {/* body */}

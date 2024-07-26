@@ -5,19 +5,33 @@
 }
 
 .customed-button:hover {
-    color: var(--color-6 ) !important;
+    color: var(--color-6) !important;
     background-color: var(--bg-color-6) !important;
 }
 
 .customed-button.active {
-    color: var(--color-6 ) !important;
+    color: var(--color-6) !important;
     background-color: var(--bg-color-6) !important;
     box-shadow: none !important;
-
 }
 
 .customed-button:focus {
     box-shadow: none !important;
+}
+
+.customed-close-button {
+    transform: scale(1.5);
+    color: var(--color-1) !important;
+    background-color: var(--bg-color-2) !important;
+    border-color: var(--bg-color-5) !important;
+    border-radius: .25rem;
+    cursor: pointer;
+}
+
+.customed-close-button:hover {
+    color: var(--color-6) !important;
+    background-color: var(--bg-color-6) !important;
+
 }
 
 .customed-button-with-icon {
