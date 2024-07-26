@@ -8,7 +8,6 @@ import Spinner from "../../../components/Common/Spinner/Spinner";
 import {
   localStorageId,
   localStorageLogin,
-  localStorageLogout,
   localStorageToken,
   setLocalStorageToken,
 } from "../../../config/localStorage";
@@ -70,9 +69,7 @@ const Personal = () => {
       }
     } catch (error) {
       console.error(error);
-      localStorageLogout();
-      contextData.setToken("");
-      navigate("/users/login");
+      showToast(error.message || error.msg);
     } finally {
       setLoadingUser(false);
     }

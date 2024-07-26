@@ -8,6 +8,7 @@ import Context from "../../../context/Context.jsx";
 import PlugPage from "../../../pages/PlugPage/PlugPage.jsx";
 import NotFound from "../../../pages/NotFound/NotFound.jsx";
 import useNavigation from "../../../hooks/useNavigation.jsx";
+import Inbox from "../../../pages/AdminsPage/Inbox/Inbox.jsx";
 import LoginPage from "../../../pages/LoginPage/LoginPage.jsx";
 import AdminsPage from "../../../pages/AdminsPage/AdminsPage.jsx";
 import AddModal from "../../PlugActions/Adding/AddModal/AddModal.jsx";
@@ -24,12 +25,12 @@ import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx"
 import Preferences from "../../../pages/SettingsPage/Preferences/Preferences.jsx";
 import OwnedPlugins from "../../../pages/SettingsPage/OwnedPlugins/OwnedPlugins.jsx";
 import AdminsModal from "../../../pages/AdminsPage/Users/AdminsModal/AdminsModal.jsx";
+import ReportPage from "../../../pages/SettingsPage/Reports/ReportPage/ReportPage.jsx";
 import Contributions from "../../../pages/SettingsPage/Contributions/Contributions.jsx";
+import NewReportModal from "../../../pages/SettingsPage/Reports/NewReportModal/NewReportModal.jsx";
 import ActivitiesModal from "../../../pages/AdminsPage/Activity/ActivitiesModal/ActivitiesModal.jsx";
 import ContributionsModal from "../../../pages/SettingsPage/Contributions/ContributionsModal/ContributionsModal.jsx";
 import "./Body.css";
-import ReportPage from "../../../pages/SettingsPage/Reports/ReportPage/ReportPage.jsx";
-import NewReportModal from "../../../pages/SettingsPage/Reports/NewReportModal/NewReportModal.jsx";
 
 const Body = () => {
   const navigate = useNavigate();
@@ -66,6 +67,8 @@ const Body = () => {
             <Route path="/plugs/:plugId/" element={<PlugPage />}></Route>
             <Route path="/users" element={<AdminsPage />}></Route>
             <Route path="/users/activity" element={<Activity />}></Route>
+            <Route path="/users/inbox" element={<Inbox />}></Route>
+            <Route path="/users/inbox/:reportId" element={<ReportPage />}></Route>
             <Route path="/users/download" element={<Download />}></Route>
             <Route path="/users/register" element={<RegisterPage />}></Route>
             <Route path="/users/login" element={<LoginPage />}></Route>

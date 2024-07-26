@@ -23,6 +23,11 @@
     display: flex;
 }
 
+.report-letter-header {
+    display: flex;
+    justify-content: space-between;
+}
+
 .report-letter-header,
 h3 {
     margin: 0;
@@ -32,5 +37,6 @@ h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: .5em;
     border-top: 1px solid var(--bg-color-5);
 }

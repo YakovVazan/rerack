@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Context from "../../../context/Context";
+import SvgInbox from "../../svg/SvgInbox/SvgInbox";
 import SvgPeople from "../../svg/SvgPeople/SvgPeople";
 import SvgPencil from "../../svg/SvgPencil/SvgPencil";
 import SvgDownload from "../../svg/SvgDownload/SvgDownload";
@@ -12,6 +13,7 @@ const AdminPageCtrls = () => {
 
   const list = [
     { title: " Users", svg: <SvgPeople /> },
+    { title: " Inbox", svg: <SvgInbox /> },
     { title: " Activity", svg: <SvgPencil /> },
     { title: " Download", svg: <SvgDownload /> },
   ];

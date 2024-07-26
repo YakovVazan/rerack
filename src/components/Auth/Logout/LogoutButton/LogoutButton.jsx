@@ -58,6 +58,7 @@ const LogoutButton = () => {
   const handleLogout = () => {
     localStorageLogout();
     contextData["setToken"]("");
+    navigate("/");
   };
 
   return (

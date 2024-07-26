@@ -14,7 +14,7 @@ const useNavigation = () => {
   const [isNotFoundPage, setIsNotFoundPage] = useState(false);
   const [isForgotPasswordPage, setIsForgotPasswordPage] = useState(false);
 
-  const adminPageKeyword = ["activity", "download"];
+  const adminPageKeyword = ["inbox", "activity", "download"];
   const authenticationKeywords = ["login", "register", "forgot_password"];
   const settingsPageKeywords = [
     "preferences",
@@ -52,7 +52,7 @@ const useNavigation = () => {
 
     return (
       (urlArray.length === 1 && urlArray[0] === "users") ||
-      (urlArray.length === 2 && adminPageKeyword.includes(urlArray[1]))
+      (urlArray.length >= 2 && adminPageKeyword.includes(urlArray[1]))
     );
   };
 
@@ -79,7 +79,7 @@ const useNavigation = () => {
     );
     setIsAdminPage(
       (url.length === 1 && url[0] === "users") ||
-        (url.length === 2 && adminPageKeyword.includes(url[1]))
+        (url.length >= 2 && adminPageKeyword.includes(url[1]))
     );
     setIsNotFoundPage(url.length === 1 && url[0] === "not-found");
   }, [location.pathname]);

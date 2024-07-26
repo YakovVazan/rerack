@@ -1,23 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import Context from "../../../context/Context";
 import useToasts from "../../../hooks/useToasts";
-import { fetchReports } from "../../../services/reports";
-import SvgFlag from "../../../components/svg/SvgFlag/SvgFlag";
-import NewReportButton from "./NewReportButton/NewReportButton";
+import SvgDot from "../../../components/svg/SvgDot/SvgDot";
+import { fetchAllReports } from "../../../services/reports";
+import SvgInbox from "../../../components/svg/SvgInbox/SvgInbox";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import Scroller from "../../../components/Common/Scroller/Scroller";
-import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
-import "./Reports.css";
 import SvgArrowRight from "../../../components/svg/SvgArrowRight/SvgArrowRight";
-import SvgDot from "../../../components/svg/SvgDot/SvgDot";
-import Context from "../../../context/Context";
+import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
 
-const Reports = () => {
+const Inbox = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
-  const location = useLocation();
   const [reports, setReports] = useState([]);
-  const { currentReport, setCurrentReport } = useContext(Context);
+  const { setCurrentReport } = useContext(Context);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleClick = (report) => {
@@ -27,9 +24,7 @@ const Reports = () => {
 
   const awaitReports = async () => {
     try {
-      await fetchReports(location.pathname.split("/")[2]).then((data) =>
-        setReports(data)
-      );
+      await fetchAllReports().then((data) => setReports(data));
     } catch (error) {
       showToast(error);
     } finally {
@@ -39,7 +34,7 @@ const Reports = () => {
 
   useEffect(() => {
     awaitReports();
-  }, [currentReport]);
+  }, []);
 
   return (
     <>
@@ -55,8 +50,8 @@ const Reports = () => {
               } empty-sub-route-list-wrapper`}
             >
               <div className="empty-sub-route-list">
-                <SvgFlag />
-                <span>Reports you send will appear here</span>
+                <SvgInbox />
+                <span>Reports sent by users will appear here</span>
               </div>
             </div>
 
@@ -113,9 +108,8 @@ const Reports = () => {
           </div>
         </div>
       )}
-      <NewReportButton />
     </>
   );
 };
 
-export default Reports;
+export default Inbox;
