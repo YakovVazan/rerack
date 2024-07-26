@@ -32,6 +32,7 @@ const App = () => {
   const [adminsModalContents, setAdminsModalContents] = useState({});
   const [usersState, setUsersState] = useState([]); // to update UI state in users table
   const [theme, setTheme] = useState(localStorageVars.localStorageTheme);
+  const [currentReport, setCurrentReport] = useState({});
 
   useEffect(() => {
     if (
@@ -68,6 +69,7 @@ const App = () => {
           setAdminsModalContents,
           setUsersState,
           setTheme,
+          setCurrentReport,
           orderBy,
           orderedData,
           searchBoxValue,
@@ -86,6 +88,7 @@ const App = () => {
           adminsModalContents,
           usersState,
           theme,
+          currentReport,
         }}
       >
         <Nav />

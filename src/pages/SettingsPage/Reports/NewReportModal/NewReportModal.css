@@ -1,0 +1,20 @@
+.new-report-modal-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-report-modal-footer>* {
+    display: flex;
+    gap: .5em;
+}
+
+#floatingRequest {
+    resize: none;
+}
+
+.request-input {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding: .25em 0;
+}

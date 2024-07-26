@@ -1,0 +1,36 @@
+.report-letter-container {
+    padding: 1rem;
+    border: 1px solid var(--bg-color-5);
+    gap: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.report-letter-container>* {
+    padding: .5em 0;
+}
+
+.report-letter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--bg-color-5);
+}
+
+.report-letter-back {
+    cursor: pointer;
+    padding-bottom: 1em;
+    display: flex;
+}
+
+.report-letter-header,
+h3 {
+    margin: 0;
+}
+
+.report-letter-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--bg-color-5);
+}

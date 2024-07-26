@@ -1,12 +1,10 @@
 import { useContext } from "react";
 import Context from "../../../context/Context";
-import AuthAndInfo from "../../AuthAndInfo/AuthAndInfo";
 import useNavigation from "../../../hooks/useNavigation";
 import SvgHamburger from "../../svg/SvgHamburger/SvgHamburger";
 import HomePageCtrls from "../../Aside/HomePageCtrls/HomePageCtrls";
 import PlugPageCtrls from "../../Aside/PlugPageCtrls/PlugPageCtrls";
 import AdminPageCtrls from "../../Aside/AdminPageCtrls/AdminPageCtrls";
-import ColoredDivider from "../../Common/ColoredDivider/ColoredDivider";
 import AccountCenterPageCtrls from "../../Aside/AccountCenterPageCtrls/AccountCenterPageCtrls";
 import "./HamburgerAndSideBar.css";
 
@@ -19,7 +17,7 @@ const HamburgerAndSideBar = () => {
   return (
     <>
       <div
-        className="btn customed-svg"
+        className="btn customed-button"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
@@ -39,14 +37,6 @@ const HamburgerAndSideBar = () => {
           {isPlugPage && <PlugPageCtrls currentPlug={currentPlug} />}
           {isSettingsPage && <AccountCenterPageCtrls />}
           {isAdminPage && <AdminPageCtrls />}
-
-          <span>
-            {" "}
-            <ColoredDivider />
-            <div id="small-screens-lower-aside">
-              <AuthAndInfo />
-            </div>
-          </span>
         </div>
       </div>
     </>

@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import List from "../List/List.jsx";
 import Aside from "../../Aside/Aside.jsx";
+import About from "../../../pages/About/About.jsx";
 import Toast from "../../Common/Toasts/Toasts.jsx";
 import Context from "../../../context/Context.jsx";
 import PlugPage from "../../../pages/PlugPage/PlugPage.jsx";
@@ -10,13 +11,14 @@ import useNavigation from "../../../hooks/useNavigation.jsx";
 import LoginPage from "../../../pages/LoginPage/LoginPage.jsx";
 import AdminsPage from "../../../pages/AdminsPage/AdminsPage.jsx";
 import AddModal from "../../PlugActions/Adding/AddModal/AddModal.jsx";
+import Reports from "../../../pages/SettingsPage/Reports/Reports.jsx";
 import Activity from "../../../pages/AdminsPage/Activity/Activity.jsx";
 import Download from "../../../pages/AdminsPage/Download/Download.jsx";
 import SettingsPage from "../../../pages/SettingsPage/SettingsPage.jsx";
-import PrivacyPolicy from "../../Legal/PrivacyPolicy/PrivacyPolicy.jsx";
 import RegisterPage from "../../../pages/RegisterPage/RegisterPage.jsx";
 import Wishlist from "../../../pages/SettingsPage/Wishlist/Wishlist.jsx";
 import EditModal from "../../PlugActions/Editing/EditModal/EditModal.jsx";
+import PrivacyPolicy from "../../../pages/PrivacyPolicy/PrivacyPolicy.jsx";
 import ForgotPswdPage from "../../../pages/ForgotPswdPage/ForgotPswdPage.jsx";
 import DeleteModal from "../../PlugActions/Deleting/DeleteModal/DeleteModal.jsx";
 import Preferences from "../../../pages/SettingsPage/Preferences/Preferences.jsx";
@@ -26,6 +28,8 @@ import Contributions from "../../../pages/SettingsPage/Contributions/Contributio
 import ActivitiesModal from "../../../pages/AdminsPage/Activity/ActivitiesModal/ActivitiesModal.jsx";
 import ContributionsModal from "../../../pages/SettingsPage/Contributions/ContributionsModal/ContributionsModal.jsx";
 import "./Body.css";
+import ReportPage from "../../../pages/SettingsPage/Reports/ReportPage/ReportPage.jsx";
+import NewReportModal from "../../../pages/SettingsPage/Reports/NewReportModal/NewReportModal.jsx";
 
 const Body = () => {
   const navigate = useNavigate();
@@ -74,6 +78,11 @@ const Body = () => {
               path="/users/:id/preferences"
               element={<Preferences />}
             ></Route>
+            <Route path="/users/:id/reports" element={<Reports />}></Route>
+            <Route
+              path="/users/:id/reports/:reportId"
+              element={<ReportPage />}
+            ></Route>
             <Route
               path="/users/:id/contributions"
               element={<Contributions />}
@@ -84,6 +93,7 @@ const Body = () => {
             ></Route>
             <Route path="/users/:id/wishlist" element={<Wishlist />}></Route>
             <Route path="/privacy_policy" element={<PrivacyPolicy />}></Route>
+            <Route path="/about" element={<About />}></Route>
             <Route path="/*" element={<NotFound />}></Route>
           </Routes>
 
@@ -100,6 +110,7 @@ const Body = () => {
       {/* modals area */}
       <AddModal />
       <EditModal />
+      <NewReportModal />
       <ContributionsModal />
       <AdminsModal />
       <ActivitiesModal />

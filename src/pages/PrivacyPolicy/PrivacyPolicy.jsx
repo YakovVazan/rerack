@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import Scroller from "../../Common/Scroller/Scroller";
-import SvgWarning from "../../svg/SvgWarning/SvgWarning";
+import Scroller from "../../components/Common/Scroller/Scroller";
+import SvgWarning from "../../components/svg/SvgWarning/SvgWarning";
 import "./PrivacyPolicy.css";
 
 const PrivacyPolicy = () => {

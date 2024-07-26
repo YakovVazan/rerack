@@ -1,10 +1,10 @@
-const SvgDelete = () => {
+const SvgDelete = ({ fill = "currentColor" }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
-      fill="#dc3545"
+      fill={fill}
       className="bi bi-trash3"
       viewBox="0 0 16 16"
     >

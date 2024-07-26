@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Context from "../../../context/Context";
 import useToasts from "../../../hooks/useToasts";
 import { consts } from "../../../config/constants";
-import SvgInfo from "../../../components/svg/SvgInfo/SvgInfo";
+import SvgInfoSquare from "../../../components/svg/SvgInfoSquare/SvgInfoSquare";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import Scroller from "../../../components/Common/Scroller/Scroller";
 import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
@@ -143,7 +143,7 @@ const Activity = () => {
                             className="btn customed-svg-button"
                             onClick={() => handleContributionsModal(activiy)}
                           >
-                            <SvgInfo />
+                            <SvgInfoSquare />
                           </div>
                         </span>
                       </span>

@@ -18,10 +18,15 @@ const useNavigation = () => {
   const authenticationKeywords = ["login", "register", "forgot_password"];
   const settingsPageKeywords = [
     "preferences",
+    "reports",
     "contributions",
     "owned_plugins",
     "wishlist",
   ];
+
+  const urlToArray = (url) => {
+    return url.split("/").filter((segment) => segment !== "");
+  };
 
   const isSettingsURL = (url) => {
     const urlArray = urlToArray(url);
@@ -33,7 +38,12 @@ const useNavigation = () => {
       (urlArray.length == 3 &&
         urlArray[0] === "users" &&
         !isNaN(+urlArray[1]) &&
-        settingsPageKeywords.includes(urlArray[2]))
+        settingsPageKeywords.includes(urlArray[2])) ||
+      (urlArray.length == 4 &&
+        urlArray[0] === "users" &&
+        !isNaN(+urlArray[1]) &&
+        settingsPageKeywords.includes(urlArray[2]) &&
+        !isNaN(+urlArray[1]))
     );
   };
 
@@ -44,10 +54,6 @@ const useNavigation = () => {
       (urlArray.length === 1 && urlArray[0] === "users") ||
       (urlArray.length === 2 && adminPageKeyword.includes(urlArray[1]))
     );
-  };
-
-  const urlToArray = (url) => {
-    return url.split("/").filter((segment) => segment !== "");
   };
 
   let url = urlToArray(location.pathname);
@@ -64,7 +70,12 @@ const useNavigation = () => {
         (url.length == 3 &&
           url[0] === "users" &&
           !isNaN(+url[1]) &&
-          settingsPageKeywords.includes(url[2]))
+          settingsPageKeywords.includes(url[2])) ||
+        (url.length == 4 &&
+          url[0] === "users" &&
+          !isNaN(+url[1]) &&
+          settingsPageKeywords.includes(url[2]) &&
+          !isNaN(+url[3]))
     );
     setIsAdminPage(
       (url.length === 1 && url[0] === "users") ||

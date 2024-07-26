@@ -2,8 +2,11 @@ import { Fragment, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import SvgTag from "../../svg/SvgTag/SvgTag";
 import Context from "../../../context/Context";
+import SvgMore from "../../svg/SvgMore/SvgMore";
+import SvgFlag from "../../svg/SvgFlag/SvgFlag";
 import SvgHeart from "../../svg/SvgHeart/SvgHeart";
 import SvgAdmin from "../../svg/SvgAdmin/SvgAdmin";
+import MoreMenu from "../../More/MoreMenu/MoreMenu";
 import SvgPencil from "../../svg/SvgPencil/SvgPencil";
 import SvgAccount from "../../svg/SvgAccount/SvgAccount";
 import SvgPreferences from "../../svg/SvgPreferences/SvgPreferences";
@@ -22,16 +25,18 @@ const AccountCenterPageCtrls = () => {
   const list = [
     { title: "Account", svg: <SvgAccount /> },
     { title: "Preferences", svg: <SvgPreferences /> },
+    { title: "Reports", svg: <SvgFlag /> },
     { title: "Contributions", svg: <SvgPencil /> },
     { title: "Owned Plugins", svg: <SvgTag /> },
     { title: "Wishlist", svg: <SvgHeart /> },
     { title: "Dashboard", svg: <SvgAdmin /> },
+    { title: "More", svg: <SvgMore /> },
   ];
 
   function updateSubRoute(index) {
     setLocalStorageAccountPageSubRouteIndex(index);
     navigate(
-      index === list.length - 1
+      index === list.length - 2
         ? "/users"
         : `/users/${location.pathname.split("/")[2]}${
             index > 0
@@ -52,28 +57,40 @@ const AccountCenterPageCtrls = () => {
                 <li
                   className={`btn customed-button customed-button-with-icon ${
                     contextData["accountPageSubRoute"] === index && "active"
-                  } ${index === list.length - 1 && "d-none"}`}
+                  } ${
+                    ((item.title === "Dashboard" &&
+                      localStorageIsAdmin === "false") ||
+                      index === list.length - 1) &&
+                    "d-none"
+                  }`}
                   onClick={() => updateSubRoute(index)}
                   data-bs-dismiss="offcanvas"
                 >
                   {item.svg} {item.title}
                 </li>
-                {index === 1 && <ColoredDivider margin={"0"} />}
+                {(index === 2 ||
+                  (index === 5 && localStorageIsAdmin === "true")) && (
+                  <ColoredDivider margin={"0"} />
+                )}
               </Fragment>
             );
           })}
         </ul>
-        {localStorageIsAdmin === "true" && (
+        <span className="dropup">
+          <ColoredDivider />
           <span
-            className={`btn customed-button customed-button-with-icon ${
+            className={`btn dropdown-toggle customed-button customed-button-with-icon more-toggle ${
               contextData["accountPageSubRoute"] === list.length - 1 && "active"
             }`}
-            onClick={() => updateSubRoute(list.length - 1)}
-            data-bs-dismiss="offcanvas"
+            data-bs-toggle="dropdown"
+            title="more"
           >
-            {list[list.length - 1].svg} {list[list.length - 1].title}
+            <span>
+              {list[list.length - 1].svg} {list[list.length - 1].title}
+            </span>
           </span>
-        )}
+          <MoreMenu />
+        </span>
       </span>
     </>
   );

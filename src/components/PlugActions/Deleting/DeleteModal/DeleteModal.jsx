@@ -27,8 +27,8 @@ const DeleteModal = () => {
       },
     });
 
-    const response = await res.json();
     if (!res.ok) {
+      const response = await res.json();
       showToast(
         response?.msg || response.error || "An error occurred while deleting"
       );
@@ -40,6 +40,8 @@ const DeleteModal = () => {
     if (deletionModalContents["url"].includes("plugs")) {
       setCurrentPlug({});
       navigate("/");
+    } else if (deletionModalContents["url"].includes("reports")) {
+      navigate(`/users/${localStorageId}/reports`);
     } else if (deletionModalContents["url"].includes("users")) {
       if (
         localStorageIsAdmin !== "true" ||
@@ -61,7 +63,7 @@ const DeleteModal = () => {
           {/* header */}
           <div className="modal-header">
             <h1 className="modal-title fs-5">
-              <SvgDelete />
+              <SvgDelete fill="#dc3545" />
             </h1>
           </div>
 

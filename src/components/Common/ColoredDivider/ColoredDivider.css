@@ -2,5 +2,6 @@
     display: block;
     color: inherit;
     opacity: .20;
-    border-bottom: 1px solid var(--bg-color-8);
+    background-color: var(--bg-color-8);
+    height: 1px;
 }

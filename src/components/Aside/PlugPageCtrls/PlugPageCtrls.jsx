@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Spinner from "../../Common/Spinner/Spinner";
+import ColoredDivider from "../../Common/ColoredDivider/ColoredDivider";
 import EditButton from "../../PlugActions/Editing/EditButton/EditButton";
 import DeleteButton from "../../PlugActions/Deleting/DeleteButton/DeleteButton";
 import DescGenButton from "../../PlugActions/DescGen/DescGenButton/DescGenButton";
@@ -37,7 +38,7 @@ const PlugPageCtrls = ({ currentPlug }) => {
             {" " + content()[2]}
           </div>
         </div>
-        <TransparentDivider />
+        <ColoredDivider />
         <div className="actions">
           <EditButton />
           <DeleteButton />

@@ -6,7 +6,7 @@ const useToasts = () => {
 
   const showToast = (msg) => {
     contextData["setToastVisibility"](true);
-    contextData["setToastMessage"](msg);
+    contextData["setToastMessage"](msg.charAt(0).toUpperCase() + msg.slice(1));
   };
 
   return showToast;

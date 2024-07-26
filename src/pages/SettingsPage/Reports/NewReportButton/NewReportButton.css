@@ -1,0 +1,14 @@
+.new-report-button-container {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    box-shadow: 0px 0px 3px var(--bg-color-8);
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.new-report-button-container:hover {
+    box-shadow: 0px 0px 3px var(--bg-color-1);
+    transition: box-shadow 0.1s ease-in-out;
+}

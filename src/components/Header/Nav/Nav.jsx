@@ -5,6 +5,7 @@ import SvgReturn from "../../svg/SvgReturn/SvgReturn.jsx";
 import useNavigation from "../../../hooks/useNavigation.jsx";
 import HamburgerAndSideBar from "../HamburgerAndSideBar/HamburgerAndSideBar.jsx";
 import "./Nav.css";
+import ColoredDivider from "../../Common/ColoredDivider/ColoredDivider.jsx";
 
 const Header = () => {
   const location = useLocation();
@@ -55,14 +56,15 @@ const Header = () => {
 
       {/* nav bar right side */}
       {isHomePage || isPlugPage || isSettingsPage || isAdminPage ? (
-        <>
-          <div id="hamburger-for-side-bar">
-            <HamburgerAndSideBar />
-          </div>
+        <span id="right-navbar-container">
           <div id="elements-in-nav-container">
             <Auth />
           </div>
-        </>
+          <div id="hamburger-for-side-bar">
+            <ColoredDivider margin={0} width="30px" rotate={90} alignSelf="center" />
+            <HamburgerAndSideBar />
+          </div>
+        </span>
       ) : (
         <h1>{rightHeader}</h1>
       )}

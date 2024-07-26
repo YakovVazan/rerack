@@ -29,6 +29,10 @@ h1 {
     font-weight: bold;
 }
 
+#right-navbar-container {
+    display: flex;
+}
+
 #drop-down-in-nav-container {
     display: flex;
     padding-right: 1em;
@@ -40,13 +44,9 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
-    #elements-in-nav-container {
-        display: none;
-    }
-
     #hamburger-for-side-bar {
         background-color: var(--bg-color-4);
-        display: block;
+        display: flex;
     }
 
     #hamburger-for-side-bar:hover {

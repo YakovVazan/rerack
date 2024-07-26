@@ -29,7 +29,7 @@
 }
 
 .header-line {
-    width: 70%;
+    width: 80%;
     background-color: var(--bg-color-4);
     border: none;
     opacity: unset;
@@ -66,7 +66,6 @@
 
 @media screen and (min-width: 768px) {
     .header-line {
-        width: 80%;
         background-color: var(--bg-color-4);
         border: none;
         opacity: unset;

@@ -1,0 +1,42 @@
+.reports-container {
+    cursor: pointer !important;
+    padding: .5rem 0 .5rem 1rem;
+}
+
+.report-wrapper {
+    overflow: hidden;
+    flex: 10;
+}
+
+.upper-report {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-header {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex: 3;
+}
+
+.report-date {
+    display: flex;
+    justify-content: end;
+    width: fit-content;
+    flex: 1;
+}
+
+.report-arrow {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.report-content {
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
