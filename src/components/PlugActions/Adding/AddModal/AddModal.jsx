@@ -4,24 +4,24 @@ import SvgX from "../../../svg/SvgX/SvgX";
 import useTypes from "../../../../hooks/useTypes";
 import useToasts from "../../../../hooks/useToasts";
 import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
-import { consts } from "../../../../config/constants";
 import Spinner from "../../../Common/Spinner/Spinner";
 import useCompanies from "../../../../hooks/useCompanies";
 import useDragAndDrop from "../../../../hooks/useDragAndDrop";
-import { localStorageToken } from "../../../../config/localStorage";
+import { addNewPlug } from "../../../../services/plugins";
 
 const AddModal = () => {
+  const initialPlugValue = {
+    name: "",
+    company: "",
+    type: "",
+    src: "",
+  };
   const showToast = useToasts();
   const navigate = useNavigate();
   const { typesList } = useTypes();
   const { companiesList } = useCompanies();
   const [formIsFullyFilledUp, setFormIsFullyFilledUp] = useState(false);
-  const [newPlug, setNewPlug] = useState({
-    name: "",
-    company: "",
-    type: "",
-    src: "",
-  });
+  const [newPlug, setNewPlug] = useState(initialPlugValue);
   const {
     hovering,
     isShaking,
@@ -59,26 +59,14 @@ const AddModal = () => {
 
   // reset details
   const handleReset = () => {
-    setNewPlug({
-      name: "",
-      company: "",
-      type: "",
-      src: "",
-    });
+    setNewPlug(initialPlugValue);
 
     cancelHovering();
   };
 
   // submit the form
   const handleSubmit = async () => {
-    const res = await fetch(`${consts.baseURL}/plugs/add`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorageToken}`,
-      },
-      body: JSON.stringify(newPlug),
-    });
+    const res = await addNewPlug(newPlug);
 
     const response = JSON.parse(await res.text());
     if (!res.ok) {

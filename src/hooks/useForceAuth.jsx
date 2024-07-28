@@ -11,7 +11,7 @@ const useForceAuth = () => {
     if (!contextData["token"]) {
       showToast(
         <span>
-          You need to <Link to={"users/login"}>log in</Link> first
+          You need to <Link to={"users/auth/login"}>log in</Link> first
         </span>
       );
       return false;

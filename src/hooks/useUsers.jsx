@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { consts } from "../config/constants";
-import { localStorageToken } from "../config/localStorage";
+import { getAllusers } from "../services/users";
 
 const useUsers = () => {
   const [users, setUSers] = useState([]);
@@ -11,11 +10,7 @@ const useUsers = () => {
     setIsLoading(true);
 
     try {
-      const res = await fetch(`${consts.baseURL}/users`, {
-        headers: {
-          Authorization: `Bearer ${localStorageToken}`,
-        },
-      });
+      const res = await getAllusers();
 
       if (!res.ok) throw new Error("Error fetching users.");
 

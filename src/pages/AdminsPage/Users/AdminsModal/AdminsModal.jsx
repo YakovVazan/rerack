@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import Context from "../../../../context/Context";
 import useToasts from "../../../../hooks/useToasts";
-import { consts } from "../../../../config/constants";
 import SvgX from "../../../../components/svg/SvgX/SvgX";
-import { localStorageToken } from "../../../../config/localStorage";
+import { addNewAdmin, unadmin } from "../../../../services/admins";
 import SvgPersonAdd from "../../../../components/svg/SvgPersonAdd/SvgPersonAdd";
 import SvgPersonRemove from "../../../../components/svg/SvgPersonRemove/SvgPersonRemove";
 
@@ -19,18 +18,9 @@ const AdminsModal = () => {
 
   const addAdmin = async () => {
     try {
-      const res = await fetch(
-        `${consts.baseURL}/admins/${adminsModalContents.userId}/add`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorageToken}`,
-          },
-          body: JSON.stringify({
-            email: adminsModalContents.email,
-          }),
-        }
+      const res = await addNewAdmin(
+        adminsModalContents.userId,
+        adminsModalContents.email
       );
 
       if (res.ok) {
@@ -51,16 +41,7 @@ const AdminsModal = () => {
 
   const removeAdmin = async () => {
     try {
-      const res = await fetch(
-        `${consts.baseURL}/admins/${adminsModalContents.userId}/remove`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorageToken}`,
-          },
-        }
-      );
+      const res = await unadmin(adminsModalContents.userId);
 
       if (res.ok) {
         const updatedUsersState = usersState.map((user) => {
@@ -93,7 +74,7 @@ const AdminsModal = () => {
                 <SvgPersonAdd />
               )}
             </h1>
-            <SvgX dataBsDismiss={"modal"}/>
+            <SvgX dataBsDismiss={"modal"} />
           </div>
 
           {/* body */}

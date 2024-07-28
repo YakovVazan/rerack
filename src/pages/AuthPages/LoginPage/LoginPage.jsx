@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Context from "../../../context/Context";
+import { login } from "../../../services/auth";
 import useToasts from "../../../hooks/useToasts";
-import { consts } from "../../../config/constants";
 import useTimeOfDay from "../../../hooks/useTimeOfDay";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import {
@@ -36,11 +36,7 @@ const LoginPage = () => {
   }
 
   async function loginUser(data) {
-    const res = await fetch(`${consts.baseURL}/users/auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+    const res = await login(data);
 
     let response;
     let text = await res.text();

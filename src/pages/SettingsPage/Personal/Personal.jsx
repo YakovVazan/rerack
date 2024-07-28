@@ -5,10 +5,10 @@ import useToasts from "../../../hooks/useToasts";
 import { consts } from "../../../config/constants";
 import useHistory from "../../../hooks/useHistory";
 import Spinner from "../../../components/Common/Spinner/Spinner";
+import { editUser, getUser, verifyUser } from "../../../services/users";
 import {
   localStorageId,
   localStorageLogin,
-  localStorageToken,
   setLocalStorageToken,
 } from "../../../config/localStorage";
 import "./Personal.css";
@@ -36,11 +36,7 @@ const Personal = () => {
 
   const fetchUserDetails = async () => {
     try {
-      const res = await fetch(`${consts.baseURL}/users/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorageToken}`,
-        },
-      });
+      const res = await getUser(id);
 
       if (!res.ok) {
         if (res.status === 404) {
@@ -91,14 +87,7 @@ const Personal = () => {
         password: userNewDetails.password,
       };
 
-      const res = await fetch(`${consts.baseURL}/users/${id}/edit`, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${localStorageToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const res = await editUser(id, payload);
 
       if (!res.ok) {
         const errorResponse = await res.json();
@@ -139,16 +128,7 @@ const Personal = () => {
 
   async function handleVerification() {
     try {
-      const res = await fetch(
-        `${consts.baseURL}/users/${userDetails.id}/verify`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${localStorageToken}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await verifyUser(userDetails.id);
 
       if (!res.ok) {
         const errorResponse = await res.json();

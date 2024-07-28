@@ -54,10 +54,7 @@ const useNavigation = () => {
   const isAdminURL = (url) => {
     const urlArray = urlToArray(url);
 
-    return (
-      (urlArray.length === 1 && urlArray[0] === "users") ||
-      (urlArray.length >= 2 && adminPageKeyword.includes(urlArray[1]))
-    );
+    return urlArray.includes("dashboard");
   };
 
   let url = urlToArray(location.pathname);
@@ -85,7 +82,7 @@ const useNavigation = () => {
     );
     setIsAdminPage(
       (url.length === 2 && url.includes("dashboard")) ||
-        (url.length === 3 && adminPageKeyword.includes(url[2]))
+        (url.length >= 3 && adminPageKeyword.includes(url[2]))
     );
     setIsNotFoundPage(url.length === 1 && url[0] === "not-found");
   }, [location.pathname]);

@@ -1,9 +1,8 @@
 import { useState } from "react";
 import useToasts from "../../hooks/useToasts";
-import { consts } from "../../config/constants";
 import Spinner from "../Common/Spinner/Spinner";
+import { fetchDownload } from "../../services/download";
 import SvgDownload from "../svg/SvgDownload/SvgDownload";
-import { localStorageToken } from "../../config/localStorage";
 import "./DownloadButton.css";
 
 const DownloadButton = () => {
@@ -13,11 +12,7 @@ const DownloadButton = () => {
   async function download() {
     try {
       setIsDownloading(true);
-      const response = await fetch(`${consts.baseURL}/download`, {
-        headers: {
-          Authorization: `Bearer ${localStorageToken}`,
-        },
-      });
+      const response = await fetchDownload();
 
       if (!response.ok) {
         throw new Error(`Failed to download: ${response.statusText}`);

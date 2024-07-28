@@ -5,11 +5,11 @@ import Context from "../../../../context/Context";
 import useToasts from "../../../../hooks/useToasts";
 import SvgDelete from "../../../svg/SvgDelete/SvgDelete";
 import useNavigation from "../../../../hooks/useNavigation";
+import { deleteContent } from "../../../../services/delete";
 import {
   localStorageId,
   localStorageIsAdmin,
   localStorageLogout,
-  localStorageToken,
 } from "../../../../config/localStorage";
 
 const DeleteModal = () => {
@@ -20,13 +20,7 @@ const DeleteModal = () => {
     useContext(Context);
 
   async function handleDelete() {
-    const res = await fetch(deletionModalContents["url"], {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorageToken}`,
-      },
-    });
+    const res = await deleteContent(deletionModalContents["url"]);
 
     if (!res.ok) {
       const response = await res.json();
@@ -44,7 +38,7 @@ const DeleteModal = () => {
     } else if (location.pathname.includes("reports")) {
       navigate(`/users/${localStorageId}/reports`);
     } else if (location.pathname.includes("inbox")) {
-      navigate("/users/inbox");
+      navigate("/users/dashboard/inbox");
     } else if (deletionModalContents["url"].includes("users")) {
       if (
         localStorageIsAdmin !== "true" ||

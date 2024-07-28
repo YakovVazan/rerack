@@ -2,15 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Context from "../../../context/Context";
 import useToasts from "../../../hooks/useToasts";
-import { consts } from "../../../config/constants";
-import SvgInfoSquare from "../../../components/svg/SvgInfoSquare/SvgInfoSquare";
 import Spinner from "../../../components/Common/Spinner/Spinner";
+import { localStorageIsAdmin } from "../../../config/localStorage";
 import Scroller from "../../../components/Common/Scroller/Scroller";
+import { getAllContributions } from "../../../services/contributions";
+import SvgInfoSquare from "../../../components/svg/SvgInfoSquare/SvgInfoSquare";
 import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
-import {
-  localStorageIsAdmin,
-  localStorageToken,
-} from "../../../config/localStorage";
 import "./Activity.css";
 
 const Activity = () => {
@@ -25,11 +22,7 @@ const Activity = () => {
 
   const fetchUsersActivity = async () => {
     try {
-      const res = await fetch(`${consts.baseURL}/users/activity`, {
-        headers: {
-          Authorization: `Bearer ${localStorageToken}`,
-        },
-      });
+      const res = await getAllContributions();
 
       if (!res.ok) {
         const errorResponse = await res.json();

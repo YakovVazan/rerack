@@ -21,8 +21,7 @@ const SettingsPage = () => {
   const { setAccoutPageSubRoute } = useContext(Context);
 
   const checkUserSession = async () => {
-    const isValid = await userSessionIsValid();
-    if (!isValid) {
+    if (!(await userSessionIsValid()).ok) {
       navigate("/");
     } else {
       setLocalStorageAccountPageSubRouteIndex(0);
@@ -35,21 +34,19 @@ const SettingsPage = () => {
     checkUserSession();
   }, []);
 
-  if (loading) {
-    return null;
-  }
-
   return (
-    <Routes>
-      <Route path=":id/" element={<Personal />}></Route>
-      <Route path=":id/preferences" element={<Preferences />}></Route>
-      <Route path=":id/reports" element={<Reports />}></Route>
-      <Route path=":id/reports/:reportId" element={<ReportPage />}></Route>
-      <Route path=":id/contributions" element={<Contributions />}></Route>
-      <Route path=":id/owned_plugins" element={<OwnedPlugins />}></Route>
-      <Route path=":id/wishlist" element={<Wishlist />}></Route>
-      <Route path="*" element={<NotFound />}></Route>
-    </Routes>
+    !loading && (
+      <Routes>
+        <Route path=":id/" element={<Personal />}></Route>
+        <Route path=":id/preferences" element={<Preferences />}></Route>
+        <Route path=":id/reports" element={<Reports />}></Route>
+        <Route path=":id/reports/:reportId" element={<ReportPage />}></Route>
+        <Route path=":id/contributions" element={<Contributions />}></Route>
+        <Route path=":id/owned_plugins" element={<OwnedPlugins />}></Route>
+        <Route path=":id/wishlist" element={<Wishlist />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
+    )
   );
 };
 

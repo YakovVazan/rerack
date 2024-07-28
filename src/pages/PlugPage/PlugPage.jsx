@@ -3,9 +3,9 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import Context from "../../context/Context.jsx";
 import usePlugs from "../../hooks/usePlugs.jsx";
 import useToasts from "../../hooks/useToasts.jsx";
-import { consts } from "../../config/constants.js";
 import useForceAuth from "../../hooks/useForceAuth.jsx";
 import useSavedPlugs from "../../hooks/useSavedPlugs.jsx";
+import { submitSelections } from "../../services/plugins.js";
 import useFavoritePlugs from "../../hooks/useFavoritePlugs.jsx";
 import Spinner from "../../components/Common/Spinner/Spinner.jsx";
 import SvgHeart from "../../components/svg/SvgHeart/SvgHeart.jsx";
@@ -69,16 +69,12 @@ const PlugPage = () => {
 
   const handleSelections = async (type, plugId) => {
     try {
-      const res = await fetch(`${consts.baseURL}/plugs/${type}/${plugId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorageToken}`,
-        },
-        body: JSON.stringify({
-          needsToBeAdded: type === "favor" ? !alreadyFavorited : !alreadySaved,
-        }),
-      });
+      const res = await submitSelections(
+        type,
+        plugId,
+        alreadyFavorited,
+        alreadySaved
+      );
 
       // show proper toast with link
       handleToast(createProperToastContent(await res.json()));

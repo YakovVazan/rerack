@@ -18,10 +18,8 @@ const AdminsPage = () => {
   const [loading, setLoading] = useState(true);
   const { setAdminPageSubRoute } = useContext(Context);
 
-  const checkUserSession = async () => {
-    const isValid = await isUserAdmin();
-
-    if (!isValid) {
+  const makeSureUserIsAdmin = async () => {
+    if (!(await isUserAdmin()).ok) {
       navigate("/");
     } else {
       setLocalStorageAdminPageSubRouteIndex(0);
@@ -31,22 +29,20 @@ const AdminsPage = () => {
   };
 
   useEffect(() => {
-    checkUserSession();
+    makeSureUserIsAdmin();
   }, []);
 
-  if (loading) {
-    return null;
-  }
-
   return (
-    <Routes>
-      <Route path="" element={<Users />}></Route>
-      <Route path="activity" element={<Activity />}></Route>
-      <Route path="inbox" element={<Inbox />}></Route>
-      <Route path="inbox/:reportId" element={<ReportPage />}></Route>
-      <Route path="download" element={<Download />}></Route>
-      <Route path="*" element={<NotFound />}></Route>
-    </Routes>
+    !loading && (
+      <Routes>
+        <Route path="" element={<Users />}></Route>
+        <Route path="activity" element={<Activity />}></Route>
+        <Route path="inbox" element={<Inbox />}></Route>
+        <Route path="inbox/:reportId" element={<ReportPage />}></Route>
+        <Route path="download" element={<Download />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
+    )
   );
 };
 

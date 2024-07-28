@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useToasts from "../../../hooks/useToasts";
+import { register } from "../../../services/auth";
 import Spinner from "../../../components/Common/Spinner/Spinner";
-import { consts } from "../../../config/constants";
 
 const RegisterPage = () => {
   const showToast = useToasts();
@@ -29,11 +29,7 @@ const RegisterPage = () => {
   }
 
   async function submitUser(data) {
-    const res = await fetch(`${consts.baseURL}/users/auth/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+    const res = await register(data);
 
     if (!res.ok) {
       const response = JSON.parse(await res.text());

@@ -4,12 +4,11 @@ import useTypes from "../../../../hooks/useTypes";
 import Context from "../../../../context/Context";
 import SvgEdit from "../../../svg/SvgEdit/SvgEdit";
 import useToasts from "../../../../hooks/useToasts";
-import { consts } from "../../../../config/constants";
 import Spinner from "../../../Common/Spinner/Spinner";
 import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
+import { editPlug } from "../../../../services/plugins";
 import useCompanies from "../../../../hooks/useCompanies";
 import useDragAndDrop from "../../../../hooks/useDragAndDrop";
-import { localStorageToken } from "../../../../config/localStorage";
 
 const EditModal = () => {
   const showToast = useToasts();
@@ -77,14 +76,7 @@ const EditModal = () => {
   };
 
   const handleSubmit = async () => {
-    const res = await fetch(`${consts.baseURL}/plugs/edit/${upToDatePlug.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorageToken}`,
-      },
-      body: JSON.stringify(upToDatePlug),
-    });
+    const res = await editPlug(upToDatePlug);
 
     const response = JSON.parse(await res.text());
     if (!res.ok) {

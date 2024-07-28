@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import SvgAi from "../../../svg/SvgAi/SvgAi";
 import Context from "../../../../context/Context";
-import { consts } from "../../../../config/constants";
 import useForceAuth from "../../../../hooks/useForceAuth";
-import { localStorageToken } from "../../../../config/localStorage";
+import { generateDescription } from "../../../../services/plugins";
 import "./DescGenButton.css";
 
 const DescGenButton = ({ setDescription, setLoadingDescription }) => {
@@ -15,19 +14,8 @@ const DescGenButton = ({ setDescription, setLoadingDescription }) => {
     try {
       setLoadingDescription(true);
       setDescription("");
-      
-      const res = await fetch(`${consts.baseURL}/plugs/generate/description`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorageToken}`,
-        },
-        body: JSON.stringify({
-          name: currentPlug["name"],
-          type: currentPlug["type"],
-          company: currentPlug["company"],
-        }),
-      });
+
+      const res = await generateDescription(currentPlug);
 
       const response = await res.json();
       if (!res.ok) {

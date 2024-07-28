@@ -1,23 +1,19 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import Context from "../../../context/Context";
 import useToasts from "../../../hooks/useToasts";
-import { consts } from "../../../config/constants";
-import SvgInfoSquare from "../../../components/svg/SvgInfoSquare/SvgInfoSquare";
+import { localStorageId } from "../../../config/localStorage";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import SvgPencil from "../../../components/svg/SvgPencil/SvgPencil";
 import Scroller from "../../../components/Common/Scroller/Scroller";
+import { getUserContributions } from "../../../services/contributions";
+import SvgInfoSquare from "../../../components/svg/SvgInfoSquare/SvgInfoSquare";
 import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
-import {
-  localStorageId,
-  localStorageToken,
-} from "../../../config/localStorage";
 import "../SubRoutes.css";
 
 const Contributions = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
-  const location = useLocation();
   const [total, setTotal] = useState(0);
   const [formattedData, setFormattedData] = useState([]);
   const { token, setContributions } = useContext(Context);
@@ -27,16 +23,7 @@ const Contributions = () => {
 
   const fetchUserDistributions = async () => {
     try {
-      const res = await fetch(
-        `${consts.baseURL}/users/${
-          location.pathname.split("/")[2]
-        }/contributions`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorageToken}`,
-          },
-        }
-      );
+      const res = await getUserContributions();
 
       if (!res.ok) {
         const errorResponse = await res.json();

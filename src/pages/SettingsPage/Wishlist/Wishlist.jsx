@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useToasts from "../../../hooks/useToasts";
-import { consts } from "../../../config/constants";
+import { unfavorPlugin } from "../../../services/favorites";
+import { localStorageId } from "../../../config/localStorage";
 import useFavoritePlugs from "../../../hooks/useFavoritePlugs";
-import {
-  localStorageId,
-  localStorageToken,
-} from "../../../config/localStorage";
 import SvgHeart from "../../../components/svg/SvgHeart/SvgHeart";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import Scroller from "../../../components/Common/Scroller/Scroller";
@@ -50,16 +47,7 @@ const Wishlist = () => {
     event.preventDefault();
 
     try {
-      const res = await fetch(`${consts.baseURL}/plugs/favor/${plugId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorageToken}`,
-        },
-        body: JSON.stringify({
-          needsToBeAdded: false,
-        }),
-      });
+      const res = await unfavorPlugin(plugId);
 
       if (!res.ok) {
         const errorResponse = await res.json();

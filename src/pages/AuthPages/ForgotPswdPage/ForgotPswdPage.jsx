@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useIf from "../../../hooks/useIf";
 import useToasts from "../../../hooks/useToasts";
-import { consts } from "../../../config/constants";
 import useHistory from "../../../hooks/useHistory";
+import { fetchNewPassword } from "../../../services/auth";
 
 const ForgotPswdPage = () => {
   const ReactIf = useIf();
@@ -24,11 +24,7 @@ const ForgotPswdPage = () => {
   };
 
   const getNewPassword = async () => {
-    const res = await fetch(`${consts.baseURL}/users/get_new_password`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: givenEmail }),
-    });
+    const res = await fetchNewPassword(givenEmail);
 
     let response;
     let text = await res.text();
@@ -49,15 +45,7 @@ const ForgotPswdPage = () => {
   };
 
   const postNewPassword = async () => {
-    const res = await fetch(`${consts.baseURL}/users/reset_password`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: givenEmail,
-        password: givenPassword,
-        hash: hash,
-      }),
-    });
+    const res = await postNewPassword(givenEmail, givenPassword, hash);
 
     let response;
     let text = await res.text();

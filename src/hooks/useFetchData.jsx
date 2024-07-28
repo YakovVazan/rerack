@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { consts } from "../config/constants";
+import { getAllPlugins } from "../services/plugins";
 
 const useFetchData = () => {
   const [data, setData] = useState([]);
@@ -10,11 +10,9 @@ const useFetchData = () => {
     setIsLoading(true);
 
     try {
-      const res = await fetch(`${consts.baseURL}/plugs`);
+      const res = await getAllPlugins();
 
-      if (!res.ok) {
-        throw new Error("Network error.");
-      }
+      if (!res.ok) throw new Error("Network error.");
 
       const data = await res.json();
 

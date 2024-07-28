@@ -2,13 +2,9 @@ import { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Context from "../../../../context/Context";
 import useToasts from "../../../../hooks/useToasts";
-import { consts } from "../../../../config/constants";
 import SvgLogout from "../../../svg/SvgLogout/SvgLogout";
-import {
-  localStorageId,
-  localStorageLogout,
-  localStorageToken,
-} from "../../../../config/localStorage";
+import { localStorageLogout } from "../../../../config/localStorage";
+import { userSessionIsValid } from "../../../../services/sessions.js";
 import "./LogoutButton.css";
 
 const LogoutButton = () => {
@@ -24,18 +20,10 @@ const LogoutButton = () => {
   // log out user if session expired
   const handleSessionExpired = async () => {
     try {
-      const response = await fetch(
-        `${consts.baseURL}/users/sessions/${localStorageId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorageToken}`,
-          },
-        }
-      );
-
-      const res = await response.json();
+      const response = await userSessionIsValid();
 
       if (!response.ok) {
+        const res = await response.json();
         handleLogout();
         showToast(
           <span>

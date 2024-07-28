@@ -34,7 +34,7 @@ const ReplyModal = () => {
     await sendReply(reportData)
       .then(() => {
         showToast("Reply has been submitted");
-        navigate('/users/inbox');
+        navigate('/users/dashboard/inbox');
       })
       .catch((error) => {
         showToast(error.msg);

@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useToasts from "../../../hooks/useToasts";
-import { consts } from "../../../config/constants";
+import { unsavePlugin } from "../../../services/saved";
 import useSavedPlugs from "../../../hooks/useSavedPlugs";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import SvgTagAdd from "../../../components/svg/SvgTagAdd/SvgTagAdd";
 import Scroller from "../../../components/Common/Scroller/Scroller";
 import SvgTagRemove from "../../../components/svg/SvgTagRemove/SvgTagRemove";
 import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
-import {
-  localStorageId,
-  localStorageToken,
-} from "../../../config/localStorage";
+import { localStorageId } from "../../../config/localStorage";
 import "../SubRoutes.css";
 
 const OwnedPlugins = () => {
@@ -50,16 +47,7 @@ const OwnedPlugins = () => {
     event.preventDefault();
 
     try {
-      const res = await fetch(`${consts.baseURL}/plugs/save/${plugId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorageToken}`,
-        },
-        body: JSON.stringify({
-          needsToBeAdded: false,
-        }),
-      });
+      const res = await unsavePlugin(plugId);
 
       const msg = await res.json();
       showToast(msg["msg"]);

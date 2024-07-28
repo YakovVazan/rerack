@@ -1,20 +1,12 @@
-import { consts } from "../config/constants";
 import { useParams } from "react-router-dom";
-import { localStorageId, localStorageToken } from "../config/localStorage";
+import { getFavorites } from "../services/favorites";
 
 const useFavoritePlugs = () => {
   const { id } = useParams();
 
   const getAllFavorites = async () => {
     try {
-      const res = await fetch(
-        `${consts.baseURL}/users/${id || localStorageId}/favorites`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorageToken}`,
-          },
-        }
-      );
+      const res = await getFavorites(id);
 
       return (await res.json()) || [];
     } catch (error) {
@@ -23,6 +15,6 @@ const useFavoritePlugs = () => {
   };
 
   return getAllFavorites;
-}; // try catch!!!!!!!!!!!!!!!!!
+};
 
 export default useFavoritePlugs;
