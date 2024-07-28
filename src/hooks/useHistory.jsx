@@ -1,22 +1,24 @@
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import useNavigation from "./useNavigation";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import Context from "../context/Context";
 import {
   localStorageHistory,
   setLocalStorageHistory,
+  setLocalStorageAdminPageSubRouteIndex,
+  setLocalStorageAccountPageSubRouteIndex,
 } from "../config/localStorage";
 
 const useHistory = () => {
   const location = useLocation();
   const [backArrowTitle, setBackArrowTitle] = useState("");
+  const { setAccoutPageSubRoute, setAdminPageSubRoute } = useContext(Context);
   const [history, setHistory] = useState(
     typeof localStorageHistory === "string"
       ? JSON.parse(localStorageHistory)
       : localStorageHistory
   );
   const {
-    adminPageKeyword,
-    settingsPageKeywords,
     isNotFoundPage,
     isAdminPage,
     isSettingsPage,
@@ -25,7 +27,6 @@ const useHistory = () => {
     isForgotPasswordPage,
     isSettingsURL,
     isAdminURL,
-    urlToArray,
   } = useNavigation();
 
   const titleShouldBeHome = (newHistory) => {
@@ -52,14 +53,6 @@ const useHistory = () => {
     // keep back arrow title up to date even after reloading
     updateBackArrowTitle(history);
 
-    // prevent adding sub routes of admin and settings pages after reload
-    if (
-      (isSettingsURL(location.pathname) && isSettingsURL(history.at(-1))) ||
-      (isAdminURL(location.pathname) && isAdminURL(history.at(-1)))
-    ) {
-      return;
-    }
-
     // delete duplications from history
     if (
       history.length > 2 &&
@@ -71,24 +64,19 @@ const useHistory = () => {
     if (location.pathname === "/") {
       // zero history when reaching home page
       updateHistory(["/"]);
+      setAccoutPageSubRoute(0);
+      setAdminPageSubRoute(0);
+      setLocalStorageAdminPageSubRouteIndex(0);
+      setLocalStorageAccountPageSubRouteIndex(0);
     } else if (location.pathname === history[history.length - 1]) {
       // avoid duplicates
       return;
     } else if (
-      adminPageKeyword.includes(urlToArray(location.pathname).at(-1)) ||
-      settingsPageKeywords.includes(urlToArray(location.pathname).at(-1))
+      isLoginPage ||
+      isRegisterPage ||
+      (isSettingsURL(location.pathname) && isSettingsURL(history.at(-1))) ||
+      (isAdminURL(location.pathname) && isAdminURL(history.at(-1)))
     ) {
-      if (isSettingsPage || isAdminPage) {
-        // avoid adding sub routes to history
-        return;
-      } else {
-        // add main route to history in case of navigation from outside
-        let newHistory = history;
-        newHistory.push(location.pathname.split("/").slice(0, -1).join("/"));
-
-        updateHistory(newHistory);
-      }
-    } else if (isLoginPage || isRegisterPage) {
       // swap register in login and vice versa
       let newHistory = history;
 

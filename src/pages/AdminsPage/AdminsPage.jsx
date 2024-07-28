@@ -9,8 +9,8 @@ import NotFound from "../NotFound/NotFound";
 import { isUserAdmin } from "../../services/sessions";
 import ReportPage from "../SettingsPage/Reports/ReportPage/ReportPage";
 import {
-  setLocalStorageAdminPageSubRouteIndex,
   localStorageAdminPageSubRouteIndex,
+  setLocalStorageAdminPageSubRouteIndex,
 } from "../../config/localStorage";
 
 const AdminsPage = () => {
@@ -22,7 +22,9 @@ const AdminsPage = () => {
     if (!(await isUserAdmin()).ok) {
       navigate("/");
     } else {
-      setLocalStorageAdminPageSubRouteIndex(0);
+      setLocalStorageAdminPageSubRouteIndex(
+        +localStorageAdminPageSubRouteIndex || 0
+      );
       setAdminPageSubRoute(+localStorageAdminPageSubRouteIndex);
       setLoading(false);
     }

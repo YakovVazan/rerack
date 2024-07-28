@@ -39,7 +39,6 @@
     display: flex !important;
     align-items: center;
     gap: .5em;
-    padding: .45rem .75rem !important;
 }
 
 .customed-svg {

@@ -34,7 +34,6 @@ const AccountCenterPageCtrls = () => {
   ];
 
   function updateSubRoute(index) {
-    setLocalStorageAccountPageSubRouteIndex(index);
     navigate(
       index === list.length - 2
         ? "/users/dashboard"
@@ -44,7 +43,11 @@ const AccountCenterPageCtrls = () => {
               : ""
           }`
     );
-    contextData["setAccoutPageSubRoute"](index);
+
+    if (list[index].title !== "Dashboard") {
+      setLocalStorageAccountPageSubRouteIndex(index);
+      contextData["setAccoutPageSubRoute"](index);
+    }
   }
 
   return (

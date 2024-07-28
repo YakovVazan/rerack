@@ -24,7 +24,9 @@ const SettingsPage = () => {
     if (!(await userSessionIsValid()).ok) {
       navigate("/");
     } else {
-      setLocalStorageAccountPageSubRouteIndex(0);
+      setLocalStorageAccountPageSubRouteIndex(
+        +localStorageAccountPageSubRouteIndex || 0
+      );
       setAccoutPageSubRoute(+localStorageAccountPageSubRouteIndex);
       setLoading(false);
     }

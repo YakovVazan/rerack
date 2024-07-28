@@ -1,10 +1,8 @@
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import Context from "../context/Context";
 
 const useNavigation = () => {
   const location = useLocation();
-  const contextData = useContext(Context);
   const [isHomePage, setIsHomePage] = useState(false);
   const [isPlugPage, setIsPlugPage] = useState(false);
   const [isLoginPage, setIsLoginPage] = useState(false);
@@ -86,17 +84,6 @@ const useNavigation = () => {
     );
     setIsNotFoundPage(url.length === 1 && url[0] === "not-found");
   }, [location.pathname]);
-
-  // align sub route visuals with url browsing
-  useEffect(() => {
-    if (isSettingsPage) {
-      contextData["setAccoutPageSubRoute"](
-        settingsPageKeywords.indexOf(url[2]) + 1
-      );
-    } else if (isAdminPage) {
-      contextData["setAdminPageSubRoute"](adminPageKeyword.indexOf(url[2]) + 1);
-    }
-  }, [isSettingsPage, isAdminPage, location.pathname]);
 
   return {
     adminPageKeyword,
