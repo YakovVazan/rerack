@@ -22,8 +22,8 @@ const Preferences = () => {
         </span>
         <div className="preference-section">
           <small className="theme-text">
-            Choose your prefered theme; light, dark or automatically set
-            as your machine&lsquo;s
+            Choose your prefered theme; light, dark or automatically set as your
+            machine&lsquo;s
           </small>
           <div
             className="btn customed-button dropdown-toggle theme-toggle"

@@ -92,7 +92,7 @@ const useHistory = () => {
       // swap register in login and vice versa
       let newHistory = history;
 
-      if (location.pathname !== "/users/forgot_password") {
+      if (location.pathname !== "/users/auth/forgot_password") {
         newHistory = newHistory.slice(0, -1);
       }
 

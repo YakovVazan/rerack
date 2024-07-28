@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import Context from "../../../context/Context";
 import useUsers from "../../../hooks/useUsers";
@@ -10,14 +10,10 @@ import Scroller from "../../../components/Common/Scroller/Scroller";
 import SvgPersonAdd from "../../../components/svg/SvgPersonAdd/SvgPersonAdd";
 import SvgPersonRemove from "../../../components/svg/SvgPersonRemove/SvgPersonRemove";
 import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
-import {
-  localStorageIsAdmin,
-  localStorageIsOwner,
-} from "../../../config/localStorage";
+import { localStorageIsOwner } from "../../../config/localStorage";
 import "./Users.css";
 
 const Users = () => {
-  const navigate = useNavigate();
   const [total, setTotal] = useState(0);
   const { users, isLoading } = useUsers();
   const [searchBoxValue, setSearchBoxValue] = useState("");
@@ -28,10 +24,6 @@ const Users = () => {
     usersState,
     setUsersState,
   } = useContext(Context);
-
-  useEffect(() => {
-    if (localStorageIsAdmin !== "true") navigate("/");
-  });
 
   const handleAdmins = (userName, email, userId, isAdmin) => {
     setAdminsModalContents({

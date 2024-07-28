@@ -35,7 +35,7 @@ const Wishlist = () => {
         showToast(data.msg);
         localStorageId
           ? navigate(`/users/${localStorageId}/wishlist`)
-          : navigate(`/users/login`);
+          : navigate(`/users/auth/login`);
       } else {
         setFavoritePlugins(data || []);
       }

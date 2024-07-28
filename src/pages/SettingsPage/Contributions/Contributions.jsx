@@ -43,7 +43,7 @@ const Contributions = () => {
         showToast(errorResponse.msg || errorResponse.error);
         localStorageId
           ? navigate(`/users/${localStorageId}/contributions`)
-          : navigate(`/users/login`);
+          : navigate(`/users/auth/login`);
       } else {
         const data = await res.json();
         setContributedData(data || []);

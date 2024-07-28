@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import SvgX from "../../svg/SvgX/SvgX";
 import "./Toasts.css";
 
 const Toast = ({ toastMessage, toastVisibility, setToastVisibility }) => {
@@ -43,6 +44,12 @@ const Toast = ({ toastMessage, toastVisibility, setToastVisibility }) => {
       >
         <div className="toast-header">
           <strong>Rerack</strong>
+          <span
+            data-bs-dismiss="toast"
+            onClick={() => setToastVisibility(false)}
+          >
+            <SvgX />
+          </span>
         </div>
         <div className="toast-body">{toastMessage}</div>
       </div>

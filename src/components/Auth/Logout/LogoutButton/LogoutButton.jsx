@@ -39,7 +39,7 @@ const LogoutButton = () => {
         handleLogout();
         showToast(
           <span>
-            {res.msg}. Please <Link to={"users/login"}>relogin</Link>
+            {res.msg}. Please <Link to={"users/auth/login"}>relogin</Link>
           </span>
         );
       }

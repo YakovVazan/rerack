@@ -22,8 +22,8 @@ const AdminPageCtrls = () => {
     setLocalStorageAdminPageSubRouteIndex(index);
     navigate(
       index === 0
-        ? "/users"
-        : `/users/${list[index].title.trim().toLowerCase()}`
+        ? "/users/dashboard"
+        : `/users/dashboard/${list[index].title.trim().toLowerCase()}`
     );
     contextData["setAdminPageSubRoute"](index);
   };

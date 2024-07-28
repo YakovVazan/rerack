@@ -1,14 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useToasts from "../../../../hooks/useToasts";
+import SvgX from "../../../../components/svg/SvgX/SvgX";
 import { sendReply } from "../../../../services/reports";
 import SvgReply from "../../../../components/svg/SvgReply/SvgReply";
+import Context from "../../../../context/Context";
+import { useNavigate } from "react-router-dom";
 
 const ReplyModal = () => {
-  const showToast = useToasts();
-  const [replyLength, setReplyLength] = useState(0);
-  const [reportData, setReportData] = useState({
+  const replyInitialValue = {
     response: "",
-  });
+  };
+  const showToast = useToasts();
+  const navigate = useNavigate();
+  const { setCurrentReport } = useContext(Context);
+  const [replyLength, setReplyLength] = useState(0);
+  const [reportData, setReportData] = useState(replyInitialValue);
 
   const handleResponseChange = (e) => {
     setReportData({
@@ -23,8 +29,13 @@ const ReplyModal = () => {
       return;
     }
 
+    setCurrentReport({});
+
     await sendReply(reportData)
-      .then(() => showToast("Reply has been submitted"))
+      .then(() => {
+        showToast("Reply has been submitted");
+        navigate('/users/inbox');
+      })
       .catch((error) => {
         showToast(error.msg);
       });
@@ -41,6 +52,10 @@ const ReplyModal = () => {
           {/* header */}
           <div className="modal-header">
             <SvgReply />
+            <SvgX
+              dataBsDismiss={"modal"}
+              onClick={() => setReportData(replyInitialValue)}
+            />
           </div>
 
           {/* body */}
@@ -64,17 +79,6 @@ const ReplyModal = () => {
 
           {/* footer */}
           <div className="modal-footer new-report-modal-footer">
-            <input
-              type="button"
-              value="cancel"
-              className="btn customed-button"
-              data-bs-dismiss="modal"
-              onClick={() =>
-                setReportData({
-                  response: "",
-                })
-              }
-            />
             <input
               type="submit"
               value="Submit"

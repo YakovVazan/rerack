@@ -29,7 +29,7 @@ const ReportPage = () => {
   const handleReportDelete = () => {
     setDeletionModalContents({
       url: `${consts.baseURL}/users/reports/delete/${currentReport.id}`,
-      msg: "the report",
+      msg: "report",
       id: `${localStorageId}`,
     });
   };
@@ -90,7 +90,7 @@ const ReportPage = () => {
                     </p>
                   </>
                 )}
-                {!isReportNotInbox() && (
+                {!isReportNotInbox() && currentReport.response && (
                   <p>
                     Replied by:{" "}
                     <Link to={"/users/" + currentReport?.adminUserId}>
@@ -114,11 +114,11 @@ const ReportPage = () => {
                   data-bs-dismiss="offcanvas"
                   data-bs-toggle={localStorageToken && "modal"}
                   data-bs-target={localStorageToken && "#replyModal"}
-                  // onClick={handleReportDelete}
                 >
                   <SvgReply />
                 </div>
-                {!currentReport.response && (
+                {((isReportNotInbox() && !currentReport.response) ||
+                  !isReportNotInbox()) && (
                   <div
                     className="btn btn-outline-danger"
                     data-bs-dismiss="offcanvas"

@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import SvgX from "../../../svg/SvgX/SvgX";
 import useTypes from "../../../../hooks/useTypes";
 import Context from "../../../../context/Context";
 import SvgEdit from "../../../svg/SvgEdit/SvgEdit";
@@ -110,6 +111,7 @@ const EditModal = () => {
                 Edit {currentPlug.name}
               </span>
             </span>
+            <SvgX dataBsDismiss={"modal"} onClick={handleReset} />
           </div>
 
           {/* body */}
@@ -261,14 +263,6 @@ const EditModal = () => {
 
           {/* footer */}
           <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-outline-warning"
-              data-bs-dismiss="modal"
-              onClick={handleReset}
-            >
-              Dismiss
-            </button>
             <button
               type="button"
               className="btn btn-outline-primary"

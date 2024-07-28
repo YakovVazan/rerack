@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import SvgX from "../../../svg/SvgX/SvgX";
 import Context from "../../../../context/Context";
 import useToasts from "../../../../hooks/useToasts";
 import SvgDelete from "../../../svg/SvgDelete/SvgDelete";
@@ -40,8 +41,10 @@ const DeleteModal = () => {
     if (deletionModalContents["url"].includes("plugs")) {
       setCurrentPlug({});
       navigate("/");
-    } else if (deletionModalContents["url"].includes("reports")) {
+    } else if (location.pathname.includes("reports")) {
       navigate(`/users/${localStorageId}/reports`);
+    } else if (location.pathname.includes("inbox")) {
+      navigate("/users/inbox");
     } else if (deletionModalContents["url"].includes("users")) {
       if (
         localStorageIsAdmin !== "true" ||
@@ -65,6 +68,7 @@ const DeleteModal = () => {
             <h1 className="modal-title fs-5">
               <SvgDelete fill="#dc3545" />
             </h1>
+            <SvgX dataBsDismiss={"modal"} />
           </div>
 
           {/* body */}
@@ -74,13 +78,6 @@ const DeleteModal = () => {
 
           {/* footer */}
           <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-outline-primary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </button>
             <button
               type="button"
               className="btn btn-outline-danger"

@@ -7,7 +7,7 @@ const RegisterButton = () => {
     <Link
       className="btn customed-button"
       title="register"
-      to={"users/register"}
+      to={"users/auth/register"}
     >
       <span id="register-icon">
         <SvgRegister />

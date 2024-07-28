@@ -31,7 +31,7 @@ const Personal = () => {
   }, []);
 
   useEffect(() => {
-    fetchUserDetails();
+    if (id) fetchUserDetails();
   }, [id]);
 
   const fetchUserDetails = async () => {
@@ -47,7 +47,7 @@ const Personal = () => {
           showToast(res.statusText);
           localStorageId
             ? navigate(`/users/${localStorageId}`)
-            : navigate(`/users/login`);
+            : navigate(`/users/auth/login`);
           setUserNewDetails({
             name: userDetails.name,
             email: userDetails.email,
@@ -68,7 +68,7 @@ const Personal = () => {
         });
       }
     } catch (error) {
-      console.error(error);
+      navigate("/");
       showToast(error.message || error.msg);
     } finally {
       setLoadingUser(false);

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SvgX from "../../../svg/SvgX/SvgX";
 import useTypes from "../../../../hooks/useTypes";
 import useToasts from "../../../../hooks/useToasts";
 import SvgCheck from "../../../svg/SvgCheck/SvgCheck";
@@ -99,6 +100,7 @@ const AddModal = () => {
           {/* header */}
           <div className="modal-header">
             <h1 className="modal-title fs-5">New plug&#39;s details</h1>
+            <SvgX dataBsDismiss={"modal"} onClick={handleReset} />
           </div>
 
           {/* body */}
@@ -242,14 +244,6 @@ const AddModal = () => {
 
           {/* footer */}
           <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-outline-warning"
-              data-bs-dismiss="modal"
-              onClick={handleReset}
-            >
-              Dismiss
-            </button>
             <button
               type="button"
               className="btn btn-outline-primary"

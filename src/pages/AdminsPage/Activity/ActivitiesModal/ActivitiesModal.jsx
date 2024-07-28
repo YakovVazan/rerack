@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import Context from "../../../../context/Context";
+import SvgX from "../../../../components/svg/SvgX/SvgX";
 
 const ActivitiesModal = () => {
   const { activitiesHistory } = useContext(Context);
@@ -11,6 +12,7 @@ const ActivitiesModal = () => {
           {/* header */}
           <div className="modal-header">
             <h1 className="modal-title fs-5">{`${activitiesHistory[0]?.plugName}'s history`}</h1>
+            <SvgX dataBsDismiss={"modal"} />
           </div>
 
           {/* body */}

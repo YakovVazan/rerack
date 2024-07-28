@@ -1,16 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Context from "../../../context/Context";
 import useToasts from "../../../hooks/useToasts";
 import { fetchReports } from "../../../services/reports";
+import SvgDot from "../../../components/svg/SvgDot/SvgDot";
 import SvgFlag from "../../../components/svg/SvgFlag/SvgFlag";
 import NewReportButton from "./NewReportButton/NewReportButton";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import Scroller from "../../../components/Common/Scroller/Scroller";
 import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
-import "./Reports.css";
 import SvgArrowRight from "../../../components/svg/SvgArrowRight/SvgArrowRight";
-import SvgDot from "../../../components/svg/SvgDot/SvgDot";
-import Context from "../../../context/Context";
+import "./Reports.css";
 
 const Reports = () => {
   const showToast = useToasts();
@@ -31,6 +31,7 @@ const Reports = () => {
         setReports(data)
       );
     } catch (error) {
+      navigate('/')
       showToast(error);
     } finally {
       setIsLoading(false);

@@ -35,7 +35,7 @@ const OwnedPlugins = () => {
         showToast(data.msg);
         localStorageId
           ? navigate(`/users/${localStorageId}/owned_plugins`)
-          : navigate(`/users/login`);
+          : navigate(`/users/auth/login`);
       } else {
         setOwnedPlugins(data || []);
       }

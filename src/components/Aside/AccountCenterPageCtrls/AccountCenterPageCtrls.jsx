@@ -37,7 +37,7 @@ const AccountCenterPageCtrls = () => {
     setLocalStorageAccountPageSubRouteIndex(index);
     navigate(
       index === list.length - 2
-        ? "/users"
+        ? "/users/dashboard"
         : `/users/${location.pathname.split("/")[2]}${
             index > 0
               ? "/" + list[index].title.trim().toLowerCase().replace(/ /g, "_")

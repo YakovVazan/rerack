@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useToasts from "../../hooks/useToasts";
-import Spinner from "../../components/Common/Spinner/Spinner";
-import { consts } from "../../config/constants";
+import useToasts from "../../../hooks/useToasts";
+import Spinner from "../../../components/Common/Spinner/Spinner";
+import { consts } from "../../../config/constants";
 
 const RegisterPage = () => {
   const showToast = useToasts();
@@ -29,7 +29,7 @@ const RegisterPage = () => {
   }
 
   async function submitUser(data) {
-    const res = await fetch(`${consts.baseURL}/users/register`, {
+    const res = await fetch(`${consts.baseURL}/users/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -53,7 +53,7 @@ const RegisterPage = () => {
 
       setLoadingUser(false);
     } else {
-      navigate("/users/login");
+      navigate("/users/auth/login");
       showToast(`${data.name} registered successfully using ${data.email}`);
     }
   }
@@ -118,7 +118,7 @@ const RegisterPage = () => {
             </div>
             <hr />
             <small>
-              Already registered? <Link to={"/users/login"}>Login</Link>
+              Already registered? <Link to={"/users/auth/login"}>Login</Link>
             </small>
           </div>
         </div>

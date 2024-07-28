@@ -1,26 +1,27 @@
 import { useContext, useEffect, useState } from "react";
 import Context from "../../../../context/Context";
 import useToasts from "../../../../hooks/useToasts";
+import SvgX from "../../../../components/svg/SvgX/SvgX";
 import { sendReport } from "../../../../services/reports";
 import SvgFlag from "../../../../components/svg/SvgFlag/SvgFlag";
 import { localStorageId } from "../../../../config/localStorage";
 import "./NewReportModal.css";
-import SvgX from "../../../../components/svg/SvgX/SvgX";
 
 const NewReportModal = () => {
-  const showToast = useToasts();
-  const { setCurrentReport } = useContext(Context);
-  const [requestLength, setRequestLength] = useState(0);
-  const [reportData, setReportData] = useState({
+  const reportInitialValue = {
     subject: "",
     request: "",
     senderUserId: localStorageId,
-  });
+  };
+  const showToast = useToasts();
+  const { setCurrentReport } = useContext(Context);
+  const [requestLength, setRequestLength] = useState(0);
+  const [reportData, setReportData] = useState(reportInitialValue);
 
-  const handleRequestChange = (e) => {
+  const handleReportChange = (key, value) => {
     setReportData({
       ...reportData,
-      request: e.target.value,
+      [key]: value,
     });
   };
 
@@ -29,10 +30,7 @@ const NewReportModal = () => {
   }, [reportData.request]);
 
   useEffect(() => {
-    setReportData({
-      ...reportData,
-      senderUserId: localStorageId,
-    });
+    handleReportChange("senderUserId", localStorageId);
   }, [localStorageId]);
 
   const handleReportSubmit = async () => {
@@ -41,6 +39,7 @@ const NewReportModal = () => {
       return;
     }
 
+    setReportData(reportInitialValue);
     setCurrentReport({});
 
     await sendReport(reportData)
@@ -57,8 +56,8 @@ const NewReportModal = () => {
           {/* header */}
           <div className="modal-header">
             <SvgFlag />
-            <span className="customed-close-button">
-              <SvgX />
+            <span onClick={() => setReportData(reportInitialValue)}>
+              <SvgX dataBsDismiss={"modal"} />
             </span>
           </div>
 
@@ -67,17 +66,14 @@ const NewReportModal = () => {
             <div className="form-floating">
               <input
                 type="text"
-                name="name"
+                name="subject"
                 id="floatingSubject"
                 className="form-control"
                 placeholder="Subject"
                 autoFocus
                 value={reportData.subject}
                 onChange={(e) =>
-                  setReportData({
-                    ...reportData,
-                    subject: e.target.value,
-                  })
+                  handleReportChange(e.target.name, e.target.value)
                 }
               />
               <label htmlFor="floatingSubject">Subject</label>
@@ -86,14 +82,16 @@ const NewReportModal = () => {
             <div className="form-floating">
               <textarea
                 type="text"
-                name="name"
+                name="request"
                 id="floatingRequest"
                 className="form-control"
                 placeholder="Report"
                 autoFocus
                 value={reportData.request}
                 maxLength="255"
-                onChange={(e) => handleRequestChange(e)}
+                onChange={(e) =>
+                  handleReportChange(e.target.name, e.target.value)
+                }
               />
               <label htmlFor="floatingRequest">Report</label>
               <span className="request-input">{requestLength}/255</span>
@@ -103,38 +101,6 @@ const NewReportModal = () => {
           {/* footer */}
           <div className="modal-footer new-report-modal-footer">
             <span>
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-                checked={reportData.senderUserId != localStorageId}
-                onChange={(e) =>
-                  setReportData({
-                    ...reportData,
-                    senderUserId: e.target.checked ? -1 : localStorageId,
-                  })
-                }
-              />
-              <label className="form-check-label" htmlFor="flexCheckDefault">
-                Send anonymously
-              </label>
-            </span>
-            <span>
-              {" "}
-              <input
-                type="button"
-                value="cancel"
-                className="btn customed-button"
-                data-bs-dismiss="modal"
-                onClick={() =>
-                  setReportData({
-                    subject: "",
-                    request: "",
-                    senderUserId: localStorageId,
-                  })
-                }
-              />
               <input
                 type="submit"
                 value="Submit"

@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Context from "../../context/Context";
-import useToasts from "../../hooks/useToasts";
-import { consts } from "../../config/constants";
-import useTimeOfDay from "../../hooks/useTimeOfDay";
-import Spinner from "../../components/Common/Spinner/Spinner";
+import Context from "../../../context/Context";
+import useToasts from "../../../hooks/useToasts";
+import { consts } from "../../../config/constants";
+import useTimeOfDay from "../../../hooks/useTimeOfDay";
+import Spinner from "../../../components/Common/Spinner/Spinner";
 import {
   localStorageLogin,
   localStorageHistory,
-} from "../../config/localStorage";
+} from "../../../config/localStorage";
 
 const LoginPage = () => {
   const showToast = useToasts();
@@ -36,7 +36,7 @@ const LoginPage = () => {
   }
 
   async function loginUser(data) {
-    const res = await fetch(`${consts.baseURL}/users/login`, {
+    const res = await fetch(`${consts.baseURL}/users/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -108,7 +108,7 @@ const LoginPage = () => {
                 onChange={handleChange}
               />
               <label htmlFor="floatingPassword">Password</label>
-              <Link to={"/users/forgot_password"}>
+              <Link to={"/users/auth/forgot_password"}>
                 <small id="forgot-password-element">Forgot password?</small>
               </Link>
             </div>
@@ -127,7 +127,7 @@ const LoginPage = () => {
             <hr />
             <small>
               Don&#39;t have an account yet?{" "}
-              <Link to={"/users/register"}>Register</Link>
+              <Link to={"/users/auth/register"}>Register</Link>
             </small>
           </div>
         </div>

@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import Context from "../../../../context/Context";
-import "./ContributionsModal.css";
+import SvgX from "../../../../components/svg/SvgX/SvgX";
 import "../../SubRoutes.css";
+import "./ContributionsModal.css";
 
 const ContributionsModal = () => {
   const { contributions } = useContext(Context);
@@ -13,6 +14,7 @@ const ContributionsModal = () => {
           {/* header */}
           <div className="modal-header">
             <h1 className="modal-title fs-5">{`${contributions[0]?.plugName}`}</h1>
+            <SvgX dataBsDismiss={"modal"} />
           </div>
 
           {/* body */}

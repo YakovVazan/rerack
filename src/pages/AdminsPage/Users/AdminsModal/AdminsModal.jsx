@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Context from "../../../../context/Context";
 import useToasts from "../../../../hooks/useToasts";
 import { consts } from "../../../../config/constants";
+import SvgX from "../../../../components/svg/SvgX/SvgX";
 import { localStorageToken } from "../../../../config/localStorage";
 import SvgPersonAdd from "../../../../components/svg/SvgPersonAdd/SvgPersonAdd";
 import SvgPersonRemove from "../../../../components/svg/SvgPersonRemove/SvgPersonRemove";
@@ -92,6 +93,7 @@ const AdminsModal = () => {
                 <SvgPersonAdd />
               )}
             </h1>
+            <SvgX dataBsDismiss={"modal"}/>
           </div>
 
           {/* body */}

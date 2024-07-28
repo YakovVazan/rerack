@@ -64,9 +64,11 @@ const useNavigation = () => {
 
   // determine which page is the current
   useEffect(() => {
-    setIsForgotPasswordPage(location.pathname === "/users/forgot_password");
-    setIsLoginPage(location.pathname === "/users/login");
-    setIsRegisterPage(location.pathname === "/users/register");
+    setIsForgotPasswordPage(
+      location.pathname === "/users/auth/forgot_password"
+    );
+    setIsLoginPage(location.pathname === "/users/auth/login");
+    setIsRegisterPage(location.pathname === "/users/auth/register");
     setIsHomePage(location.pathname === "/");
     setIsPlugPage(url.length == 2 && url[0] === "plugs" && !isNaN(+url[1]));
     setIsSettingsPage(
@@ -82,8 +84,8 @@ const useNavigation = () => {
           !isNaN(+url[3]))
     );
     setIsAdminPage(
-      (url.length === 1 && url[0] === "users") ||
-        (url.length >= 2 && adminPageKeyword.includes(url[1]))
+      (url.length === 2 && url.includes("dashboard")) ||
+        (url.length === 3 && adminPageKeyword.includes(url[2]))
     );
     setIsNotFoundPage(url.length === 1 && url[0] === "not-found");
   }, [location.pathname]);
@@ -95,7 +97,7 @@ const useNavigation = () => {
         settingsPageKeywords.indexOf(url[2]) + 1
       );
     } else if (isAdminPage) {
-      contextData["setAdminPageSubRoute"](adminPageKeyword.indexOf(url[1]) + 1);
+      contextData["setAdminPageSubRoute"](adminPageKeyword.indexOf(url[2]) + 1);
     }
   }, [isSettingsPage, isAdminPage, location.pathname]);
 
@@ -114,7 +116,7 @@ const useNavigation = () => {
     isSettingsURL,
     isAdminURL,
     urlToArray,
-    isReportNotInbox
+    isReportNotInbox,
   };
 };
 

@@ -20,12 +20,13 @@
 }
 
 .customed-close-button {
-    transform: scale(1.5);
+    transform: scale(1.8);
     color: var(--color-1) !important;
     background-color: var(--bg-color-2) !important;
-    border-color: var(--bg-color-5) !important;
+    border: 1px solid var(--bg-color-5) !important;
     border-radius: .25rem;
     cursor: pointer;
+    padding: 2px;
 }
 
 .customed-close-button:hover {
