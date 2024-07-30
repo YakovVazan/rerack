@@ -2,11 +2,11 @@ import { useContext } from "react";
 import Context from "../context/Context";
 
 const useToasts = () => {
-  const contextData = useContext(Context);
+  const { setToastVisibility, setToastMessage } = useContext(Context);
 
   const showToast = (content) => {
-    contextData["setToastVisibility"](true);
-    contextData["setToastMessage"](content?.msg || content);
+    setToastVisibility(true);
+    setToastMessage(content?.msg || content);
   };
 
   return showToast;

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import Context from "../../../../context/Context";
 import useToasts from "../../../../hooks/useToasts";
@@ -14,6 +15,7 @@ const NewReportModal = () => {
     senderUserId: localStorageId,
   };
   const showToast = useToasts();
+  const navigate = useNavigate();
   const { setCurrentReport } = useContext(Context);
   const [requestLength, setRequestLength] = useState(0);
   const [reportData, setReportData] = useState(reportInitialValue);
@@ -43,7 +45,10 @@ const NewReportModal = () => {
     setCurrentReport({});
 
     await sendReport(reportData)
-      .then(() => showToast("Report has been submitted"))
+      .then((response) => {
+        navigate(`/users/${localStorageId}/reports/${response.id}`);
+        showToast("Report has been submitted");
+      })
       .catch((error) => {
         showToast(error.msg);
       });

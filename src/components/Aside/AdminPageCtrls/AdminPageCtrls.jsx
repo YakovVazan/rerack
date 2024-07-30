@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Context from "../../../context/Context";
 import SvgInbox from "../../svg/SvgInbox/SvgInbox";
@@ -6,9 +6,11 @@ import SvgPeople from "../../svg/SvgPeople/SvgPeople";
 import SvgPencil from "../../svg/SvgPencil/SvgPencil";
 import SvgDownload from "../../svg/SvgDownload/SvgDownload";
 import { setLocalStorageAdminPageSubRouteIndex } from "../../../config/localStorage";
+import useNavigation from "../../../hooks/useNavigation";
 
 const AdminPageCtrls = () => {
   const navigate = useNavigate();
+  const { urlToArray } = useNavigation();
   const contextData = useContext(Context);
 
   const list = [
@@ -19,14 +21,27 @@ const AdminPageCtrls = () => {
   ];
 
   const updateSubRoute = (index) => {
-    setLocalStorageAdminPageSubRouteIndex(index);
     navigate(
       index === 0
         ? "/users/dashboard"
         : `/users/dashboard/${list[index].title.trim().toLowerCase()}`
     );
+    updateUi(index);
+  };
+
+  const updateUi = (index) => {
+    setLocalStorageAdminPageSubRouteIndex(index);
     contextData["setAdminPageSubRoute"](index);
   };
+
+  useEffect(() => {
+    list.forEach((item, index) => {
+      const currentPage = item.title.trim().toLowerCase();
+
+      if (urlToArray(location.pathname).splice(1).includes(currentPage))
+        updateUi(index);
+    });
+  }, []);
 
   return (
     <>
