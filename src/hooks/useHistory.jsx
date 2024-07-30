@@ -49,6 +49,13 @@ const useHistory = () => {
     updateBackArrowTitle(newHistory);
   };
 
+  const zeroSubroutes = () => {
+    setAccoutPageSubRoute(0);
+    setAdminPageSubRoute(0);
+    setLocalStorageAdminPageSubRouteIndex(0);
+    setLocalStorageAccountPageSubRouteIndex(0);
+  };
+
   useEffect(() => {
     // keep back arrow title up to date even after reloading
     updateBackArrowTitle(history);
@@ -64,10 +71,7 @@ const useHistory = () => {
     if (location.pathname === "/") {
       // zero history when reaching home page
       updateHistory(["/"]);
-      setAccoutPageSubRoute(0);
-      setAdminPageSubRoute(0);
-      setLocalStorageAdminPageSubRouteIndex(0);
-      setLocalStorageAccountPageSubRouteIndex(0);
+      zeroSubroutes();
     } else if (location.pathname === history[history.length - 1]) {
       // avoid duplicates
       return;

@@ -52,7 +52,7 @@ const Users = () => {
 
   // update users' state to keep UI up to date
   useEffect(() => {
-    setUsersState(users);
+    if (!isLoading) setUsersState(users);
   }, [users]);
 
   return (

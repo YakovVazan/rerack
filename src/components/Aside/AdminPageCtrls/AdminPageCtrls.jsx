@@ -35,12 +35,7 @@ const AdminPageCtrls = () => {
   };
 
   useEffect(() => {
-    list.forEach((item, index) => {
-      const currentPage = item.title.trim().toLowerCase();
-
-      if (urlToArray(location.pathname).splice(1).includes(currentPage))
-        updateUi(index);
-    });
+    if (urlToArray(location.pathname).includes("inbox")) updateUi(1);
   }, []);
 
   return (

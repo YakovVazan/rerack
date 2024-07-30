@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import Context from "../context/Context";
 import { getAllusers } from "../services/users";
 
 const useUsers = () => {
-  const [users, setUSers] = useState([]);
+  const { users, setUSers } = useContext(Context);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -28,7 +29,7 @@ const useUsers = () => {
     fetchUsers();
   }, []);
 
-  return { users, isLoading, error };
+  return { users, isLoading, error, fetchUsers };
 };
 
 export default useUsers;

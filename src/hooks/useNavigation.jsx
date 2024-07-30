@@ -55,6 +55,19 @@ const useNavigation = () => {
     return urlArray.includes("dashboard");
   };
 
+  const isReportURL = (url) => {
+    const urlArray = urlToArray(url);
+
+    return (
+      urlArray.length === 4 &&
+      urlArray.length == 4 &&
+      urlArray[0] === "users" &&
+      !isNaN(+urlArray[1]) &&
+      urlArray[2] === "reports" &&
+      !isNaN(+urlArray[1])
+    );
+  };
+
   let url = urlToArray(location.pathname);
 
   // determine which page is the current
@@ -98,6 +111,7 @@ const useNavigation = () => {
     isAdminPage,
     isNotFoundPage,
     isSettingsURL,
+    isReportURL,
     isAdminURL,
     urlToArray,
     isReportNotInbox,

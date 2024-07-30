@@ -32,6 +32,7 @@ const Provider = ({ children }) => {
   const [theme, setTheme] = useState(localStorageVars.localStorageTheme);
   const [currentReport, setCurrentReport] = useState({});
   const [socket, setSocket] = useState(null);
+  const [users, setUSers] = useState([]);
 
   return (
     <Context.Provider
@@ -56,6 +57,7 @@ const Provider = ({ children }) => {
         setTheme,
         setCurrentReport,
         setSocket,
+        setUSers,
         orderBy,
         orderedData,
         searchBoxValue,
@@ -76,6 +78,7 @@ const Provider = ({ children }) => {
         theme,
         currentReport,
         socket,
+        users,
       }}
     >
       {children}

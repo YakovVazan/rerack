@@ -78,7 +78,11 @@ const NewReportModal = () => {
                 autoFocus
                 value={reportData.subject}
                 onChange={(e) =>
-                  handleReportChange(e.target.name, e.target.value)
+                  handleReportChange(
+                    e.target.name,
+                    e.target.value.charAt(0).toUpperCase() +
+                      e.target.value.slice(1)
+                  )
                 }
               />
               <label htmlFor="floatingSubject">Subject</label>

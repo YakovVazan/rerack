@@ -94,7 +94,7 @@ function setLocalStorageAdminPageSubRouteIndex(index) {
 }
 
 function setLocalStorageToken(newToken) {
-  localStorageToken = newToken["token"];
+  localStorageToken = newToken?.token || newToken;
   localStorage.setItem("rerackToken", localStorageToken);
 }
 
