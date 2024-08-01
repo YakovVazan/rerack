@@ -1,13 +1,14 @@
 import { consts } from "../config/constants";
-import { localStorageToken } from "../config/localStorage";
+import { localStorageToken, localStorageIsAdmin } from "../config/localStorage";
 
 export const getAllusers = async () => {
   try {
-    return await fetch(`${consts.baseURL}/users`, {
-      headers: {
-        Authorization: `Bearer ${localStorageToken}`,
-      },
-    });
+    if (localStorageIsAdmin)
+      return await fetch(`${consts.baseURL}/users`, {
+        headers: {
+          Authorization: `Bearer ${localStorageToken}`,
+        },
+      });
   } catch (error) {
     return error;
   }

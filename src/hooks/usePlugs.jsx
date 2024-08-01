@@ -19,7 +19,9 @@ const usePlugs = ({ plugId }) => {
 
         setPlugsIds((prevPlugsNames) => [...prevPlugsNames, data[key].id]);
 
-        if (data[key].id === +plugId) setCurrentPlug(data[key]);
+        if (data[key].id == +plugId) {
+          setCurrentPlug(data[key]);
+        }
       });
     }
   }, [isLoading]);

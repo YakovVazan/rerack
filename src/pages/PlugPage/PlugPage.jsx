@@ -24,15 +24,15 @@ const PlugPage = () => {
   const showToast = useToasts();
   const forceAuth = useForceAuth();
   const getAllSaved = useSavedPlugs();
-  const contextData = useContext(Context);
   const getAllFavorites = useFavoritePlugs();
+  const { setCurrentPlug } = useContext(Context);
   const [alreadySaved, setAlreadySaved] = useState(false);
   const [alreadyFavorited, setAlreadyFavorited] = useState(false);
   const { plugsNames, plugsIds, currentPlug } = usePlugs({ plugId });
 
   useEffect(() => {
     if (plugsNames.length !== 0) {
-      contextData["setCurrentPlug"](currentPlug);
+      setCurrentPlug(currentPlug);
     }
 
     if (localStorageToken) {
@@ -147,9 +147,7 @@ const PlugPage = () => {
                 <div className="plug-price">
                   <a
                     className={`btn btn-outline-primary price-link ${
-                      (currentPlug["price"] == "" ||
-                        currentPlug["price"] == -1) &&
-                      "d-none"
+                      !currentPlug["price"] && "d-none"
                     }`}
                     title="get it at the official website"
                     href={currentPlug["link"]}

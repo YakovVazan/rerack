@@ -8,8 +8,8 @@ import SvgFlag from "../../../components/svg/SvgFlag/SvgFlag";
 import NewReportButton from "./NewReportButton/NewReportButton";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import Scroller from "../../../components/Common/Scroller/Scroller";
-import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
 import SvgArrowRight from "../../../components/svg/SvgArrowRight/SvgArrowRight";
+import ColoredDivider from "../../../components/Common/ColoredDivider/ColoredDivider";
 import "./Reports.css";
 
 const Reports = () => {
@@ -32,6 +32,7 @@ const Reports = () => {
       );
     } catch (error) {
       navigate('/')
+      console.log(error);
       showToast(error);
     } finally {
       setIsLoading(false);
