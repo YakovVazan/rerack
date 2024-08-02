@@ -14,6 +14,7 @@ const EditModal = () => {
   const showToast = useToasts();
   const { typesList } = useTypes();
   const { companiesList } = useCompanies();
+  const [chosenTypes, setChosenTypes] = useState([]);
   const { currentPlug, setCurrentPlug } = useContext(Context);
   const [formIsFullyFilledUp, setFormIsFullyFilledUp] = useState(false);
   const [upToDatePlug, setUpToDatePlug] = useState({
@@ -38,7 +39,10 @@ const EditModal = () => {
 
   // initialize input tracking
   useEffect(() => {
-    if (currentPlug) setUpToDatePlug(currentPlug);
+    if (currentPlug) {
+      setUpToDatePlug(currentPlug);
+      setChosenTypes(currentPlug.type ? currentPlug.type.split(", ") : []);
+    }
   }, [currentPlug]);
 
   // control when submition button is enabled
@@ -51,6 +55,21 @@ const EditModal = () => {
         .some((value) => value === false)
     );
   }, [upToDatePlug]);
+
+  const handleTypes = (type) => {
+    if (chosenTypes.includes(type)) {
+      setChosenTypes(chosenTypes.filter((t) => t !== type));
+    } else {
+      setChosenTypes([...chosenTypes, type]);
+    }
+  };
+
+  useEffect(() => {
+    setUpToDatePlug({
+      ...upToDatePlug,
+      type: chosenTypes.join(", "),
+    });
+  }, [chosenTypes]);
 
   // catch and inspect the dropped element
   const handleDrop = async (e) => {
@@ -155,7 +174,7 @@ const EditModal = () => {
                         {company}
                       </span>
                       {upToDatePlug.company === company && (
-                        <span className="customed-svg">
+                        <span className="customed-svg-emphesized">
                           <SvgCheck />
                         </span>
                       )}
@@ -168,7 +187,7 @@ const EditModal = () => {
             </div>
 
             <div className="input-group mb-3">
-              <span className="input-group-text adding-title">Type</span>
+              <span className="input-group-text adding-title">Type(s)</span>
               <button
                 type="button"
                 className="btn dropdown-toggle dropdown-toggle-split adding-input customed-button customed-dropdown-toggle"
@@ -176,29 +195,35 @@ const EditModal = () => {
                 aria-expanded="false"
               >
                 <div id="adding-type-title">
-                  {upToDatePlug.type || "choose the plug's type"}
+                  {chosenTypes.join(", ") || "choose the plug's type(s)"}
                 </div>
               </button>
               <ul className="dropdown-menu type-or-comp-list customed-dropdown">
                 {typesList.length > 0 ? (
-                  typesList.map((type, index) => (
-                    <li
-                      key={index}
-                      className="dropdown-item modal-dropdown-item customed-dropdown-item"
-                      onClick={() =>
-                        setUpToDatePlug({ ...upToDatePlug, type: type })
-                      }
-                    >
-                      <span className="modal-dropdown-item-content">
-                        {type}
-                      </span>
-                      {upToDatePlug.type === type && (
-                        <span className="customed-svg">
+                  typesList.map((type, index) => {
+                    return (
+                      <li
+                        key={index}
+                        className="dropdown-item modal-dropdown-item customed-dropdown-item"
+                        onClick={() => {
+                          handleTypes(type);
+                        }}
+                      >
+                        <span className="modal-dropdown-item-content">
+                          {type}
+                        </span>
+                        <span
+                          className={`${
+                            chosenTypes.includes(type)
+                              ? "customed-svg-emphesized"
+                              : "customed-svg-faded"
+                          }`}
+                        >
                           <SvgCheck />
                         </span>
-                      )}
-                    </li>
-                  ))
+                      </li>
+                    );
+                  })
                 ) : (
                   <Spinner />
                 )}

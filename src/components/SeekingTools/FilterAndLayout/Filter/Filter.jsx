@@ -36,7 +36,7 @@ const Filter = () => {
             >
               <span>{item.charAt(0).toUpperCase() + item.slice(1)}</span>
               {contextData["orderBy"] === item && (
-                <span className="customed-svg" id="check-sign-container">
+                <span className="customed-svg-emphesized" id="check-sign-container">
                   <SvgCheck />
                 </span>
               )}

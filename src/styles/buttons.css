@@ -41,7 +41,12 @@
     gap: .5em;
 }
 
-.customed-svg {
+.customed-svg-faded {
+    fill: var(--bg-color-4) !important;
+    border-color: var(--bg-color-8) !important;
+}
+
+.customed-svg-emphesized {
     fill: var(--color-1) !important;
     border-color: var(--bg-color-8) !important;
 }

@@ -6,12 +6,9 @@ import SvgArrowRight from "../../../svg/SvgArrowRight/SvgArrowRight.jsx";
 import "./ListItem.css";
 
 const ListItem = ({ plug, index }) => {
-  const data = useContext(Context);
-  const searchBoxValue = data["searchBoxValue"];
-  const typeFilterValue = data["typeFilterValue"];
-  const companyFilterValue = data["companyFilterValue"];
-  const view = data["view"];
   const [selectedItem, setSelectedItem] = useState(-1);
+  const { searchBoxValue, typeFilterValue, companyFilterValue, view } =
+    useContext(Context);
 
   function handleFocusStart(focuesItem) {
     setSelectedItem(focuesItem);
@@ -37,9 +34,11 @@ const ListItem = ({ plug, index }) => {
             : "gallery-item-plugin gallery-li card"
         } ${
           (searchBoxValue === "" ||
-            plug["name"].toLowerCase().includes(searchBoxValue.toLowerCase())) &&
+            plug["name"]
+              .toLowerCase()
+              .includes(searchBoxValue.toLowerCase())) &&
           (typeFilterValue === consts.typeDropDownInitialValue ||
-            plug["type"] === typeFilterValue) &&
+            plug["type"].includes(typeFilterValue)) &&
           (companyFilterValue === consts.companyDropDownInitialValue ||
             plug["company"] === companyFilterValue)
             ? view === "list" && selectedItem === index

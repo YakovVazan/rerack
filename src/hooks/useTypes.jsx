@@ -1,14 +1,21 @@
-import { useEffect, useState } from "react";
-import useFetchData from "./useFetchData";
-
 const useTypes = () => {
-  const { data, isLoading } = useFetchData();
-  const [typesList, setTypesList] = useState([]);
-
-  useEffect(() => {
-    if (!isLoading)
-      setTypesList([...new Set(data.map((plug) => plug.type))].sort());
-  }, [isLoading]);
+  const typesList = [
+    "Compressor",
+    "Delay",
+    "Distortion",
+    "Override",
+    "Dynamic EQ",
+    "Equalizer",
+    "Filter",
+    "Gate",
+    "Expander",
+    "Limiter",
+    "Multiband Compresser",
+    "Reverb",
+    "Saturation",
+    "Tape Emulation",
+    "Synthesizer",
+  ];
 
   return { typesList };
 };

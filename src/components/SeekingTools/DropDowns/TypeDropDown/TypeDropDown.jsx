@@ -1,29 +1,47 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import useTypes from "../../../../hooks/useTypes.jsx";
 import Context from "../../../../context/Context.jsx";
 import { consts } from "../../../../config/constants.js";
 import Spinner from "../../../Common/Spinner/Spinner.jsx";
 import SvgCheck from "../../../svg/SvgCheck/SvgCheck.jsx";
 import ColoredDivider from "../../../Common/ColoredDivider/ColoredDivider.jsx";
-import { ResetTypeValue } from "../../../../utils/ResetFactors/ResetFactors.jsx";
 import "./TypeDropDown.css";
 
 const TypeDropDown = () => {
-  const contextData = useContext(Context);
-  const typeFilterValue = contextData["typeFilterValue"];
-  const setTypeFilterValue = contextData["setTypeFilterValue"];
-
   const { typesList } = useTypes();
+  const [chosenTypes, setChosenTypes] = useState([]);
+  const { typeFilterValue, setTypeFilterValue } = useContext(Context);
 
-  function handleClick(typeName) {
-    ResetTypeValue(typeName);
+  const handleClick = (typeName) => {
+    if (chosenTypes.includes(typeName)) {
+      setChosenTypes(chosenTypes.filter((t) => t !== typeName));
+    } else {
+      setChosenTypes([...chosenTypes, typeName]);
+    }
+  };
 
-    setTypeFilterValue(typeName);
-  }
+  const setValue = () => {
+    return chosenTypes.length > 0
+      ? chosenTypes.join(", ")
+      : consts.typeDropDownInitialValue;
+  };
+
+  useEffect(() => {
+    setTypeFilterValue(
+      chosenTypes.join(", ") || consts.typeDropDownInitialValue
+    );
+  }, [chosenTypes]);
+
+  useEffect(() => {
+    if (typeFilterValue === consts.typeDropDownInitialValue) setChosenTypes([]);
+  }, [typeFilterValue]);
 
   return (
     <>
-      <div className="dropdown-center search-button-container" title="Type">
+      <div
+        className="dropdown-center search-button-container"
+        title={setValue()}
+      >
         <button
           id="type-filter"
           className="btn customed-button dropdown-toggle"
@@ -31,17 +49,17 @@ const TypeDropDown = () => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <span className="inner-button-text-type">{typeFilterValue}</span>
+          <span className="inner-button-text-type">{setValue()}</span>
         </button>
         {/* filter drop down */}
         <ul className="dropdown-menu customed-dropdown">
           <div
             className="dropdown-item customed-dropdown-item"
-            onClick={() => handleClick(consts.typeDropDownInitialValue)}
+            onClick={() => setChosenTypes([])}
           >
             <span>all</span>
             {typeFilterValue === "type" && (
-              <span className="customed-svg">
+              <span className="customed-svg-emphesized">
                 <SvgCheck />
               </span>
             )}
@@ -57,11 +75,15 @@ const TypeDropDown = () => {
                 onClick={() => handleClick(type)}
               >
                 <span className="type-content">{type}</span>
-                {typeFilterValue === type && (
-                  <span className="customed-svg">
-                    <SvgCheck />
-                  </span>
-                )}
+                <span
+                  className={`${
+                    chosenTypes.includes(type)
+                      ? "customed-svg-emphesized"
+                      : "customed-svg-faded"
+                  }`}
+                >
+                  <SvgCheck />
+                </span>
               </li>
             ))
           )}

@@ -20,8 +20,9 @@ const AddModal = () => {
   const navigate = useNavigate();
   const { typesList } = useTypes();
   const { companiesList } = useCompanies();
-  const [formIsFullyFilledUp, setFormIsFullyFilledUp] = useState(false);
+  const [chosenTypes, setChosenTypes] = useState([]);
   const [newPlug, setNewPlug] = useState(initialPlugValue);
+  const [formIsFullyFilledUp, setFormIsFullyFilledUp] = useState(false);
   const {
     hovering,
     isShaking,
@@ -40,6 +41,21 @@ const AddModal = () => {
       Object.values(newPlug).every((field) => field.trim() !== "")
     );
   }, [newPlug]);
+
+  const handleTypes = (type) => {
+    if (chosenTypes.includes(type)) {
+      setChosenTypes(chosenTypes.filter((t) => t !== type));
+    } else {
+      setChosenTypes([...chosenTypes, type]);
+    }
+  };
+
+  useEffect(() => {
+    setNewPlug({
+      ...newPlug,
+      type: chosenTypes.join(", "),
+    });
+  }, [chosenTypes]);
 
   // catch and inspect the dropped element
   const handleDrop = async (e) => {
@@ -137,7 +153,7 @@ const AddModal = () => {
                         {company}
                       </span>
                       {newPlug.company === company && (
-                        <span className="customed-svg">
+                        <span className="customed-svg-emphesized">
                           <SvgCheck />
                         </span>
                       )}
@@ -150,7 +166,7 @@ const AddModal = () => {
             </div>
 
             <div className="input-group mb-3">
-              <span className="input-group-text adding-title">Type</span>
+              <span className="input-group-text adding-title">Type(s)</span>
               <button
                 type="button"
                 className="btn dropdown-toggle dropdown-toggle-split adding-input customed-button customed-dropdown-toggle"
@@ -158,27 +174,35 @@ const AddModal = () => {
                 aria-expanded="false"
               >
                 <div id="adding-type-title">
-                  {newPlug.type || "choose the plug's type"}
+                  {chosenTypes.join(", ") || "choose the plug's type(s)"}
                 </div>
               </button>
               <ul className="dropdown-menu type-or-comp-list customed-dropdown">
                 {typesList.length > 0 ? (
-                  typesList.map((type, index) => (
-                    <li
-                      key={index}
-                      className="dropdown-item modal-dropdown-item customed-dropdown-item"
-                      onClick={() => setNewPlug({ ...newPlug, type: type })}
-                    >
-                      <span className="modal-dropdown-item-content">
-                        {type}
-                      </span>
-                      {newPlug.type === type && (
-                        <span className="customed-svg">
+                  typesList.map((type, index) => {
+                    return (
+                      <li
+                        key={index}
+                        className="dropdown-item modal-dropdown-item customed-dropdown-item"
+                        onClick={() => {
+                          handleTypes(type);
+                        }}
+                      >
+                        <span className="modal-dropdown-item-content">
+                          {type}
+                        </span>
+                        <span
+                          className={`${
+                            chosenTypes.includes(type)
+                              ? "customed-svg-emphesized"
+                              : "customed-svg-faded"
+                          }`}
+                        >
                           <SvgCheck />
                         </span>
-                      )}
-                    </li>
-                  ))
+                      </li>
+                    );
+                  })
                 ) : (
                   <Spinner />
                 )}

@@ -25,7 +25,7 @@ const SearchBox = () => {
     setSearchBoxValue(value);
   }
 
-  function resetAllFactors() {
+  function resetFactors() {
     setSearchBoxValue("");
     setTypeFilterValue(consts.typeDropDownInitialValue);
     setCompanyFilterValue(consts.companyDropDownInitialValue);
@@ -63,7 +63,7 @@ const SearchBox = () => {
         type="button"
         title="reset factors"
         data-bs-dismiss="offcanvas"
-        onClick={resetAllFactors}
+        onClick={resetFactors}
       >
         <SvgReset />
       </div>

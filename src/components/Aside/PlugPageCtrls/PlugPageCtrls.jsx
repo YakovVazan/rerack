@@ -27,15 +27,15 @@ const PlugPageCtrls = ({ currentPlug }) => {
         <div>
           <div className="info-container">
             <u>Name:</u>
-            {" " + content()[0]}
+            <span title={content()[0]}> {" " + content()[0]}</span>
           </div>
           <div className="info-container">
             <u>Type:</u>
-            {" " + content()[1]}
+            <span title={content()[1]}> {" " + content()[1]}</span>
           </div>
           <div className="info-container">
             <u>Company:</u>
-            {" " + content()[2]}
+            <span title={content()[2]}> {" " + content()[2]}</span>
           </div>
         </div>
         <ColoredDivider />

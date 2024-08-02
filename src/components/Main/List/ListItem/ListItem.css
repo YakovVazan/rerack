@@ -118,6 +118,14 @@
     display: none;
 }
 
+.list-type {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: inherit;
+    display: block;
+}
+
 /* responsiveness */
 @media screen and (min-width: 767px) {
     .list-plugin-name {
@@ -129,12 +137,6 @@
     .list-company-and-type-container {
         display: flex;
         flex-direction: column;
-    }
-
-    .list-type {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
 
     #list-company-and-type-dash {

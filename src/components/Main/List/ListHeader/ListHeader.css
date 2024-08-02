@@ -8,4 +8,7 @@
     color: var(--color-1);
     z-index: 1;
     padding-left: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
