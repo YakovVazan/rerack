@@ -71,8 +71,8 @@ const AccountCenterPageCtrls = () => {
                 >
                   {item.svg} {item.title}
                 </li>
-                {(index === 2 ||
-                  (index === 5 && localStorageIsAdmin == "true")) && (
+                {(index == 2 ||
+                  (index == 5 && localStorageIsAdmin == "true")) && (
                   <ColoredDivider margin={"0"} />
                 )}
               </Fragment>
