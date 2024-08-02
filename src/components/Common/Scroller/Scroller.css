@@ -1,5 +1,5 @@
 #scroller-container {
-    width: calc(100% + 4px);
+    width: 100%;
     display: flex;
     justify-content: center;
 }
