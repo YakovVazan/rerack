@@ -9,10 +9,8 @@ import { ResetCompanyValue } from "../../../../utils/ResetFactors/ResetFactors.j
 import "./CompanyDropDown.css";
 
 const CompanyDropDown = () => {
-  const contextData = useContext(Context);
   const { companiesList } = useCompanies();
-  const setCompanyFilterValue = contextData["setCompanyFilterValue"];
-  const companyFilterValue = contextData["companyFilterValue"];
+  const { setCompanyFilterValue, companyFilterValue } = useContext(Context);
 
   function handleClick(companyName) {
     ResetCompanyValue(companyName);
