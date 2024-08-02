@@ -51,7 +51,7 @@ if (!localStorageHistory) {
   localStorageHistory = JSON.parse(localStorageHistory);
 }
 if (!localStorageTheme) {
-  localStorageTheme = "light";
+  localStorageTheme = "machine";
   localStorage.setItem("rerackTheme", localStorageTheme);
 }
 
