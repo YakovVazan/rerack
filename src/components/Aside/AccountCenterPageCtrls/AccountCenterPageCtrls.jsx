@@ -55,6 +55,15 @@ const AccountCenterPageCtrls = () => {
       <span id="account-center-aside-list-wrapper">
         <ul className="list-group account-center-aside-list">
           {list.map((item, index) => {
+            console.log(
+              index,
+              typeof index,
+              index == 2,
+              index == 5,
+              localStorageIsAdmin,
+              typeof localStorageIsAdmin,
+              localStorageIsAdmin == "true"
+            );
             return (
               <Fragment key={index}>
                 <li
