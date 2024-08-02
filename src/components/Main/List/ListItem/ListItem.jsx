@@ -37,7 +37,7 @@ const ListItem = ({ plug, index }) => {
             : "gallery-item-plugin gallery-li card"
         } ${
           (searchBoxValue === "" ||
-            plug["name"].toLowerCase().includes(searchBoxValue)) &&
+            plug["name"].toLowerCase().includes(searchBoxValue.toLowerCase())) &&
           (typeFilterValue === consts.typeDropDownInitialValue ||
             plug["type"] === typeFilterValue) &&
           (companyFilterValue === consts.companyDropDownInitialValue ||

@@ -22,7 +22,7 @@ const SearchBox = () => {
     companyFilterValue === consts.companyDropDownInitialValue;
 
   function handleSearchBox(value) {
-    setSearchBoxValue(value.toLowerCase());
+    setSearchBoxValue(value);
   }
 
   function resetAllFactors() {
