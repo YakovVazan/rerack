@@ -68,7 +68,7 @@ const Wishlist = () => {
   useEffect(() => {
     setTotal(
       favoritePlugins.filter((f) =>
-        f["name"].toLowerCase().includes(searchBoxValue)
+        f["name"].toLowerCase().includes(searchBoxValue.toLowerCase())
       ).length
     );
   }, [searchBoxValue, favoritePlugins]);
@@ -122,7 +122,9 @@ const Wishlist = () => {
                     <Link
                       className={`${
                         !searchBoxValue ||
-                        item["name"].toLowerCase().includes(searchBoxValue)
+                        item["name"]
+                          .toLowerCase()
+                          .includes(searchBoxValue.toLowerCase())
                           ? "list-group-item sub-route-list-item"
                           : "d-none"
                       } `}

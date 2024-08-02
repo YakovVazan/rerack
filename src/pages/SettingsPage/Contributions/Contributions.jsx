@@ -72,7 +72,7 @@ const Contributions = () => {
   useEffect(() => {
     setTotal(
       formattedData.filter((f) =>
-        f["plugName"].toLowerCase().includes(searchBoxValue)
+        f["plugName"].toLowerCase().includes(searchBoxValue.toLowerCase())
       ).length
     );
   }, [searchBoxValue]);
@@ -135,7 +135,9 @@ const Contributions = () => {
                     <span
                       className={`${
                         !searchBoxValue ||
-                        item["plugName"].toLowerCase().includes(searchBoxValue)
+                        item["plugName"]
+                          .toLowerCase()
+                          .includes(searchBoxValue.toLowerCase())
                           ? "list-group-item sub-route-list-item"
                           : "d-none"
                       } `}

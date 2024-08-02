@@ -45,8 +45,9 @@ const Users = () => {
   // update total value
   useEffect(() => {
     setTotal(
-      users.filter((f) => f["name"].toLowerCase().includes(searchBoxValue))
-        .length
+      users.filter((user) =>
+        user["name"].toLowerCase().includes(searchBoxValue.toLowerCase())
+      ).length
     );
   }, [searchBoxValue, users]);
 
@@ -94,7 +95,9 @@ const Users = () => {
                     <tr
                       className={`${
                         !searchBoxValue ||
-                        user["name"].toLowerCase().includes(searchBoxValue)
+                        user["name"]
+                          .toLowerCase()
+                          .includes(searchBoxValue.toLowerCase())
                           ? "users-tr"
                           : "d-none"
                       } `}

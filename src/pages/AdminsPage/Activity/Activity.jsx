@@ -72,7 +72,7 @@ const Activity = () => {
   useEffect(() => {
     setTotal(
       formattedData.filter((f) =>
-        f["plugName"].toLowerCase().includes(searchBoxValue)
+        f["plugName"].toLowerCase().includes(searchBoxValue.toLowerCase())
       ).length
     );
   }, [searchBoxValue, formattedData]);
@@ -113,7 +113,7 @@ const Activity = () => {
                         !searchBoxValue ||
                         activiy["plugName"]
                           .toLowerCase()
-                          .includes(searchBoxValue)
+                          .includes(searchBoxValue.toLowerCase())
                           ? "list-group-item sub-route-list-item activity-item"
                           : "d-none"
                       } `}

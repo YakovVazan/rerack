@@ -61,7 +61,7 @@ const OwnedPlugins = () => {
   useEffect(() => {
     setTotal(
       ownedPlugins.filter((f) =>
-        f["name"].toLowerCase().includes(searchBoxValue)
+        f["name"].toLowerCase().includes(searchBoxValue.toLowerCase())
       ).length
     );
   }, [searchBoxValue, ownedPlugins]);
@@ -116,7 +116,9 @@ const OwnedPlugins = () => {
                       <Link
                         className={`${
                           !searchBoxValue ||
-                          item["name"].toLowerCase().includes(searchBoxValue)
+                          item["name"]
+                            .toLowerCase()
+                            .includes(searchBoxValue.toLowerCase())
                             ? "list-group-item sub-route-list-item"
                             : "d-none"
                         } `}
