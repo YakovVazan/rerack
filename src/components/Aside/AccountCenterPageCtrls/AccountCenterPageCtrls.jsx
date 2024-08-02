@@ -56,13 +56,22 @@ const AccountCenterPageCtrls = () => {
         <ul className="list-group account-center-aside-list">
           {list.map((item, index) => {
             console.log(
-              index,
-              typeof index,
-              index == 2,
-              index == 5,
+              "title",
+              item.title,
+              "is Dashborad",
+              item.title == "Dashboard",
+              "lsia",
               localStorageIsAdmin,
+              "typeof lsia",
               typeof localStorageIsAdmin,
-              localStorageIsAdmin == "true"
+              "lsia = false",
+              localStorageIsAdmin == "false",
+              "index",
+              index,
+              "length - 1",
+              list.length - 1,
+              "index = length - 1",
+              index === list.length - 1
             );
             return (
               <Fragment key={index}>
