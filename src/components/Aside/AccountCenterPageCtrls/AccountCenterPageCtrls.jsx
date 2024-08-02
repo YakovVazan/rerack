@@ -55,46 +55,28 @@ const AccountCenterPageCtrls = () => {
       <span id="account-center-aside-list-wrapper">
         <ul className="list-group account-center-aside-list">
           {list.map((item, index) => {
-            console.log(
-              "title",
-              item.title,
-              "is Dashborad",
-              item.title == "Dashboard",
-              "lsia",
-              localStorageIsAdmin,
-              "typeof lsia",
-              typeof localStorageIsAdmin,
-              "lsia = false",
-              localStorageIsAdmin == "false",
-              "index",
-              index,
-              "length - 1",
-              list.length - 1,
-              "index = length - 1",
-              index === list.length - 1
-            );
-            return (
-              <Fragment key={index}>
-                <li
-                  className={`btn customed-button customed-button-with-icon ${
-                    contextData["accountPageSubRoute"] === index && "active"
-                  } ${
-                    ((item.title === "Dashboard" &&
-                      localStorageIsAdmin == "false") ||
-                      index === list.length - 1) &&
-                    "d-none"
-                  }`}
-                  onClick={() => updateSubRoute(index)}
-                  data-bs-dismiss="offcanvas"
-                >
-                  {item.svg} {item.title}
-                </li>
-                {(index == 2 ||
-                  (index == 5 && localStorageIsAdmin == "true")) && (
-                  <ColoredDivider margin={"0"} />
-                )}
-              </Fragment>
-            );
+            if (
+              (item.title !== "Dashboard" || localStorageIsAdmin == "true") &&
+              index !== list.length - 1
+            ) {
+              return (
+                <Fragment key={index}>
+                  <li
+                    className={`btn customed-button customed-button-with-icon ${
+                      contextData["accountPageSubRoute"] === index && "active"
+                    }`}
+                    onClick={() => updateSubRoute(index)}
+                    data-bs-dismiss="offcanvas"
+                  >
+                    {item.svg} {item.title}
+                  </li>
+                  {(index == 2 ||
+                    (index == 5 && localStorageIsAdmin == "true")) && (
+                    <ColoredDivider margin={"0"} />
+                  )}
+                </Fragment>
+              );
+            }
           })}
         </ul>
         <span className="dropup">

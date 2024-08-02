@@ -4,7 +4,7 @@ const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const getAllusers = async () => {
   try {
-    if (localStorageIsAdmin)
+    if (localStorageIsAdmin == "true")
       return await fetch(`${baseURL}/users`, {
         headers: {
           Authorization: `Bearer ${localStorageToken}`,
