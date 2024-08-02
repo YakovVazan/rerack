@@ -1,8 +1,8 @@
-import { consts } from "../config/constants";
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const register = async (data) => {
   try {
-    return await fetch(`${consts.baseURL}/users/auth/register`, {
+    return await fetch(`${baseURL}/users/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -14,7 +14,7 @@ export const register = async (data) => {
 
 export const login = async (data) => {
   try {
-    return await fetch(`${consts.baseURL}/users/auth/login`, {
+    return await fetch(`${baseURL}/users/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -26,7 +26,7 @@ export const login = async (data) => {
 
 export const fetchNewPassword = async (givenEmail) => {
   try {
-    return await fetch(`${consts.baseURL}/users/get_new_password`, {
+    return await fetch(`${baseURL}/users/get_new_password`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: givenEmail }),
@@ -38,7 +38,7 @@ export const fetchNewPassword = async (givenEmail) => {
 
 export const postNewPassword = async (givenEmail, givenPassword, hash) => {
   try {
-    return await fetch(`${consts.baseURL}/users/reset_password`, {
+    return await fetch(`${baseURL}/users/reset_password`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

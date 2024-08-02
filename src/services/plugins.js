@@ -1,9 +1,10 @@
-import { consts } from "../config/constants";
 import { localStorageToken } from "../config/localStorage";
+
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const getAllPlugins = async () => {
   try {
-    return await fetch(`${consts.baseURL}/plugs`);
+    return await fetch(`${baseURL}/plugs`);
   } catch (error) {
     return error;
   }
@@ -11,7 +12,7 @@ export const getAllPlugins = async () => {
 
 export const addNewPlug = async (newPlug) => {
   try {
-    return await fetch(`${consts.baseURL}/plugs/add`, {
+    return await fetch(`${baseURL}/plugs/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +27,7 @@ export const addNewPlug = async (newPlug) => {
 
 export const editPlug = async (upToDatePlug) => {
   try {
-    return await fetch(`${consts.baseURL}/plugs/edit/${upToDatePlug.id}`, {
+    return await fetch(`${baseURL}/plugs/edit/${upToDatePlug.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +42,7 @@ export const editPlug = async (upToDatePlug) => {
 
 export const generateDescription = async (currentPlug) => {
   try {
-    return await fetch(`${consts.baseURL}/plugs/generate/description`, {
+    return await fetch(`${baseURL}/plugs/generate/description`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +66,7 @@ export const submitSelections = async (
   alreadySaved
 ) => {
   try {
-    return await fetch(`${consts.baseURL}/plugs/${type}/${plugId}`, {
+    return await fetch(`${baseURL}/plugs/${type}/${plugId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

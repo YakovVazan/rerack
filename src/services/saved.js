@@ -1,10 +1,11 @@
-import { consts } from "../config/constants";
 import { localStorageId, localStorageToken } from "../config/localStorage";
+
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const getSavedPlugins = async (id) => {
   try {
     return await fetch(
-      `${consts.baseURL}/users/${id || localStorageId}/saved`,
+      `${baseURL}/users/${id || localStorageId}/saved`,
       {
         headers: {
           Authorization: `Bearer ${localStorageToken}`,
@@ -18,7 +19,7 @@ export const getSavedPlugins = async (id) => {
 
 export const unsavePlugin = async (plugId) => {
   try {
-    return await fetch(`${consts.baseURL}/plugs/save/${plugId}`, {
+    return await fetch(`${baseURL}/plugs/save/${plugId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

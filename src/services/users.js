@@ -1,10 +1,11 @@
-import { consts } from "../config/constants";
 import { localStorageToken, localStorageIsAdmin } from "../config/localStorage";
+
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const getAllusers = async () => {
   try {
     if (localStorageIsAdmin)
-      return await fetch(`${consts.baseURL}/users`, {
+      return await fetch(`${baseURL}/users`, {
         headers: {
           Authorization: `Bearer ${localStorageToken}`,
         },
@@ -16,7 +17,7 @@ export const getAllusers = async () => {
 
 export const getUser = async (id) => {
   try {
-    return await fetch(`${consts.baseURL}/users/${id}`, {
+    return await fetch(`${baseURL}/users/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorageToken}`,
       },
@@ -28,7 +29,7 @@ export const getUser = async (id) => {
 
 export const editUser = async (id, payload) => {
   try {
-    return await fetch(`${consts.baseURL}/users/${id}/edit`, {
+    return await fetch(`${baseURL}/users/${id}/edit`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${localStorageToken}`,
@@ -43,7 +44,7 @@ export const editUser = async (id, payload) => {
 
 export const verifyUser = async (id) => {
   try {
-    return await fetch(`${consts.baseURL}/users/${id}/verify`, {
+    return await fetch(`${baseURL}/users/${id}/verify`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorageToken}`,

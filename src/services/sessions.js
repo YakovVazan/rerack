@@ -1,10 +1,11 @@
-import { consts } from "../config/constants";
 import { localStorageToken } from "../config/localStorage";
+
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const userSessionIsValid = async () => {
   try {
     if (!localStorageToken) throw new Error("Unauthorized");
-    return await fetch(`${consts.baseURL}/users/tokens/check_session`, {
+    return await fetch(`${baseURL}/users/tokens/check_session`, {
       headers: {
         Authorization: `Bearer ${localStorageToken}`,
       },
@@ -17,7 +18,7 @@ export const userSessionIsValid = async () => {
 export const isUserAdmin = async () => {
   try {
     if (!localStorageToken) throw new Error("Unauthorized");
-    return await fetch(`${consts.baseURL}/users/tokens/check_role`, {
+    return await fetch(`${baseURL}/users/tokens/check_role`, {
       headers: {
         Authorization: `Bearer ${localStorageToken}`,
       },

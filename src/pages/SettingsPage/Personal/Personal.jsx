@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Context from "../../../context/Context";
 import useToasts from "../../../hooks/useToasts";
-import { consts } from "../../../config/constants";
 import useHistory from "../../../hooks/useHistory";
 import Spinner from "../../../components/Common/Spinner/Spinner";
 import { editUser, getUser, verifyUser } from "../../../services/users";
@@ -19,13 +18,14 @@ const Personal = () => {
   const navigate = useNavigate();
   const { forceGoingBack } = useHistory();
   const contextData = useContext(Context);
+  const baseURL = import.meta.env.VITE_BASE_URL;
   const [userDetails, setUserDetails] = useState({});
   const [loadingUser, setLoadingUser] = useState(true);
   const [userNewDetails, setUserNewDetails] = useState({});
 
   useEffect(() => {
     contextData["setDeletionModalContents"]({
-      url: `${consts.baseURL}/users/${id}/delete`,
+      url: `${baseURL}/users/${id}/delete`,
       msg: "Your account",
     });
   }, []);

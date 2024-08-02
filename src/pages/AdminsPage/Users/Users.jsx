@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import Context from "../../../context/Context";
 import useUsers from "../../../hooks/useUsers";
-import { consts } from "../../../config/constants";
 import SvgEye from "../../../components/svg/SvgEye/SvgEye";
 import SvgBan from "../../../components/svg/SvgBan/SvgBan";
 import Spinner from "../../../components/Common/Spinner/Spinner";
@@ -16,6 +15,7 @@ import "./Users.css";
 const Users = () => {
   const [total, setTotal] = useState(0);
   const { users, isLoading } = useUsers();
+  const baseURL = import.meta.env.VITE_BASE_URL;
   const [searchBoxValue, setSearchBoxValue] = useState("");
   const {
     setDeletionModalContents,
@@ -36,7 +36,7 @@ const Users = () => {
 
   const handleBanning = async (username, userId) => {
     setDeletionModalContents({
-      url: `${consts.baseURL}/users/${userId}/delete`,
+      url: `${baseURL}/users/${userId}/delete`,
       msg: `${username}'s account`,
       id: `${userId}`,
     });

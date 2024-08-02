@@ -1,10 +1,11 @@
-import { consts } from "../config/constants";
 import { localStorageToken } from "../config/localStorage";
+
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const getUserContributions = async () => {
   try {
     return await fetch(
-      `${consts.baseURL}/users/${
+      `${baseURL}/users/${
         location.pathname.split("/")[2]
       }/contributions`,
       {
@@ -20,7 +21,7 @@ export const getUserContributions = async () => {
 
 export const getAllContributions = async () => {
   try {
-    return await fetch(`${consts.baseURL}/users/activity`, {
+    return await fetch(`${baseURL}/users/activity`, {
       headers: {
         Authorization: `Bearer ${localStorageToken}`,
       },

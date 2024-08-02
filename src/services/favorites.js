@@ -1,16 +1,14 @@
-import { consts } from "../config/constants";
 import { localStorageId, localStorageToken } from "../config/localStorage";
+
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 export const getFavorites = async (id) => {
   try {
-    return await fetch(
-      `${consts.baseURL}/users/${id || localStorageId}/favorites`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorageToken}`,
-        },
-      }
-    );
+    return await fetch(`${baseURL}/users/${id || localStorageId}/favorites`, {
+      headers: {
+        Authorization: `Bearer ${localStorageToken}`,
+      },
+    });
   } catch (error) {
     return error;
   }
@@ -18,7 +16,7 @@ export const getFavorites = async (id) => {
 
 export const unfavorPlugin = async (plugId) => {
   try {
-    return await fetch(`${consts.baseURL}/plugs/favor/${plugId}`, {
+    return await fetch(`${baseURL}/plugs/favor/${plugId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

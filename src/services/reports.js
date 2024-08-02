@@ -1,8 +1,9 @@
-import { consts } from "../config/constants";
 import { localStorageToken } from "../config/localStorage";
 
+const baseURL = import.meta.env.VITE_BASE_URL;
+
 export const fetchReports = async (userId) => {
-  const response = await fetch(`${consts.baseURL}/users/${userId}/reports`, {
+  const response = await fetch(`${baseURL}/users/${userId}/reports`, {
     headers: {
       Authorization: `Bearer ${localStorageToken}`,
     },
@@ -20,7 +21,7 @@ export const fetchReports = async (userId) => {
 };
 
 export const fetchAllReports = async () => {
-  const response = await fetch(`${consts.baseURL}/users/reports`, {
+  const response = await fetch(`${baseURL}/users/reports`, {
     headers: {
       Authorization: `Bearer ${localStorageToken}`,
     },
@@ -38,7 +39,7 @@ export const fetchAllReports = async () => {
 };
 
 export const getCurrentReport = async (reportId) => {
-  const response = await fetch(`${consts.baseURL}/users/reports/${reportId}`, {
+  const response = await fetch(`${baseURL}/users/reports/${reportId}`, {
     headers: {
       Authorization: `Bearer ${localStorageToken}`,
     },
@@ -56,7 +57,7 @@ export const getCurrentReport = async (reportId) => {
 };
 
 export const sendReport = async (reportData) => {
-  const response = await fetch(`${consts.baseURL}/users/reports/report`, {
+  const response = await fetch(`${baseURL}/users/reports/report`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -78,7 +79,7 @@ export const sendReport = async (reportData) => {
 
 export const sendReply = async (reportData) => {
   const response = await fetch(
-    `${consts.baseURL}/users/reports/${location.pathname
+    `${baseURL}/users/reports/${location.pathname
       .split("/")
       .filter((segment) => segment !== "")
       .at(-1)}/reply`,

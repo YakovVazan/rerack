@@ -1,16 +1,16 @@
 import { useContext, useEffect } from "react";
 import Context from "../../../../context/Context";
-import { consts } from "../../../../config/constants";
 import { localStorageIsAdmin } from "../../../../config/localStorage";
 import "./DeleteButton.css";
 
 const DeleteButton = () => {
   const contextData = useContext(Context);
+  const baseURL = import.meta.env.VITE_BASE_URL;
   const currentPlug = contextData["currentPlug"];
 
   useEffect(() => {
     contextData["setDeletionModalContents"]({
-      url: `${consts.baseURL}/plugs/delete/${currentPlug.id}`,
+      url: `${baseURL}/plugs/delete/${currentPlug.id}`,
       msg: currentPlug.name,
     });
   }, [currentPlug]);

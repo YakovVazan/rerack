@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Context from "../../../../context/Context";
 import useToasts from "../../../../hooks/useToasts";
-import { consts } from "../../../../config/constants";
 import useNavigation from "../../../../hooks/useNavigation";
 import { getCurrentReport } from "../../../../services/reports";
 import SvgReply from "../../../../components/svg/SvgReply/SvgReply";
@@ -18,6 +17,7 @@ import "./ReportPage.css";
 const ReportPage = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
+  const baseURL = import.meta.env.VITE_BASE_URL;
   const { urlToArray, isReportNotInbox } = useNavigation();
   const { currentReport, setCurrentReport, setDeletionModalContents } =
     useContext(Context);
@@ -28,7 +28,7 @@ const ReportPage = () => {
 
   const handleReportDelete = () => {
     setDeletionModalContents({
-      url: `${consts.baseURL}/users/reports/delete/${currentReport.id}`,
+      url: `${baseURL}/users/reports/delete/${currentReport.id}`,
       msg: "report",
       id: `${localStorageId}`,
     });

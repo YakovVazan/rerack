@@ -5,7 +5,6 @@ import useUsers from "./useUsers";
 import useToasts from "./useToasts";
 import Context from "../context/Context";
 import useNavigation from "./useNavigation";
-import { consts } from "../config/constants";
 import { localStorageToken, localStorageLogin } from "../config/localStorage";
 import { getCurrentReport } from "../services/reports";
 
@@ -13,11 +12,12 @@ const useSocketIo = () => {
   const showToast = useToasts();
   const navigate = useNavigate();
   const { fetchUsers } = useUsers();
+  const baseURL = import.meta.env.VITE_BASE_URL;
   const { setSocket, setCurrentReport } = useContext(Context);
   const { isReportURL, isAdminURL, urlToArray } = useNavigation();
 
   useEffect(() => {
-    const newSocket = socketIOClient(consts.baseURL, {
+    const newSocket = socketIOClient(baseURL, {
       auth: { token: localStorageToken },
       transports: ["websocket"],
     });
