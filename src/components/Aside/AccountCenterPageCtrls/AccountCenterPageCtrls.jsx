@@ -62,7 +62,7 @@ const AccountCenterPageCtrls = () => {
                     contextData["accountPageSubRoute"] === index && "active"
                   } ${
                     ((item.title === "Dashboard" &&
-                      localStorageIsAdmin === "false") ||
+                      localStorageIsAdmin == "false") ||
                       index === list.length - 1) &&
                     "d-none"
                   }`}
@@ -72,7 +72,7 @@ const AccountCenterPageCtrls = () => {
                   {item.svg} {item.title}
                 </li>
                 {(index === 2 ||
-                  (index === 5 && localStorageIsAdmin === "true")) && (
+                  (index === 5 && localStorageIsAdmin == "true")) && (
                   <ColoredDivider margin={"0"} />
                 )}
               </Fragment>
