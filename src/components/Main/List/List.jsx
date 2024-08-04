@@ -24,7 +24,8 @@ const List = () => {
     new Set(
       orderedData.map((piece) => {
         if (orderBy === "name") {
-          return piece["name"][0];
+          if (/^\d+/.test(piece[orderBy])) return "#";
+          else return piece[orderBy][0];
         } else {
           return piece[orderBy];
         }
@@ -41,7 +42,10 @@ const List = () => {
       companyFilterValue === consts.companyDropDownInitialValue &&
       typeFilterValue === consts.typeDropDownInitialValue &&
       view === "list" &&
-      ((orderBy === "name" && plug["name"][0] === currentInitial) ||
+      ((orderBy === "name" &&
+        /^\d+/.test(plug["name"][0]) &&
+        currentInitial === "#") ||
+        plug["name"][0] === currentInitial ||
         plug[orderBy] === currentInitial)
     );
   };
