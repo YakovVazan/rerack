@@ -18,6 +18,14 @@ const ListItem = ({ plug, index }) => {
     setSelectedItem(-1);
   }
 
+  const normalizeType = (typeString) => {
+    return typeString
+      .split(",")
+      .map((str) => str.trim())
+      .sort()
+      .join(", ");
+  };
+
   return (
     <Link
       className="item-link"
@@ -38,6 +46,7 @@ const ListItem = ({ plug, index }) => {
               .toLowerCase()
               .includes(searchBoxValue.toLowerCase())) &&
           (typeFilterValue === consts.typeDropDownInitialValue ||
+            normalizeType(plug["type"]) === normalizeType(typeFilterValue) ||
             plug["type"].includes(typeFilterValue)) &&
           (companyFilterValue === consts.companyDropDownInitialValue ||
             plug["company"] === companyFilterValue)
